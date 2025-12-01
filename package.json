@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:cf": "npx @opennextjs/cloudflare build",
+    "deploy": "npm run build:cf && wrangler pages deploy .open-next/assets --project-name nytm-multitools",
+    "preview": "npm run build:cf && wrangler pages dev .open-next/assets --compatibility-date=2024-09-23 --nodejs-compat"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -35,6 +38,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.14.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

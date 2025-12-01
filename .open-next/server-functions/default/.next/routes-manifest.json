@@ -1,0 +1,952 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [
+      {
+        "source": "/ingest/static/:path*",
+        "destination": "https://eu-assets.i.posthog.com/static/:path*",
+        "regex": "^/ingest/static(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+      },
+      {
+        "source": "/ingest/:path*",
+        "destination": "https://eu.i.posthog.com/:path*",
+        "regex": "^/ingest(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+      }
+    ],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/feed.xml",
+      "regex": "^/feed\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/feed\\.xml(?:/)?$"
+    },
+    {
+      "page": "/nytm-ctrl-x9k7",
+      "regex": "^/nytm\\-ctrl\\-x9k7(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/nytm\\-ctrl\\-x9k7(?:/)?$"
+    },
+    {
+      "page": "/nytm-ctrl-x9k7/activity",
+      "regex": "^/nytm\\-ctrl\\-x9k7/activity(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/nytm\\-ctrl\\-x9k7/activity(?:/)?$"
+    },
+    {
+      "page": "/nytm-ctrl-x9k7/ads",
+      "regex": "^/nytm\\-ctrl\\-x9k7/ads(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/nytm\\-ctrl\\-x9k7/ads(?:/)?$"
+    },
+    {
+      "page": "/nytm-ctrl-x9k7/analytics",
+      "regex": "^/nytm\\-ctrl\\-x9k7/analytics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/nytm\\-ctrl\\-x9k7/analytics(?:/)?$"
+    },
+    {
+      "page": "/nytm-ctrl-x9k7/login",
+      "regex": "^/nytm\\-ctrl\\-x9k7/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/nytm\\-ctrl\\-x9k7/login(?:/)?$"
+    },
+    {
+      "page": "/nytm-ctrl-x9k7/settings",
+      "regex": "^/nytm\\-ctrl\\-x9k7/settings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/nytm\\-ctrl\\-x9k7/settings(?:/)?$"
+    },
+    {
+      "page": "/nytm-ctrl-x9k7/tools",
+      "regex": "^/nytm\\-ctrl\\-x9k7/tools(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/nytm\\-ctrl\\-x9k7/tools(?:/)?$"
+    },
+    {
+      "page": "/pricing",
+      "regex": "^/pricing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/pricing(?:/)?$"
+    },
+    {
+      "page": "/privacy",
+      "regex": "^/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/terms",
+      "regex": "^/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms(?:/)?$"
+    },
+    {
+      "page": "/tools",
+      "regex": "^/tools(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools(?:/)?$"
+    },
+    {
+      "page": "/tools/add-prefix-suffix",
+      "regex": "^/tools/add\\-prefix\\-suffix(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/add\\-prefix\\-suffix(?:/)?$"
+    },
+    {
+      "page": "/tools/aes-decrypt",
+      "regex": "^/tools/aes\\-decrypt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/aes\\-decrypt(?:/)?$"
+    },
+    {
+      "page": "/tools/aes-encrypt",
+      "regex": "^/tools/aes\\-encrypt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/aes\\-encrypt(?:/)?$"
+    },
+    {
+      "page": "/tools/age-calculator",
+      "regex": "^/tools/age\\-calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/age\\-calculator(?:/)?$"
+    },
+    {
+      "page": "/tools/ascii-table",
+      "regex": "^/tools/ascii\\-table(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/ascii\\-table(?:/)?$"
+    },
+    {
+      "page": "/tools/aspect-ratio",
+      "regex": "^/tools/aspect\\-ratio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/aspect\\-ratio(?:/)?$"
+    },
+    {
+      "page": "/tools/barcode-generator",
+      "regex": "^/tools/barcode\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/barcode\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/base64-decode",
+      "regex": "^/tools/base64\\-decode(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/base64\\-decode(?:/)?$"
+    },
+    {
+      "page": "/tools/base64-encode",
+      "regex": "^/tools/base64\\-encode(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/base64\\-encode(?:/)?$"
+    },
+    {
+      "page": "/tools/base64-to-image",
+      "regex": "^/tools/base64\\-to\\-image(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/base64\\-to\\-image(?:/)?$"
+    },
+    {
+      "page": "/tools/bcrypt-hash",
+      "regex": "^/tools/bcrypt\\-hash(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/bcrypt\\-hash(?:/)?$"
+    },
+    {
+      "page": "/tools/bcrypt-verify",
+      "regex": "^/tools/bcrypt\\-verify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/bcrypt\\-verify(?:/)?$"
+    },
+    {
+      "page": "/tools/beautify-screenshot",
+      "regex": "^/tools/beautify\\-screenshot(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/beautify\\-screenshot(?:/)?$"
+    },
+    {
+      "page": "/tools/binary-to-text",
+      "regex": "^/tools/binary\\-to\\-text(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/binary\\-to\\-text(?:/)?$"
+    },
+    {
+      "page": "/tools/bmi-calculator",
+      "regex": "^/tools/bmi\\-calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/bmi\\-calculator(?:/)?$"
+    },
+    {
+      "page": "/tools/bullet-points",
+      "regex": "^/tools/bullet\\-points(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/bullet\\-points(?:/)?$"
+    },
+    {
+      "page": "/tools/character-counter",
+      "regex": "^/tools/character\\-counter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/character\\-counter(?:/)?$"
+    },
+    {
+      "page": "/tools/code-minifier",
+      "regex": "^/tools/code\\-minifier(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/code\\-minifier(?:/)?$"
+    },
+    {
+      "page": "/tools/color-converter",
+      "regex": "^/tools/color\\-converter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/color\\-converter(?:/)?$"
+    },
+    {
+      "page": "/tools/color-picker",
+      "regex": "^/tools/color\\-picker(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/color\\-picker(?:/)?$"
+    },
+    {
+      "page": "/tools/countdown-timer",
+      "regex": "^/tools/countdown\\-timer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/countdown\\-timer(?:/)?$"
+    },
+    {
+      "page": "/tools/credit-card-generator",
+      "regex": "^/tools/credit\\-card\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/credit\\-card\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/cron-parser",
+      "regex": "^/tools/cron\\-parser(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/cron\\-parser(?:/)?$"
+    },
+    {
+      "page": "/tools/css-beautify",
+      "regex": "^/tools/css\\-beautify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/css\\-beautify(?:/)?$"
+    },
+    {
+      "page": "/tools/css-minify",
+      "regex": "^/tools/css\\-minify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/css\\-minify(?:/)?$"
+    },
+    {
+      "page": "/tools/csv-to-json",
+      "regex": "^/tools/csv\\-to\\-json(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/csv\\-to\\-json(?:/)?$"
+    },
+    {
+      "page": "/tools/date-calculator",
+      "regex": "^/tools/date\\-calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/date\\-calculator(?:/)?$"
+    },
+    {
+      "page": "/tools/diff-checker",
+      "regex": "^/tools/diff\\-checker(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/diff\\-checker(?:/)?$"
+    },
+    {
+      "page": "/tools/emoji-picker",
+      "regex": "^/tools/emoji\\-picker(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/emoji\\-picker(?:/)?$"
+    },
+    {
+      "page": "/tools/epoch-converter",
+      "regex": "^/tools/epoch\\-converter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/epoch\\-converter(?:/)?$"
+    },
+    {
+      "page": "/tools/escape-unescape",
+      "regex": "^/tools/escape\\-unescape(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/escape\\-unescape(?:/)?$"
+    },
+    {
+      "page": "/tools/fake-data",
+      "regex": "^/tools/fake\\-data(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/fake\\-data(?:/)?$"
+    },
+    {
+      "page": "/tools/favicon-generator",
+      "regex": "^/tools/favicon\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/favicon\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/file-hash",
+      "regex": "^/tools/file\\-hash(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/file\\-hash(?:/)?$"
+    },
+    {
+      "page": "/tools/find-replace",
+      "regex": "^/tools/find\\-replace(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/find\\-replace(?:/)?$"
+    },
+    {
+      "page": "/tools/hash-generator",
+      "regex": "^/tools/hash\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/hash\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/hash-identifier",
+      "regex": "^/tools/hash\\-identifier(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/hash\\-identifier(?:/)?$"
+    },
+    {
+      "page": "/tools/hex-to-text",
+      "regex": "^/tools/hex\\-to\\-text(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/hex\\-to\\-text(?:/)?$"
+    },
+    {
+      "page": "/tools/html-beautify",
+      "regex": "^/tools/html\\-beautify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/html\\-beautify(?:/)?$"
+    },
+    {
+      "page": "/tools/html-decode",
+      "regex": "^/tools/html\\-decode(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/html\\-decode(?:/)?$"
+    },
+    {
+      "page": "/tools/html-encode",
+      "regex": "^/tools/html\\-encode(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/html\\-encode(?:/)?$"
+    },
+    {
+      "page": "/tools/html-entities",
+      "regex": "^/tools/html\\-entities(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/html\\-entities(?:/)?$"
+    },
+    {
+      "page": "/tools/html-minify",
+      "regex": "^/tools/html\\-minify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/html\\-minify(?:/)?$"
+    },
+    {
+      "page": "/tools/html-strip",
+      "regex": "^/tools/html\\-strip(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/html\\-strip(?:/)?$"
+    },
+    {
+      "page": "/tools/html-to-markdown",
+      "regex": "^/tools/html\\-to\\-markdown(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/html\\-to\\-markdown(?:/)?$"
+    },
+    {
+      "page": "/tools/iban-generator",
+      "regex": "^/tools/iban\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/iban\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/image-compress",
+      "regex": "^/tools/image\\-compress(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-compress(?:/)?$"
+    },
+    {
+      "page": "/tools/image-convert",
+      "regex": "^/tools/image\\-convert(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-convert(?:/)?$"
+    },
+    {
+      "page": "/tools/image-crop",
+      "regex": "^/tools/image\\-crop(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-crop(?:/)?$"
+    },
+    {
+      "page": "/tools/image-filters",
+      "regex": "^/tools/image\\-filters(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-filters(?:/)?$"
+    },
+    {
+      "page": "/tools/image-flip",
+      "regex": "^/tools/image\\-flip(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-flip(?:/)?$"
+    },
+    {
+      "page": "/tools/image-resize",
+      "regex": "^/tools/image\\-resize(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-resize(?:/)?$"
+    },
+    {
+      "page": "/tools/image-rotate",
+      "regex": "^/tools/image\\-rotate(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-rotate(?:/)?$"
+    },
+    {
+      "page": "/tools/image-to-base64",
+      "regex": "^/tools/image\\-to\\-base64(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/image\\-to\\-base64(?:/)?$"
+    },
+    {
+      "page": "/tools/ip-generator",
+      "regex": "^/tools/ip\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/ip\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/ip-lookup",
+      "regex": "^/tools/ip\\-lookup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/ip\\-lookup(?:/)?$"
+    },
+    {
+      "page": "/tools/js-beautify",
+      "regex": "^/tools/js\\-beautify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/js\\-beautify(?:/)?$"
+    },
+    {
+      "page": "/tools/js-minify",
+      "regex": "^/tools/js\\-minify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/js\\-minify(?:/)?$"
+    },
+    {
+      "page": "/tools/json-escape",
+      "regex": "^/tools/json\\-escape(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-escape(?:/)?$"
+    },
+    {
+      "page": "/tools/json-minify",
+      "regex": "^/tools/json\\-minify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-minify(?:/)?$"
+    },
+    {
+      "page": "/tools/json-path",
+      "regex": "^/tools/json\\-path(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-path(?:/)?$"
+    },
+    {
+      "page": "/tools/json-pretty",
+      "regex": "^/tools/json\\-pretty(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-pretty(?:/)?$"
+    },
+    {
+      "page": "/tools/json-to-csv",
+      "regex": "^/tools/json\\-to\\-csv(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-to\\-csv(?:/)?$"
+    },
+    {
+      "page": "/tools/json-to-xml",
+      "regex": "^/tools/json\\-to\\-xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-to\\-xml(?:/)?$"
+    },
+    {
+      "page": "/tools/json-to-yaml",
+      "regex": "^/tools/json\\-to\\-yaml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-to\\-yaml(?:/)?$"
+    },
+    {
+      "page": "/tools/json-validator",
+      "regex": "^/tools/json\\-validator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/json\\-validator(?:/)?$"
+    },
+    {
+      "page": "/tools/jwt-decoder",
+      "regex": "^/tools/jwt\\-decoder(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/jwt\\-decoder(?:/)?$"
+    },
+    {
+      "page": "/tools/jwt-generator",
+      "regex": "^/tools/jwt\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/jwt\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/keyboard-tester",
+      "regex": "^/tools/keyboard\\-tester(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/keyboard\\-tester(?:/)?$"
+    },
+    {
+      "page": "/tools/line-counter",
+      "regex": "^/tools/line\\-counter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/line\\-counter(?:/)?$"
+    },
+    {
+      "page": "/tools/loan-calculator",
+      "regex": "^/tools/loan\\-calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/loan\\-calculator(?:/)?$"
+    },
+    {
+      "page": "/tools/lorem-ipsum",
+      "regex": "^/tools/lorem\\-ipsum(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/lorem\\-ipsum(?:/)?$"
+    },
+    {
+      "page": "/tools/mac-address-generator",
+      "regex": "^/tools/mac\\-address\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/mac\\-address\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/markdown-clean",
+      "regex": "^/tools/markdown\\-clean(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/markdown\\-clean(?:/)?$"
+    },
+    {
+      "page": "/tools/markdown-preview",
+      "regex": "^/tools/markdown\\-preview(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/markdown\\-preview(?:/)?$"
+    },
+    {
+      "page": "/tools/markdown-to-html",
+      "regex": "^/tools/markdown\\-to\\-html(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/markdown\\-to\\-html(?:/)?$"
+    },
+    {
+      "page": "/tools/md5-hash",
+      "regex": "^/tools/md5\\-hash(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/md5\\-hash(?:/)?$"
+    },
+    {
+      "page": "/tools/morse-code",
+      "regex": "^/tools/morse\\-code(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/morse\\-code(?:/)?$"
+    },
+    {
+      "page": "/tools/nato-alphabet",
+      "regex": "^/tools/nato\\-alphabet(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/nato\\-alphabet(?:/)?$"
+    },
+    {
+      "page": "/tools/number-base",
+      "regex": "^/tools/number\\-base(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/number\\-base(?:/)?$"
+    },
+    {
+      "page": "/tools/number-lines",
+      "regex": "^/tools/number\\-lines(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/number\\-lines(?:/)?$"
+    },
+    {
+      "page": "/tools/palette-generator",
+      "regex": "^/tools/palette\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/palette\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/password-generator",
+      "regex": "^/tools/password\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/password\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/password-strength",
+      "regex": "^/tools/password\\-strength(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/password\\-strength(?:/)?$"
+    },
+    {
+      "page": "/tools/percentage-calculator",
+      "regex": "^/tools/percentage\\-calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/percentage\\-calculator(?:/)?$"
+    },
+    {
+      "page": "/tools/placeholder-image",
+      "regex": "^/tools/placeholder\\-image(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/placeholder\\-image(?:/)?$"
+    },
+    {
+      "page": "/tools/pomodoro-timer",
+      "regex": "^/tools/pomodoro\\-timer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/pomodoro\\-timer(?:/)?$"
+    },
+    {
+      "page": "/tools/qr-code-generator",
+      "regex": "^/tools/qr\\-code\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/qr\\-code\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/random-number",
+      "regex": "^/tools/random\\-number(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/random\\-number(?:/)?$"
+    },
+    {
+      "page": "/tools/random-string",
+      "regex": "^/tools/random\\-string(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/random\\-string(?:/)?$"
+    },
+    {
+      "page": "/tools/regex-tester",
+      "regex": "^/tools/regex\\-tester(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/regex\\-tester(?:/)?$"
+    },
+    {
+      "page": "/tools/remove-duplicates",
+      "regex": "^/tools/remove\\-duplicates(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/remove\\-duplicates(?:/)?$"
+    },
+    {
+      "page": "/tools/remove-empty-lines",
+      "regex": "^/tools/remove\\-empty\\-lines(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/remove\\-empty\\-lines(?:/)?$"
+    },
+    {
+      "page": "/tools/roman-numerals",
+      "regex": "^/tools/roman\\-numerals(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/roman\\-numerals(?:/)?$"
+    },
+    {
+      "page": "/tools/rsa-key-generator",
+      "regex": "^/tools/rsa\\-key\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/rsa\\-key\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/screen-resolution",
+      "regex": "^/tools/screen\\-resolution(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/screen\\-resolution(?:/)?$"
+    },
+    {
+      "page": "/tools/sha1-hash",
+      "regex": "^/tools/sha1\\-hash(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/sha1\\-hash(?:/)?$"
+    },
+    {
+      "page": "/tools/sha256-hash",
+      "regex": "^/tools/sha256\\-hash(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/sha256\\-hash(?:/)?$"
+    },
+    {
+      "page": "/tools/sha512-hash",
+      "regex": "^/tools/sha512\\-hash(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/sha512\\-hash(?:/)?$"
+    },
+    {
+      "page": "/tools/slug-generator",
+      "regex": "^/tools/slug\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/slug\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/sort-lines",
+      "regex": "^/tools/sort\\-lines(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/sort\\-lines(?:/)?$"
+    },
+    {
+      "page": "/tools/sql-formatter",
+      "regex": "^/tools/sql\\-formatter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/sql\\-formatter(?:/)?$"
+    },
+    {
+      "page": "/tools/stopwatch",
+      "regex": "^/tools/stopwatch(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/stopwatch(?:/)?$"
+    },
+    {
+      "page": "/tools/summary",
+      "regex": "^/tools/summary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/summary(?:/)?$"
+    },
+    {
+      "page": "/tools/svg-to-png",
+      "regex": "^/tools/svg\\-to\\-png(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/svg\\-to\\-png(?:/)?$"
+    },
+    {
+      "page": "/tools/text-case",
+      "regex": "^/tools/text\\-case(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-case(?:/)?$"
+    },
+    {
+      "page": "/tools/text-diff",
+      "regex": "^/tools/text\\-diff(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-diff(?:/)?$"
+    },
+    {
+      "page": "/tools/text-extract",
+      "regex": "^/tools/text\\-extract(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-extract(?:/)?$"
+    },
+    {
+      "page": "/tools/text-join",
+      "regex": "^/tools/text\\-join(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-join(?:/)?$"
+    },
+    {
+      "page": "/tools/text-repeat",
+      "regex": "^/tools/text\\-repeat(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-repeat(?:/)?$"
+    },
+    {
+      "page": "/tools/text-reverse",
+      "regex": "^/tools/text\\-reverse(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-reverse(?:/)?$"
+    },
+    {
+      "page": "/tools/text-split",
+      "regex": "^/tools/text\\-split(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-split(?:/)?$"
+    },
+    {
+      "page": "/tools/text-to-binary",
+      "regex": "^/tools/text\\-to\\-binary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-to\\-binary(?:/)?$"
+    },
+    {
+      "page": "/tools/text-to-hex",
+      "regex": "^/tools/text\\-to\\-hex(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-to\\-hex(?:/)?$"
+    },
+    {
+      "page": "/tools/text-trim",
+      "regex": "^/tools/text\\-trim(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/text\\-trim(?:/)?$"
+    },
+    {
+      "page": "/tools/timestamp-converter",
+      "regex": "^/tools/timestamp\\-converter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/timestamp\\-converter(?:/)?$"
+    },
+    {
+      "page": "/tools/timezone-converter",
+      "regex": "^/tools/timezone\\-converter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/timezone\\-converter(?:/)?$"
+    },
+    {
+      "page": "/tools/tip-calculator",
+      "regex": "^/tools/tip\\-calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/tip\\-calculator(?:/)?$"
+    },
+    {
+      "page": "/tools/unicode-converter",
+      "regex": "^/tools/unicode\\-converter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/unicode\\-converter(?:/)?$"
+    },
+    {
+      "page": "/tools/unit-converter",
+      "regex": "^/tools/unit\\-converter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/unit\\-converter(?:/)?$"
+    },
+    {
+      "page": "/tools/url-decode",
+      "regex": "^/tools/url\\-decode(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/url\\-decode(?:/)?$"
+    },
+    {
+      "page": "/tools/url-encode",
+      "regex": "^/tools/url\\-encode(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/url\\-encode(?:/)?$"
+    },
+    {
+      "page": "/tools/url-parser",
+      "regex": "^/tools/url\\-parser(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/url\\-parser(?:/)?$"
+    },
+    {
+      "page": "/tools/user-agent-parser",
+      "regex": "^/tools/user\\-agent\\-parser(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/user\\-agent\\-parser(?:/)?$"
+    },
+    {
+      "page": "/tools/uuid-generator",
+      "regex": "^/tools/uuid\\-generator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/uuid\\-generator(?:/)?$"
+    },
+    {
+      "page": "/tools/word-counter",
+      "regex": "^/tools/word\\-counter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/word\\-counter(?:/)?$"
+    },
+    {
+      "page": "/tools/world-clock",
+      "regex": "^/tools/world\\-clock(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/world\\-clock(?:/)?$"
+    },
+    {
+      "page": "/tools/xml-beautify",
+      "regex": "^/tools/xml\\-beautify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/xml\\-beautify(?:/)?$"
+    },
+    {
+      "page": "/tools/xml-minify",
+      "regex": "^/tools/xml\\-minify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/xml\\-minify(?:/)?$"
+    },
+    {
+      "page": "/tools/xml-to-json",
+      "regex": "^/tools/xml\\-to\\-json(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/xml\\-to\\-json(?:/)?$"
+    },
+    {
+      "page": "/tools/yaml-to-json",
+      "regex": "^/tools/yaml\\-to\\-json(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/yaml\\-to\\-json(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="8" width="34" height="34" rx="8" fill="url(#gradient)"/>
+  <path d="M12 20L19 27L26 16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="45" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="currentColor">
+    NYTM
+  </text>
+  <text x="115" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="currentColor" opacity="0.7">
+    Tools
+  </text>
+</svg>

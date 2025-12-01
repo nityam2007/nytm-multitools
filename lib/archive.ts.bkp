@@ -1,0 +1,206 @@
+import Database from "better-sqlite3";
+import { join } from "path";
+import { existsSync, mkdirSync } from "fs";
+
+export interface ArchiveRecord {
+  id?: number;
+  tool_name: string;
+  tool_category: string;
+  input_type: string;
+  raw_input: string | null;
+  file_path: string | null;
+  output_result: string | null;
+  output_file_path: string | null;
+  timestamp: string;
+  user_agent: string | null;
+  ip_address: string | null;
+  processing_duration: number | null;
+  input_size: number | null;
+  metadata: string | null;
+}
+
+// Ensure data directory exists
+const dataDir = join(process.cwd(), "data");
+const uploadsDir = join(dataDir, "uploads");
+
+if (!existsSync(dataDir)) {
+  mkdirSync(dataDir, { recursive: true });
+}
+
+if (!existsSync(uploadsDir)) {
+  mkdirSync(uploadsDir, { recursive: true });
+}
+
+// Initialize database
+const dbPath = join(dataDir, "archive.sqlite");
+const db = new Database(dbPath);
+
+// Create tables
+db.exec(`
+  CREATE TABLE IF NOT EXISTS archive (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tool_name TEXT NOT NULL,
+    tool_category TEXT NOT NULL,
+    input_type TEXT NOT NULL,
+    raw_input TEXT,
+    file_path TEXT,
+    output_result TEXT,
+    output_file_path TEXT,
+    timestamp TEXT NOT NULL,
+    user_agent TEXT,
+    ip_address TEXT,
+    processing_duration INTEGER,
+    input_size INTEGER,
+    metadata TEXT
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_tool_name ON archive(tool_name);
+  CREATE INDEX IF NOT EXISTS idx_timestamp ON archive(timestamp);
+  CREATE INDEX IF NOT EXISTS idx_tool_category ON archive(tool_category);
+`);
+
+export function addArchiveRecord(record: Omit<ArchiveRecord, "id">): number {
+  const stmt = db.prepare(`
+    INSERT INTO archive (
+      tool_name, tool_category, input_type, raw_input, file_path,
+      output_result, output_file_path, timestamp, user_agent,
+      ip_address, processing_duration, input_size, metadata
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  const result = stmt.run(
+    record.tool_name,
+    record.tool_category,
+    record.input_type,
+    record.raw_input,
+    record.file_path,
+    record.output_result,
+    record.output_file_path,
+    record.timestamp,
+    record.user_agent,
+    record.ip_address,
+    record.processing_duration,
+    record.input_size,
+    record.metadata
+  );
+
+  return result.lastInsertRowid as number;
+}
+
+export function getArchiveRecords(options: {
+  page?: number;
+  limit?: number;
+  tool?: string;
+  category?: string;
+  startDate?: string;
+  endDate?: string;
+  search?: string;
+}): { records: ArchiveRecord[]; total: number } {
+  const {
+    page = 1,
+    limit = 20,
+    tool,
+    category,
+    startDate,
+    endDate,
+    search,
+  } = options;
+
+  let whereClause = "WHERE 1=1";
+  const params: any[] = [];
+
+  if (tool) {
+    whereClause += " AND tool_name = ?";
+    params.push(tool);
+  }
+
+  if (category) {
+    whereClause += " AND tool_category = ?";
+    params.push(category);
+  }
+
+  if (startDate) {
+    whereClause += " AND timestamp >= ?";
+    params.push(startDate);
+  }
+
+  if (endDate) {
+    whereClause += " AND timestamp <= ?";
+    params.push(endDate);
+  }
+
+  if (search) {
+    whereClause += " AND (raw_input LIKE ? OR output_result LIKE ?)";
+    params.push(`%${search}%`, `%${search}%`);
+  }
+
+  // Get total count
+  const countStmt = db.prepare(`SELECT COUNT(*) as count FROM archive ${whereClause}`);
+  const { count: total } = countStmt.get(...params) as { count: number };
+
+  // Get records with pagination
+  const offset = (page - 1) * limit;
+  const stmt = db.prepare(`
+    SELECT * FROM archive ${whereClause}
+    ORDER BY timestamp DESC
+    LIMIT ? OFFSET ?
+  `);
+
+  const records = stmt.all(...params, limit, offset) as ArchiveRecord[];
+
+  return { records, total };
+}
+
+export function getArchiveRecordById(id: number): ArchiveRecord | undefined {
+  const stmt = db.prepare("SELECT * FROM archive WHERE id = ?");
+  return stmt.get(id) as ArchiveRecord | undefined;
+}
+
+export function deleteArchiveRecord(id: number): boolean {
+  const stmt = db.prepare("DELETE FROM archive WHERE id = ?");
+  const result = stmt.run(id);
+  return result.changes > 0;
+}
+
+export function getToolStats(): { tool: string; count: number }[] {
+  const stmt = db.prepare(`
+    SELECT tool_name as tool, COUNT(*) as count
+    FROM archive
+    GROUP BY tool_name
+    ORDER BY count DESC
+  `);
+  return stmt.all() as { tool: string; count: number }[];
+}
+
+export function getCategoryStats(): { category: string; count: number }[] {
+  const stmt = db.prepare(`
+    SELECT tool_category as category, COUNT(*) as count
+    FROM archive
+    GROUP BY tool_category
+    ORDER BY count DESC
+  `);
+  return stmt.all() as { category: string; count: number }[];
+}
+
+export function getDailyStats(days: number = 7): { date: string; count: number }[] {
+  const stmt = db.prepare(`
+    SELECT DATE(timestamp) as date, COUNT(*) as count
+    FROM archive
+    WHERE timestamp >= datetime('now', '-${days} days')
+    GROUP BY DATE(timestamp)
+    ORDER BY date DESC
+  `);
+  return stmt.all() as { date: string; count: number }[];
+}
+
+export function getTotalStats(): { totalRecords: number; totalTools: number } {
+  const countStmt = db.prepare("SELECT COUNT(*) as count FROM archive");
+  const toolsStmt = db.prepare("SELECT COUNT(DISTINCT tool_name) as count FROM archive");
+  
+  const { count: totalRecords } = countStmt.get() as { count: number };
+  const { count: totalTools } = toolsStmt.get() as { count: number };
+  
+  return { totalRecords, totalTools };
+}
+
+export { db };

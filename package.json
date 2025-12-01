@@ -1,0 +1,48 @@
+{
+  "name": "nytm-tools",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/prismjs": "^1.26.5",
+    "@types/qrcode": "^1.5.6",
+    "@types/uuid": "^10.0.0",
+    "bcryptjs": "^3.0.3",
+    "color-thief-browser": "^2.0.2",
+    "crypto-js": "^4.2.0",
+    "diff": "^8.0.2",
+    "file-type": "^21.1.1",
+    "html2canvas": "^1.4.1",
+    "jose": "^6.1.2",
+    "jszip": "^3.10.1",
+    "marked": "^17.0.1",
+    "next": "16.0.6",
+    "pdfjs-dist": "^5.4.449",
+    "posthog-js": "^1.298.1",
+    "posthog-node": "^5.14.1",
+    "prismjs": "^1.30.0",
+    "qrcode": "^1.5.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-dropzone": "^14.3.8",
+    "sharp": "^0.34.5",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,214 @@
+import { ToolCard } from "@/components/ToolCard";
+import { toolsConfig, getToolsByCategory } from "@/lib/tools-config";
+
+export default function Home() {
+  const categories = [
+    { id: "text", name: "Text Tools", icon: "📝", description: "Transform, analyze, and manipulate text" },
+    { id: "image", name: "Image Tools", icon: "🖼️", description: "Edit, convert, and optimize images" },
+    { id: "dev", name: "Developer Tools", icon: "💻", description: "Code formatting, minification, and more" },
+    { id: "converter", name: "Converters", icon: "🔄", description: "Convert between different formats" },
+    { id: "generator", name: "Generators", icon: "⚡", description: "Generate data, codes, and content" },
+    { id: "security", name: "Security Tools", icon: "🔒", description: "Encryption, hashing, and verification" },
+    { id: "misc", name: "Misc Tools", icon: "🔧", description: "Calculators, utilities, and more" },
+  ];
+
+  return (
+    <div className="max-w-7xl mx-auto">
+      {/* Hero Section */}
+      <section className="relative text-center py-16 md:py-24 overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-[var(--primary)]/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span className="text-sm font-medium text-[var(--primary)]">{toolsConfig.length}+ Tools Available</span>
+          </div>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
+            <span className="gradient-text">NYTM</span>{" "}
+            <span className="text-[var(--foreground)]">Tools</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-[var(--muted-foreground)] mb-3 font-medium">
+            Next-Gen Yield Tools & Modules
+          </p>
+          
+          <p className="text-[var(--muted-foreground)] max-w-2xl mx-auto mb-10 text-base md:text-lg leading-relaxed">
+            A modern, lightning-fast collection of free online tools for text transformation, 
+            image editing, development utilities, and more. No registration. No ads. Just tools.
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            <a 
+              href="#tools" 
+              className="btn btn-primary text-base md:text-lg px-8 py-3.5 shadow-lg shadow-[var(--primary)]/25 hover:shadow-xl hover:shadow-[var(--primary)]/30"
+            >
+              <span>🚀</span>
+              Explore Tools
+            </a>
+            <a 
+              href="/tools" 
+              className="btn btn-secondary text-base md:text-lg px-8 py-3.5 border border-[var(--border)]"
+            >
+              View All Tools
+              <span className="ml-1 px-2 py-0.5 text-xs rounded-full bg-[var(--primary)]/20 text-[var(--primary)]">
+                {toolsConfig.length}+
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-20">
+        {[
+          { label: "Total Tools", value: `${toolsConfig.length}+`, icon: "🛠️" },
+          { label: "Categories", value: "7", icon: "📁" },
+          { label: "Free Forever", value: "100%", icon: "💰" },
+          { label: "No Sign Up", value: "✓", icon: "🔓" },
+        ].map((stat) => (
+          <div 
+            key={stat.label}
+            className="group bg-[var(--card)] rounded-2xl p-5 md:p-6 text-center border border-[var(--border)] hover:border-[var(--primary)]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--primary)]/5"
+          >
+            <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
+            <div className="text-2xl md:text-3xl font-bold gradient-text mb-1">{stat.value}</div>
+            <div className="text-sm text-[var(--muted-foreground)]">{stat.label}</div>
+          </div>
+        ))}
+      </section>
+
+      {/* Quick Category Navigation */}
+      <section className="mb-12">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+          {categories.map((category) => (
+            <a
+              key={category.id}
+              href={`#${category.id}`}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/5 transition-all duration-200 text-sm font-medium"
+            >
+              <span>{category.icon}</span>
+              <span className="hidden sm:inline">{category.name}</span>
+              <span className="sm:hidden">{category.name.split(' ')[0]}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Tools by Category */}
+      <section id="tools" className="space-y-16">
+        {categories.map((category) => {
+          const categoryTools = getToolsByCategory(category.id as any);
+          if (categoryTools.length === 0) return null;
+          
+          return (
+            <div key={category.id} id={category.id} className="scroll-mt-24">
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-6">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-3">
+                    <span className="text-3xl">{category.icon}</span>
+                    {category.name}
+                  </h2>
+                  <p className="text-[var(--muted-foreground)] mt-1">{category.description}</p>
+                </div>
+                <span className="text-sm text-[var(--muted-foreground)] bg-[var(--muted)] px-3 py-1 rounded-full w-fit">
+                  {categoryTools.length} tools
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {categoryTools.slice(0, 8).map((tool) => (
+                  <ToolCard key={tool.slug} tool={tool} />
+                ))}
+              </div>
+              {categoryTools.length > 8 && (
+                <div className="text-center mt-6">
+                  <a 
+                    href={`/tools?category=${category.id}`}
+                    className="inline-flex items-center gap-2 text-[var(--primary)] hover:underline font-medium group"
+                  >
+                    View all {categoryTools.length} {category.name}
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 mt-20 border-t border-[var(--border)]">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose NYTM Tools?</h2>
+          <p className="text-[var(--muted-foreground)] max-w-2xl mx-auto">
+            Built with modern technologies for the best user experience
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {[
+            {
+              icon: "⚡",
+              title: "Lightning Fast",
+              description: "All tools run directly in your browser. No server uploads for most operations means instant results.",
+              color: "from-amber-500/20 to-orange-500/20",
+            },
+            {
+              icon: "🔒",
+              title: "Privacy First",
+              description: "Your data never leaves your device. We don't store personal information or require account creation.",
+              color: "from-emerald-500/20 to-green-500/20",
+            },
+            {
+              icon: "🎨",
+              title: "Modern Design",
+              description: "Clean, intuitive interface with dark mode support. Optimized for both desktop and mobile devices.",
+              color: "from-violet-500/20 to-purple-500/20",
+            },
+          ].map((feature) => (
+            <div 
+              key={feature.title}
+              className="group bg-[var(--card)] rounded-2xl p-8 border border-[var(--border)] hover:border-[var(--primary)]/30 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--primary)]/5"
+            >
+              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-3xl mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="text-[var(--muted-foreground)] leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 mb-8">
+        <div className="relative bg-gradient-to-r from-[var(--primary)]/10 via-purple-500/10 to-[var(--primary)]/10 rounded-3xl p-8 md:p-12 text-center border border-[var(--primary)]/20 overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-1/4 w-32 h-32 bg-[var(--primary)]/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"></div>
+          
+          <div className="relative">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p className="text-[var(--muted-foreground)] mb-8 max-w-xl mx-auto">
+              Jump right in and explore our collection of {toolsConfig.length}+ free tools. No signup required.
+            </p>
+            <a 
+              href="/tools"
+              className="btn btn-primary text-lg px-10 py-4 shadow-lg shadow-[var(--primary)]/25"
+            >
+              Browse All Tools
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

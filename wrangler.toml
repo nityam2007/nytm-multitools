@@ -1,8 +1,0 @@
-name = "nytm-multitools"
-compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".open-next/assets"
-
-# Cloudflare Pages configuration
-[vars]
-NEXT_PUBLIC_BASE_URL = "https://nytm-multitools.pages.dev"

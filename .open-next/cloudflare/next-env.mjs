@@ -1,3 +1,0 @@
-export const production = {"AUTH_PASSWORD":"admin123","AUTH_SECRET":"development_secret_key_min_32_characters_here","NEXT_PUBLIC_APP_URL":"http://localhost:3000","NEXT_PUBLIC_APP_NAME":"NYTM Tools","NEXT_PUBLIC_POSTHOG_KEY":"phc_UO0v3rJRQow9TQSBB2ecnwDA2Yvyw5lnUqtmaP7684S","NEXT_PUBLIC_POSTHOG_HOST":"https://eu.i.posthog.com"};
-export const development = {"AUTH_PASSWORD":"admin123","AUTH_SECRET":"development_secret_key_min_32_characters_here","NEXT_PUBLIC_APP_URL":"http://localhost:3000","NEXT_PUBLIC_APP_NAME":"NYTM Tools","NEXT_PUBLIC_POSTHOG_KEY":"phc_UO0v3rJRQow9TQSBB2ecnwDA2Yvyw5lnUqtmaP7684S","NEXT_PUBLIC_POSTHOG_HOST":"https://eu.i.posthog.com"};
-export const test = {};

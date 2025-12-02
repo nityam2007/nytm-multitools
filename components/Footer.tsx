@@ -65,7 +65,7 @@ export function Footer() {
               </p>
               {/* Tagline */}
               <p className="text-xs text-violet-400 font-medium mb-6">
-                135 tools. Zero friction. Built for everyone.
+                136 tools. Zero friction. Built for everyone.
               </p>
               {/* Social Links */}
               <div className="flex items-center gap-3">
@@ -78,17 +78,19 @@ export function Footer() {
                 >
                   <GitHubIcon className="w-4 h-4" />
                 </a>
-                <a 
-                  href="https://github.com/sponsors/nityam2007" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-[var(--muted)] flex items-center justify-center text-[var(--muted-foreground)] hover:bg-pink-500/10 hover:text-pink-400 transition-all duration-300"
-                  title="Sponsor"
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                  </svg>
-                </a>
+                {process.env.NEXT_PUBLIC_DONATION_URL && (
+                  <a 
+                    href={process.env.NEXT_PUBLIC_DONATION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-xl bg-[var(--muted)] flex items-center justify-center text-[var(--muted-foreground)] hover:bg-pink-500/10 hover:text-pink-400 transition-all duration-300"
+                    title="Support"
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </div>
 

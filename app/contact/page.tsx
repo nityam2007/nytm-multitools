@@ -76,8 +76,8 @@ export default function ContactPage() {
               gradient: "from-pink-500 to-rose-500",
               title: "Support NYTM",
               description: "Help keep the tools free",
-              link: "https://github.com/sponsors/nityam2007",
-              linkText: "Sponsor on GitHub",
+              link: process.env.NEXT_PUBLIC_DONATION_URL || "/pricing",
+              linkText: "Donate",
             },
           ].map((item, i) => (
             <div
@@ -226,7 +226,7 @@ export default function ContactPage() {
           {[
             {
               q: "Are all tools really free?",
-              a: "Yes, always. All 135 tools are completely free. No hidden costs, no premium tiers.",
+              a: "Yes, always. All 136 tools are completely free. No hidden costs, no premium tiers.",
             },
             {
               q: "Do you store my data?",

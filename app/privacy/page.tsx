@@ -57,7 +57,7 @@ export default function PrivacyPage() {
                   <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
                     <p className="text-[var(--foreground)] font-medium mb-1">🔒 Your Tool Data</p>
                     <p className="text-sm text-[var(--muted-foreground)]">
-                      <strong>All 135 tools process data entirely in your browser.</strong> Text, images, code, and any other content you input is processed locally on your device. It never touches our servers. We cannot see it. We do not store it.
+                      <strong>All 136 tools process data entirely in your browser.</strong> Text, images, code, and any other content you input is processed locally on your device. It never touches our servers. We cannot see it. We do not store it.
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">

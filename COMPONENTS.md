@@ -1,6 +1,6 @@
 # UI Components Guide
 
-Modern, minimal design system for NYTM MULTITOOLS (135 tools). Clean, consistent, and accessible across all tools.
+Modern, minimal design system for NYTM MULTITOOLS (136 tools). Clean, consistent, and accessible across all tools.
 
 ## 🎨 AUTOMATIC STYLING
 

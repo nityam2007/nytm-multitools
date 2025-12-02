@@ -53,4 +53,8 @@ next-env.d.ts
 .idea/
 .vscode/
 
+# Code quality tools
+.qlty/
+
+# Local env
 .env.local

@@ -222,6 +222,14 @@ export default function TextToSpeechPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
+        {/* Experimental Badge */}
+        <div className="flex items-center justify-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/40">
+            <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+            <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">Experimental Feature</span>
+          </div>
+        </div>
+
         {/* Warning Banner */}
         <div className="p-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30">
           <div className="flex items-start gap-3">

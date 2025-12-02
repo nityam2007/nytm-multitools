@@ -70,7 +70,7 @@ export default function TextRepeatPage() {
               value={count}
               onChange={(e) => setCount(Math.min(1000, Math.max(1, parseInt(e.target.value) || 1)))}
               helperText="How many times to repeat (max 1000)"
-              icon={<span>🔢</span>}
+              icon={<svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" /></svg>}
             />
             <Input
               label="Separator"
@@ -79,7 +79,7 @@ export default function TextRepeatPage() {
               onChange={(e) => setSeparator(e.target.value)}
               placeholder="e.g., \n or , or space"
               helperText="Text to insert between repetitions"
-              icon={<span>➖</span>}
+              icon={<svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>}
             />
           </div>
         </div>

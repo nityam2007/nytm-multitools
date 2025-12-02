@@ -53,13 +53,23 @@ export default function PrivacyPage() {
                 <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Data We DO NOT Collect</h2>
                 <div className="space-y-4">
                   <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1">🔒 Your Tool Data</p>
+                    <p className="text-[var(--foreground)] font-medium mb-1 flex items-center gap-2">
+                      <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                      </svg>
+                      Your Tool Data
+                    </p>
                     <p className="text-sm text-[var(--muted-foreground)]">
                       <strong>All 136 tools process data entirely in your browser.</strong> Text, images, code, and any other content you input is processed locally on your device. It never touches our servers. We cannot see it. We do not store it.
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1">🚫 Personal Information</p>
+                    <p className="text-[var(--foreground)] font-medium mb-1 flex items-center gap-2">
+                      <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                      </svg>
+                      Personal Information
+                    </p>
                     <p className="text-sm text-[var(--muted-foreground)]">
                       We do not require accounts, sign-ups, or registration. We do not collect names, emails, phone numbers, or any personally identifiable information.
                     </p>
@@ -78,7 +88,12 @@ export default function PrivacyPage() {
                   We may use privacy-respecting analytics to understand basic usage patterns:
                 </p>
                 <div className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/20">
-                  <p className="text-[var(--foreground)] font-medium mb-2">📊 What we might collect:</p>
+                  <p className="text-[var(--foreground)] font-medium mb-2 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                    </svg>
+                    What we might collect:
+                  </p>
                   <ul className="grid grid-cols-2 gap-2 text-sm text-[var(--muted-foreground)]">
                     <li className="flex items-center gap-2"><span className="text-violet-400">◈</span> Page views (anonymous)</li>
                     <li className="flex items-center gap-2"><span className="text-violet-400">◈</span> Country (not city)</li>
@@ -102,10 +117,30 @@ export default function PrivacyPage() {
                   We use minimal cookies for essential functionality only:
                 </p>
                 <ul className="space-y-2 text-[var(--muted-foreground)]">
-                  <li className="flex items-start gap-3"><span className="text-emerald-400 mt-1">✓</span> Theme preference (dark/light mode)</li>
-                  <li className="flex items-start gap-3"><span className="text-red-400 mt-1">✗</span> No tracking cookies</li>
-                  <li className="flex items-start gap-3"><span className="text-red-400 mt-1">✗</span> No advertising cookies</li>
-                  <li className="flex items-start gap-3"><span className="text-red-400 mt-1">✗</span> No third-party cookies</li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    Theme preference (dark/light mode)
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    No tracking cookies
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    No advertising cookies
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    No third-party cookies
+                  </li>
                 </ul>
               </div>
             </div>
@@ -151,7 +186,12 @@ export default function PrivacyPage() {
               <div>
                 <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Third-Party Service Liability</h2>
                 <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 mb-4">
-                  <p className="text-[var(--foreground)] font-medium mb-2">⚠️ Important Disclosure</p>
+                  <p className="text-[var(--foreground)] font-medium mb-2 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                    Important Disclosure
+                  </p>
                   <p className="text-sm text-[var(--muted-foreground)] mb-3">
                     NYTM uses third-party services that have their own privacy policies and terms:
                   </p>
@@ -225,14 +265,18 @@ export default function PrivacyPage() {
                       href="mailto:hello@nytm.in" 
                       className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 hover:bg-violet-500/20 transition-colors font-medium"
                     >
-                      <span>📧</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                      </svg>
                       hello@nytm.in
                     </a>
                     <a 
                       href="mailto:hello@nsheth.in" 
                       className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 hover:bg-violet-500/20 transition-colors font-medium"
                     >
-                      <span>📧</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                      </svg>
                       hello@nsheth.in
                     </a>
                   </div>

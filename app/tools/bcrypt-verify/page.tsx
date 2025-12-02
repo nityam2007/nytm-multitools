@@ -33,8 +33,11 @@ export default function BcryptVerifyPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
-        <div className="bg-blue-500/10 border border-blue-500/50 rounded-xl p-4 text-blue-500 text-sm">
-          ℹ️ <strong>Note:</strong> Bcrypt verification requires server-side implementation. This tool validates the hash format only.
+        <div className="bg-blue-500/10 border border-blue-500/50 rounded-xl p-4 text-blue-500 text-sm flex items-start gap-3">
+          <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span><strong>Note:</strong> Bcrypt verification requires server-side implementation. This tool validates the hash format only.</span>
         </div>
 
         <div>
@@ -73,7 +76,17 @@ export default function BcryptVerifyPage() {
               : "bg-red-500/10 border-red-500/50 text-red-500"
           }`}>
             <div className="text-center">
-              <div className="text-3xl mb-2">{result ? "✓" : "✗"}</div>
+              <div className="flex justify-center mb-2">
+                {result ? (
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                )}
+              </div>
               <div className="font-semibold">
                 {result ? "Password matches!" : "Invalid hash format"}
               </div>

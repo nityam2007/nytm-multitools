@@ -100,7 +100,11 @@ export default function ImageConvertPage() {
             id="file-upload"
           />
           <label htmlFor="file-upload" className="cursor-pointer">
-            <div className="text-4xl mb-2">🔄</div>
+            <div className="flex justify-center mb-2">
+              <svg className="w-12 h-12 text-[var(--muted-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </div>
             <p className="font-medium">Click to upload an image</p>
             <p className="text-sm text-[var(--muted-foreground)]">
               Convert between PNG, JPEG, WebP, and GIF
@@ -192,9 +196,12 @@ export default function ImageConvertPage() {
 
             <button
               onClick={convertImage}
-              className="w-full py-4 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700"
+              className="w-full py-4 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 flex items-center justify-center gap-2"
             >
-              🔄 Convert & Download as .{outputFormat.toUpperCase()}
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Convert & Download as .{outputFormat.toUpperCase()}
             </button>
           </>
         )}
@@ -202,7 +209,12 @@ export default function ImageConvertPage() {
         <canvas ref={canvasRef} className="hidden" />
 
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-          <h3 className="font-semibold mb-4">📖 Format Comparison</h3>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Format Comparison
+          </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -216,22 +228,22 @@ export default function ImageConvertPage() {
                 <tr className="border-b border-[var(--border)]">
                   <td className="py-2 px-3 font-medium">PNG</td>
                   <td className="py-2 px-3">Graphics, screenshots, logos</td>
-                  <td className="py-2 px-3">✅ Yes</td>
+                  <td className="py-2 px-3"><span className="inline-flex items-center gap-1 text-green-500"><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>Yes</span></td>
                 </tr>
                 <tr className="border-b border-[var(--border)]">
                   <td className="py-2 px-3 font-medium">JPEG</td>
                   <td className="py-2 px-3">Photos, complex images</td>
-                  <td className="py-2 px-3">❌ No</td>
+                  <td className="py-2 px-3"><span className="inline-flex items-center gap-1 text-red-500"><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>No</span></td>
                 </tr>
                 <tr className="border-b border-[var(--border)]">
                   <td className="py-2 px-3 font-medium">WebP</td>
                   <td className="py-2 px-3">Web optimization (modern)</td>
-                  <td className="py-2 px-3">✅ Yes</td>
+                  <td className="py-2 px-3"><span className="inline-flex items-center gap-1 text-green-500"><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>Yes</span></td>
                 </tr>
                 <tr>
                   <td className="py-2 px-3 font-medium">GIF</td>
                   <td className="py-2 px-3">Simple graphics, animations</td>
-                  <td className="py-2 px-3">✅ Limited</td>
+                  <td className="py-2 px-3"><span className="inline-flex items-center gap-1 text-green-500"><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>Limited</span></td>
                 </tr>
               </tbody>
             </table>

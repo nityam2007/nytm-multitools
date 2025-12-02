@@ -8,11 +8,9 @@ const tool = getToolBySlug("aes-encrypt")!;
 const similarTools = getToolsByCategory("security").filter(t => t.slug !== "aes-encrypt");
 
 async function aesEncrypt(plaintext: string, password: string): Promise<string> {
-  console.log('🔒 AES Encrypt Started', { plaintext, passwordLength: password.length });
   const encoder = new TextEncoder();
   
   // Derive key from password using PBKDF2
-  console.log('📝 Importing key material...');
   const keyMaterial = await crypto.subtle.importKey(
     "raw",
     encoder.encode(password),
@@ -20,15 +18,12 @@ async function aesEncrypt(plaintext: string, password: string): Promise<string> 
     false,
     ["deriveBits", "deriveKey"]
   );
-  console.log('✅ Key material imported');
   
   // Generate random salt and IV
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const iv = crypto.getRandomValues(new Uint8Array(12));
-  console.log('🎲 Generated salt and IV', { saltLength: salt.length, ivLength: iv.length });
   
   // Derive AES key
-  console.log('🔑 Deriving AES key...');
   const key = await crypto.subtle.deriveKey(
     {
       name: "PBKDF2",
@@ -41,33 +36,26 @@ async function aesEncrypt(plaintext: string, password: string): Promise<string> 
     false,
     ["encrypt"]
   );
-  console.log('✅ AES key derived');
   
   // Encrypt
-  console.log('🔐 Encrypting data...');
   const encrypted = await crypto.subtle.encrypt(
     { name: "AES-GCM", iv: iv },
     key,
     encoder.encode(plaintext)
   );
-  console.log('✅ Data encrypted', { encryptedBytes: encrypted.byteLength });
   
   // Combine salt + iv + encrypted data
   const combined = new Uint8Array(salt.length + iv.length + encrypted.byteLength);
   combined.set(salt, 0);
   combined.set(iv, salt.length);
   combined.set(new Uint8Array(encrypted), salt.length + iv.length);
-  console.log('📦 Combined data', { totalBytes: combined.length });
   
-  // Return as base64 (handle large arrays properly)
-  console.log('🔤 Converting to base64...');
+  // Return as base64
   let binary = '';
   for (let i = 0; i < combined.length; i++) {
     binary += String.fromCharCode(combined[i]);
   }
-  const result = btoa(binary);
-  console.log('✅ Encryption complete', { base64Length: result.length });
-  return result;
+  return btoa(binary);
 }
 
 export default function AESEncryptPage() {
@@ -78,15 +66,7 @@ export default function AESEncryptPage() {
   const [error, setError] = useState("");
 
   const encrypt = async () => {
-    console.log('🚀 Encrypt button clicked', { 
-      hasPlaintext: !!plaintext, 
-      plaintextLength: plaintext.length,
-      hasPassword: !!password,
-      passwordLength: password.length 
-    });
-    
     if (!plaintext || !password) {
-      console.log('❌ Missing plaintext or password');
       return;
     }
     
@@ -94,16 +74,12 @@ export default function AESEncryptPage() {
     setError("");
     
     try {
-      console.log('⏳ Starting encryption...');
       const result = await aesEncrypt(plaintext, password);
-      console.log('✅ Encryption successful!');
       setEncrypted(result);
     } catch (err) {
-      console.error('❌ Encryption error:', err);
       setError(`Encryption failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
-      console.log('🏁 Encryption process finished');
     }
   };
 
@@ -141,7 +117,7 @@ export default function AESEncryptPage() {
           disabled={!plaintext || !password || loading}
           className="w-full py-3 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
         >
-          {loading ? "Encrypting..." : "🔒 Encrypt with AES-256"}
+          {loading ? "Encrypting..." : "Encrypt with AES-256"}
         </button>
 
         {error && (

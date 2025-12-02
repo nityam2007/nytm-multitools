@@ -170,7 +170,9 @@ export default function PasswordStrengthPage() {
             <ul className="space-y-2">
               {result.feedback.map((f, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="text-yellow-500">⚠️</span>
+                  <svg className="w-4 h-4 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
                   <span>{f}</span>
                 </li>
               ))}
@@ -179,20 +181,52 @@ export default function PasswordStrengthPage() {
         )}
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
-          <div className={`p-3 rounded-lg text-center ${/[a-z]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
-            <div className="text-lg">{/[a-z]/.test(password) ? "✓" : "○"}</div>
+          <div className={`p-3 rounded-lg text-center flex flex-col items-center ${/[a-z]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
+            {/[a-z]/.test(password) ? (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle cx="12" cy="12" r="9" strokeWidth={2} />
+              </svg>
+            )}
             <div>Lowercase</div>
           </div>
-          <div className={`p-3 rounded-lg text-center ${/[A-Z]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
-            <div className="text-lg">{/[A-Z]/.test(password) ? "✓" : "○"}</div>
+          <div className={`p-3 rounded-lg text-center flex flex-col items-center ${/[A-Z]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
+            {/[A-Z]/.test(password) ? (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle cx="12" cy="12" r="9" strokeWidth={2} />
+              </svg>
+            )}
             <div>Uppercase</div>
           </div>
-          <div className={`p-3 rounded-lg text-center ${/[0-9]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
-            <div className="text-lg">{/[0-9]/.test(password) ? "✓" : "○"}</div>
+          <div className={`p-3 rounded-lg text-center flex flex-col items-center ${/[0-9]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
+            {/[0-9]/.test(password) ? (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle cx="12" cy="12" r="9" strokeWidth={2} />
+              </svg>
+            )}
             <div>Numbers</div>
           </div>
-          <div className={`p-3 rounded-lg text-center ${/[^a-zA-Z0-9]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
-            <div className="text-lg">{/[^a-zA-Z0-9]/.test(password) ? "✓" : "○"}</div>
+          <div className={`p-3 rounded-lg text-center flex flex-col items-center ${/[^a-zA-Z0-9]/.test(password) ? "bg-green-500/20 text-green-500" : "bg-[var(--muted)]"}`}>
+            {/[^a-zA-Z0-9]/.test(password) ? (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle cx="12" cy="12" r="9" strokeWidth={2} />
+              </svg>
+            )}
             <div>Symbols</div>
           </div>
         </div>

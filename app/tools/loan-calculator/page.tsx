@@ -189,8 +189,11 @@ export default function LoanCalculatorPage() {
 
             {parseFloat(extraPayment) > 0 && (
               <div className="bg-green-500/10 border border-green-500 rounded-xl p-6">
-                <h3 className="font-semibold text-green-700 dark:text-green-400 mb-4">
-                  💰 With ${extraPayment}/month Extra Payment
+                <h3 className="font-semibold text-green-700 dark:text-green-400 mb-4 flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  With ${extraPayment}/month Extra Payment
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
@@ -213,7 +216,13 @@ export default function LoanCalculatorPage() {
             )}
 
             <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-              <h3 className="font-semibold mb-4">📊 Payment Breakdown</h3>
+              <h3 className="font-semibold mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                </svg>
+                Payment Breakdown
+              </h3>
               <div className="relative h-8 rounded-full overflow-hidden bg-[var(--muted)]">
                 <div 
                   className="absolute h-full bg-blue-500"
@@ -234,7 +243,12 @@ export default function LoanCalculatorPage() {
 
             <div className="bg-[var(--card)] rounded-xl border border-[var(--border)] overflow-hidden">
               <div className="p-4 border-b border-[var(--border)]">
-                <h3 className="font-semibold">📅 Amortization Schedule (First 12 Months)</h3>
+                <h3 className="font-semibold flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                  </svg>
+                  Amortization Schedule (First 12 Months)
+                </h3>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -265,7 +279,12 @@ export default function LoanCalculatorPage() {
         )}
 
         <div className="bg-[var(--muted)] rounded-xl p-4 text-sm text-[var(--muted-foreground)]">
-          <p>💡 This calculator uses standard amortization formula. Actual loan payments may vary based on additional factors like PMI, insurance, and taxes.</p>
+          <p className="flex items-start gap-2">
+            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+            </svg>
+            This calculator uses standard amortization formula. Actual loan payments may vary based on additional factors like PMI, insurance, and taxes.
+          </p>
         </div>
       </div>
     </ToolLayout>

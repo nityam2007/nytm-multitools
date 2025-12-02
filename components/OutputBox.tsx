@@ -115,8 +115,10 @@ export function OutputBox({
             )
           ) : (
             <div className="flex flex-col items-center justify-center h-[220px] text-center">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20 flex items-center justify-center text-2xl mb-3">
-                ✨
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20 flex items-center justify-center mb-3">
+                <svg className="w-8 h-8 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
               </div>
               <span className="text-[var(--muted-foreground)] font-sans">Output will appear here...</span>
               <span className="text-xs text-[var(--muted-foreground)] mt-1 font-sans">Process your input to see results</span>

@@ -127,7 +127,12 @@ export default function ScreenResolutionPage() {
         </div>
 
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-          <h3 className="font-semibold mb-4">📱 Device Information</h3>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            Device Information
+          </h3>
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="space-y-3">
               <div className="flex justify-between">
@@ -163,7 +168,12 @@ export default function ScreenResolutionPage() {
         </div>
 
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-          <h3 className="font-semibold mb-4">📏 Common Resolutions</h3>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+            </svg>
+            Common Resolutions
+          </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -182,7 +192,13 @@ export default function ScreenResolutionPage() {
                       <td className="py-2 px-3 font-medium">{res.name}</td>
                       <td className="py-2 px-3 font-mono">{res.width} × {res.height}</td>
                       <td className="py-2 px-3">{res.aspect}</td>
-                      <td className="py-2 px-3">{isMatch ? "✅" : ""}</td>
+                      <td className="py-2 px-3">
+                      {isMatch && (
+                        <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </td>
                     </tr>
                   );
                 })}
@@ -192,7 +208,12 @@ export default function ScreenResolutionPage() {
         </div>
 
         <div className="bg-[var(--muted)] rounded-xl p-4 text-sm text-[var(--muted-foreground)]">
-          <p>💡 Resize your browser window to see the viewport size update in real-time.</p>
+          <p className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            Resize your browser window to see the viewport size update in real-time.
+          </p>
         </div>
       </div>
     </ToolLayout>

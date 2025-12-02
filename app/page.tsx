@@ -226,13 +226,27 @@ export default function Home() {
       <section className="py-20 border-t border-[var(--border)]">
         <div className="grid md:grid-cols-3 gap-10 lg:gap-16">
           {[
-            { icon: "⚡", title: "Fast & Private", desc: "Tools run in your browser. Your data stays on your device." },
-            { icon: "✦", title: "No Signup", desc: "Use any tool instantly. No account or registration required." },
-            { icon: "💜", title: "Always Free", desc: "All tools are free forever. Support us to remove ads." },
+            { icon: "bolt", title: "Fast & Private", desc: "Tools run in your browser. Your data stays on your device." },
+            { icon: "spark", title: "No Signup", desc: "Use any tool instantly. No account or registration required." },
+            { icon: "heart", title: "Always Free", desc: "All tools are free forever. Support us to remove ads." },
           ].map((feature, index) => (
             <div key={feature.title} className="text-center md:text-left group">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20 text-xl mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-violet-500/20">
-                {feature.icon}
+                {feature.icon === "bolt" && (
+                  <svg className="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                  </svg>
+                )}
+                {feature.icon === "spark" && (
+                  <svg className="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                  </svg>
+                )}
+                {feature.icon === "heart" && (
+                  <svg className="w-5 h-5 text-violet-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                  </svg>
+                )}
               </div>
               <h3 className="font-semibold text-base mb-2">{feature.title}</h3>
               <p className="text-sm text-[var(--muted-foreground)]" style={{ lineHeight: '1.7' }}>{feature.desc}</p>

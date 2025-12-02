@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ToolConfig } from "@/lib/tools-config";
-import { ArrowUpRightIcon } from "@/assets/icons";
+import { ArrowUpRightIcon, getToolIcon } from "@/assets/icons";
 
 interface ToolLayoutProps {
   tool: ToolConfig;
@@ -29,8 +29,11 @@ export function ToolLayout({ tool, children, similarTools = [] }: ToolLayoutProp
         
         <div className="relative">
           <div className="flex items-start gap-4 mb-4">
-            <div className="text-5xl p-4 rounded-2xl bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-white/20 shadow-lg">
-              {tool.icon}
+            <div className="p-4 rounded-2xl bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-white/20 shadow-lg">
+              {(() => {
+                const IconComponent = getToolIcon(tool.icon || "document");
+                return <IconComponent className="w-10 h-10 text-violet-500" />;
+              })()}
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
@@ -89,7 +92,10 @@ export function ToolLayout({ tool, children, similarTools = [] }: ToolLayoutProp
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2.5">
-                    <span className="text-2xl">{similarTool.icon}</span>
+                    {(() => {
+                      const IconComponent = getToolIcon(similarTool.icon || "document");
+                      return <IconComponent className="w-5 h-5 text-violet-500" />;
+                    })()}
                     <span className="font-semibold text-sm group-hover:text-violet-400 transition-colors duration-300">
                       {similarTool.name}
                     </span>

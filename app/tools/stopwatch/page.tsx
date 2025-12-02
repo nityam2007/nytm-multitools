@@ -93,19 +93,48 @@ export default function StopwatchPage() {
         <div className="flex gap-4 justify-center">
           <button
             onClick={startStop}
-            className={`px-8 py-4 rounded-full font-medium text-white ${
+            className={`px-8 py-4 rounded-full font-medium text-white flex items-center gap-2 ${
               isRunning 
                 ? "bg-red-600 hover:bg-red-700" 
                 : "bg-green-600 hover:bg-green-700"
             }`}
           >
-            {isRunning ? "⏸ Stop" : "▶ Start"}
+            {isRunning ? (
+              <>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Stop
+              </>
+            ) : (
+              <>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Start
+              </>
+            )}
           </button>
           <button
             onClick={isRunning ? addLap : reset}
-            className="px-8 py-4 rounded-full bg-[var(--muted)] hover:bg-[var(--accent)] font-medium"
+            className="px-8 py-4 rounded-full bg-[var(--muted)] hover:bg-[var(--accent)] font-medium flex items-center gap-2"
           >
-            {isRunning ? "🏁 Lap" : "↺ Reset"}
+            {isRunning ? (
+              <>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                </svg>
+                Lap
+              </>
+            ) : (
+              <>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Reset
+              </>
+            )}
           </button>
         </div>
 

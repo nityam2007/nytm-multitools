@@ -164,9 +164,12 @@ export default function BarcodeGeneratorPage() {
 
         <button
           onClick={downloadBarcode}
-          className="w-full py-2 rounded-lg bg-[var(--muted)] hover:bg-[var(--accent)] transition-colors"
+          className="w-full py-2 rounded-lg bg-[var(--muted)] hover:bg-[var(--accent)] transition-colors flex items-center justify-center gap-2"
         >
-          📥 Download PNG
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Download PNG
         </button>
 
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">

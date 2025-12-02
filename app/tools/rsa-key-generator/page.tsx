@@ -92,9 +92,16 @@ export default function RSAKeyGeneratorPage() {
         <button
           onClick={generateKeys}
           disabled={loading}
-          className="w-full py-3 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+          className="w-full py-3 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-medium hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"
         >
-          {loading ? "Generating..." : "🔑 Generate RSA Key Pair"}
+          {loading ? "Generating..." : (
+            <>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+              </svg>
+              Generate RSA Key Pair
+            </>
+          )}
         </button>
 
         {publicKey && (
@@ -126,7 +133,12 @@ export default function RSAKeyGeneratorPage() {
 
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-medium">Private Key ⚠️</label>
+                <label className="text-sm font-medium flex items-center gap-1">
+                  Private Key
+                  <svg className="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </label>
                 <div className="flex gap-2">
                   <button
                     onClick={() => copyToClipboard(privateKey)}
@@ -151,8 +163,11 @@ export default function RSAKeyGeneratorPage() {
           </>
         )}
 
-        <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-xl p-4 text-yellow-500 text-sm">
-          ⚠️ <strong>Security:</strong> Keep your private key secret. Never share it or commit it to version control.
+        <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-xl p-4 text-yellow-500 text-sm flex items-start gap-2">
+          <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span><strong>Security:</strong> Keep your private key secret. Never share it or commit it to version control.</span>
         </div>
 
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">

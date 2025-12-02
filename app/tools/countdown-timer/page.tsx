@@ -182,8 +182,11 @@ export default function CountdownTimerPage() {
                 {displayTime.hours}:{displayTime.minutes}:{displayTime.seconds}
               </div>
               {timeLeft === 0 && (
-                <div className="mt-4 text-2xl text-green-500 font-bold animate-pulse">
-                  🎉 Time&apos;s Up!
+                <div className="mt-4 text-2xl text-green-500 font-bold animate-pulse flex items-center justify-center gap-2">
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Time&apos;s Up!
                 </div>
               )}
             </div>
@@ -209,8 +212,11 @@ export default function CountdownTimerPage() {
           </>
         )}
 
-        <div className="bg-[var(--muted)] rounded-xl p-4 text-sm text-[var(--muted-foreground)]">
-          <p>💡 Browser notifications will alert you when the timer completes (if permitted).</p>
+        <div className="bg-[var(--muted)] rounded-xl p-4 text-sm text-[var(--muted-foreground)] flex items-start gap-3">
+          <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          <p>Browser notifications will alert you when the timer completes (if permitted).</p>
         </div>
       </div>
     </ToolLayout>

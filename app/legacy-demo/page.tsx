@@ -16,7 +16,7 @@ export default function LegacyCodeDemo() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-2">🎉 Auto-Styled Legacy Code</h1>
+        <h1 className="text-4xl font-bold mb-2">Auto-Styled Legacy Code</h1>
         <p className="text-lg text-[var(--muted-foreground)]">
           All this code uses OLD class names - but looks MODERN automatically!
         </p>
@@ -28,7 +28,7 @@ export default function LegacyCodeDemo() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <div className="text-sm font-medium">
-            ✨ All elements below use standard HTML and old class names - no updates needed!
+            All elements below use standard HTML and old class names - no updates needed!
           </div>
         </div>
 
@@ -44,7 +44,7 @@ export default function LegacyCodeDemo() {
             className="w-full"
           />
           <p className="text-xs text-[var(--muted-foreground)] mt-1">
-            👆 Just a regular <code>&lt;textarea&gt;</code> tag
+            Just a regular <code>&lt;textarea&gt;</code> tag
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export default function LegacyCodeDemo() {
             <option value="csv">CSV</option>
           </select>
           <p className="text-xs text-[var(--muted-foreground)] mt-1">
-            👆 Plain <code>&lt;select&gt;</code> with custom arrow and styling
+            Plain <code>&lt;select&gt;</code> with custom arrow and styling
           </p>
         </div>
 
@@ -151,7 +151,7 @@ export default function LegacyCodeDemo() {
             </p>
           </div>
           <p className="text-xs text-[var(--muted-foreground)] mt-1">
-            👆 Violet gradient scrollbars everywhere
+            Violet gradient scrollbars everywhere
           </p>
         </div>
 
@@ -164,7 +164,7 @@ export default function LegacyCodeDemo() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <div className="text-sm">
-            <strong>Result:</strong> All {tool.count || "100+"} tools automatically look modern without any code changes! 🎉
+            <strong>Result:</strong> All {tool.count || "100+"} tools automatically look modern without any code changes!
           </div>
         </div>
       </div>

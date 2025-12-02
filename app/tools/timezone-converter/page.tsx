@@ -149,7 +149,7 @@ export default function TimezoneConverterPage() {
         </div>
 
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-          <h3 className="font-semibold mb-4">🌍 World Clocks</h3>
+          <h3 className="font-semibold mb-4 flex items-center gap-2"><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>World Clocks</h3>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {worldTimes.map((wt, idx) => (
               <div key={idx} className="bg-[var(--muted)] rounded-lg p-3 text-center">

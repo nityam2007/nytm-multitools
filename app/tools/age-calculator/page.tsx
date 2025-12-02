@@ -121,10 +121,14 @@ export default function AgeCalculatorPage() {
             </div>
 
             <div className="bg-[var(--muted)] rounded-xl p-6 text-center">
-              <div className="text-4xl mb-2">🎂</div>
+              <div className="flex justify-center mb-2">
+                <svg className="w-10 h-10 text-[var(--primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
               <div className="text-lg font-semibold">
                 {age.nextBirthday === 0
-                  ? "Happy Birthday! 🎉"
+                  ? "Happy Birthday!"
                   : `${age.nextBirthday} days until your next birthday`}
               </div>
             </div>

@@ -123,7 +123,10 @@ export default function TermsPage() {
                 <div className="grid sm:grid-cols-2 gap-2">
                   {prohibitedActions.map((action, j) => (
                     <div key={j} className="flex items-start gap-2 p-3 rounded-xl bg-red-500/5 border border-red-500/10 text-sm text-[var(--muted-foreground)]">
-                      <span className="text-red-400 mt-0.5">✗</span> {action}
+                      <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      {action}
                     </div>
                   ))}
                 </div>
@@ -139,8 +142,11 @@ export default function TermsPage() {
                 <div>
                   <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">{section.title}</h2>
                   {section.isWarning ? (
-                    <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 text-sm text-[var(--muted-foreground)]">
-                      <span className="text-amber-400">⚠️</span> {section.content}
+                    <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 text-sm text-[var(--muted-foreground)] flex items-start gap-2">
+                      <svg className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                      </svg>
+                      <span>{section.content}</span>
                     </div>
                   ) : (
                     <p className="text-[var(--muted-foreground)] leading-relaxed">
@@ -175,7 +181,9 @@ export default function TermsPage() {
                     href="mailto:hello@nytm.in" 
                     className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 hover:bg-violet-500/20 transition-colors font-medium"
                   >
-                    <span>📧</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
                     hello@nytm.in
                   </a>
                 </div>

@@ -108,7 +108,7 @@ export default function AESDecryptPage() {
           disabled={!encrypted || !password || loading}
           className="w-full py-3 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
         >
-          {loading ? "Decrypting..." : "🔓 Decrypt with AES-256"}
+          {loading ? "Decrypting..." : "Decrypt with AES-256"}
         </button>
 
         {error && (

@@ -80,7 +80,7 @@ export default function AESDecryptPage() {
 
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
-      <div className="space-y-6">
+      <form onSubmit={(e) => { e.preventDefault(); decrypt(); }} className="space-y-6">
         <div>
           <label className="block text-sm font-medium mb-2">Encrypted Data (Base64)</label>
           <textarea
@@ -99,11 +99,12 @@ export default function AESDecryptPage() {
             onChange={(e) => { setPassword(e.target.value); setError(""); }}
             placeholder="Enter decryption password..."
             className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
+            autoComplete="current-password"
           />
         </div>
 
         <button
-          onClick={decrypt}
+          type="submit"
           disabled={!encrypted || !password || loading}
           className="w-full py-3 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
         >
@@ -120,6 +121,7 @@ export default function AESDecryptPage() {
           <div className="flex justify-between items-center mb-2">
             <label className="text-sm font-medium">Decrypted Output</label>
             <button
+              type="button"
               onClick={copyToClipboard}
               disabled={!decrypted}
               className="px-3 py-1 text-sm rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] disabled:opacity-50"
@@ -143,7 +145,7 @@ export default function AESDecryptPage() {
             <p>• Data integrity is verified during decryption (GCM mode)</p>
           </div>
         </div>
-      </div>
+      </form>
     </ToolLayout>
   );
 }

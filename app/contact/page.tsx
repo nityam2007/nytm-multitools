@@ -52,24 +52,32 @@ export default function ContactPage() {
               gradient: "from-blue-500 to-cyan-500",
               title: "Email Us",
               description: "For general inquiries",
-              link: "mailto:hello@nytmtools.com",
-              linkText: "hello@nytmtools.com",
+              link: "mailto:hello@nytm.in",
+              linkText: "hello@nytm.in",
             },
             {
               icon: "🐛",
               gradient: "from-violet-500 to-purple-500",
               title: "Report a Bug",
               description: "Found something broken?",
-              link: "mailto:bugs@nytmtools.com",
-              linkText: "bugs@nytmtools.com",
+              link: "https://github.com/nityam2007/nytm-multitools/issues",
+              linkText: "Open GitHub Issue",
             },
             {
               icon: "💡",
               gradient: "from-emerald-500 to-green-500",
               title: "Feature Request",
               description: "Have an idea for a new tool?",
-              link: "mailto:ideas@nytmtools.com",
-              linkText: "ideas@nytmtools.com",
+              link: "https://github.com/nityam2007/nytm-multitools/discussions",
+              linkText: "Start Discussion",
+            },
+            {
+              icon: "❤️",
+              gradient: "from-pink-500 to-rose-500",
+              title: "Support NYTM",
+              description: "Help keep the tools free",
+              link: "https://github.com/sponsors/nityam2007",
+              linkText: "Sponsor on GitHub",
             },
           ].map((item, i) => (
             <div
@@ -218,19 +226,19 @@ export default function ContactPage() {
           {[
             {
               q: "Are all tools really free?",
-              a: "Yes! All our tools are completely free to use. No hidden costs, no premium tiers for basic features.",
+              a: "Yes, always. All 135 tools are completely free. No hidden costs, no premium tiers.",
             },
             {
               q: "Do you store my data?",
-              a: "No. Most tools run entirely in your browser. We don't store your personal data or the content you process.",
+              a: "No. All tools run entirely in your browser. Your data never touches our servers.",
             },
             {
               q: "Can I request a new tool?",
-              a: "Absolutely! We love hearing new ideas. Use the form above or email us at ideas@nytmtools.com.",
+              a: "Absolutely! Open a discussion on our GitHub repository or email us at hello@nytm.in.",
             },
             {
-              q: "How often do you add new tools?",
-              a: "We're constantly working on new tools. Follow us on social media to stay updated on new releases.",
+              q: "Who maintains NYTM?",
+              a: "NYTM is maintained by Nityam Sheth. Contributions are welcome via GitHub.",
             },
           ].map((faq, i) => (
             <div 

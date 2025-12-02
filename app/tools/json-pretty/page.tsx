@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { TextArea } from "@/components/TextArea";
 import { OutputBox } from "@/components/OutputBox";
+import { Button } from "@/components/Button";
+import { useToast } from "@/components/Toast";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 import { logToolUsage } from "@/lib/actions";
 
@@ -16,6 +18,7 @@ export default function JsonPrettyPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [indentSize, setIndentSize] = useState(2);
+  const toast = useToast();
 
   const prettifyJson = (text: string): { success: boolean; result: string; error?: string } => {
     if (!text.trim()) return { success: false, result: "", error: "Input is empty" };
@@ -39,10 +42,10 @@ export default function JsonPrettyPage() {
 
     try {
       const { success, result, error: parseError } = prettifyJson(input);
-      
       if (success) {
         setOutput(result);
         setError("");
+        toast.success("JSON formatted successfully!");
         
         await logToolUsage({
           toolName: tool.name,
@@ -56,10 +59,12 @@ export default function JsonPrettyPage() {
       } else {
         setError(parseError || "Invalid JSON");
         setOutput("");
+        toast.error(parseError || "Invalid JSON format");
       }
-    } catch (error) {
-      console.error("Error prettifying JSON:", error);
+    } catch (err) {
+      console.error("Error prettifying JSON:", err);
       setError("An error occurred while processing");
+      toast.error("An error occurred while processing");
     } finally {
       setLoading(false);
     }
@@ -77,6 +82,7 @@ export default function JsonPrettyPage() {
       const minified = JSON.stringify(parsed);
       setOutput(minified);
       setError("");
+      toast.success("JSON minified successfully!");
 
       await logToolUsage({
         toolName: tool.name + " (Minify)",
@@ -85,19 +91,44 @@ export default function JsonPrettyPage() {
         rawInput: input,
         outputResult: minified,
         processingDuration: Date.now() - startTime,
+        metadata: { action: "minify" },
       });
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : "Invalid JSON";
       setError(errorMessage);
       setOutput("");
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleClear = () => {
+    setInput("");
+    setOutput("");
+    setError("");
+    toast.info("Cleared all fields");
+  };
+
+  const getIndentLabel = (size: number) => {
+    if (size === 2) return 'Compact';
+    if (size === 4) return 'Standard';
+    return 'Wide';
+  };
+
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
+        {/* Info Alert */}
+        <div className="alert alert-info">
+          <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div className="text-sm" style={{ lineHeight: '1.5' }}>
+            Format and validate your JSON data with customizable indentation. Your data is processed locally in your browser.
+          </div>
+        </div>
+
         <TextArea
           label="Input JSON"
           placeholder='{"example": "Paste your JSON here..."}'
@@ -107,63 +138,74 @@ export default function JsonPrettyPage() {
             setError("");
           }}
           error={error}
+          charCount
         />
 
-        <div>
-          <label className="block text-sm font-medium mb-2">Indent Size</label>
-          <div className="flex gap-2">
+        {/* Settings Section */}
+        <div className="tool-section">
+          <label className="block text-sm font-semibold text-[var(--foreground)] mb-3">
+            Indentation Settings
+          </label>
+          <div className="grid grid-cols-3 gap-3">
             {[2, 4, 8].map((size) => (
               <button
                 key={size}
                 onClick={() => setIndentSize(size)}
-                className={`px-4 py-2 rounded-lg border transition-colors ${
-                  indentSize === size
-                    ? "border-[var(--primary)] bg-[var(--primary)]/10 text-[var(--primary)]"
-                    : "border-[var(--border)] hover:border-[var(--primary)]/50"
-                }`}
+                className={`option-card ${indentSize === size ? 'active' : ''}`}
               >
-                {size} spaces
+                <div className="text-center">
+                  <div className="text-sm font-semibold text-[var(--foreground)]">
+                    {size} spaces
+                  </div>
+                  <div className="text-xs text-[var(--muted-foreground)] mt-1">
+                    {getIndentLabel(size)}
+                  </div>
+                </div>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="flex gap-3">
-          <button
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button
             onClick={handleProcess}
             disabled={loading || !input.trim()}
-            className="btn btn-primary flex-1 py-3"
+            loading={loading}
+            variant="primary"
+            size="lg"
+            fullWidth
           >
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <span className="spinner" />
-                Processing...
-              </span>
-            ) : (
-              "Beautify JSON"
-            )}
-          </button>
-          <button
+            {loading ? "Processing..." : "Beautify JSON"}
+          </Button>
+          <Button
             onClick={handleMinify}
             disabled={loading || !input.trim()}
-            className="btn btn-secondary flex-1 py-3"
+            variant="secondary"
+            size="lg"
+            fullWidth
           >
             Minify JSON
-          </button>
+          </Button>
+          <Button
+            onClick={handleClear}
+            disabled={loading || (!input && !output)}
+            variant="ghost"
+            size="lg"
+          >
+            Clear
+          </Button>
         </div>
 
         <OutputBox
           label="Output"
           value={output}
           format="json"
-          downloadFileName="formatted.json"
+          stats={output ? [
+            { label: "Lines", value: output.split('\n').length },
+            { label: "Size", value: `${(output.length / 1024).toFixed(2)} KB` }
+          ] : []}
         />
-
-        {output && (
-          <div className="text-sm text-[var(--muted-foreground)]">
-            Size: {output.length} characters
-          </div>
-        )}
       </div>
     </ToolLayout>
   );

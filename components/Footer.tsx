@@ -1,8 +1,15 @@
+"use client";
+
 import Link from "next/link";
-import { GitHubIcon, TwitterIcon } from "@/assets/icons";
+import { useState, useEffect } from "react";
+import { GitHubIcon } from "@/assets/icons";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState(2025);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   const footerSections = [
     {
@@ -30,7 +37,7 @@ export function Footer() {
       links: [
         { href: "/about", label: "About" },
         { href: "/contact", label: "Contact" },
-        { href: "/pricing", label: "Support Us" },
+        { href: "/pricing", label: "Donate" },
         { href: "/privacy", label: "Privacy" },
         { href: "/terms", label: "Terms" },
       ],
@@ -58,25 +65,29 @@ export function Footer() {
               </p>
               {/* Tagline */}
               <p className="text-xs text-violet-400 font-medium mb-6">
-                132+ tools. Zero friction. Built for everyone.
+                135 tools. Zero friction. Built for everyone.
               </p>
               {/* Social Links */}
               <div className="flex items-center gap-3">
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/nityam2007/nytm-multitools" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 rounded-xl bg-[var(--muted)] flex items-center justify-center text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-all duration-300"
+                  title="GitHub"
                 >
                   <GitHubIcon className="w-4 h-4" />
                 </a>
                 <a 
-                  href="https://twitter.com" 
+                  href="https://github.com/sponsors/nityam2007" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-[var(--muted)] flex items-center justify-center text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 transition-all duration-300"
+                  className="w-9 h-9 rounded-xl bg-[var(--muted)] flex items-center justify-center text-[var(--muted-foreground)] hover:bg-pink-500/10 hover:text-pink-400 transition-all duration-300"
+                  title="Sponsor"
                 >
-                  <TwitterIcon className="w-4 h-4" />
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
                 </a>
               </div>
             </div>

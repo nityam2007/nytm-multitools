@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "NYTM Tools",
+    "tagline": "Next-Gen Yield Tools & Modules",
+    "description": "130+ free online developer tools. No ads, no tracking, no limits."
+  },
+  "support": {
+    "enabled": true,
+    "price": 5,
+    "currency": "USD",
+    "buttonText": "Buy Me a Coffee ☕"
+  },
+  "analytics": {
+    "posthog": {
+      "enabled": true,
+      "region": "eu"
+    },
+    "cloudflare": {
+      "enabled": true,
+      "note": "Anonymous, cookie-free analytics"
+    }
+  },
+  "privacy": {
+    "clientSideOnly": true,
+    "noTrackingCookies": true,
+    "gdprCompliant": true
+  }
+}

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
-import { SubscriptionStatusBar } from "./Paywall";
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "@/assets/icons";
 
 export function Header() {
@@ -13,7 +12,7 @@ export function Header() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/tools", label: "Tools" },
-    { href: "/pricing", label: "Support" },
+    { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
   ];
 
@@ -46,10 +45,14 @@ export function Header() {
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
-            {/* Subscription Status - Desktop */}
-            <div className="hidden md:block">
-              <SubscriptionStatusBar />
-            </div>
+            {/* Support Badge - Desktop */}
+            <Link
+              href="/pricing"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20 hover:border-violet-500/40 transition-all text-sm group"
+            >
+              <span>💜</span>
+              <span className="text-violet-400 group-hover:text-violet-300 font-medium">Support</span>
+            </Link>
 
             {/* Theme Toggle */}
             <button
@@ -95,7 +98,14 @@ export function Header() {
               </Link>
             ))}
             <div className="pt-4 mt-4 border-t border-[var(--border)]">
-              <SubscriptionStatusBar />
+              <Link
+                href="/pricing"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20"
+              >
+                <span>💜</span>
+                <span className="text-violet-400 font-medium">Support Us</span>
+              </Link>
             </div>
           </nav>
         </div>

@@ -6,6 +6,8 @@ import { Sidebar, SidebarProvider } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SubscriptionProvider } from "@/lib/subscription-context";
+import { PostHogProvider } from "@/components/PostHogProvider";
+import { ToastProvider } from "@/components/Toast";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -64,20 +66,24 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen`}>
-        <ThemeProvider>
-          <SubscriptionProvider>
-            <SidebarProvider>
-              <div className="flex flex-col min-h-screen">
-                <Header />
-                <Sidebar />
-                <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
-                  {children}
-                </main>
-                <Footer />
-              </div>
-            </SidebarProvider>
-          </SubscriptionProvider>
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider>
+            <SubscriptionProvider>
+              <ToastProvider>
+                <SidebarProvider>
+                  <div className="flex flex-col min-h-screen">
+                    <Header />
+                    <Sidebar />
+                    <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
+                      {children}
+                    </main>
+                    <Footer />
+                  </div>
+                </SidebarProvider>
+              </ToastProvider>
+            </SubscriptionProvider>
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

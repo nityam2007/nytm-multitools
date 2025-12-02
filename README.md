@@ -1,102 +1,187 @@
-# NYTM Multitools
+<p align="center">
+  <img src="https://img.shields.io/badge/Tools-135-8b5cf6?style=for-the-badge" alt="135 Tools" />
+  <img src="https://img.shields.io/badge/Next.js-16.0.6-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19.2.0-61dafb?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5.9.3-3178c6?style=for-the-badge&logo=typescript" alt="TypeScript" />
+</p>
 
-A comprehensive collection of 130+ free online developer tools built with Next.js 16 and React 19.
+<p align="center">
+  <img src="https://img.shields.io/badge/License-NSAL_v1.0-8b5cf6?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/badge/Ads-None-22c55e?style=flat-square" alt="No Ads" />
+  <img src="https://img.shields.io/badge/Price-Free-22c55e?style=flat-square" alt="Free" />
+  <img src="https://img.shields.io/badge/Privacy-Client--Side-8b5cf6?style=flat-square" alt="Privacy" />
+</p>
 
-## 🛠️ Features
+---
 
-- **130+ Tools** across 7 categories: Text, Converters, Generators, Encoders, Dev Tools, Image Tools, and Calculators
-- **Fast & Modern** - Built with Next.js 16, React 19, and React Compiler
-- **Privacy First** - All tools run client-side, your data never leaves your browser
-- **No Ads** - Clean, distraction-free interface
-- **Dark Mode** - Easy on the eyes
+# NYTM MULTITOOLS
 
-## 🚀 Quick Deploy with Docker
+**🌐 Website: [nytm.in](https://nytm.in)**
 
-### Prerequisites
-- Docker and Docker Compose installed on your server
+Free developer tools. No ads. No bullshit.
 
-### One-Command Deploy
+135 tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/nityam2007/nytm-multitools/main/deploy.sh | bash
-```
+---
 
-Or manually:
-
-```bash
-# Clone and run deploy script
-git clone https://github.com/nityam2007/nytm-multitools.git
-cd nytm-multitools
-chmod +x deploy.sh
-./deploy.sh
-```
-
-### Using Docker Compose
+## Quick Start
 
 ```bash
-# Pull and run
-docker pull ghcr.io/nityam2007/nytm-multitools:latest
-docker compose up -d
-```
-
-Access the app at `http://your-server-ip:12020`
-
-## 💻 Local Development
-
-```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-## 🐳 Docker Commands
+> Requires Node.js 24+ and npm 11+
 
-```bash
-# View logs
-docker logs -f nytm-multitools
+---
 
-# Stop the app
-docker compose down
+## What's Inside
 
-# Restart the app
-docker compose restart
+<table>
+<tr>
+<td width="50%">
 
-# Update to latest version
-docker compose pull && docker compose up -d --force-recreate
+### 📝 Text Tools
+Case conversion, diff checker, find/replace, word counter, line sorter, duplicate remover...
+
+### 🔄 Converters
+JSON ↔ YAML ↔ CSV ↔ XML, base conversions, timestamps, colors, units...
+
+### 🎲 Generators
+UUID, passwords, hashes, QR codes, barcodes, fake data, lorem ipsum...
+
+</td>
+<td width="50%">
+
+### 🔐 Security
+Hash generators (MD5, SHA, bcrypt), AES encrypt/decrypt, JWT decoder, password strength...
+
+### 💻 Dev Tools
+JSON/HTML/CSS/JS beautifiers & minifiers, regex tester, cron parser, diff checker...
+
+### 🖼️ Image Tools
+Resize, compress, crop, rotate, filters, format conversion, base64...
+
+</td>
+</tr>
+</table>
+
+### ⚡ And More
+Calculators, timers, color pickers, emoji picker, keyboard tester, screen info...
+
+---
+
+## Privacy & Data Handling
+
+<table>
+<tr>
+<td><strong>✅ Client-Side</strong></td>
+<td>All 135 tools process data in your browser. Nothing is sent to any server.</td>
+</tr>
+<tr>
+<td><strong>✅ Self-Hosted Fonts</strong></td>
+<td>Fonts (Inter, JetBrains Mono) are bundled at build time via Next.js. No runtime requests to external font CDNs.</td>
+</tr>
+<tr>
+<td><strong>✅ No External Icons</strong></td>
+<td>All icons are inline SVG components. No requests to icon CDNs or external services.</td>
+</tr>
+<tr>
+<td><strong>✅ No Tracking</strong></td>
+<td>Optional privacy-respecting analytics (PostHog) only. No advertising trackers.</td>
+</tr>
+<tr>
+<td><strong>⚠️ Exception</strong></td>
+<td>IP Lookup tool uses ipinfo.io API (clearly disclosed on the tool page).</td>
+</tr>
+</table>
+
+---
+
+## Tech Stack
+
+<table>
+<tr>
+<td><strong>Runtime</strong></td>
+<td>Node.js 24.8.0 / npm 11.6.0</td>
+</tr>
+<tr>
+<td><strong>Framework</strong></td>
+<td>Next.js 16.0.6 (Turbopack)</td>
+</tr>
+<tr>
+<td><strong>UI</strong></td>
+<td>React 19.2.0 + React Compiler</td>
+</tr>
+<tr>
+<td><strong>Language</strong></td>
+<td>TypeScript 5.9.3</td>
+</tr>
+<tr>
+<td><strong>Styling</strong></td>
+<td>Tailwind CSS 4.1.17</td>
+</tr>
+<tr>
+<td><strong>Icons</strong></td>
+<td>Inline SVG components (no external dependencies)</td>
+</tr>
+<tr>
+<td><strong>Fonts</strong></td>
+<td>Inter, JetBrains Mono (self-hosted via next/font)</td>
+</tr>
+</table>
+
+---
+
+## Environment
+
+Create `.env.local`:
+
+```env
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_NAME=NYTM Tools
+NEXT_PUBLIC_POSTHOG_KEY=optional_analytics_key
+NEXT_PUBLIC_DONATION_URL=https://razorpay.me/@yourhandle  # optional
 ```
 
-## 📁 Project Structure
+---
 
-```
-├── app/                    # Next.js App Router pages
-│   ├── tools/             # All tool pages (130+)
-│   ├── about/             # About page
-│   ├── contact/           # Contact page
-│   └── ...
-├── components/            # Reusable React components
-├── lib/                   # Utility functions and configs
-├── public/               # Static assets
-├── Dockerfile            # Production Docker image
-├── docker-compose.yml    # Docker Compose config
-└── deploy.sh            # One-click deploy script
-```
+## Support the Project
 
-## 🔧 Tech Stack
+NYTM is free and always will be. It runs on voluntary donations and is self-funded by the owner when needed.
 
-- **Framework**: Next.js 16
-- **UI**: React 19 with React Compiler
-- **Styling**: Tailwind CSS 4
-- **Analytics**: PostHog (optional)
-- **Deployment**: Docker + GitHub Container Registry
+If you find it useful:
+- **Donate**: Visit [nytm.in/pricing](https://nytm.in/pricing)
+- **Star**: Give us a ⭐ on GitHub
 
-## 📄 License
+---
 
-Private repository - All rights reserved.
+## Disclaimer
+
+NYTM is a project name, not a registered organization or legal entity. The owner (Nityam Sheth) and all affiliated third-party services are not liable for any damages arising from use. Tools are provided "as-is" without warranty. See [Terms](https://nytm.in/terms).
+
+---
+
+## Contributing
+
+Found a bug? Want a feature? Open an issue or start a discussion. PRs welcome for bug fixes.
+
+---
+
+## License
+
+<img src="https://img.shields.io/badge/NSAL_v1.0-Source_Available-8b5cf6?style=for-the-badge" alt="NSAL v1.0" />
+
+Licensed under the **NYTM Source Available License (NSAL) v1.0**.
+
+Source code is public for transparency. Not open source. See [LICENSE](LICENSE) for full terms.
+
+Third-party dependencies retain their original open source licenses.
+
+---
+
+## Contact
+
+**Nityam Sheth** — hello@nytm.in / hello@nsheth.in
+
+GitHub: [@nityam2007](https://github.com/nityam2007)

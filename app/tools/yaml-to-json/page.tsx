@@ -112,7 +112,7 @@ export default function YamlToJsonPage() {
       <div className="space-y-6">
         <TextArea
           label="YAML Input"
-          placeholder="name: John&#10;age: 30&#10;city: New York"
+          placeholder={"name: John\nage: 30\ncity: New York"}
           value={input}
           onChange={(e) => { setInput(e.target.value); setError(""); }}
           error={error}

@@ -1,245 +1,238 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { pricingPlans, useSubscription, SubscriptionTier, tierFeatures } from "@/lib/subscription-context";
-import { SupporterBadge } from "@/components/Paywall";
+import { HeartIcon, CheckIcon } from "@/assets/icons";
+
+// Donation URL from environment variable (fallback to empty)
+const DONATION_URL = process.env.NEXT_PUBLIC_DONATION_URL || "";
+
+// SVG Icons for this page
+function FreeIcon({ className = "w-12 h-12" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+    </svg>
+  );
+}
+
+function DonateIcon({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+    </svg>
+  );
+}
+
+function UserIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+    </svg>
+  );
+}
+
+function WalletIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+    </svg>
+  );
+}
+
+function ShieldExclamationIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
+    </svg>
+  );
+}
 
 export default function PricingPage() {
-  const { subscription, setSubscription, isSupporter } = useSubscription();
-  const [selectedTier, setSelectedTier] = useState<SubscriptionTier | null>(null);
-
-  const handleSupport = (tier: SubscriptionTier) => {
-    // In production, this would redirect to payment processor (Stripe, etc.)
-    // For demo, we'll just set the subscription
-    setSelectedTier(tier);
-  };
-
-  const confirmSupport = () => {
-    if (selectedTier) {
-      setSubscription({
-        tier: selectedTier,
-        isActive: true,
-        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
-        features: tierFeatures[selectedTier],
-      });
-      setSelectedTier(null);
-    }
-  };
-
   return (
-    <div className="max-w-6xl mx-auto py-16 px-4">
+    <div className="max-w-5xl mx-auto py-16 px-4">
       {/* Header */}
-      <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-sm font-medium mb-8">
-          <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
-          Support Indie Development
-        </div>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-          Keep NYTM Tools <span className="gradient-text">Free Forever</span>
+      <div className="text-center mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          NYTM is <span className="gradient-text">Free. Forever.</span>
         </h1>
-        <p className="text-xl text-[var(--muted-foreground)] max-w-2xl mx-auto leading-relaxed">
-          All tools are completely free with unlimited usage. Support us to remove ads, 
-          get a cool badge, and help us build more awesome tools!
+        <p className="text-lg text-[var(--muted-foreground)] max-w-xl mx-auto">
+          135 tools. No ads. No tracking. No limits. No catch.
         </p>
       </div>
 
-      {/* Current Status */}
-      {isSupporter && (
-        <div className="mb-12 p-8 rounded-3xl bg-gradient-to-br from-violet-500/10 via-purple-500/5 to-pink-500/10 border border-violet-500/20 text-center">
-          <div className="flex items-center justify-center gap-4 mb-3">
-            <span className="text-3xl">💜</span>
-            <SupporterBadge tier={subscription.tier} className="text-base px-5 py-2" />
-          </div>
-          <p className="text-lg text-[var(--muted-foreground)]">
-            {tierFeatures[subscription.tier]?.thankYouMessage || "Thank you for your support!"}
-          </p>
-        </div>
-      )}
-
-      {/* Pricing Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
-        {pricingPlans.map((plan, index) => {
-          const isCurrentPlan = subscription.tier === plan.tier;
+      {/* Side by Side Cards */}
+      <div className="grid md:grid-cols-2 gap-6 mb-12">
+        {/* Free Card */}
+        <div className="rounded-2xl border border-violet-500/30 bg-gradient-to-b from-violet-500/10 to-transparent p-8 relative overflow-hidden h-full">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
           
-          return (
-            <div
-              key={plan.tier}
-              className={`relative group rounded-3xl border transition-all duration-500 overflow-hidden ${
-                plan.highlighted
-                  ? "bg-gradient-to-b from-violet-500/10 via-purple-500/5 to-transparent border-violet-500/30 lg:scale-105 lg:-my-2"
-                  : "bg-[var(--card)] border-[var(--border)] hover:border-violet-500/30"
-              } ${isCurrentPlan ? "ring-2 ring-violet-500 ring-offset-2 ring-offset-[var(--background)]" : ""}`}
-            >
-              {/* Glow effect */}
-              {plan.highlighted && (
-                <div className="absolute inset-0 bg-gradient-to-b from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              )}
-              
-              {plan.highlighted && (
-                <div className="absolute -top-px left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
-              )}
-              
-              {plan.highlighted && (
-                <div className="absolute top-4 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-violet-500 to-purple-600 text-white text-xs font-semibold shadow-lg shadow-violet-500/30">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-              
-              {isCurrentPlan && (
-                <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium border border-emerald-500/30">
-                    Current
-                  </span>
-                </div>
-              )}
-
-              <div className={`relative p-6 ${plan.highlighted ? "pt-14" : ""}`}>
-                <div className="text-center mb-6">
-                  <span className="text-5xl mb-3 block">{plan.emoji}</span>
-                  <h3 className="text-xl font-bold mb-1 tracking-tight">{plan.name}</h3>
-                  <p className="text-sm text-[var(--muted-foreground)]">{plan.description}</p>
-                </div>
-
-                <div className="text-center mb-8">
-                  <span className="text-5xl font-bold tracking-tight">
-                    {plan.price === 0 ? "Free" : `$${plan.price}`}
-                  </span>
-                  {plan.price > 0 && (
-                    <span className="text-[var(--muted-foreground)] text-lg">/mo</span>
-                  )}
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3 text-sm">
-                      <span className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-emerald-400 text-xs">✓</span>
-                      </span>
-                      <span className="text-[var(--muted-foreground)]">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {plan.tier === "free" ? (
-                  <div className="text-center py-3.5 rounded-xl bg-[var(--muted)] text-[var(--muted-foreground)] text-sm font-medium">
-                    Always Free
-                  </div>
-                ) : isCurrentPlan ? (
-                  <div className="text-center py-3.5 rounded-xl bg-emerald-500/20 text-emerald-400 text-sm font-semibold">
-                    You&apos;re a {plan.name}! 💜
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => handleSupport(plan.tier)}
-                    className={`w-full py-3.5 rounded-xl font-semibold transition-all duration-300 ${
-                      plan.highlighted
-                        ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:-translate-y-0.5"
-                        : "bg-[var(--muted)] hover:bg-violet-500/10 text-[var(--foreground)] border border-[var(--border)] hover:border-violet-500/30"
-                    }`}
-                  >
-                    Support with ${plan.price}/mo
-                  </button>
-                )}
-              </div>
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-violet-500/10 text-violet-400 mb-3">
+              <FreeIcon className="w-10 h-10" />
             </div>
-          );
-        })}
-      </div>
+            <h2 className="text-2xl font-bold">Everything Included</h2>
+            <p className="text-[var(--muted-foreground)] mt-1">No tiers. No upsells.</p>
+          </div>
 
-      {/* FAQ Section */}
-      <div className="border-t border-[var(--border)] pt-16">
-        <div className="text-center mb-12">
-          <span className="text-xs font-mono text-violet-400 tracking-widest uppercase">FAQ</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 tracking-tight">Questions? We&apos;ve got answers</h2>
+          <div className="text-center mb-6">
+            <span className="text-5xl font-bold">$0</span>
+            <span className="text-[var(--muted-foreground)]"> / forever</span>
+          </div>
+
+          <ul className="space-y-3 mb-8">
+            {[
+              "All 135 tools included",
+              "Unlimited usage",
+              "No ads, ever",
+              "No account required",
+              "No tracking cookies",
+              "Client-side processing",
+              "Dark mode",
+              "Mobile friendly",
+            ].map((feature, i) => (
+              <li key={i} className="flex items-center gap-3 text-sm">
+                <span className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                  <CheckIcon className="w-3 h-3 text-emerald-400" />
+                </span>
+                <span className="text-[var(--muted-foreground)]">{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            href="/tools"
+            className="block w-full py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white text-center font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Start Using Tools
+          </Link>
         </div>
-        <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-          {[
-            {
-              q: "Is everything really free?",
-              a: "Yes! All 130+ tools are completely free with unlimited usage. No limits, no restrictions, no catch.",
-            },
-            {
-              q: "Why should I support?",
-              a: "Your support helps us keep the site running, build new tools, and stay ad-free for supporters. Plus you get a cool badge!",
-            },
-            {
-              q: "Can I cancel anytime?",
-              a: "Absolutely! You can cancel your support anytime. You'll keep your benefits until the end of the billing period.",
-            },
-            {
-              q: "What payment methods?",
-              a: "We accept all major credit cards, PayPal, and crypto through our secure payment processor.",
-            },
-          ].map((faq, i) => (
-            <div 
-              key={i} 
-              className="group rounded-2xl bg-[var(--card)] border border-[var(--border)] p-6 hover:border-violet-500/30 transition-all duration-300"
-            >
-              <h3 className="font-semibold mb-2 tracking-tight group-hover:text-violet-400 transition-colors">{faq.q}</h3>
-              <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{faq.a}</p>
+
+        {/* Donation Card */}
+        <div className="rounded-2xl border border-pink-500/30 bg-gradient-to-b from-pink-500/5 to-transparent p-8 relative overflow-hidden h-full">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent" />
+          
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-pink-500/10 text-pink-400 mb-3">
+              <HeartIcon className="w-8 h-8" />
             </div>
-          ))}
+            <h2 className="text-2xl font-bold">Support NYTM</h2>
+            <p className="text-[var(--muted-foreground)] mt-1">Help keep it running</p>
+          </div>
+
+          <div className="text-center mb-6">
+            <span className="text-5xl font-bold">Any</span>
+            <span className="text-[var(--muted-foreground)]"> amount</span>
+          </div>
+
+          <ul className="space-y-3 mb-8">
+            {[
+              "Support hosting costs",
+              "Motivate development",
+              "Keep NYTM ad-free",
+              "No rewards or perks",
+              "100% voluntary",
+              "Processed by third-party",
+              "Non-refundable",
+              "Not tax-deductible",
+            ].map((feature, i) => (
+              <li key={i} className="flex items-center gap-3 text-sm">
+                <span className="w-5 h-5 rounded-full bg-pink-500/20 flex items-center justify-center flex-shrink-0">
+                  <CheckIcon className="w-3 h-3 text-pink-400" />
+                </span>
+                <span className="text-[var(--muted-foreground)]">{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          {DONATION_URL ? (
+            <a
+              href={DONATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <DonateIcon className="w-5 h-5" />
+              Donate Now
+            </a>
+          ) : (
+            <a
+              href="mailto:hello@nytm.in?subject=NYTM Donation Inquiry"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <DonateIcon className="w-5 h-5" />
+              Contact to Donate
+            </a>
+          )}
         </div>
       </div>
 
-      {/* Bottom CTA */}
-      <div className="mt-20 text-center">
-        <div className="relative rounded-3xl bg-gradient-to-br from-violet-500/10 via-purple-500/5 to-pink-500/10 border border-violet-500/20 p-12 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl -translate-y-1/2" />
-          <div className="relative">
-            <h3 className="text-3xl font-bold mb-3 tracking-tight">Every bit helps! 💜</h3>
-            <p className="text-lg text-[var(--muted-foreground)] mb-8 max-w-lg mx-auto">
-              Even if you can&apos;t support financially, sharing NYTM Tools with friends helps us grow!
+      {/* Why Free */}
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 mb-8">
+        <h3 className="font-bold text-xl mb-4 text-center">Why is NYTM free?</h3>
+        <div className="grid sm:grid-cols-2 gap-4 text-sm text-[var(--muted-foreground)]">
+          <div className="p-4 rounded-xl bg-[var(--muted)]">
+            <div className="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400 mb-2">
+              <HeartIcon className="w-5 h-5" />
+            </div>
+            <strong className="text-[var(--foreground)]">Donation-funded</strong>
+            <p className="mt-1">NYTM runs on voluntary donations from users who find it useful.</p>
+          </div>
+          <div className="p-4 rounded-xl bg-[var(--muted)]">
+            <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center text-violet-400 mb-2">
+              <UserIcon className="w-5 h-5" />
+            </div>
+            <strong className="text-[var(--foreground)]">Self-funded by owner</strong>
+            <p className="mt-1">When donations don't cover costs, Nityam Sheth funds it personally.</p>
+          </div>
+          <div className="p-4 rounded-xl bg-[var(--muted)]">
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-2">
+              <WalletIcon className="w-5 h-5" />
+            </div>
+            <strong className="text-[var(--foreground)]">Minimal costs</strong>
+            <p className="mt-1">Tools run in your browser, so server costs are minimal.</p>
+          </div>
+          <div className="p-4 rounded-xl bg-[var(--muted)]">
+            <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 mb-2">
+              <ShieldExclamationIcon className="w-5 h-5" />
+            </div>
+            <strong className="text-[var(--foreground)]">No liability assumed</strong>
+            <p className="mt-1">Provided as-is. No warranties. See disclaimer below.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Liability Disclaimer */}
+      <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-6 mb-8">
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+            <ShieldExclamationIcon className="w-5 h-5 text-amber-400" />
+          </div>
+          <div className="space-y-3 text-sm text-[var(--muted-foreground)]">
+            <h4 className="font-bold text-[var(--foreground)]">Disclaimer & Liability Notice</h4>
+            <ul className="space-y-2">
+              <li><strong className="text-[var(--foreground)]">NYTM</strong> is a project name only, not a registered organization, company, or legal entity.</li>
+              <li><strong className="text-[var(--foreground)]">Nityam Sheth</strong> (the owner/operator) is not liable for any damages, losses, or issues arising from use of this service.</li>
+              <li>All tools are provided <strong className="text-[var(--foreground)]">"AS IS"</strong> without warranty of any kind, express or implied.</li>
+              <li>Third-party services used (including but not limited to payment processors, DNS providers, domain registrars, hosting services, and analytics) are independent entities. NYTM and its owner assume no liability for their actions, policies, or service interruptions.</li>
+              <li>Donations are voluntary, non-refundable, and do not constitute payment for goods or services.</li>
+              <li>By using NYTM, you agree that neither the project, its owner, contributors, nor any affiliated third-party services shall be held liable for any claim, damage, or loss.</li>
+            </ul>
+            <p className="text-xs pt-2 border-t border-amber-500/20">
+              For full terms, see our <Link href="/terms" className="text-amber-400 hover:underline">Terms of Service</Link> and <Link href="/privacy" className="text-amber-400 hover:underline">Privacy Policy</Link>.
             </p>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-[var(--muted)] border border-[var(--border)] hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300 font-semibold"
-            >
-              Back to Tools
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
           </div>
         </div>
       </div>
 
-      {/* Demo Modal */}
-      {selectedTier && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="relative bg-[var(--card)] rounded-3xl border border-[var(--border)] p-10 max-w-md w-full text-center overflow-hidden">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl -translate-y-1/2" />
-            <div className="relative">
-              <div className="text-6xl mb-6">
-                {pricingPlans.find(p => p.tier === selectedTier)?.emoji}
-              </div>
-              <h3 className="text-2xl font-bold mb-3 tracking-tight">
-                Become a {pricingPlans.find(p => p.tier === selectedTier)?.name}!
-              </h3>
-              <p className="text-[var(--muted-foreground)] mb-8">
-                In production, this would redirect to Stripe/PayPal. For demo, click confirm to activate.
-              </p>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setSelectedTier(null)}
-                  className="flex-1 py-3.5 rounded-xl border border-[var(--border)] hover:bg-[var(--muted)] transition-colors font-medium"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={confirmSupport}
-                  className="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all"
-                >
-                  Confirm (Demo)
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Back link */}
+      <div className="text-center">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300 font-medium"
+        >
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

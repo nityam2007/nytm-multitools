@@ -107,7 +107,7 @@ export default function MarkdownToHtmlPage() {
       <div className="space-y-6">
         <TextArea
           label="Markdown Input"
-          placeholder="# Hello World&#10;&#10;This is a **paragraph** with *emphasis*.&#10;&#10;- List item 1&#10;- List item 2"
+          placeholder={"# Hello World\n\nThis is a **paragraph** with *emphasis*.\n\n- List item 1\n- List item 2"}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={8}

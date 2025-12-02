@@ -19,6 +19,7 @@ export function InteractiveGrid() {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0, isHovering: false });
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Initialize particles
   useEffect(() => {
@@ -35,6 +36,7 @@ export function InteractiveGrid() {
       });
     }
     particlesRef.current = particles;
+    setIsInitialized(true);
   }, []);
 
   // Animation loop
@@ -200,6 +202,12 @@ export function InteractiveGrid() {
     mouseRef.current.isHovering = false;
     setRotation({ x: 0, y: 0 });
   };
+
+  if (!isInitialized) {
+    return (
+      <div className="relative w-[300px] h-[300px] cursor-crosshair bg-[var(--muted)]/20 rounded-lg" />
+    );
+  }
 
   return (
     <div

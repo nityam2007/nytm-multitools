@@ -1,0 +1,304 @@
+NYTM Source Available License (NSAL) v1.0
+
+Copyright © 2024-2025 Nityam Sheth and Contributors
+All Rights Reserved.
+
+Repository: https://github.com/nityam2007/nytm-multitools
+Project: NYTM MULTITOOLS
+
+================================================================================
+                              LICENSE AGREEMENT
+================================================================================
+
+This Source Available License Agreement ("Agreement") is a legal agreement 
+between you ("Licensee") and Nityam Sheth ("Licensor", operating as "NYTM") 
+governing the use of NYTM MULTITOOLS software and associated documentation ("Software").
+
+BY ACCESSING, VIEWING, OR USING THIS SOFTWARE IN ANY MANNER, YOU ACKNOWLEDGE 
+THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THE TERMS OF THIS 
+AGREEMENT. IF YOU DO NOT AGREE, YOU MUST NOT ACCESS OR USE THE SOFTWARE.
+
+================================================================================
+                            ARTICLE 1: DEFINITIONS
+================================================================================
+
+1.1  "Software" means the NYTM MULTITOOLS application (repository: 
+     nityam2007/nytm-multitools), including all source code, object code, 
+     documentation, graphics, user interfaces, APIs, and any updates or 
+     modifications thereto.
+
+1.2  "Derivative Work" means any work that is based upon the Software or any 
+     portion thereof, including but not limited to modifications, adaptations, 
+     translations, or any other form in which the Software may be recast, 
+     transformed, or adapted.
+
+1.3  "Commercial Use" means any use of the Software intended for or directed 
+     toward commercial advantage or monetary compensation.
+
+1.4  "Third-Party Components" means open source software libraries and 
+     dependencies incorporated into the Software, which are governed by their 
+     respective license agreements.
+
+1.5  "Contribution" means any work of authorship submitted to the Licensor for 
+     inclusion in the Software, including code, documentation, or other materials.
+
+================================================================================
+                          ARTICLE 2: GRANT OF RIGHTS
+================================================================================
+
+2.1  LIMITED VIEWING LICENSE
+     Subject to the terms of this Agreement, Licensor grants Licensee a limited,
+     non-exclusive, non-transferable, revocable license to:
+     
+     (a) View and read the source code for personal educational purposes;
+     (b) Execute the Software solely through official NYTM hosted services;
+     (c) Report defects, security vulnerabilities, and suggest improvements 
+         through designated channels (GitHub Issues, Discussions).
+
+2.2  CONTRIBUTION LICENSE
+     Licensee may fork the repository and submit Contributions via Pull Request,
+     subject to the terms set forth in Article 5.
+
+================================================================================
+                          ARTICLE 3: RESTRICTIONS
+================================================================================
+
+3.1  PROHIBITED ACTIONS
+     Except as expressly permitted herein, Licensee shall NOT:
+
+     (a) Copy, reproduce, duplicate, or replicate the Software or any portion 
+         thereof, whether in source or object form;
+     
+     (b) Modify, adapt, alter, translate, or create Derivative Works based on 
+         the Software;
+     
+     (c) Distribute, publish, transmit, transfer, sell, lease, rent, lend, 
+         sublicense, or otherwise make available the Software to any third party;
+     
+     (d) Use the Software for any Commercial Use;
+     
+     (e) Reverse engineer, decompile, disassemble, or otherwise attempt to 
+         derive the source code of any compiled portions of the Software;
+     
+     (f) Remove, alter, or obscure any proprietary notices, labels, or marks 
+         on the Software;
+     
+     (g) Use the Software to develop, create, or contribute to any product or 
+         service that competes with NYTM or the Software;
+     
+     (h) Deploy, host, or operate the Software on any server, cloud platform, 
+         or infrastructure not owned or authorized by Licensor;
+     
+     (i) Use the Software in any manner that violates applicable law or 
+         regulation;
+     
+     (j) Use any automated means to access, scrape, or collect the Software 
+         or its contents.
+
+3.2  RESERVATION OF RIGHTS
+     All rights not expressly granted herein are reserved by Licensor. No 
+     implied licenses are granted under this Agreement.
+
+================================================================================
+                        ARTICLE 4: INTELLECTUAL PROPERTY
+================================================================================
+
+4.1  OWNERSHIP
+     The Software and all copies thereof are proprietary to Licensor and title 
+     thereto remains exclusively with Licensor. All applicable rights to patents, 
+     copyrights, trademarks, trade secrets, and other intellectual property rights 
+     in the Software are and will remain exclusively with Licensor.
+
+4.2  COPYRIGHT NOTICE
+     Licensee acknowledges that the Software contains valuable trade secrets and 
+     proprietary information belonging to Licensor. Licensee agrees to maintain 
+     the confidentiality of such information and to not disclose it to third parties.
+
+4.3  TRADEMARKS
+     "NYTM" and related logos are trademarks of Licensor. This Agreement does not 
+     grant any rights to use such trademarks.
+
+================================================================================
+                          ARTICLE 5: CONTRIBUTIONS
+================================================================================
+
+5.1  CONTRIBUTION ASSIGNMENT
+     By submitting a Contribution, Contributor hereby irrevocably assigns and 
+     transfers to Licensor all right, title, and interest in and to the 
+     Contribution, including all intellectual property rights therein.
+
+5.2  CONTRIBUTOR REPRESENTATIONS
+     Contributor represents and warrants that:
+     
+     (a) Contributor has the legal right to make the Contribution;
+     (b) The Contribution is Contributor's original work;
+     (c) The Contribution does not infringe any third-party intellectual 
+         property rights;
+     (d) The Contribution does not contain any malicious code, virus, or 
+         harmful components.
+
+5.3  NO OBLIGATION
+     Licensor is under no obligation to accept, review, or incorporate any 
+     Contribution.
+
+================================================================================
+                       ARTICLE 6: THIRD-PARTY COMPONENTS
+================================================================================
+
+6.1  THIRD-PARTY LICENSES
+     The Software incorporates Third-Party Components that are licensed under 
+     separate open source licenses (including but not limited to MIT License, 
+     Apache License 2.0, and BSD Licenses). Such Third-Party Components remain 
+     subject to their respective license terms.
+
+6.2  COMPONENT LIST
+     A list of Third-Party Components and their respective licenses can be 
+     found in the package.json file and associated documentation.
+
+6.3  SEVERABILITY OF LICENSES
+     The restrictions set forth in this Agreement apply solely to NYTM's 
+     proprietary code and do not restrict any rights granted under the 
+     licenses of Third-Party Components.
+
+================================================================================
+                    ARTICLE 7: DISCLAIMER OF WARRANTIES
+================================================================================
+
+7.1  AS-IS BASIS
+     THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF 
+     ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND 
+     NON-INFRINGEMENT.
+
+7.2  NO GUARANTEE
+     LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL MEET LICENSEE'S 
+     REQUIREMENTS, THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED 
+     OR ERROR-FREE, OR THAT DEFECTS IN THE SOFTWARE WILL BE CORRECTED.
+
+7.3  ASSUMPTION OF RISK
+     LICENSEE ASSUMES ALL RISK AS TO THE QUALITY AND PERFORMANCE OF THE 
+     SOFTWARE. SHOULD THE SOFTWARE PROVE DEFECTIVE, LICENSEE ASSUMES THE 
+     ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+================================================================================
+                       ARTICLE 8: LIMITATION OF LIABILITY
+================================================================================
+
+8.1  EXCLUSION OF DAMAGES
+     IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, 
+     SPECIAL, EXEMPLARY, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT 
+     NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE 
+     LOSSES, REGARDLESS OF WHETHER SUCH DAMAGES WERE FORESEEABLE AND WHETHER 
+     OR NOT LICENSOR WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+8.2  MAXIMUM LIABILITY
+     IN NO EVENT SHALL LICENSOR'S TOTAL AGGREGATE LIABILITY EXCEED ONE 
+     HUNDRED UNITED STATES DOLLARS (USD $100.00).
+
+8.4  PERSONAL LIABILITY EXCLUSION
+     NITYAM SHETH, AS AN INDIVIDUAL, SHALL NOT BE PERSONALLY LIABLE FOR ANY 
+     CLAIMS, DAMAGES, OR LIABILITIES ARISING FROM OR RELATED TO THE SOFTWARE. 
+     ALL LIABILITY, IF ANY, SHALL BE LIMITED TO THE LICENSOR ENTITY.
+
+8.3  ESSENTIAL PURPOSE
+     THE LIMITATIONS SET FORTH IN THIS ARTICLE SHALL APPLY EVEN IF ANY 
+     REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
+
+================================================================================
+                            ARTICLE 9: TERMINATION
+================================================================================
+
+9.1  TERMINATION FOR BREACH
+     This Agreement and all rights granted hereunder shall terminate 
+     automatically and immediately upon any breach of any term of this 
+     Agreement by Licensee, without notice from Licensor.
+
+9.2  EFFECT OF TERMINATION
+     Upon termination, Licensee shall immediately:
+     (a) Cease all use of the Software;
+     (b) Destroy all copies of the Software in Licensee's possession or control;
+     (c) Certify in writing to Licensor that such destruction has occurred.
+
+9.3  SURVIVAL
+     Articles 3, 4, 7, 8, 10, and 11 shall survive any termination of this 
+     Agreement.
+
+================================================================================
+                            ARTICLE 10: ENFORCEMENT
+================================================================================
+
+10.1 INJUNCTIVE RELIEF
+     Licensee acknowledges that any breach of this Agreement may cause 
+     irreparable harm to Licensor for which monetary damages would be 
+     inadequate. Accordingly, Licensor shall be entitled to seek equitable 
+     relief, including injunction and specific performance, in addition to 
+     any other remedies available at law or in equity.
+
+10.2 LEGAL FEES
+     In any action or proceeding to enforce this Agreement, the prevailing 
+     party shall be entitled to recover reasonable attorneys' fees, costs, 
+     and expenses.
+
+================================================================================
+                          ARTICLE 11: GENERAL PROVISIONS
+================================================================================
+
+11.1 GOVERNING LAW
+     This Agreement shall be governed by and construed in accordance with 
+     the laws of the jurisdiction in which Licensor is domiciled, without 
+     regard to its conflict of laws principles.
+
+11.2 DISPUTE RESOLUTION
+     Any dispute arising out of or relating to this Agreement shall be 
+     resolved through binding arbitration in accordance with applicable 
+     arbitration rules, except that Licensor may seek injunctive relief 
+     in any court of competent jurisdiction.
+
+11.3 ENTIRE AGREEMENT
+     This Agreement constitutes the entire agreement between the parties 
+     with respect to the subject matter hereof and supersedes all prior 
+     or contemporaneous understandings or agreements.
+
+11.4 AMENDMENT
+     This Agreement may only be amended by a written instrument signed by 
+     Licensor.
+
+11.5 WAIVER
+     No waiver of any term of this Agreement shall be deemed a further or 
+     continuing waiver of such term or any other term.
+
+11.6 SEVERABILITY
+     If any provision of this Agreement is held to be unenforceable, such 
+     provision shall be reformed only to the extent necessary to make it 
+     enforceable, and the remaining provisions shall continue in full force.
+
+11.7 ASSIGNMENT
+     Licensee may not assign or transfer this Agreement or any rights 
+     hereunder without Licensor's prior written consent. Any attempted 
+     assignment in violation of this provision shall be null and void.
+
+11.8 NOTICES
+     All notices under this Agreement shall be in writing and shall be 
+     deemed given when delivered personally or sent via email to the 
+     addresses specified by the parties.
+
+================================================================================
+
+Effective Date: December 1, 2025
+Version: 1.0
+
+================================================================================
+                                  CONTACT
+================================================================================
+
+Owner:              Nityam Sheth
+Email:              hello@nytm.in
+Alternate Email:    hello@nsheth.in
+GitHub:             https://github.com/nityam2007
+Repository:         https://github.com/nityam2007/nytm-multitools
+
+For licensing inquiries, use the email addresses above or open a GitHub Issue.
+
+================================================================================
+                              END OF LICENSE
+================================================================================

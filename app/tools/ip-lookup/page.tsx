@@ -152,8 +152,10 @@ export default function IPLookupPage() {
           </div>
         )}
 
-        <div className="bg-blue-500/10 border border-blue-500/50 rounded-xl p-4 text-blue-500 text-sm">
-          ℹ️ IP geolocation data is approximate and may not reflect your exact location. Using ipinfo.io free API.
+        <div className="bg-amber-500/10 border border-amber-500/50 rounded-xl p-4 text-amber-500 text-sm">
+          <strong>⚠️ Third-Party API Notice:</strong> This tool uses the ipinfo.io external API to retrieve IP geolocation data. 
+          Your IP address is sent to ipinfo.io servers. This is the <strong>only tool</strong> on NYTM that makes external API calls. 
+          All other 134 tools process data entirely in your browser.
         </div>
       </div>
     </ToolLayout>

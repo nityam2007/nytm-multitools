@@ -83,7 +83,7 @@ export default function CsvToJsonPage() {
       <div className="space-y-6">
         <TextArea
           label="CSV Input"
-          placeholder="name,age,city&#10;John,30,New York&#10;Jane,25,Los Angeles"
+          placeholder={"name,age,city\nJohn,30,New York\nJane,25,Los Angeles"}
           value={input}
           onChange={(e) => { setInput(e.target.value); setError(""); }}
           error={error}

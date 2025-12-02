@@ -1,9 +1,7 @@
 import { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy - NYTM MULTITOOLS",
-  description: "Privacy Policy for NYTM MULTITOOLS - Learn how we handle your data.",
-};
+export const metadata: Metadata = generatePageMetadata("privacy");
 
 export default function PrivacyPage() {
   return (

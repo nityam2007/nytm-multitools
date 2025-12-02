@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 import { ArrowRightIcon, HeartIcon } from "@/assets/icons";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About - NYTM MULTITOOLS",
-  description: "Learn more about NYTM MULTITOOLS - Next-Gen Yield Tools & Modules. A modern collection of free online tools.",
-};
+export const metadata: Metadata = generatePageMetadata("about");
 
 // SVG Icons for this page
 function TargetIcon({ className = "w-6 h-6" }: { className?: string }) {

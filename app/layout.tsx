@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { SubscriptionProvider } from "@/lib/subscription-context";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { ToastProvider } from "@/components/Toast";
+import { generateWebsiteJsonLd } from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -102,6 +103,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebsiteJsonLd()) }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

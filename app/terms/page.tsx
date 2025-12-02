@@ -1,9 +1,7 @@
 import { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms of Service - NYTM MULTITOOLS",
-  description: "Terms of Service for NYTM MULTITOOLS - Read our terms and conditions.",
-};
+export const metadata: Metadata = generatePageMetadata("terms");
 
 const sections = [
   {

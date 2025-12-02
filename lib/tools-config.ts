@@ -1213,7 +1213,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "text",
     keywords: ["text to speech", "tts", "voice", "audio", "speech synthesis", "ai voice", "free tts", "unlimited"],
     isNew: true,
-    isExperimental: true,
+    // isExperimental: true,
   },
   {
     slug: "bmi-calculator",

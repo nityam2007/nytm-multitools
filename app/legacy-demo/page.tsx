@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /**
  * This demo shows that OLD legacy code automatically gets the new modern design!
@@ -12,6 +12,10 @@ export default function LegacyCodeDemo() {
   const [count, setCount] = useState(5);
   const [format, setFormat] = useState("json");
   const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { ArrowRightIcon, HeartIcon } from "@/assets/icons";
 import { generatePageMetadata } from "@/lib/seo";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = generatePageMetadata("about");
 
@@ -58,7 +59,8 @@ function SparklesIcon({ className = "w-6 h-6" }: { className?: string }) {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-5xl mx-auto py-16 px-4">
+    <div className="max-w-5xl mx-auto py-8 sm:py-12 md:py-16 px-3 sm:px-4">
+      <ScrollToTop />
       {/* Hero Section */}
       <div className="text-center mb-20">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-sm font-medium mb-8">

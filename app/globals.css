@@ -1167,13 +1167,63 @@ p {
 }
 
 /* Mobile responsive utilities */
-@media (max-width: 768px) {
+
+@media (max-width: 640px) {
   .hide-mobile {
     display: none !important;
   }
   
   .tool-container {
-    padding: 1.25rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border-width: 1px;
+  }
+  
+  /* Smaller touch targets for mobile */
+  button:not(.option-card):not(.toggle-slider) {
+    min-height: 44px;
+  }
+  
+  /* Reduce animation on mobile for performance */
+  .animate-fade-slide-up,
+  .animate-fade-slide-right {
+    animation-duration: 0.3s;
+  }
+  
+  /* Better textarea sizing on mobile */
+  textarea:not(.option-card) {
+    min-height: 120px;
+  }
+  
+  /* Option cards on mobile */
+  .option-card {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Tool section spacing */
+  .tool-section {
+    padding: 1rem 0;
+  }
+  
+  .tool-section + .tool-section {
+    margin-top: 1rem;
+  }
+  
+  /* Reduce hover effects on touch devices */
+  .tool-card:hover {
+    transform: none;
+  }
+  
+  /* Better scrollbar for mobile */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .tool-container {
+    padding: 1.5rem;
     border-radius: 1.25rem;
   }
 }
@@ -1181,6 +1231,11 @@ p {
 @media (min-width: 769px) {
   .hide-desktop {
     display: none !important;
+  }
+  
+  .tool-container {
+    padding: 2rem;
+    border-radius: 1.5rem;
   }
 }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { HeartIcon, CheckIcon } from "@/assets/icons";
 
@@ -48,8 +49,12 @@ function ShieldExclamationIcon({ className = "w-5 h-5" }: { className?: string }
 }
 
 export default function PricingPage() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   return (
-    <div className="max-w-5xl mx-auto py-16 px-4">
+    <div className="max-w-5xl mx-auto py-8 sm:py-12 md:py-16 px-3 sm:px-4">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
@@ -13,6 +13,10 @@ export default function NewFeaturesDemo() {
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
   const toast = useToast();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   const simulateProcessing = async () => {
     setLoading(true);

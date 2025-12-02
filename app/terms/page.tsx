@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = generatePageMetadata("terms");
 
@@ -80,7 +81,8 @@ const prohibitedActions = [
 
 export default function TermsPage() {
   return (
-    <div className="max-w-4xl mx-auto py-16 px-4">
+    <div className="max-w-4xl mx-auto py-8 sm:py-12 md:py-16 px-3 sm:px-4">
+      <ScrollToTop />
       {/* Hero Section */}
       <div className="text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-sm font-medium mb-8">

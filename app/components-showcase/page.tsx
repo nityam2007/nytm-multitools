@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
@@ -13,6 +13,10 @@ export default function ComponentShowcase() {
   const [selected, setSelected] = useState(2);
   const [toggle, setToggle] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">

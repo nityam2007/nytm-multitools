@@ -244,7 +244,7 @@ export function Sidebar() {
         transition-all duration-300 ease-out overflow-hidden
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0
-        w-72 lg:w-auto
+        w-[280px] sm:w-72 lg:w-auto
         ${collapsed ? "lg:!w-[72px]" : "lg:!w-64"}
       `}>
         {/* Header */}

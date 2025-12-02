@@ -28,10 +28,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles = `
-      inline-flex items-center justify-center gap-2 font-medium
-      rounded-xl transition-all duration-300
+      inline-flex items-center justify-center gap-1.5 sm:gap-2 font-medium
+      rounded-lg sm:rounded-xl transition-all duration-300
       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500
       disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none
+      min-h-[40px] sm:min-h-[44px]
       ${fullWidth ? "w-full" : ""}
     `;
 
@@ -39,44 +40,44 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       primary: `
         bg-gradient-to-r from-violet-500 to-purple-600 text-white
         shadow-lg shadow-violet-500/25
-        hover:shadow-violet-500/40 hover:-translate-y-0.5 hover:scale-[1.02]
+        sm:hover:shadow-violet-500/40 sm:hover:-translate-y-0.5 sm:hover:scale-[1.02]
         active:scale-[0.98]
         relative overflow-hidden
         before:absolute before:inset-0 before:bg-gradient-to-r before:from-violet-600 before:to-purple-700
         before:opacity-0 before:transition-opacity before:duration-300 before:z-0
-        hover:before:opacity-100
+        sm:hover:before:opacity-100
       `,
       secondary: `
         bg-[var(--muted)] text-[var(--foreground)]
         border border-[var(--border)]
-        hover:bg-violet-500/10 hover:border-violet-500/50 hover:text-violet-500
-        hover:-translate-y-0.5 hover:shadow-md
+        sm:hover:bg-violet-500/10 sm:hover:border-violet-500/50 sm:hover:text-violet-500
+        sm:hover:-translate-y-0.5 sm:hover:shadow-md
         active:scale-[0.98]
       `,
       outline: `
         bg-transparent text-[var(--foreground)]
         border-2 border-[var(--border)]
-        hover:border-violet-500 hover:bg-violet-500/5 hover:text-violet-500
-        hover:-translate-y-0.5
+        sm:hover:border-violet-500 sm:hover:bg-violet-500/5 sm:hover:text-violet-500
+        sm:hover:-translate-y-0.5
         active:scale-[0.98]
       `,
       ghost: `
         bg-transparent text-[var(--foreground)]
-        hover:bg-[var(--muted)] hover:text-violet-500
+        sm:hover:bg-[var(--muted)] sm:hover:text-violet-500
         active:scale-[0.95]
       `,
       destructive: `
         bg-gradient-to-r from-red-500 to-red-600 text-white
         shadow-lg shadow-red-500/25
-        hover:shadow-red-500/40 hover:-translate-y-0.5
+        sm:hover:shadow-red-500/40 sm:hover:-translate-y-0.5
         active:scale-[0.98]
       `,
     };
 
     const sizes = {
-      sm: "px-3 py-1.5 text-xs",
-      md: "px-5 py-2.5 text-sm",
-      lg: "px-7 py-3.5 text-base",
+      sm: "px-2.5 sm:px-3 py-1.5 text-xs",
+      md: "px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm",
+      lg: "px-5 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base",
     };
 
     return (

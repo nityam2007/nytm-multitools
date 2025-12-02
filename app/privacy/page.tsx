@@ -165,9 +165,15 @@ export default function PrivacyPage() {
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1">IP Lookup Tool Only</p>
+                    <p className="text-[var(--foreground)] font-medium mb-1">IP Lookup Tool</p>
                     <p className="text-sm text-[var(--muted-foreground)]">
-                      Uses ipinfo.io API. This is the <strong>only tool</strong> that makes external API calls. Clearly disclosed on the tool page.
+                      Uses ipinfo.io API. Your IP address is sent to ipinfo.io servers for geolocation lookup.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                    <p className="text-[var(--foreground)] font-medium mb-1">Text to Speech Tool</p>
+                    <p className="text-sm text-[var(--muted-foreground)]">
+                      Downloads AI voice model (~100MB) from Hugging Face on first use. After download, all processing is local. No text or audio is sent externally.
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
@@ -201,6 +207,8 @@ export default function PrivacyPage() {
                     <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Payment processors</strong> (e.g., Razorpay) — for donations</li>
                     <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>DNS/CDN</strong> (e.g., Cloudflare) — for site delivery</li>
                     <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Analytics</strong> (e.g., PostHog) — for anonymous usage stats</li>
+                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Model hosting</strong> (e.g., Hugging Face) — for AI model downloads</li>
+                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>IP Geolocation</strong> (e.g., ipinfo.io) — for IP lookup tool</li>
                     <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Hosting & Domain</strong> — for infrastructure</li>
                   </ul>
                   <p className="text-xs text-[var(--muted-foreground)] mt-3 pt-3 border-t border-amber-500/20">

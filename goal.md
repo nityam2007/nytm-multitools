@@ -64,3 +64,22 @@
 - **No Sign-up Required** - Use any tool instantly
 - **Open Performance** - Transparent benchmarks
 - **Donation Only** - Supporters = donors, not premium users
+
+
+
+TODO : 
+
+1 - Paraphraser 
+  - 
+
+
+2- PDF toosl : merge , png to pdf , jpg to pdf : all in client mode possibly
+
+
+
+
+STAGE 3
+
+An EMBEDE UI : like a endpoint for embeded : all tolls like : /embed/tools/toolname 
+
+where 1 common ui and it alllow to embed on there site a simple way 

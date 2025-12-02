@@ -1205,6 +1205,16 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["roman", "numeral", "convert"],
   },
   {
+    slug: "text-to-speech",
+    name: "Text to Speech",
+    description: "100% free unlimited AI text-to-speech converter. Natural voices, zero limits, totally local processing. Download AI voice model once (~100MB), generate unlimited audio offline.",
+    category: "misc",
+    icon: "microphone",
+    inputType: "text",
+    keywords: ["text to speech", "tts", "voice", "audio", "speech synthesis", "ai voice", "free tts", "unlimited"],
+    isNew: true,
+  },
+  {
     slug: "bmi-calculator",
     name: "BMI Calculator",
     description: "Calculate Body Mass Index.",

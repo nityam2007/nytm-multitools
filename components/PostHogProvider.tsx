@@ -24,6 +24,26 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
           persistence: 'localStorage+cookie',
           debug: process.env.NODE_ENV === 'development',
         })
+
+        // Suppress PostHog survey loading errors
+        const originalWarn = console.warn
+        const originalError = console.error
+        
+        console.warn = (...args: any[]) => {
+          const message = String(args[0] || '')
+          if (message.includes('Could not load surveys') || message.includes('surveys')) {
+            return
+          }
+          originalWarn(...args)
+        }
+        
+        console.error = (...args: any[]) => {
+          const message = String(args[0] || '')
+          if (message.includes('surveys')) {
+            return
+          }
+          originalError(...args)
+        }
       }
       setIsReady(true)
     }

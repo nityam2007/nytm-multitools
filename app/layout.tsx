@@ -23,10 +23,10 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "NYTM Tools — 135 Free Developer & Productivity Tools",
+    default: "NYTM Tools — 136 Free Developer & Productivity Tools",
     template: "%s | NYTM Tools",
   },
-  description: "135 free online tools for developers and creators. Text manipulation, converters, generators, image editing, and more. No ads, no sign-ups, 100% client-side processing. Your data never leaves your device.",
+  description: "136 free online tools for developers and creators. Text manipulation, converters, generators, image editing, and more. No ads, no sign-ups, 100% client-side processing. Your data never leaves your device.",
   keywords: [
     "free online tools",
     "developer tools",
@@ -68,22 +68,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://nytm.in",
     siteName: "NYTM Tools",
-    title: "NYTM Tools — 135 Free Developer & Productivity Tools",
-    description: "135 free online tools for developers and creators. Text manipulation, converters, generators, image editing, and more. No ads, no sign-ups, 100% client-side. Your data stays on your device.",
+    title: "NYTM Tools — 136 Free Developer & Productivity Tools",
+    description: "136 free online tools for developers and creators. Text manipulation, converters, generators, image editing, and more. No ads, no sign-ups, 100% client-side. Your data stays on your device.",
     images: [
       {
         url: "/metaimg.png",
         width: 1200,
         height: 630,
-        alt: "NYTM Tools — 135 Free Developer & Productivity Tools",
+        alt: "NYTM Tools — 136 Free Developer & Productivity Tools",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NYTM Tools — 135 Free Developer & Productivity Tools",
-    description: "135 free online tools. No ads, no tracking, 100% client-side. Text tools, converters, generators, image editing & more.",
+    title: "NYTM Tools — 136 Free Developer & Productivity Tools",
+    description: "136 free online tools. No ads, no tracking, 100% client-side. Text tools, converters, generators, image editing & more.",
     images: ["/metaimg.png"],
     creator: "@nityam2007",
   },

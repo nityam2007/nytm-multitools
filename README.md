@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Tools-135-8b5cf6?style=for-the-badge" alt="135 Tools" />
+  <img src="https://img.shields.io/badge/Tools-136-8b5cf6?style=for-the-badge" alt="136 Tools" />
   <img src="https://img.shields.io/badge/Next.js-16.0.6-black?style=for-the-badge&logo=next.js" alt="Next.js" />
   <img src="https://img.shields.io/badge/React-19.2.0-61dafb?style=for-the-badge&logo=react" alt="React" />
   <img src="https://img.shields.io/badge/TypeScript-5.9.3-3178c6?style=for-the-badge&logo=typescript" alt="TypeScript" />
@@ -20,7 +20,7 @@
 
 Free developer tools. No ads. No bullshit.
 
-135 tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
+136 tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
 
 ---
 
@@ -76,7 +76,7 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 <table>
 <tr>
 <td><strong>✅ Client-Side</strong></td>
-<td>All 135 tools process data in your browser. Nothing is sent to any server.</td>
+<td>All 136 tools process data in your browser. Nothing is sent to any server.</td>
 </tr>
 <tr>
 <td><strong>✅ Self-Hosted Fonts</strong></td>

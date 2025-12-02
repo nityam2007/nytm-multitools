@@ -503,6 +503,16 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["screenshot", "beautify", "mockup"],
   },
   {
+    slug: "remove-bg",
+    name: "Remove Background",
+    description: "Remove image backgrounds automatically. Client-side processing, no uploads.",
+    category: "image",
+    icon: "✂️",
+    inputType: "file",
+    keywords: ["remove", "background", "transparent", "cutout", "erase"],
+    isNew: true,
+  },
+  {
     slug: "image-resize",
     name: "Image Resizer",
     description: "Resize images to specific dimensions.",

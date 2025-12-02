@@ -56,7 +56,7 @@ export default function PricingPage() {
           NYTM is <span className="gradient-text">Free. Forever.</span>
         </h1>
         <p className="text-lg text-[var(--muted-foreground)] max-w-xl mx-auto">
-          135 tools. No ads. No tracking. No limits. No catch.
+          136 tools. No ads. No tracking. No limits. No catch.
         </p>
       </div>
 
@@ -81,7 +81,7 @@ export default function PricingPage() {
 
           <ul className="space-y-3 mb-8">
             {[
-              "All 135 tools included",
+              "All 136 tools included",
               "Unlimited usage",
               "No ads, ever",
               "No account required",

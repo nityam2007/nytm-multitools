@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { HeartIcon, CheckIcon } from "@/assets/icons";
+import { TOTAL_TOOLS, getToolsNoLimits, getAllToolsIncluded } from "@/lib/site-config";
 
 // Donation URL from environment variable (fallback to empty)
 const DONATION_URL = process.env.NEXT_PUBLIC_DONATION_URL || "";
@@ -61,7 +62,7 @@ export default function PricingPage() {
           NYTM is <span className="gradient-text">Free. Forever.</span>
         </h1>
         <p className="text-lg text-[var(--muted-foreground)] max-w-xl mx-auto">
-          136 tools. No ads. No tracking. No limits. No catch.
+          {getToolsNoLimits()}
         </p>
       </div>
 
@@ -86,7 +87,7 @@ export default function PricingPage() {
 
           <ul className="space-y-3 mb-8">
             {[
-              "All 136 tools included",
+              getAllToolsIncluded(),
               "Unlimited usage",
               "No ads, ever",
               "No account required",

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Tools-136-8b5cf6?style=for-the-badge" alt="136 Tools" />
+  <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/nityam2007/nytm-multitools/main/package.json&query=$.toolCount&label=Tools&color=8b5cf6&style=for-the-badge" alt="Tools" />
   <img src="https://img.shields.io/badge/Next.js-16.0.6-black?style=for-the-badge&logo=next.js" alt="Next.js" />
   <img src="https://img.shields.io/badge/React-19.2.0-61dafb?style=for-the-badge&logo=react" alt="React" />
   <img src="https://img.shields.io/badge/TypeScript-5.9.3-3178c6?style=for-the-badge&logo=typescript" alt="TypeScript" />
@@ -20,7 +20,9 @@
 
 Free developer tools. No ads. No bullshit.
 
-136 tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
+136+ tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
+
+> **Note:** The exact tool count is managed dynamically. See [Updating Tool Count](#updating-tool-count) below.
 
 ---
 
@@ -76,7 +78,7 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 <table>
 <tr>
 <td><strong>✅ Client-Side</strong></td>
-<td>All 136 tools process data in your browser. Nothing is sent to any server.</td>
+<td>All tools process data in your browser. Nothing is sent to any server.</td>
 </tr>
 <tr>
 <td><strong>✅ Self-Hosted Fonts</strong></td>
@@ -130,6 +132,29 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 <td>Inter, JetBrains Mono (self-hosted via next/font)</td>
 </tr>
 </table>
+
+---
+
+## Updating Tool Count
+
+When adding or removing tools, update the count in these locations:
+
+| File | What to Update |
+|------|----------------|
+| `lib/tools-config.ts` | Add/remove tool from `toolsConfig` array (this is the source of truth) |
+| `app/layout.tsx` | Update `TOOL_COUNT` constant (for SEO metadata) |
+
+**Automatic Updates:** Most of the site uses `lib/site-config.ts` which dynamically calculates the tool count from `toolsConfig.length`. These locations update automatically:
+- Homepage stats
+- Footer tagline  
+- Pricing page
+- About page
+- Privacy/Terms pages
+- Contact page FAQ
+
+**Manual Updates Required:**
+- `app/layout.tsx` → `TOOL_COUNT` constant (Next.js metadata can't use dynamic imports)
+- `README.md`, `COMPONENTS.md`, `goal.md` → Documentation files
 
 ---
 

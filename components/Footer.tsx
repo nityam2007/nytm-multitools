@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { GitHubIcon } from "@/assets/icons";
+import { SITE_TAGLINE } from "@/lib/site-config";
 
 export function Footer() {
   const [currentYear, setCurrentYear] = useState(2025);
@@ -65,7 +66,7 @@ export function Footer() {
               </p>
               {/* Tagline */}
               <p className="text-[10px] sm:text-xs text-violet-400 font-medium mb-4 sm:mb-6">
-                136 tools. Zero friction. Built for everyone.
+                {SITE_TAGLINE}
               </p>
               {/* Social Links */}
               <div className="flex items-center gap-2 sm:gap-3">

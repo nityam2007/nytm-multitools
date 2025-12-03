@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seo";
 import ScrollToTop from "@/components/ScrollToTop";
+import { getAllToolsIncluded } from "@/lib/site-config";
 
 export const metadata: Metadata = generatePageMetadata("terms");
 
@@ -52,7 +53,7 @@ const sections = [
   },
   {
     title: "No Premium Services",
-    content: "NYTM MULTITOOLS is and will remain completely free. There are no premium tiers, paid features, or subscription plans. All 136 tools are available to everyone without restriction.",
+    content: `NYTM MULTITOOLS is and will remain completely free. There are no premium tiers, paid features, or subscription plans. ${getAllToolsIncluded()} are available to everyone without restriction.`,
   },
   {
     title: "Termination",

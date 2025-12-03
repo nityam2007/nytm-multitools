@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { TOTAL_TOOLS } from "@/lib/site-config";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -257,7 +258,7 @@ export default function ContactPage() {
           {[
             {
               q: "Are all tools really free?",
-              a: "Yes, always. All 136 tools are completely free. No hidden costs, no premium tiers.",
+              a: `Yes, always. All ${TOTAL_TOOLS} tools are completely free. No hidden costs, no premium tiers.`,
             },
             {
               q: "Do you store my data?",

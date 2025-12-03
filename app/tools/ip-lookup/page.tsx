@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
+import { getOtherToolsCount } from "@/lib/site-config";
 
 const tool = getToolBySlug("ip-lookup")!;
 const similarTools = getToolsByCategory("misc").filter(t => t.slug !== "ip-lookup");
@@ -169,7 +170,7 @@ export default function IPLookupPage() {
           <div>
             <strong>Third-Party API Notice:</strong> This tool uses the ipinfo.io external API to retrieve IP geolocation data. 
             Your IP address is sent to ipinfo.io servers. This is the <strong>only tool</strong> on NYTM that makes external API calls. 
-            All other 134 tools process data entirely in your browser.
+            All other {getOtherToolsCount(2)} tools process data entirely in your browser.
           </div>
         </div>
       </div>

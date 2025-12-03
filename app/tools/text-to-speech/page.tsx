@@ -1,587 +1,493 @@
 // Text to Speech Tool | TypeScript
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
-import { TextArea } from "@/components/TextArea";
-import { Button } from "@/components/Button";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 import { logToolUsage } from "@/lib/actions";
-import { KokoroTTS } from "kokoro-js";
 
 const tool = getToolBySlug("text-to-speech")!;
 const similarTools = getToolsByCategory("misc").filter(t => t.slug !== "text-to-speech");
 
-type LoadingStatus = "idle" | "downloading" | "initializing" | "ready" | "error";
+type Status = "idle" | "loading" | "ready" | "generating" | "error";
 
-interface Voice {
-  id: string;
-  name: string;
-  description: string;
-}
-
-const AVAILABLE_VOICES: Voice[] = [
-  { id: "af_heart", name: "Heart", description: "Warm and friendly" },
-  { id: "af_bella", name: "Bella", description: "Clear and professional" },
-  { id: "af_sarah", name: "Sarah", description: "Natural and expressive" },
-  { id: "af_nicole", name: "Nicole", description: "Energetic and bright" },
-  { id: "am_adam", name: "Adam", description: "Deep and authoritative" },
-  { id: "am_michael", name: "Michael", description: "Smooth and confident" },
-  { id: "bf_emma", name: "Emma", description: "Young and cheerful" },
-  { id: "bf_isabella", name: "Isabella", description: "Soft and gentle" },
-  { id: "bm_george", name: "George", description: "Mature and steady" },
-  { id: "bm_lewis", name: "Lewis", description: "Calm and composed" },
+const VOICES = [
+  { id: "af_heart", name: "Heart", gender: "F" },
+  { id: "af_bella", name: "Bella", gender: "F" },
+  { id: "af_sarah", name: "Sarah", gender: "F" },
+  { id: "am_adam", name: "Adam", gender: "M" },
+  { id: "am_michael", name: "Michael", gender: "M" },
+  { id: "bf_emma", name: "Emma", gender: "F" },
+  { id: "bm_george", name: "George", gender: "M" },
 ];
 
+// Estimate generation time based on text length
+const estimateTime = (textLength: number) => {
+  const baseTime = 3;
+  const perChar = 0.02;
+  return Math.ceil(baseTime + textLength * perChar);
+};
+
 export default function TextToSpeechPage() {
-  const [input, setInput] = useState("");
-  const [selectedVoice, setSelectedVoice] = useState<string>("af_heart");
-  const [loadingStatus, setLoadingStatus] = useState<LoadingStatus>("idle");
-  const [downloadProgress, setDownloadProgress] = useState(0);
+  const [text, setText] = useState("");
+  const [voice, setVoice] = useState("af_heart");
+  const [status, setStatus] = useState<Status>("idle");
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+  const [genProgress, setGenProgress] = useState(0);
+  const [genTimeLeft, setGenTimeLeft] = useState(0);
+  const [genElapsed, setGenElapsed] = useState(0);
+  const [deviceInfo, setDeviceInfo] = useState<{ device: string; note: string } | null>(null);
   
-  const ttsRef = useRef<KokoroTTS | null>(null);
+  const workerRef = useRef<Worker | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const genTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const genStartRef = useRef<number>(0);
 
+  // Initialize Web Worker
   useEffect(() => {
-    const cachedModel = localStorage.getItem("kokoro-tts-cached");
-    if (cachedModel === "true" && !ttsRef.current) {
-      initializeModel();
-    }
-  }, []);
+    // Create worker
+    workerRef.current = new Worker(
+      new URL("./tts-worker.ts", import.meta.url),
+      { type: "module" }
+    );
 
-  const initializeModel = async () => {
-    if (loadingStatus === "ready" || loadingStatus === "downloading" || loadingStatus === "initializing") {
-      return;
-    }
+    // Handle messages from worker
+    workerRef.current.onmessage = (e: MessageEvent) => {
+      const { type, status: workerStatus, error: workerError, blob, elapsed, device, note } = e.data;
 
-    setLoadingStatus("downloading");
-    setError("");
-    setDownloadProgress(0);
-
-    try {
-      // Use requestAnimationFrame to keep UI responsive during loading
-      const updateProgress = () => {
-        setDownloadProgress(prev => {
-          if (prev >= 95) return 95;
-          return prev + 2;
-        });
-      };
-      
-      const progressInterval = setInterval(updateProgress, 100);
-
-      // Yield to browser before heavy operation
-      await new Promise(resolve => setTimeout(resolve, 50));
-      
-      setLoadingStatus("initializing");
-      
-      // Load model with streaming/chunked approach
-      const tts = await KokoroTTS.from_pretrained(
-        "onnx-community/Kokoro-82M-v1.0-ONNX",
-        { 
-          dtype: "q8", 
-          device: "wasm",
-        }
-      );
-
-      clearInterval(progressInterval);
-      
-      // Yield again before final state update
-      await new Promise(resolve => setTimeout(resolve, 10));
-      
-      setDownloadProgress(100);
-      ttsRef.current = tts;
-      setLoadingStatus("ready");
-      localStorage.setItem("kokoro-tts-cached", "true");
-      
-    } catch (err: unknown) {
-      setLoadingStatus("error");
-      const errorMessage = err instanceof Error ? err.message : "Failed to load speech model. Please refresh and try again.";
-      setError(errorMessage);
-      console.error("TTS initialization error:", err);
-    }
-  };
-
-  const deinitializeModel = () => {
-    // Clean up audio URL if exists
-    if (audioUrl) {
-      URL.revokeObjectURL(audioUrl);
-      setAudioUrl(null);
-    }
-    
-    // Stop audio playback
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.src = "";
-    }
-    
-    // Clear the TTS model reference to allow garbage collection
-    if (ttsRef.current) {
-      ttsRef.current = null;
-    }
-    
-    // Reset states
-    setLoadingStatus("idle");
-    setDownloadProgress(0);
-    setIsPlaying(false);
-    setIsGenerating(false);
-    setError("");
-    
-    // Note: We keep the localStorage cache flag so user doesn't need to re-download
-    // The model files are cached by the browser, only the in-memory instance is freed
-  };
-
-  const generateSpeech = async () => {
-    if (!input.trim()) {
-      setError("Please enter some text to convert to speech");
-      return;
-    }
-
-    if (loadingStatus !== "ready" || !ttsRef.current) {
-      setError("Model not ready. Please initialize first.");
-      return;
-    }
-
-    setIsGenerating(true);
-    setError("");
-
-    try {
-      if (audioUrl) {
-        URL.revokeObjectURL(audioUrl);
-        setAudioUrl(null);
+      if (type === "device-info") {
+        setDeviceInfo({ device, note });
       }
 
-      // Yield to browser before heavy operation
-      await new Promise(resolve => setTimeout(resolve, 10));
+      if (type === "fallback") {
+        setError("GPU not available, using CPU (slower)");
+      }
 
-      const audio = await ttsRef.current.generate(input, {
-        voice: selectedVoice as "af_heart" | "af_bella" | "af_sarah" | "af_nicole" | "am_adam" | "am_michael" | "bf_emma" | "bf_isabella" | "bm_george" | "bm_lewis",
-      });
+      if (type === "status") {
+        if (workerStatus === "loading") {
+          setStatus("loading");
+        } else if (workerStatus === "ready") {
+          setProgress(100);
+          setStatus("ready");
+          localStorage.setItem("kokoro-tts-cached", "true");
+        } else if (workerStatus === "generating") {
+          // Worker started generating
+        }
+      }
 
-      // Yield again before blob creation
-      await new Promise(resolve => setTimeout(resolve, 10));
+      if (type === "done" && blob) {
+        // Clear timer
+        if (genTimerRef.current) {
+          clearInterval(genTimerRef.current);
+          genTimerRef.current = null;
+        }
+        setGenProgress(100);
 
-      // Get audio data and convert to WAV blob
-      const audioData = audio.toBlob();
-      const url = URL.createObjectURL(audioData);
-      setAudioUrl(url);
+        // Create URL from blob
+        const url = URL.createObjectURL(blob);
+        setAudioUrl(url);
+        setStatus("ready");
 
-      // Don't block on logging
-      logToolUsage({
-        toolName: tool.name,
-        toolCategory: tool.category,
-        inputType: "text",
-        rawInput: input.substring(0, 100),
-        outputResult: "Audio generated",
-        metadata: { voice: selectedVoice, textLength: input.length },
-      }).catch(console.error);
+        // Auto-play
+        setTimeout(() => {
+          audioRef.current?.play();
+        }, 100);
 
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to generate speech. Try shorter text.";
-      setError(errorMessage);
-      console.error("Speech generation error:", err);
-    } finally {
-      setIsGenerating(false);
-    }
-  };
+        // Log usage
+        logToolUsage({
+          toolName: tool.name,
+          toolCategory: tool.category,
+          inputType: "text",
+          rawInput: text.substring(0, 100),
+          outputResult: "Audio generated",
+          metadata: { voice, textLength: text.length, generationTime: elapsed, device: deviceInfo?.device },
+        }).catch(() => {});
+      }
 
-  const handleDownload = () => {
-    if (!audioUrl) return;
-
-    const link = document.createElement("a");
-    link.download = `speech-${Date.now()}.wav`;
-    link.href = audioUrl;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const handlePlayPause = () => {
-    if (!audioRef.current) return;
-    
-    if (audioRef.current.paused) {
-      audioRef.current.play();
-      setIsPlaying(true);
-    } else {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      if (audioUrl) {
-        URL.revokeObjectURL(audioUrl);
+      if (type === "error") {
+        if (genTimerRef.current) {
+          clearInterval(genTimerRef.current);
+          genTimerRef.current = null;
+        }
+        setError(workerError || "An error occurred");
+        setStatus(status === "generating" ? "ready" : "error");
       }
     };
+
+    // Check if model was previously cached - auto-init
+    const cached = localStorage.getItem("kokoro-tts-cached");
+    if (cached === "true") {
+      initModel();
+    }
+
+    // Cleanup
+    return () => {
+      workerRef.current?.terminate();
+      if (genTimerRef.current) clearInterval(genTimerRef.current);
+    };
+  }, []);
+
+  // Cleanup audio URL
+  useEffect(() => {
+    return () => { if (audioUrl) URL.revokeObjectURL(audioUrl); };
+  }, [audioUrl]);
+
+  const initModel = () => {
+    if (status === "loading" || status === "ready") return;
+    
+    setStatus("loading");
+    setError("");
+    setProgress(0);
+
+    // Start progress animation
+    const interval = setInterval(() => {
+      setProgress(p => Math.min(p + 2, 95));
+    }, 150);
+
+    // Send init message to worker
+    workerRef.current?.postMessage({ type: "init" });
+
+    // Clear interval after a bit (worker will set 100 when done)
+    setTimeout(() => clearInterval(interval), 30000);
+  };
+
+  const generate = useCallback(() => {
+    if (!text.trim() || status !== "ready" || !workerRef.current) return;
+
+    setStatus("generating");
+    setError("");
+    setGenProgress(0);
+    setGenElapsed(0);
+
+    // Revoke old audio URL
+    if (audioUrl) URL.revokeObjectURL(audioUrl);
+    setAudioUrl(null);
+
+    // Estimate time
+    const estimatedSecs = estimateTime(text.length);
+    setGenTimeLeft(estimatedSecs);
+    genStartRef.current = Date.now();
+
+    // Start progress timer - this runs on main thread and stays responsive
+    genTimerRef.current = setInterval(() => {
+      const elapsed = (Date.now() - genStartRef.current) / 1000;
+      setGenElapsed(Math.floor(elapsed));
+      
+      const progressPct = Math.min(95, (elapsed / estimatedSecs) * 100);
+      setGenProgress(progressPct);
+      
+      const remaining = Math.max(0, estimatedSecs - elapsed);
+      setGenTimeLeft(Math.ceil(remaining));
+    }, 100);
+
+    // Send to worker - this won't block main thread!
+    workerRef.current.postMessage({
+      type: "generate",
+      payload: { text, voice }
+    });
+  }, [text, voice, status, audioUrl]);
+
+  const download = () => {
+    if (!audioUrl) return;
+    const a = document.createElement("a");
+    a.href = audioUrl;
+    a.download = `speech-${Date.now()}.wav`;
+    a.click();
+  };
+
+  useEffect(() => {
+    return () => { if (audioUrl) URL.revokeObjectURL(audioUrl); };
   }, [audioUrl]);
 
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
-      <div className="space-y-6">
-        {/* Experimental Badge */}
-        <div className="flex items-center justify-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/40">
-            <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-            <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">Experimental Feature</span>
-          </div>
-        </div>
+      <div className="max-w-2xl mx-auto space-y-6">
+        
+        {/* Step 1: Load Model (only show if not ready) */}
+        {status !== "ready" && status !== "generating" && (
+          <div className="text-center py-12">
+            {status === "idle" && (
+              <>
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-xl shadow-violet-500/25">
+                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold mb-2">Text to Speech</h2>
+                <p className="text-[var(--muted-foreground)] mb-6 max-w-sm mx-auto">
+                  Convert any text to natural-sounding speech. 100% free, runs locally on your device.
+                </p>
+                <button
+                  onClick={initModel}
+                  className="px-8 py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:-translate-y-0.5 transition-all text-lg"
+                >
+                  Start Using Tool
+                </button>
+                <p className="text-xs text-[var(--muted-foreground)] mt-4">
+                  First use downloads ~100MB voice model (cached for future use)
+                </p>
+              </>
+            )}
 
-        {/* Warning Banner */}
-        <div className="p-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30">
-          <div className="flex items-start gap-3">
-            <svg className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-amber-600 dark:text-amber-400">First-time setup required</p>
-              <p className="text-xs text-amber-600/80 dark:text-amber-400/80 mt-1">
-                This tool downloads a ~100MB voice model on first use. The model will be cached in your browser for instant future use. All processing happens locally on your device.
-              </p>
-            </div>
-          </div>
-        </div>
+            {status === "loading" && (
+              <>
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center animate-pulse">
+                  <svg className="w-10 h-10 text-white animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-semibold mb-2">Loading Voice Model...</h2>
+                <div className="w-64 mx-auto bg-[var(--muted)] rounded-full h-2 mb-2">
+                  <div 
+                    className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full transition-all"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <p className="text-sm text-[var(--muted-foreground)]">{progress}% — This only happens once</p>
+              </>
+            )}
 
-        {/* Model Initialization - Idle State */}
-        {loadingStatus === "idle" && (
-          <div className="p-8 rounded-xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/30 text-center">
-            <svg className="w-16 h-16 mx-auto mb-4 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-            </svg>
-            <h3 className="text-lg font-semibold mb-2">Initialize Voice Model</h3>
-            <p className="text-sm text-[var(--muted-foreground)] mb-4 max-w-md mx-auto">
-              Click below to download and initialize the AI voice model. This is a one-time download (~100MB) that will be cached in your browser.
-            </p>
-            <Button onClick={initializeModel} variant="primary" size="lg">
-              Download & Initialize Model
-            </Button>
-          </div>
-        )}
-
-        {/* Downloading/Initializing Progress */}
-        {(loadingStatus === "downloading" || loadingStatus === "initializing") && (
-          <div className="p-8 rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
-                <svg className="w-16 h-16 animate-spin text-blue-500" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                {loadingStatus === "downloading" ? "Downloading Model..." : "Initializing Engine..."}
-              </h3>
-              <p className="text-sm text-[var(--muted-foreground)] mb-4">
-                {loadingStatus === "downloading" 
-                  ? "Downloading voice model from Hugging Face (~100MB)" 
-                  : "Setting up the speech engine (this may take a moment)..."}
-              </p>
-              <div className="w-full max-w-md mx-auto bg-[var(--muted)] rounded-full h-2.5 overflow-hidden">
-                <div 
-                  className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2.5 rounded-full transition-all duration-300"
-                  style={{ width: `${downloadProgress}%` }}
-                />
-              </div>
-              <p className="text-xs text-[var(--muted-foreground)] mt-2 font-mono">
-                {downloadProgress}%
-              </p>
-              <p className="text-xs text-amber-500 mt-3">
-                Page may be briefly unresponsive during model initialization
-              </p>
-            </div>
+            {status === "error" && (
+              <>
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-red-500/20 flex items-center justify-center">
+                  <svg className="w-10 h-10 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-semibold mb-2 text-red-500">Loading Failed</h2>
+                <p className="text-sm text-[var(--muted-foreground)] mb-4">{error}</p>
+                <button
+                  onClick={initModel}
+                  className="px-6 py-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] font-medium hover:bg-violet-500/10 hover:border-violet-500/30 transition-all"
+                >
+                  Try Again
+                </button>
+              </>
+            )}
           </div>
         )}
 
-        {/* Error State */}
-        {loadingStatus === "error" && (
-          <div className="p-6 rounded-xl bg-gradient-to-br from-red-500/10 to-pink-500/10 border border-red-500/30">
-            <div className="flex items-start gap-3">
-              <svg className="w-6 h-6 text-red-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div className="flex-1">
-                <h3 className="font-semibold text-red-600 dark:text-red-400 mb-1">Initialization Failed</h3>
-                <p className="text-sm text-red-600/80 dark:text-red-400/80 mb-3">{error}</p>
-                <Button onClick={initializeModel} variant="secondary" size="md">
-                  Retry
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Model Ready - Main Interface */}
-        {loadingStatus === "ready" && (
+        {/* Step 2: Main Interface (only show when ready) */}
+        {(status === "ready" || status === "generating") && (
           <>
-            {/* Model Status Bar */}
-            <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Model loaded and ready</span>
+            {/* Device Info Badge */}
+            {deviceInfo && (
+              <div className="px-3 py-2 rounded-lg bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 flex items-center gap-2 text-sm">
+                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <span className="font-medium text-blue-600 dark:text-blue-400">{deviceInfo.device}</span>
+                <span className="text-[var(--muted-foreground)] text-xs">• {deviceInfo.note}</span>
               </div>
-              <button
-                onClick={deinitializeModel}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[var(--muted)] hover:bg-red-500/10 hover:text-red-500 border border-[var(--border)] hover:border-red-500/30 transition-all"
-                title="Unload model to free up memory (~100MB)"
-              >
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                Unload Model
-              </button>
-            </div>
-
-            {/* Voice Selection */}
-            <div>
-              <label className="block text-sm font-medium mb-3">Select Voice</label>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-                {AVAILABLE_VOICES.map((voice) => (
-                  <button
-                    key={voice.id}
-                    onClick={() => setSelectedVoice(voice.id)}
-                    className={`p-3 rounded-xl text-left transition-all duration-300 ${
-                      selectedVoice === voice.id
-                        ? "bg-gradient-to-br from-violet-500/20 to-purple-500/20 border-2 border-violet-500"
-                        : "bg-[var(--card)] border border-[var(--border)] hover:border-violet-500/50"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 mb-1">
-                      <svg className="w-4 h-4 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                      <span className="font-semibold text-sm">{voice.name}</span>
-                    </div>
-                    <p className="text-xs text-[var(--muted-foreground)]">{voice.description}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+            )}
 
             {/* Text Input */}
-            <TextArea
-              label="Text to Convert"
-              placeholder="Enter the text you want to convert to speech... (Recommended: Keep under 500 characters for best results)"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              error={error}
-              className="min-h-[150px]"
-              maxLength={1000}
-            />
+            <div>
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Type or paste your text here..."
+                className="w-full h-40 px-4 py-3 rounded-xl bg-[var(--background)] border border-[var(--border)] focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none text-base placeholder:text-[var(--muted-foreground)]/50"
+                maxLength={1000}
+                disabled={status === "generating"}
+              />
+              <div className="flex justify-between items-center mt-2 text-xs text-[var(--muted-foreground)]">
+                <span>{text.length}/1000 characters</span>
+                {text.length > 500 && <span className="text-amber-500">Longer text takes more time</span>}
+              </div>
+            </div>
 
-            <div className="flex items-center gap-2 text-xs text-[var(--muted-foreground)]">
-              <span className="font-mono">{input.length} / 1000 characters</span>
-              {input.length > 500 && (
-                <span className="text-amber-500">• Longer text may take more time</span>
-              )}
+            {/* Voice Selection - Simple Pills */}
+            <div className="flex flex-wrap gap-2">
+              {VOICES.map((v) => (
+                <button
+                  key={v.id}
+                  onClick={() => setVoice(v.id)}
+                  disabled={status === "generating"}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    voice === v.id
+                      ? "bg-violet-500 text-white shadow-md"
+                      : "bg-[var(--muted)] text-[var(--foreground)] hover:bg-violet-500/20"
+                  }`}
+                >
+                  {v.name}
+                  <span className="ml-1 opacity-60">{v.gender === "F" ? "♀" : "♂"}</span>
+                </button>
+              ))}
             </div>
 
             {/* Generate Button */}
-            <Button
-              onClick={generateSpeech}
-              disabled={!input.trim() || isGenerating}
-              variant="primary"
-              size="lg"
-              loading={isGenerating}
-              fullWidth
-              icon={
-                !isGenerating ? (
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                  </svg>
-                ) : undefined
-              }
+            <button
+              onClick={generate}
+              disabled={!text.trim() || status === "generating"}
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-violet-500/25 transition-all flex items-center justify-center gap-2 text-lg"
             >
-              {isGenerating ? "Generating Speech..." : "Generate Speech"}
-            </Button>
-
-            {/* Audio Player */}
-            {audioUrl && (
-              <div className="p-6 rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/30">
-                <div className="flex items-center gap-2 mb-4">
-                  <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              {status === "generating" ? (
+                <>
+                  <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                   </svg>
-                  <span className="font-semibold">Speech Generated</span>
-                </div>
-                
-                {/* Custom Audio Player */}
-                <div className="bg-[var(--background)] rounded-xl p-4 mb-4 border border-[var(--border)]">
-                  <audio 
-                    ref={audioRef} 
-                    src={audioUrl} 
-                    onPlay={() => setIsPlaying(true)}
-                    onPause={() => setIsPlaying(false)}
-                    onEnded={() => setIsPlaying(false)}
-                    className="hidden"
-                  />
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={handlePlayPause}
-                      className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
-                    >
-                      {isPlaying ? (
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                        </svg>
-                      ) : (
-                        <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      )}
-                    </button>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <svg className="w-4 h-4 text-[var(--muted-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                        </svg>
-                        <span className="text-sm font-medium">Generated Audio</span>
-                      </div>
-                      <p className="text-xs text-[var(--muted-foreground)] mt-1">
-                        Voice: {AVAILABLE_VOICES.find(v => v.id === selectedVoice)?.name || selectedVoice}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                        isPlaying 
-                          ? "bg-green-500/20 text-green-600 dark:text-green-400" 
-                          : "bg-[var(--muted)] text-[var(--muted-foreground)]"
-                      }`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${isPlaying ? "bg-green-500 animate-pulse" : "bg-[var(--muted-foreground)]"}`}></span>
-                        {isPlaying ? "Playing" : "Ready"}
-                      </span>
-                    </div>
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                  Generate Speech
+                </>
+              )}
+            </button>
+
+            {/* Generation Progress Bar - Shows during generation */}
+            {status === "generating" && (
+              <div className="p-4 rounded-xl bg-[var(--card)] border border-violet-500/30 space-y-3 animate-in fade-in duration-300">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+                    <span className="font-medium">Generating speech...</span>
                   </div>
+                  <span className="text-[var(--muted-foreground)] tabular-nums">
+                    {genTimeLeft > 0 ? `~${genTimeLeft}s remaining` : "Finishing..."}
+                  </span>
                 </div>
                 
-                <div className="flex gap-3">
-                  <Button 
-                    onClick={handlePlayPause} 
-                    variant="secondary"
-                    size="md"
-                    className="flex-1"
-                    icon={
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    }
+                {/* Progress bar */}
+                <div className="relative h-3 bg-[var(--muted)] rounded-full overflow-hidden">
+                  <div 
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full transition-all duration-200"
+                    style={{ width: `${genProgress}%` }}
+                  />
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_infinite] -translate-x-full" 
+                    style={{ animation: "shimmer 2s infinite" }}
+                  />
+                </div>
+                
+                <div className="flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+                  <span>Elapsed: {genElapsed}s</span>
+                  <span>{Math.round(genProgress)}%</span>
+                </div>
+                
+                <p className="text-xs text-center text-[var(--muted-foreground)] pt-1 border-t border-[var(--border)]">
+                  Feel free to scroll around - audio will be ready when done
+                </p>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500 text-sm">
+                {error}
+              </div>
+            )}
+
+            {/* Audio Player - Clean & Simple */}
+            {audioUrl && (
+              <div className="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+                <audio 
+                  ref={audioRef} 
+                  src={audioUrl}
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onEnded={() => setIsPlaying(false)}
+                  className="hidden"
+                />
+                
+                <div className="flex items-center gap-4">
+                  {/* Play/Pause */}
+                  <button
+                    onClick={() => {
+                      if (audioRef.current?.paused) {
+                        audioRef.current.play();
+                      } else {
+                        audioRef.current?.pause();
+                      }
+                    }}
+                    className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform flex-shrink-0"
                   >
-                    {isPlaying ? "Pause" : "Play"}
-                  </Button>
-                  <Button 
-                    onClick={handleDownload} 
-                    variant="primary"
-                    size="md"
-                    className="flex-1"
-                    icon={
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    {isPlaying ? (
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                       </svg>
-                    }
+                    ) : (
+                      <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    )}
+                  </button>
+
+                  {/* Status */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full ${isPlaying ? "bg-green-500 animate-pulse" : "bg-gray-400"}`} />
+                      <span className="font-medium">{isPlaying ? "Playing" : "Ready to play"}</span>
+                    </div>
+                    <p className="text-sm text-[var(--muted-foreground)] truncate">
+                      Voice: {VOICES.find(v => v.id === voice)?.name}
+                    </p>
+                  </div>
+
+                  {/* Download */}
+                  <button
+                    onClick={download}
+                    className="px-4 py-2 rounded-lg bg-[var(--muted)] hover:bg-violet-500/20 border border-[var(--border)] hover:border-violet-500/30 transition-all flex items-center gap-2 font-medium"
                   >
-                    Download WAV
-                  </Button>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Collapsible Info */}
+            <button
+              onClick={() => setShowInfo(!showInfo)}
+              className="w-full flex items-center justify-between p-3 rounded-lg bg-[var(--muted)] hover:bg-[var(--muted)]/80 transition-colors text-sm"
+            >
+              <span className="flex items-center gap-2 text-[var(--muted-foreground)]">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                About this tool
+              </span>
+              <svg className={`w-4 h-4 transition-transform ${showInfo ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {showInfo && (
+              <div className="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4 text-sm">
+                <div>
+                  <h4 className="font-semibold mb-1">How it works</h4>
+                  <p className="text-[var(--muted-foreground)]">
+                    Uses the Kokoro-82M AI model running entirely in your browser via WebAssembly. 
+                    Your text never leaves your device.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Model storage</h4>
+                  <p className="text-[var(--muted-foreground)]">
+                    The ~100MB model is downloaded from Hugging Face once and cached in your browser.
+                    Future uses are instant with no re-download.
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-[var(--border)]">
+                  <p className="text-xs text-[var(--muted-foreground)]">
+                    Please use responsibly. Don't create content that impersonates others or spreads misinformation.
+                    See our <a href="/terms" className="text-violet-400 hover:underline">Terms</a> for full usage policy.
+                  </p>
                 </div>
               </div>
             )}
           </>
         )}
-
-        {/* Info Section */}
-        <div className="p-4 rounded-xl bg-[var(--muted)] border border-[var(--border)]">
-          <h3 className="font-semibold mb-2 flex items-center gap-2">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            How it works
-          </h3>
-          <ul className="text-sm text-[var(--muted-foreground)] space-y-1.5 ml-6">
-            <li>• 100% client-side processing - your text never leaves your device</li>
-            <li>• First download: ~100MB voice model (one-time, cached locally)</li>
-            <li>• Subsequent uses: Instant, no download needed</li>
-            <li>• Works offline after initial model download</li>
-            <li>• Powered by Kokoro-82M AI voice model</li>
-          </ul>
-        </div>
-
-        {/* Third-Party Service Notice */}
-        <div className="bg-amber-500/10 border border-amber-500/50 rounded-xl p-4 text-amber-500 text-sm flex gap-3">
-          <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-          </svg>
-          <div>
-            <strong>Hugging Face Model Download Notice:</strong> This tool downloads the AI voice model 
-            (Kokoro-82M-ONNX) from Hugging Face servers on first use. Your browser connects to Hugging Face 
-            to retrieve the model files (~100MB). After download, the model is cached locally and all speech 
-            synthesis occurs entirely on your device. <strong>No text or audio data is ever sent to external servers.</strong>{" "}
-            By using this tool, you acknowledge the use of Hugging Face's model hosting service, subject to their{" "}
-            <a 
-              href="https://huggingface.co/terms-of-service" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="underline hover:text-amber-400 transition-colors"
-            >
-              Terms of Service
-            </a>
-            {" "}and{" "}
-            <a 
-              href="https://huggingface.co/privacy" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="underline hover:text-amber-400 transition-colors"
-            >
-              Privacy Policy
-            </a>.
-          </div>
-        </div>
-
-        {/* Legal Disclaimer */}
-        <div className="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-          <h3 className="font-semibold mb-3 flex items-center gap-2">
-            <svg className="w-4 h-4 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-            </svg>
-            Lawful Use & Responsibility
-          </h3>
-          <div className="text-sm text-[var(--muted-foreground)] space-y-2">
-            <p>
-              This tool is provided for lawful, personal, and educational purposes only. By using this text-to-speech service, you agree to the following:
-            </p>
-            <ul className="space-y-1.5 ml-4">
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span><strong>No impersonation:</strong> Do not create audio that impersonates real individuals without explicit consent.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span><strong>No fraud or deception:</strong> Do not use generated speech for scams, misinformation, or deceptive purposes.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span><strong>No illegal content:</strong> Do not generate speech containing hate speech, harassment, or content illegal in your jurisdiction.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-                <span><strong>Your responsibility:</strong> You are solely responsible for how you use the generated audio content.</span>
-              </li>
-            </ul>
-            <p className="pt-2 text-xs border-t border-[var(--border)] mt-3">
-              NYTM and its owner (Nityam Sheth) are not liable for any misuse of this tool. This tool uses the open-source Kokoro-82M model licensed under Apache 2.0. 
-              See our <a href="/terms" className="text-violet-400 hover:text-violet-300 underline">Terms of Service</a> and <a href="/privacy" className="text-violet-400 hover:text-violet-300 underline">Privacy Policy</a> for more information.
-            </p>
-          </div>
-        </div>
       </div>
     </ToolLayout>
   );

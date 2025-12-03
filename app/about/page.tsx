@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ArrowRightIcon, HeartIcon } from "@/assets/icons";
 import { generatePageMetadata } from "@/lib/seo";
 import ScrollToTop from "@/components/ScrollToTop";
+import { TOTAL_TOOLS, getAllToolsProcessLocally, TOTAL_CATEGORIES } from "@/lib/site-config";
 
 export const metadata: Metadata = generatePageMetadata("about");
 
@@ -89,7 +90,7 @@ export default function AboutPage() {
                 NYTM MULTITOOLS emerged from a simple frustration: juggling multiple websites for basic text transformations, image edits, and code formatting. We knew there had to be a better way.
               </p>
               <p>
-                So we built it. A single, unified platform bringing together <strong className="text-[var(--foreground)]">136 essential tools</strong> for developers, designers, content creators, and everyday users. No ads. No sign-ups. No paywalls. Ever.
+                So we built it. A single, unified platform bringing together <strong className="text-[var(--foreground)]">{TOTAL_TOOLS} essential tools</strong> for developers, designers, content creators, and everyday users. No ads. No sign-ups. No paywalls. Ever.
               </p>
               <p>
                 Every tool is designed to be fast, intuitive, and privacy-first. <strong className="text-[var(--foreground)]">All operations happen entirely in your browser</strong> — your data never leaves your device.
@@ -167,8 +168,8 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { value: "136", label: "Tools" },
-                { value: "7", label: "Categories" },
+                { value: String(TOTAL_TOOLS), label: "Tools" },
+                { value: String(TOTAL_CATEGORIES), label: "Categories" },
                 { value: "100%", label: "Free" },
                 { value: "∞", label: "Usage" },
               ].map((stat) => (
@@ -240,7 +241,7 @@ export default function AboutPage() {
             <div>
               <h3 className="text-xl font-bold mb-2">100% Client-Side Processing</h3>
               <p className="text-[var(--muted-foreground)] leading-relaxed">
-                <strong className="text-[var(--foreground)]">All 136 tools process data entirely in your browser.</strong> Your text, images, 
+                <strong className="text-[var(--foreground)]">{getAllToolsProcessLocally()}</strong> Your text, images, 
                 code, and files never leave your device. We have no servers storing your data because there's 
                 nothing to store. The only external service used is <strong className="text-[var(--foreground)]">IP Lookup</strong> which 
                 requires an API call to ipinfo.io — this is clearly disclosed on that tool's page.

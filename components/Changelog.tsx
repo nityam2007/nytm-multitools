@@ -17,6 +17,14 @@ interface ChangelogEntry {
 const changelog: ChangelogEntry[] = [
   {
     date: "Dec 3, 2025",
+    version: "1.5.1",
+    changes: [
+      { type: "improved", text: "Cleaner header & sidebar - removed box icon logo" },
+      { type: "improved", text: "Updated site messaging to be inclusive for everyone" },
+    ],
+  },
+  {
+    date: "Dec 3, 2025",
     version: "1.5.0",
     changes: [
       { type: "new", text: "PDF Merge - Combine multiple PDFs into one" },

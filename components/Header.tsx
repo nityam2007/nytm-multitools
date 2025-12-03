@@ -22,12 +22,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/25 transition-all duration-300 group-hover:scale-105 group-hover:shadow-violet-500/40">
-              <span className="text-white font-bold text-xs sm:text-sm">N</span>
-            </div>
-            <span className="font-bold text-base sm:text-lg tracking-tight">
+          <Link href="/" className="flex items-center group">
+            <span className="font-bold text-lg sm:text-xl tracking-tight">
               <span className="gradient-text">NYTM</span>
+              <span className="text-[var(--muted-foreground)] font-normal ml-1 hidden sm:inline">Tools</span>
             </span>
           </Link>
 

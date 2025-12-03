@@ -250,12 +250,10 @@ export function Sidebar() {
         {/* Header */}
         <div className="h-16 flex items-center justify-between px-4 border-b border-[var(--border)]">
           {!collapsed && (
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg shadow-violet-500/20 transition-transform group-hover:scale-105">
-                <span className="text-white font-bold text-sm">N</span>
-              </div>
+            <Link href="/" className="flex items-center group">
               <span className="font-bold text-lg tracking-tight">
                 <span className="gradient-text">NYTM</span>
+                <span className="text-[var(--muted-foreground)] font-normal ml-1">Tools</span>
               </span>
             </Link>
           )}

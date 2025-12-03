@@ -20,7 +20,7 @@
 
 Free developer tools. No ads. No bullshit.
 
-136+ tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
+149+ tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
 
 > **Note:** The exact tool count is managed dynamically. See [Updating Tool Count](#updating-tool-count) below.
 

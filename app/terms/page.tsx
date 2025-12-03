@@ -12,7 +12,7 @@ const sections = [
   },
   {
     title: "Description of Service",
-    content: "NYTM MULTITOOLS provides a collection of free online utilities including text manipulation, image editing, code formatting, data conversion, and other developer tools. The Service is provided \"as is\" and \"as available\" without warranties of any kind, express or implied.",
+    content: "NYTM MULTITOOLS provides a collection of free online utilities including text manipulation, image editing, code formatting, data conversion, and more. The Service is provided \"as is\" and \"as available\" without warranties of any kind, express or implied.",
   },
   {
     title: "Intellectual Property",

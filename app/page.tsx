@@ -63,7 +63,7 @@ export default function Home() {
               className="text-sm sm:text-base text-[var(--muted-foreground)] max-w-lg leading-relaxed mb-6 sm:mb-8 md:mb-10 animate-fade-slide-up animate-delay-300"
               style={{ opacity: 0, animationFillMode: 'forwards', lineHeight: '1.7' }}
             >
-              A curated collection of free online tools for developers, designers, and creators. 
+              A curated collection of free online tools for everyone. 
               No signup. No ads for supporters. Just tools.
             </p>
             

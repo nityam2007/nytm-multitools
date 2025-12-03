@@ -57,7 +57,7 @@ function getCategoryLabel(category: string): string {
   const labels: Record<string, string> = {
     text: "Text Tools",
     image: "Image Tools",
-    dev: "Developer Tools",
+    dev: "Code & Dev Tools",
     converter: "Converters",
     generator: "Generators",
     security: "Security Tools",

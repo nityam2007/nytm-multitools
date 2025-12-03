@@ -192,7 +192,7 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["extract", "emails", "urls", "numbers"],
   },
 
-  // Developer Tools
+  // Code & Dev Tools
   {
     slug: "json-pretty",
     name: "JSON Beautifier",

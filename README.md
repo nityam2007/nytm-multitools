@@ -18,9 +18,9 @@
 
 **🌐 Website: [nytm.in](https://nytm.in)**
 
-Free developer tools. No ads. No bullshit.
+Free online tools for everyone. No ads. No bullshit.
 
-149+ tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.
+149+ tools across text, images, converters, generators, security, coding utilities, and more. Everything runs in your browser — your data stays with you.
 
 > **Note:** The exact tool count is managed dynamically. See [Updating Tool Count](#updating-tool-count) below.
 
@@ -58,7 +58,7 @@ UUID, passwords, hashes, QR codes, barcodes, fake data, lorem ipsum...
 ### 🔐 Security
 Hash generators (MD5, SHA, bcrypt), AES encrypt/decrypt, JWT decoder, password strength...
 
-### 💻 Dev Tools
+### 💻 Code & Dev Tools
 JSON/HTML/CSS/JS beautifiers & minifiers, regex tester, cron parser, diff checker...
 
 ### 🖼️ Image Tools

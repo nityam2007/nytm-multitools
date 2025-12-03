@@ -36,10 +36,10 @@ const changelog: ChangelogEntry[] = [
     ],
   },
   {
-    date: "Nov 2024",
+    date: "1 Dec 2025",
     version: "1.0.0",
     changes: [
-      { type: "new", text: "Initial release with 130+ developer tools" },
+      { type: "new", text: "Initial release with 130+ free online tools" },
       { type: "new", text: "Dark/Light theme support" },
       { type: "new", text: "100% client-side processing" },
     ],

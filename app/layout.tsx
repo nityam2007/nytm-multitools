@@ -29,13 +29,13 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `NYTM Tools — ${TOOL_COUNT} Free Developer & Productivity Tools`,
+    default: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
     template: "%s | NYTM Tools",
   },
-  description: `${TOOL_COUNT} free online tools for developers and creators. Text manipulation, converters, generators, image editing, and more. No ads, no sign-ups, 100% client-side processing. Your data never leaves your device.`,
+  description: `${TOOL_COUNT} free online tools for everyone. Text, images, converters, generators, and more. No ads, no sign-ups, 100% browser-based. Your data never leaves your device.`,
   keywords: [
     "free online tools",
-    "developer tools",
+    "online utilities",
     "text tools",
     "image tools",
     "json formatter",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     "jwt decoder",
     "timestamp converter",
     "privacy-focused tools",
-    "client-side tools",
+    "browser-based tools",
     "no tracking tools",
   ],
   authors: [{ name: "Nityam Sheth", url: "https://nsheth.in" }],
@@ -74,22 +74,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://nytm.in",
     siteName: "NYTM Tools",
-    title: `NYTM Tools — ${TOOL_COUNT} Free Developer & Productivity Tools`,
-    description: `${TOOL_COUNT} free online tools for developers and creators. Text manipulation, converters, generators, image editing, and more. No ads, no sign-ups, 100% client-side. Your data stays on your device.`,
+    title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
+    description: `${TOOL_COUNT} free online tools for everyone. Text, images, converters, generators, and more. No ads, no sign-ups, 100% browser-based. Your data stays on your device.`,
     images: [
       {
         url: "/metaimg.png",
         width: 1200,
         height: 630,
-        alt: `NYTM Tools — ${TOOL_COUNT} Free Developer & Productivity Tools`,
+        alt: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `NYTM Tools — ${TOOL_COUNT} Free Developer & Productivity Tools`,
-    description: `${TOOL_COUNT} free online tools. No ads, no tracking, 100% client-side. Text tools, converters, generators, image editing & more.`,
+    title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
+    description: `${TOOL_COUNT} free online tools. No ads, no tracking, 100% browser-based. Text tools, converters, generators, image editing & more.`,
     images: ["/metaimg.png"],
     creator: "@nityam2007",
   },

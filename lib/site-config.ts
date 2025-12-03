@@ -11,7 +11,7 @@ export const TOTAL_CATEGORIES = 7; // text, dev, image, converter, generator, se
 // Site metadata
 export const SITE_NAME = "NYTM MULTITOOLS";
 export const SITE_TAGLINE = `${TOTAL_TOOLS} tools. Zero friction. Built for everyone.`;
-export const SITE_DESCRIPTION = `${TOTAL_TOOLS} tools across text manipulation, converters, generators, security, dev utilities, image processing, and more. Everything runs in your browser - your data stays with you.`;
+export const SITE_DESCRIPTION = `${TOTAL_TOOLS} free online tools for text, images, converters, generators, security, and more. Everything runs in your browser — your data stays with you.`;
 
 // Owner information
 export const OWNER_NAME = "Nityam Sheth";

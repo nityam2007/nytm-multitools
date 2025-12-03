@@ -15,8 +15,8 @@ export const categoryMeta: Record<string, { name: string; description: string }>
     description: "Free image editing tools - resize, compress, crop, rotate, filters, format conversion, and more.",
   },
   dev: {
-    name: "Developer Tools",
-    description: "Free developer tools - JSON formatter, code beautifiers, regex tester, JWT decoder, and more.",
+    name: "Code & Dev Tools",
+    description: "Free coding tools — JSON formatter, code beautifiers, regex tester, JWT decoder, and more.",
   },
   converter: {
     name: "Converters",
@@ -115,7 +115,7 @@ export function generateToolsListMetadata(category?: string): Metadata {
     : `${categoryInfo?.name || category} - ${toolCount} Free Tools | ${SITE_NAME}`;
 
   const description = isAllTools
-    ? `Browse ${toolCount} free online tools for developers, designers, and everyone. Text manipulation, image editing, converters, generators, and more. No sign-up required.`
+    ? `Browse ${toolCount} free online tools for everyone. Text, images, converters, generators, and more. No sign-up required.`
     : categoryInfo?.description || `Free ${category} tools. No sign-up required.`;
 
   const url = isAllTools ? `${BASE_URL}/tools` : `${BASE_URL}/tools?category=${category}`;
@@ -125,7 +125,7 @@ export function generateToolsListMetadata(category?: string): Metadata {
     description,
     keywords: [
       "free online tools",
-      "developer tools",
+      "online utilities",
       "productivity tools",
       "web tools",
       "no signup tools",
@@ -170,13 +170,13 @@ export function generatePageMetadata(
 
   const pages: Record<string, { title: string; description: string; path: string }> = {
     home: {
-      title: `${SITE_NAME} — ${toolCount} Free Developer & Productivity Tools`,
-      description: `${toolCount} free online tools for developers and creators. Text manipulation, converters, generators, image editing, and more. No ads, no sign-ups, 100% client-side processing.`,
+      title: `${SITE_NAME} — ${toolCount} Free Online Tools`,
+      description: `${toolCount} free online tools for everyone. Text, images, converters, generators, and more. No ads, no sign-ups, 100% browser-based.`,
       path: "",
     },
     about: {
       title: `About ${SITE_NAME} — Free Online Tools for Everyone`,
-      description: `Learn about ${SITE_NAME} - ${toolCount} free online tools built for developers, designers, and everyone. Privacy-first, no sign-up required, 100% client-side processing.`,
+      description: `Learn about ${SITE_NAME} — ${toolCount} free online tools for everyone. Privacy-first, no sign-up required, 100% browser-based.`,
       path: "/about",
     },
     contact: {
@@ -275,7 +275,7 @@ export function generateWebsiteJsonLd(): object {
     "@type": "WebSite",
     name: SITE_NAME,
     url: BASE_URL,
-    description: `${toolsConfig.length} free online tools for developers and creators.`,
+    description: `${toolsConfig.length} free online tools for everyone.`,
     author: {
       "@type": "Person",
       name: "Nityam Sheth",

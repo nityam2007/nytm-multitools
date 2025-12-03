@@ -5,7 +5,7 @@
 ## Current Status ✅
 
 - **136 Tools** implemented and functional
-- **7 Categories**: Text, Converters, Generators, Security, Dev Tools, Image Tools, Misc
+- **7 Categories**: Text, Converters, Generators, Security, Code & Dev, Image Tools, Misc
 - **Tech Stack**: Next.js 16.0.6, React 19.2.0, TypeScript 5.9, Tailwind CSS 4.x
 - **100% Free** - No paywalls, no premium tiers, no ads, forever
 
@@ -38,7 +38,7 @@
 - [ ] Lazy loading optimization
 
 ### Phase 3 - More Tools
-- [ ] Add more developer utilities
+- [ ] Add more useful utilities
 - [ ] Community tool suggestions
 - [ ] Mobile-first improvements
 
@@ -71,10 +71,6 @@ TODO :
 
 1 - Paraphraser 
   - 
-
-
-COMPLETED YES : 2- PDF toosl : merge , png to pdf , jpg to pdf : all in client mode possibly
-
 
 
 

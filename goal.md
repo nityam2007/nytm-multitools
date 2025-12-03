@@ -73,7 +73,7 @@ TODO :
   - 
 
 
-2- PDF toosl : merge , png to pdf , jpg to pdf : all in client mode possibly
+COMPLETED YES : 2- PDF toosl : merge , png to pdf , jpg to pdf : all in client mode possibly
 
 
 

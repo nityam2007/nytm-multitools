@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
+import { Changelog } from "./Changelog";
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "@/assets/icons";
 
 export function Header() {
@@ -55,6 +56,9 @@ export function Header() {
               </svg>
               <span className="text-violet-400 group-hover:text-violet-300 font-medium">Support</span>
             </Link>
+
+            {/* Changelog/Updates */}
+            <Changelog />
 
             {/* Theme Toggle */}
             <button

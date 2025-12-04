@@ -1,5 +1,5 @@
 // Auto-generated Blog Info | TypeScript
-// Generated on: 2025-12-04T10:34:53.584Z
+// Generated on: 2025-12-04T15:37:20.094Z
 // DO NOT EDIT MANUALLY - Run: node scripts/generate-blog-titles.js
 
 export interface BlogEntry {
@@ -18786,6 +18786,132 @@ export const blogEntries: BlogEntry[] = [
     "category": "misc"
   },
   {
+    "blogSlug": "free-body-fat-calculator-online",
+    "toolSlug": "body-fat-calculator",
+    "title": "Free Body Fat Calculator Online",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-no-registration-needed",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator - No Registration Needed",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-body-fat-calculator-tool",
+    "toolSlug": "body-fat-calculator",
+    "title": "Best Free Body Fat Calculator Tool",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-quick-easy",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator - Quick & Easy",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-body-fat-calculator-100-free",
+    "toolSlug": "body-fat-calculator",
+    "title": "Online Body Fat Calculator - 100% Free",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-body-fat-calculator-no-sign-up",
+    "toolSlug": "body-fat-calculator",
+    "title": "Free Body Fat Calculator - No Sign Up",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-tool-instant",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator Tool - Instant",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-body-fat-calculator-online",
+    "toolSlug": "body-fat-calculator",
+    "title": "Fast Body Fat Calculator Online",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-free-browser-tool",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator - Free Browser Tool",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-body-fat-calculator",
+    "toolSlug": "body-fat-calculator",
+    "title": "Free Online Body Fat Calculator",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-without-login",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator Without Login",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-simple-free",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator - Simple & Free",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-body-fat-calculator-tool-online",
+    "toolSlug": "body-fat-calculator",
+    "title": "Easy Body Fat Calculator Tool Online",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-body-fat-calculator-2025",
+    "toolSlug": "body-fat-calculator",
+    "title": "Best Body Fat Calculator 2025",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-free-forever",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator - Free Forever",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-body-fat-calculator-body-fat-made-easy",
+    "toolSlug": "body-fat-calculator",
+    "title": "Free Body Fat Calculator - body fat Made Easy",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-calculator-online-best-body-fat-tool",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body Fat Calculator Online - Best body fat Tool",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "body-fat-with-body-fat-calculator-free",
+    "toolSlug": "body-fat-calculator",
+    "title": "Body fat with Body Fat Calculator Free",
+    "description": "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    "category": "misc"
+  },
+  {
     "blogSlug": "free-tip-calculator-online",
     "toolSlug": "tip-calculator",
     "title": "Free Tip Calculator Online",
@@ -22479,6 +22605,24 @@ export const blogSlugToTool: Record<string, string> = {
   "free-irctc-refund-calculator-irctc-made-easy": "irctc-refund-calculator",
   "irctc-refund-calculator-online-best-irctc-tool": "irctc-refund-calculator",
   "irctc-with-irctc-refund-calculator-free": "irctc-refund-calculator",
+  "free-body-fat-calculator-online": "body-fat-calculator",
+  "body-fat-calculator-no-registration-needed": "body-fat-calculator",
+  "best-free-body-fat-calculator-tool": "body-fat-calculator",
+  "body-fat-calculator-quick-easy": "body-fat-calculator",
+  "online-body-fat-calculator-100-free": "body-fat-calculator",
+  "free-body-fat-calculator-no-sign-up": "body-fat-calculator",
+  "body-fat-calculator-tool-instant": "body-fat-calculator",
+  "fast-body-fat-calculator-online": "body-fat-calculator",
+  "body-fat-calculator-free-browser-tool": "body-fat-calculator",
+  "free-online-body-fat-calculator": "body-fat-calculator",
+  "body-fat-calculator-without-login": "body-fat-calculator",
+  "body-fat-calculator-simple-free": "body-fat-calculator",
+  "easy-body-fat-calculator-tool-online": "body-fat-calculator",
+  "best-body-fat-calculator-2025": "body-fat-calculator",
+  "body-fat-calculator-free-forever": "body-fat-calculator",
+  "free-body-fat-calculator-body-fat-made-easy": "body-fat-calculator",
+  "body-fat-calculator-online-best-body-fat-tool": "body-fat-calculator",
+  "body-fat-with-body-fat-calculator-free": "body-fat-calculator",
   "free-tip-calculator-online": "tip-calculator",
   "tip-calculator-no-registration-needed": "tip-calculator",
   "best-free-tip-calculator-tool": "tip-calculator",
@@ -22646,4 +22790,4 @@ export function getAllBlogSlugs(): string[] {
 }
 
 // Total count
-export const totalBlogEntries = 2826;
+export const totalBlogEntries = 2844;

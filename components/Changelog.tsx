@@ -19,6 +19,8 @@ const changelog: ChangelogEntry[] = [
     date: "Dec 4, 2025",
     version: "1.6.0",
     changes: [
+      { type: "new", text: "IRCTC Refund Calculator - Indian Railway ticket refund estimator" },
+      { type: "new", text: "DatePicker & TimePicker components with improved UX" },
       { type: "new", text: "Network Tools category with 6 new tools" },
       { type: "new", text: "DNS Lookup - DNS record type reference" },
       { type: "new", text: "My IP - Detect your IP address via WebRTC" },
@@ -27,6 +29,7 @@ const changelog: ChangelogEntry[] = [
       { type: "new", text: "MAC Lookup - Vendor identification from MAC address" },
       { type: "new", text: "URL Analyzer - Parse and analyze URL components" },
       { type: "new", text: "Paraphraser - Rewrite text with multiple styles" },
+      { type: "improved", text: "Simplified calculator layouts for cleaner interface" },
     ],
   },
   {

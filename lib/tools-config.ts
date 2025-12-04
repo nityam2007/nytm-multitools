@@ -1379,6 +1379,15 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["bmi", "health", "weight"],
   },
   {
+    slug: "irctc-refund-calculator",
+    name: "IRCTC Refund Calculator",
+    description: "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    category: "misc",
+    icon: "receipt-refund",
+    inputType: "none",
+    keywords: ["irctc", "train", "refund", "indian railway", "cancellation", "ticket"],
+  },
+  {
     slug: "tip-calculator",
     name: "Tip Calculator",
     description: "Calculate tips and split bills.",

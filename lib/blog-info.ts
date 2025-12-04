@@ -1,5 +1,5 @@
 // Auto-generated Blog Info | TypeScript
-// Generated on: 2025-12-04T06:44:35.116Z
+// Generated on: 2025-12-04T10:34:53.584Z
 // DO NOT EDIT MANUALLY - Run: node scripts/generate-blog-titles.js
 
 export interface BlogEntry {
@@ -18660,6 +18660,132 @@ export const blogEntries: BlogEntry[] = [
     "category": "misc"
   },
   {
+    "blogSlug": "free-irctc-refund-calculator-online",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Free IRCTC Refund Calculator Online",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-no-registration-needed",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator - No Registration Needed",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-irctc-refund-calculator-tool",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Best Free IRCTC Refund Calculator Tool",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-quick-easy",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator - Quick & Easy",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-irctc-refund-calculator-100-free",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Online IRCTC Refund Calculator - 100% Free",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-irctc-refund-calculator-no-sign-up",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Free IRCTC Refund Calculator - No Sign Up",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-tool-instant",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator Tool - Instant",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-irctc-refund-calculator-online",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Fast IRCTC Refund Calculator Online",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-free-browser-tool",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator - Free Browser Tool",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-irctc-refund-calculator",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Free Online IRCTC Refund Calculator",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-without-login",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator Without Login",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-simple-free",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator - Simple & Free",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-irctc-refund-calculator-tool-online",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Easy IRCTC Refund Calculator Tool Online",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-irctc-refund-calculator-2025",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Best IRCTC Refund Calculator 2025",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-free-forever",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator - Free Forever",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-irctc-refund-calculator-irctc-made-easy",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Free IRCTC Refund Calculator - irctc Made Easy",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-refund-calculator-online-best-irctc-tool",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "IRCTC Refund Calculator Online - Best irctc Tool",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "irctc-with-irctc-refund-calculator-free",
+    "toolSlug": "irctc-refund-calculator",
+    "title": "Irctc with IRCTC Refund Calculator Free",
+    "description": "Calculate Indian Railway ticket refund amount based on cancellation time and rules.",
+    "category": "misc"
+  },
+  {
     "blogSlug": "free-tip-calculator-online",
     "toolSlug": "tip-calculator",
     "title": "Free Tip Calculator Online",
@@ -22335,6 +22461,24 @@ export const blogSlugToTool: Record<string, string> = {
   "free-bmi-calculator-bmi-made-easy": "bmi-calculator",
   "bmi-calculator-online-best-bmi-tool": "bmi-calculator",
   "bmi-with-bmi-calculator-free": "bmi-calculator",
+  "free-irctc-refund-calculator-online": "irctc-refund-calculator",
+  "irctc-refund-calculator-no-registration-needed": "irctc-refund-calculator",
+  "best-free-irctc-refund-calculator-tool": "irctc-refund-calculator",
+  "irctc-refund-calculator-quick-easy": "irctc-refund-calculator",
+  "online-irctc-refund-calculator-100-free": "irctc-refund-calculator",
+  "free-irctc-refund-calculator-no-sign-up": "irctc-refund-calculator",
+  "irctc-refund-calculator-tool-instant": "irctc-refund-calculator",
+  "fast-irctc-refund-calculator-online": "irctc-refund-calculator",
+  "irctc-refund-calculator-free-browser-tool": "irctc-refund-calculator",
+  "free-online-irctc-refund-calculator": "irctc-refund-calculator",
+  "irctc-refund-calculator-without-login": "irctc-refund-calculator",
+  "irctc-refund-calculator-simple-free": "irctc-refund-calculator",
+  "easy-irctc-refund-calculator-tool-online": "irctc-refund-calculator",
+  "best-irctc-refund-calculator-2025": "irctc-refund-calculator",
+  "irctc-refund-calculator-free-forever": "irctc-refund-calculator",
+  "free-irctc-refund-calculator-irctc-made-easy": "irctc-refund-calculator",
+  "irctc-refund-calculator-online-best-irctc-tool": "irctc-refund-calculator",
+  "irctc-with-irctc-refund-calculator-free": "irctc-refund-calculator",
   "free-tip-calculator-online": "tip-calculator",
   "tip-calculator-no-registration-needed": "tip-calculator",
   "best-free-tip-calculator-tool": "tip-calculator",
@@ -22502,4 +22646,4 @@ export function getAllBlogSlugs(): string[] {
 }
 
 // Total count
-export const totalBlogEntries = 2808;
+export const totalBlogEntries = 2826;

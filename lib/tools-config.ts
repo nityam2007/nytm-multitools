@@ -2,7 +2,7 @@ export interface ToolConfig {
   slug: string;
   name: string;
   description: string;
-  category: "text" | "image" | "dev" | "converter" | "generator" | "security" | "misc";
+  category: "text" | "image" | "dev" | "converter" | "generator" | "security" | "network" | "misc";
   icon?: string;
   inputType: "text" | "file" | "both" | "none";
   isNew?: boolean;
@@ -190,6 +190,16 @@ export const toolsConfig: ToolConfig[] = [
     icon: "target",
     inputType: "text",
     keywords: ["extract", "emails", "urls", "numbers"],
+  },
+  {
+    slug: "paraphraser",
+    name: "Paraphraser",
+    description: "Rewrite text using synonyms and alternative phrasing. Multiple modes: standard, formal, casual, shorter, longer, creative.",
+    category: "text",
+    icon: "pencil",
+    inputType: "text",
+    keywords: ["paraphrase", "rewrite", "rephrase", "reword", "synonym"],
+    isNew: true,
   },
 
   // Code & Dev Tools
@@ -1385,6 +1395,68 @@ export const toolsConfig: ToolConfig[] = [
     icon: "building-library",
     inputType: "text",
     keywords: ["loan", "interest", "payment"],
+  },
+
+  // Network Tools
+  {
+    slug: "dns-lookup",
+    name: "DNS Lookup",
+    description: "Look up DNS records for any domain. View A, AAAA, MX, TXT, NS, and CNAME records using public DNS servers.",
+    category: "network",
+    icon: "globe",
+    inputType: "text",
+    keywords: ["dns", "domain", "lookup", "records", "mx", "nameserver"],
+    isNew: true,
+  },
+  {
+    slug: "my-ip",
+    name: "My IP Address",
+    description: "View your public IP address and network information. Detects IPv4 and IPv6 addresses.",
+    category: "network",
+    icon: "globe",
+    inputType: "none",
+    keywords: ["ip", "address", "public", "ipv4", "ipv6", "network"],
+    isNew: true,
+  },
+  {
+    slug: "subnet-calculator",
+    name: "Subnet Calculator",
+    description: "Calculate IP subnets, network addresses, broadcast addresses, and available host ranges.",
+    category: "network",
+    icon: "calculator",
+    inputType: "text",
+    keywords: ["subnet", "cidr", "network", "ip", "mask", "calculator"],
+    isNew: true,
+  },
+  {
+    slug: "port-info",
+    name: "Port Reference",
+    description: "Look up common port numbers and their associated services and protocols.",
+    category: "network",
+    icon: "signal-wifi",
+    inputType: "text",
+    keywords: ["port", "service", "protocol", "network", "tcp", "udp"],
+    isNew: true,
+  },
+  {
+    slug: "mac-lookup",
+    name: "MAC Address Lookup",
+    description: "Identify the manufacturer and vendor from any MAC address using a comprehensive OUI database.",
+    category: "network",
+    icon: "signal-wifi",
+    inputType: "text",
+    keywords: ["mac", "address", "vendor", "oui", "manufacturer", "network"],
+    isNew: true,
+  },
+  {
+    slug: "url-analyzer",
+    name: "URL Analyzer",
+    description: "Parse and analyze URLs, extract components like protocol, host, path, query parameters, and more.",
+    category: "network",
+    icon: "link",
+    inputType: "text",
+    keywords: ["url", "parse", "analyze", "query", "parameters", "domain"],
+    isNew: true,
   },
 ];
 

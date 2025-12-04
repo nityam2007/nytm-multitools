@@ -16,6 +16,20 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Dec 4, 2025",
+    version: "1.6.0",
+    changes: [
+      { type: "new", text: "Network Tools category with 6 new tools" },
+      { type: "new", text: "DNS Lookup - DNS record type reference" },
+      { type: "new", text: "My IP - Detect your IP address via WebRTC" },
+      { type: "new", text: "Subnet Calculator - IPv4 subnet calculations" },
+      { type: "new", text: "Port Info - 500+ common port reference" },
+      { type: "new", text: "MAC Lookup - Vendor identification from MAC address" },
+      { type: "new", text: "URL Analyzer - Parse and analyze URL components" },
+      { type: "new", text: "Paraphraser - Rewrite text with multiple styles" },
+    ],
+  },
+  {
     date: "Dec 3, 2025",
     version: "1.5.1",
     changes: [

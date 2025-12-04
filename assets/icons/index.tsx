@@ -428,6 +428,7 @@ export const categoryIconMap: Record<string, React.FC<IconProps>> = {
   converter: ArrowsSwapIcon,
   generator: SparklesIcon,
   security: ShieldIcon,
+  network: SignalWifiIcon,
   misc: CircleIcon,
 };
 

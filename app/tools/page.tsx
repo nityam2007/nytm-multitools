@@ -14,6 +14,7 @@ const categories = [
   { id: "converter", name: "Converters" },
   { id: "generator", name: "Generators" },
   { id: "security", name: "Security" },
+  { id: "network", name: "Network" },
   { id: "misc", name: "Misc" },
 ];
 
@@ -29,7 +30,7 @@ function ToolsContent() {
   
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("name");
+  const [sortBy, setSortBy] = useState("newest");
 
   // Scroll to top on mount
   useEffect(() => {

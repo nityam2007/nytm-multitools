@@ -1388,16 +1388,6 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["irctc", "train", "refund", "indian railway", "cancellation", "ticket"],
   },
   {
-    slug: "swiss-qr-bill",
-    name: "Swiss QR-Bill",
-    description: "Generate a Swiss QR-Bill payload and preview QR. Minimal, privacy-first preview for invoices and payments.",
-    category: "misc",
-    icon: "qr-code",
-    inputType: "none",
-    keywords: ["swiss", "qr", "qr-bill", "iso20022", "invoice", "payment"],
-    isNew: true,
-  },
-  {
     slug: "tip-calculator",
     name: "Tip Calculator",
     description: "Calculate tips and split bills.",

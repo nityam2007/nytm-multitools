@@ -97,23 +97,33 @@ self.addEventListener("message", async (event: MessageEvent) => {
     }
 
     try {
-      const { text, voice } = payload;
+      const { text, voice, speed = 1 } = payload;
       const startTime = Date.now();
 
       self.postMessage({ type: "status", status: "generating" });
 
-      const audio = await tts.generate(text, { voice });
-      const blob = audio.toBlob();
+      // Generate audio - NOT streaming, full generation at once
+      const audio = await tts.generate(text, { voice, speed });
+      
+      // Get raw audio data
+      const audioData = audio.audio; // Float32Array of audio samples
+      const sampleRate = audio.sampling_rate || 24000;
+      
+      // Convert Float32Array to WAV blob manually for reliability
+      const wavBlob = float32ToWav(audioData, sampleRate);
 
       const elapsed = Date.now() - startTime;
 
       // Transfer blob back to main thread
       self.postMessage({ 
         type: "done", 
-        blob,
-        elapsed
+        blob: wavBlob,
+        elapsed,
+        sampleRate,
+        samples: audioData.length
       });
     } catch (err) {
+      console.error("Generation error:", err);
       self.postMessage({ 
         type: "error", 
         error: err instanceof Error ? err.message : "Generation failed" 
@@ -121,6 +131,51 @@ self.addEventListener("message", async (event: MessageEvent) => {
     }
   }
 });
+
+// Convert Float32Array audio samples to WAV blob
+function float32ToWav(samples: Float32Array, sampleRate: number): Blob {
+  const numChannels = 1;
+  const bitsPerSample = 16;
+  const bytesPerSample = bitsPerSample / 8;
+  const blockAlign = numChannels * bytesPerSample;
+  const byteRate = sampleRate * blockAlign;
+  const dataSize = samples.length * bytesPerSample;
+  const bufferSize = 44 + dataSize;
+  
+  const buffer = new ArrayBuffer(bufferSize);
+  const view = new DataView(buffer);
+  
+  // WAV header
+  writeString(view, 0, "RIFF");
+  view.setUint32(4, bufferSize - 8, true);
+  writeString(view, 8, "WAVE");
+  writeString(view, 12, "fmt ");
+  view.setUint32(16, 16, true); // fmt chunk size
+  view.setUint16(20, 1, true); // PCM format
+  view.setUint16(22, numChannels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, byteRate, true);
+  view.setUint16(32, blockAlign, true);
+  view.setUint16(34, bitsPerSample, true);
+  writeString(view, 36, "data");
+  view.setUint32(40, dataSize, true);
+  
+  // Convert Float32 samples to Int16
+  const offset = 44;
+  for (let i = 0; i < samples.length; i++) {
+    const s = Math.max(-1, Math.min(1, samples[i]));
+    const val = s < 0 ? s * 0x8000 : s * 0x7FFF;
+    view.setInt16(offset + i * 2, val, true);
+  }
+  
+  return new Blob([buffer], { type: "audio/wav" });
+}
+
+function writeString(view: DataView, offset: number, str: string): void {
+  for (let i = 0; i < str.length; i++) {
+    view.setUint8(offset + i, str.charCodeAt(i));
+  }
+}
 
 // Signal worker is ready
 self.postMessage({ type: "worker-ready" });

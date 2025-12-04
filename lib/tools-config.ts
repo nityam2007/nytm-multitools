@@ -1388,6 +1388,16 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["irctc", "train", "refund", "indian railway", "cancellation", "ticket"],
   },
   {
+    slug: "body-fat-calculator",
+    name: "Body Fat Calculator",
+    description: "Calculate body fat percentage using multiple methods (BMI, US Navy, waist-height ratio).",
+    category: "misc",
+    icon: "scale",
+    inputType: "none",
+    keywords: ["body fat", "fat percentage", "fitness", "health", "navy method"],
+    isNew: true,
+  },
+  {
     slug: "tip-calculator",
     name: "Tip Calculator",
     description: "Calculate tips and split bills.",

@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { toolsConfig } from "@/lib/tools-config";
+import { blogEntries } from "@/lib/blog-info";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://nytm.in";
 
@@ -60,5 +61,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...toolPages];
+  // Blog pages - SEO alternate entry points
+  const blogPages: MetadataRoute.Sitemap = blogEntries.map((entry) => ({
+    url: `${BASE_URL}/blog/${entry.blogSlug}`,
+    lastModified: currentDate,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...toolPages, ...blogPages];
 }

@@ -69,10 +69,6 @@
 
 TODO : 
 
-1 - Paraphraser 
-  - 
-
-
 
 STAGE 3
 

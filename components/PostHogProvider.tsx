@@ -6,7 +6,7 @@ import { PostHogProvider as PHProvider, usePostHog } from 'posthog-js/react'
 import { useEffect, useState, Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 
-// PostHog Pageview Tracker Component
+// PostHog Pageview Tracker Component for SPA navigation
 function PostHogPageview() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -41,52 +41,34 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
+    const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST
 
-    if (posthogKey && typeof window !== 'undefined') {
+    if (posthogKey && posthogHost && typeof window !== 'undefined') {
       if (!posthog.__loaded) {
         posthog.init(posthogKey, {
-          api_host: '/ingest',
-          ui_host: 'https://eu.posthog.com',
-          capture_pageview: false, // Disable automatic pageview capture, we handle it manually
+          api_host: posthogHost,
+          capture_pageview: false, // We handle pageviews manually for SPA navigation
           capture_pageleave: true,
           capture_exceptions: true,
           autocapture: true,
-          respect_dnt: true,
+          session_recording: {
+            maskAllInputs: false,
+            maskInputOptions: {
+              password: true,
+            },
+          },
           persistence: 'localStorage+cookie',
-          debug: process.env.NODE_ENV === 'development',
-          loaded: (posthog) => {
-            if (process.env.NODE_ENV === 'development') {
-              posthog.debug()
-            }
+          bootstrap: {
+            distinctID: undefined,
           },
         })
-
-        // Suppress PostHog survey loading errors
-        const originalWarn = console.warn
-        const originalError = console.error
-        
-        console.warn = (...args: unknown[]) => {
-          const message = String(args[0] || '')
-          if (message.includes('Could not load surveys') || message.includes('surveys')) {
-            return
-          }
-          originalWarn.apply(console, args)
-        }
-        
-        console.error = (...args: unknown[]) => {
-          const message = String(args[0] || '')
-          if (message.includes('surveys')) {
-            return
-          }
-          originalError.apply(console, args)
-        }
       }
       setIsReady(true)
     }
   }, [])
 
   // If PostHog is not configured, just render children without provider
-  if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+  if (!process.env.NEXT_PUBLIC_POSTHOG_KEY || !process.env.NEXT_PUBLIC_POSTHOG_HOST) {
     return <>{children}</>
   }
 

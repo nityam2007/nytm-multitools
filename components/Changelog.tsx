@@ -16,6 +16,25 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Dec 5, 2025",
+    version: "1.7.0",
+    changes: [
+      { type: "new", text: "Passphrase Generator - Secure memorable passphrases with word lists" },
+      { type: "new", text: "Loan EMI Calculator - EMI, interest & amortization schedule" },
+      { type: "new", text: "ASCII Art Generator - Text to ASCII banners with 3 styles" },
+      { type: "new", text: "Sudoku Generator - Random puzzles with 4 difficulty levels" },
+      { type: "new", text: "Trip Budget Calculator - Travel expense planning & tracking" },
+      { type: "new", text: "Break-Even Calculator - Business profit analysis with charts" },
+      { type: "new", text: "Subscription Revenue Calculator - SaaS metrics (MRR, ARR, LTV)" },
+      { type: "new", text: "Graph Plotter - Plot math functions interactively" },
+      { type: "new", text: "Maze Generator - Random mazes with BFS solver" },
+      { type: "new", text: "Optical Illusion Generator - 6 trippy visual patterns" },
+      { type: "new", text: "CSV to Chart Builder - Import data, create charts" },
+      { type: "new", text: "Directory Tree Visualizer - ASCII/Unicode folder trees" },
+      { type: "new", text: "Pricing Calculator - Markup, margin & profit analysis" },
+    ],
+  },
+  {
     date: "Dec 4, 2025",
     version: "1.6.0",
     changes: [

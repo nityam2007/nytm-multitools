@@ -1,5 +1,5 @@
 // Auto-generated Blog Info | TypeScript
-// Generated on: 2025-12-04T15:37:20.094Z
+// Generated on: 2025-12-05T13:33:31.749Z
 // DO NOT EDIT MANUALLY - Run: node scripts/generate-blog-titles.js
 
 export interface BlogEntry {
@@ -19918,6 +19918,1644 @@ export const blogEntries: BlogEntry[] = [
     "title": "Url with URL Analyzer Free",
     "description": "Parse and analyze URLs, extract components like protocol, host, path, query parameters, and more.",
     "category": "network"
+  },
+  {
+    "blogSlug": "free-passphrase-generator-online",
+    "toolSlug": "passphrase-generator",
+    "title": "Free Passphrase Generator Online",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-generator-no-registration",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase Generator - No Registration",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-free-passphrase-generator-tool",
+    "toolSlug": "passphrase-generator",
+    "title": "Best Free Passphrase Generator Tool",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-generator-instantly-free",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase Generator Instantly - Free",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-passphrase-generator-generator-free",
+    "toolSlug": "passphrase-generator",
+    "title": "Online Passphrase Generator Generator Free",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-passphrase-generator-no-sign-up",
+    "toolSlug": "passphrase-generator",
+    "title": "Free Passphrase Generator - No Sign Up",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-generator-tool-quick-easy",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase Generator Tool - Quick & Easy",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "generate-with-passphrase-generator-free",
+    "toolSlug": "passphrase-generator",
+    "title": "Generate with Passphrase Generator Free",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-generator-free-online-tool",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase Generator - Free Online Tool",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-passphrase-generator-without-email",
+    "toolSlug": "passphrase-generator",
+    "title": "Free Passphrase Generator Without Email",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-generator-fast-generator",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase Generator - Fast Generator",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-passphrase-generator-for-free",
+    "toolSlug": "passphrase-generator",
+    "title": "Online Passphrase Generator for Free",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-generator-without-account",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase Generator Without Account",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "easy-passphrase-generator-generator",
+    "toolSlug": "passphrase-generator",
+    "title": "Easy Passphrase Generator Generator",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-passphrase-generator-generator-2025",
+    "toolSlug": "passphrase-generator",
+    "title": "Best Passphrase Generator Generator 2025",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-passphrase-generator-passphrase-made-easy",
+    "toolSlug": "passphrase-generator",
+    "title": "Free Passphrase Generator - passphrase Made Easy",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-generator-online-best-passphrase-tool",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase Generator Online - Best passphrase Tool",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "passphrase-with-passphrase-generator-free",
+    "toolSlug": "passphrase-generator",
+    "title": "Passphrase with Passphrase Generator Free",
+    "description": "Generate secure, memorable passphrases using random words. Customizable word count, separators, and case styles.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-loan-emi-calculator-online",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Free Loan EMI Calculator Online",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-no-registration-needed",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator - No Registration Needed",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-loan-emi-calculator-tool",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Best Free Loan EMI Calculator Tool",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-quick-easy",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator - Quick & Easy",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-loan-emi-calculator-100-free",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Online Loan EMI Calculator - 100% Free",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-loan-emi-calculator-no-sign-up",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Free Loan EMI Calculator - No Sign Up",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-tool-instant",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator Tool - Instant",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-loan-emi-calculator-online",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Fast Loan EMI Calculator Online",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-free-browser-tool",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator - Free Browser Tool",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-loan-emi-calculator",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Free Online Loan EMI Calculator",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-without-login",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator Without Login",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-simple-free",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator - Simple & Free",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-loan-emi-calculator-tool-online",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Easy Loan EMI Calculator Tool Online",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-loan-emi-calculator-2025",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Best Loan EMI Calculator 2025",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-free-forever",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator - Free Forever",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-loan-emi-calculator-emi-made-easy",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Free Loan EMI Calculator - emi Made Easy",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "loan-emi-calculator-online-best-emi-tool",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Loan EMI Calculator Online - Best emi Tool",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "emi-with-loan-emi-calculator-free",
+    "toolSlug": "loan-emi-calculator",
+    "title": "Emi with Loan EMI Calculator Free",
+    "description": "Calculate monthly EMI, total interest, and view amortization schedule for loans.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-ascii-art-generator-online",
+    "toolSlug": "ascii-art-generator",
+    "title": "Free ASCII Art Generator Online",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-art-generator-no-registration",
+    "toolSlug": "ascii-art-generator",
+    "title": "ASCII Art Generator - No Registration",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-free-ascii-art-generator-tool",
+    "toolSlug": "ascii-art-generator",
+    "title": "Best Free ASCII Art Generator Tool",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-art-generator-instantly-free",
+    "toolSlug": "ascii-art-generator",
+    "title": "ASCII Art Generator Instantly - Free",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-ascii-art-generator-generator-free",
+    "toolSlug": "ascii-art-generator",
+    "title": "Online ASCII Art Generator Generator Free",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-ascii-art-generator-no-sign-up",
+    "toolSlug": "ascii-art-generator",
+    "title": "Free ASCII Art Generator - No Sign Up",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-art-generator-tool-quick-easy",
+    "toolSlug": "ascii-art-generator",
+    "title": "ASCII Art Generator Tool - Quick & Easy",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "generate-with-ascii-art-generator-free",
+    "toolSlug": "ascii-art-generator",
+    "title": "Generate with ASCII Art Generator Free",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-art-generator-free-online-tool",
+    "toolSlug": "ascii-art-generator",
+    "title": "ASCII Art Generator - Free Online Tool",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-ascii-art-generator-without-email",
+    "toolSlug": "ascii-art-generator",
+    "title": "Free ASCII Art Generator Without Email",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-art-generator-fast-generator",
+    "toolSlug": "ascii-art-generator",
+    "title": "ASCII Art Generator - Fast Generator",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-ascii-art-generator-for-free",
+    "toolSlug": "ascii-art-generator",
+    "title": "Online ASCII Art Generator for Free",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-art-generator-without-account",
+    "toolSlug": "ascii-art-generator",
+    "title": "ASCII Art Generator Without Account",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "easy-ascii-art-generator-generator",
+    "toolSlug": "ascii-art-generator",
+    "title": "Easy ASCII Art Generator Generator",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-ascii-art-generator-generator-2025",
+    "toolSlug": "ascii-art-generator",
+    "title": "Best ASCII Art Generator Generator 2025",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-ascii-art-generator-ascii-made-easy",
+    "toolSlug": "ascii-art-generator",
+    "title": "Free ASCII Art Generator - ascii Made Easy",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-art-generator-online-best-ascii-tool",
+    "toolSlug": "ascii-art-generator",
+    "title": "ASCII Art Generator Online - Best ascii Tool",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "ascii-with-ascii-art-generator-free",
+    "toolSlug": "ascii-art-generator",
+    "title": "Ascii with ASCII Art Generator Free",
+    "description": "Convert text into ASCII art with multiple font styles. Create banner text for terminals and READMEs.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-sudoku-generator-online",
+    "toolSlug": "sudoku-generator",
+    "title": "Free Sudoku Generator Online",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-generator-no-registration",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku Generator - No Registration",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-free-sudoku-generator-tool",
+    "toolSlug": "sudoku-generator",
+    "title": "Best Free Sudoku Generator Tool",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-generator-instantly-free",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku Generator Instantly - Free",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-sudoku-generator-generator-free",
+    "toolSlug": "sudoku-generator",
+    "title": "Online Sudoku Generator Generator Free",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-sudoku-generator-no-sign-up",
+    "toolSlug": "sudoku-generator",
+    "title": "Free Sudoku Generator - No Sign Up",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-generator-tool-quick-easy",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku Generator Tool - Quick & Easy",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "generate-with-sudoku-generator-free",
+    "toolSlug": "sudoku-generator",
+    "title": "Generate with Sudoku Generator Free",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-generator-free-online-tool",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku Generator - Free Online Tool",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-sudoku-generator-without-email",
+    "toolSlug": "sudoku-generator",
+    "title": "Free Sudoku Generator Without Email",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-generator-fast-generator",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku Generator - Fast Generator",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-sudoku-generator-for-free",
+    "toolSlug": "sudoku-generator",
+    "title": "Online Sudoku Generator for Free",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-generator-without-account",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku Generator Without Account",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "easy-sudoku-generator-generator",
+    "toolSlug": "sudoku-generator",
+    "title": "Easy Sudoku Generator Generator",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-sudoku-generator-generator-2025",
+    "toolSlug": "sudoku-generator",
+    "title": "Best Sudoku Generator Generator 2025",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-sudoku-generator-sudoku-made-easy",
+    "toolSlug": "sudoku-generator",
+    "title": "Free Sudoku Generator - sudoku Made Easy",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-generator-online-best-sudoku-tool",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku Generator Online - Best sudoku Tool",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "sudoku-with-sudoku-generator-free",
+    "toolSlug": "sudoku-generator",
+    "title": "Sudoku with Sudoku Generator Free",
+    "description": "Generate random Sudoku puzzles with adjustable difficulty. Includes solution reveal and copy functionality.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-trip-budget-calculator-online",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Free Trip Budget Calculator Online",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-no-registration-needed",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator - No Registration Needed",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-trip-budget-calculator-tool",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Best Free Trip Budget Calculator Tool",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-quick-easy",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator - Quick & Easy",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-trip-budget-calculator-100-free",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Online Trip Budget Calculator - 100% Free",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-trip-budget-calculator-no-sign-up",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Free Trip Budget Calculator - No Sign Up",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-tool-instant",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator Tool - Instant",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-trip-budget-calculator-online",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Fast Trip Budget Calculator Online",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-free-browser-tool",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator - Free Browser Tool",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-trip-budget-calculator",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Free Online Trip Budget Calculator",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-without-login",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator Without Login",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-simple-free",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator - Simple & Free",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-trip-budget-calculator-tool-online",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Easy Trip Budget Calculator Tool Online",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-trip-budget-calculator-2025",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Best Trip Budget Calculator 2025",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-free-forever",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator - Free Forever",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-trip-budget-calculator-trip-made-easy",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Free Trip Budget Calculator - trip Made Easy",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-budget-calculator-online-best-trip-tool",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip Budget Calculator Online - Best trip Tool",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "trip-with-trip-budget-calculator-free",
+    "toolSlug": "trip-budget-calculator",
+    "title": "Trip with Trip Budget Calculator Free",
+    "description": "Plan and track travel expenses. Calculate per-person costs, daily budgets, and category breakdowns.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-break-even-calculator-online",
+    "toolSlug": "break-even-calculator",
+    "title": "Free Break-Even Calculator Online",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-no-registration-needed",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator - No Registration Needed",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-break-even-calculator-tool",
+    "toolSlug": "break-even-calculator",
+    "title": "Best Free Break-Even Calculator Tool",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-quick-easy",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator - Quick & Easy",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-break-even-calculator-100-free",
+    "toolSlug": "break-even-calculator",
+    "title": "Online Break-Even Calculator - 100% Free",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-break-even-calculator-no-sign-up",
+    "toolSlug": "break-even-calculator",
+    "title": "Free Break-Even Calculator - No Sign Up",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-tool-instant",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator Tool - Instant",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-break-even-calculator-online",
+    "toolSlug": "break-even-calculator",
+    "title": "Fast Break-Even Calculator Online",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-free-browser-tool",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator - Free Browser Tool",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-break-even-calculator",
+    "toolSlug": "break-even-calculator",
+    "title": "Free Online Break-Even Calculator",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-without-login",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator Without Login",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-simple-free",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator - Simple & Free",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-break-even-calculator-tool-online",
+    "toolSlug": "break-even-calculator",
+    "title": "Easy Break-Even Calculator Tool Online",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-break-even-calculator-2025",
+    "toolSlug": "break-even-calculator",
+    "title": "Best Break-Even Calculator 2025",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-free-forever",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator - Free Forever",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-break-even-calculator-break-even-made-easy",
+    "toolSlug": "break-even-calculator",
+    "title": "Free Break-Even Calculator - break-even Made Easy",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-calculator-online-best-break-even-tool",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-Even Calculator Online - Best break-even Tool",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "break-even-with-break-even-calculator-free",
+    "toolSlug": "break-even-calculator",
+    "title": "Break-even with Break-Even Calculator Free",
+    "description": "Calculate break-even point for your business. Visualize costs, revenue, and profit with interactive charts.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-subscription-revenue-calculator-online",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Free Subscription Revenue Calculator Online",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-no-registration-needed",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator - No Registration Needed",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-subscription-revenue-calculator-tool",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Best Free Subscription Revenue Calculator Tool",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-quick-easy",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator - Quick & Easy",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-subscription-revenue-calculator-100-free",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Online Subscription Revenue Calculator - 100% Free",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-subscription-revenue-calculator-no-sign-up",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Free Subscription Revenue Calculator - No Sign Up",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-tool-instant",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator Tool - Instant",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-subscription-revenue-calculator-online",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Fast Subscription Revenue Calculator Online",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-free-browser-tool",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator - Free Browser Tool",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-subscription-revenue-calculator",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Free Online Subscription Revenue Calculator",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-without-login",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator Without Login",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-simple-free",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator - Simple & Free",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-subscription-revenue-calculator-tool-online",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Easy Subscription Revenue Calculator Tool Online",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-subscription-revenue-calculator-2025",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Best Subscription Revenue Calculator 2025",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-free-forever",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator - Free Forever",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-subscription-revenue-calculator-subscription-made-easy",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Free Subscription Revenue Calculator - subscription Made Easy",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-revenue-calculator-online-best-subscription-tool",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription Revenue Calculator Online - Best subscription Tool",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "subscription-with-subscription-revenue-calculator-free",
+    "toolSlug": "subscription-revenue-calculator",
+    "title": "Subscription with Subscription Revenue Calculator Free",
+    "description": "Calculate MRR, ARR, LTV, and 12-month projections for SaaS businesses. Track multiple pricing tiers.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-graph-plotter-online",
+    "toolSlug": "graph-plotter",
+    "title": "Free Graph Plotter Online",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-no-registration-needed",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter - No Registration Needed",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-graph-plotter-tool",
+    "toolSlug": "graph-plotter",
+    "title": "Best Free Graph Plotter Tool",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-quick-easy",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter - Quick & Easy",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-graph-plotter-100-free",
+    "toolSlug": "graph-plotter",
+    "title": "Online Graph Plotter - 100% Free",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-graph-plotter-no-sign-up",
+    "toolSlug": "graph-plotter",
+    "title": "Free Graph Plotter - No Sign Up",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-tool-instant",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter Tool - Instant",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-graph-plotter-online",
+    "toolSlug": "graph-plotter",
+    "title": "Fast Graph Plotter Online",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-free-browser-tool",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter - Free Browser Tool",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-graph-plotter",
+    "toolSlug": "graph-plotter",
+    "title": "Free Online Graph Plotter",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-without-login",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter Without Login",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-simple-free",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter - Simple & Free",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-graph-plotter-tool-online",
+    "toolSlug": "graph-plotter",
+    "title": "Easy Graph Plotter Tool Online",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-graph-plotter-2025",
+    "toolSlug": "graph-plotter",
+    "title": "Best Graph Plotter 2025",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-free-forever",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter - Free Forever",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-graph-plotter-graph-made-easy",
+    "toolSlug": "graph-plotter",
+    "title": "Free Graph Plotter - graph Made Easy",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-plotter-online-best-graph-tool",
+    "toolSlug": "graph-plotter",
+    "title": "Graph Plotter Online - Best graph Tool",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "graph-with-graph-plotter-free",
+    "toolSlug": "graph-plotter",
+    "title": "Graph with Graph Plotter Free",
+    "description": "Plot mathematical functions with an interactive graph. Supports multiple functions, zoom, and presets.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-maze-generator-online",
+    "toolSlug": "maze-generator",
+    "title": "Free Maze Generator Online",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-generator-no-registration",
+    "toolSlug": "maze-generator",
+    "title": "Maze Generator - No Registration",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-free-maze-generator-tool",
+    "toolSlug": "maze-generator",
+    "title": "Best Free Maze Generator Tool",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-generator-instantly-free",
+    "toolSlug": "maze-generator",
+    "title": "Maze Generator Instantly - Free",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-maze-generator-generator-free",
+    "toolSlug": "maze-generator",
+    "title": "Online Maze Generator Generator Free",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-maze-generator-no-sign-up",
+    "toolSlug": "maze-generator",
+    "title": "Free Maze Generator - No Sign Up",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-generator-tool-quick-easy",
+    "toolSlug": "maze-generator",
+    "title": "Maze Generator Tool - Quick & Easy",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "generate-with-maze-generator-free",
+    "toolSlug": "maze-generator",
+    "title": "Generate with Maze Generator Free",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-generator-free-online-tool",
+    "toolSlug": "maze-generator",
+    "title": "Maze Generator - Free Online Tool",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-maze-generator-without-email",
+    "toolSlug": "maze-generator",
+    "title": "Free Maze Generator Without Email",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-generator-fast-generator",
+    "toolSlug": "maze-generator",
+    "title": "Maze Generator - Fast Generator",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-maze-generator-for-free",
+    "toolSlug": "maze-generator",
+    "title": "Online Maze Generator for Free",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-generator-without-account",
+    "toolSlug": "maze-generator",
+    "title": "Maze Generator Without Account",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "easy-maze-generator-generator",
+    "toolSlug": "maze-generator",
+    "title": "Easy Maze Generator Generator",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-maze-generator-generator-2025",
+    "toolSlug": "maze-generator",
+    "title": "Best Maze Generator Generator 2025",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-maze-generator-maze-made-easy",
+    "toolSlug": "maze-generator",
+    "title": "Free Maze Generator - maze Made Easy",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-generator-online-best-maze-tool",
+    "toolSlug": "maze-generator",
+    "title": "Maze Generator Online - Best maze Tool",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "maze-with-maze-generator-free",
+    "toolSlug": "maze-generator",
+    "title": "Maze with Maze Generator Free",
+    "description": "Generate and solve random mazes with customizable size. Uses recursive backtracking and BFS solver.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-optical-illusion-generator-online",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Free Optical Illusion Generator Online",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "optical-illusion-generator-no-registration",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Optical Illusion Generator - No Registration",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-free-optical-illusion-generator-tool",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Best Free Optical Illusion Generator Tool",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "optical-illusion-generator-instantly-free",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Optical Illusion Generator Instantly - Free",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-optical-illusion-generator-generator-free",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Online Optical Illusion Generator Generator Free",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-optical-illusion-generator-no-sign-up",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Free Optical Illusion Generator - No Sign Up",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "optical-illusion-generator-tool-quick-easy",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Optical Illusion Generator Tool - Quick & Easy",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "generate-with-optical-illusion-generator-free",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Generate with Optical Illusion Generator Free",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "optical-illusion-generator-free-online-tool",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Optical Illusion Generator - Free Online Tool",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-optical-illusion-generator-without-email",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Free Optical Illusion Generator Without Email",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "optical-illusion-generator-fast-generator",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Optical Illusion Generator - Fast Generator",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "online-optical-illusion-generator-for-free",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Online Optical Illusion Generator for Free",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "optical-illusion-generator-without-account",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Optical Illusion Generator Without Account",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "easy-optical-illusion-generator-generator",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Easy Optical Illusion Generator Generator",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "best-optical-illusion-generator-generator-2025",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Best Optical Illusion Generator Generator 2025",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-optical-illusion-generator-illusion-made-easy",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Free Optical Illusion Generator - illusion Made Easy",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "optical-illusion-generator-online-best-illusion-tool",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Optical Illusion Generator Online - Best illusion Tool",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "illusion-with-optical-illusion-generator-free",
+    "toolSlug": "optical-illusion-generator",
+    "title": "Illusion with Optical Illusion Generator Free",
+    "description": "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    "category": "generator"
+  },
+  {
+    "blogSlug": "free-csv-to-chart-builder-online-no-sign-up-required",
+    "toolSlug": "csv-chart-builder",
+    "title": "Free CSV to Chart Builder Online - No Sign Up Required",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-to-chart-builder-100-free-no-registration",
+    "toolSlug": "csv-chart-builder",
+    "title": "CSV to Chart Builder - 100% Free, No Registration",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "best-free-csv-to-chart-builder-tool-online",
+    "toolSlug": "csv-chart-builder",
+    "title": "Best Free CSV to Chart Builder Tool Online",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-to-chart-builder-instantly-free-fast",
+    "toolSlug": "csv-chart-builder",
+    "title": "CSV to Chart Builder Instantly - Free & Fast",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "online-csv-to-chart-builder-no-download-needed",
+    "toolSlug": "csv-chart-builder",
+    "title": "Online CSV to Chart Builder - No Download Needed",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-csv-to-chart-builder-without-watermark",
+    "toolSlug": "csv-chart-builder",
+    "title": "Free CSV to Chart Builder Without Watermark",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-to-chart-builder-in-seconds-completely-free",
+    "toolSlug": "csv-chart-builder",
+    "title": "CSV to Chart Builder in Seconds - Completely Free",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "quick-csv-to-chart-builder-online-tool",
+    "toolSlug": "csv-chart-builder",
+    "title": "Quick CSV to Chart Builder Online Tool",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-to-chart-builder-free-browser-based-tool",
+    "toolSlug": "csv-chart-builder",
+    "title": "CSV to Chart Builder - Free Browser-Based Tool",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "convert-files-free-with-csv-to-chart-builder",
+    "toolSlug": "csv-chart-builder",
+    "title": "Convert Files Free with CSV to Chart Builder",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "instant-csv-to-chart-builder-no-email-required",
+    "toolSlug": "csv-chart-builder",
+    "title": "Instant CSV to Chart Builder - No Email Required",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-to-chart-builder-tool-fast-secure",
+    "toolSlug": "csv-chart-builder",
+    "title": "CSV to Chart Builder Tool - Fast & Secure",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-online-csv-to-chart-builder-works-on-any-device",
+    "toolSlug": "csv-chart-builder",
+    "title": "Free Online CSV to Chart Builder - Works on Any Device",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-to-chart-builder-without-registration",
+    "toolSlug": "csv-chart-builder",
+    "title": "CSV to Chart Builder Without Registration",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "best-csv-to-chart-builder-tool-2025",
+    "toolSlug": "csv-chart-builder",
+    "title": "Best CSV to Chart Builder Tool 2025",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-csv-to-chart-builder-csv-made-easy",
+    "toolSlug": "csv-chart-builder",
+    "title": "Free CSV to Chart Builder - csv Made Easy",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-to-chart-builder-online-best-csv-tool",
+    "toolSlug": "csv-chart-builder",
+    "title": "CSV to Chart Builder Online - Best csv Tool",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "csv-with-csv-to-chart-builder-free",
+    "toolSlug": "csv-chart-builder",
+    "title": "Csv with CSV to Chart Builder Free",
+    "description": "Import CSV data and create interactive bar, line, pie, or horizontal bar charts.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-directory-tree-visualizer-for-developers",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Free Directory Tree Visualizer for Developers",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-online-no-install",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer Online - No Install",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "best-directory-tree-visualizer-tool-free",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Best Directory Tree Visualizer Tool Free",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-developer-tool-online",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer - Developer Tool Online",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "online-directory-tree-visualizer-free-fast",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Online Directory Tree Visualizer - Free & Fast",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "free-directory-tree-visualizer-no-sign-up",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Free Directory Tree Visualizer - No Sign Up",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-tool-for-programmers",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer Tool for Programmers",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "quick-directory-tree-visualizer-online",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Quick Directory Tree Visualizer Online",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-free-dev-tool",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer - Free Dev Tool",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "free-online-directory-tree-visualizer-tool",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Free Online Directory Tree Visualizer Tool",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-without-registration",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer Without Registration",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-browser-based",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer - Browser-Based",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "easy-directory-tree-visualizer-for-coding",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Easy Directory Tree Visualizer for Coding",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "best-directory-tree-visualizer-online-2025",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Best Directory Tree Visualizer Online 2025",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-free-for-everyone",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer - Free for Everyone",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "free-directory-tree-visualizer-directory-made-easy",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Free Directory Tree Visualizer - directory Made Easy",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-tree-visualizer-online-best-directory-tool",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory Tree Visualizer Online - Best directory Tool",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "directory-with-directory-tree-visualizer-free",
+    "toolSlug": "directory-tree-visualizer",
+    "title": "Directory with Directory Tree Visualizer Free",
+    "description": "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    "category": "dev"
+  },
+  {
+    "blogSlug": "free-pricing-calculator-online",
+    "toolSlug": "pricing-calculator",
+    "title": "Free Pricing Calculator Online",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-no-registration-needed",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator - No Registration Needed",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-free-pricing-calculator-tool",
+    "toolSlug": "pricing-calculator",
+    "title": "Best Free Pricing Calculator Tool",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-quick-easy",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator - Quick & Easy",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "online-pricing-calculator-100-free",
+    "toolSlug": "pricing-calculator",
+    "title": "Online Pricing Calculator - 100% Free",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-pricing-calculator-no-sign-up",
+    "toolSlug": "pricing-calculator",
+    "title": "Free Pricing Calculator - No Sign Up",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-tool-instant",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator Tool - Instant",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "fast-pricing-calculator-online",
+    "toolSlug": "pricing-calculator",
+    "title": "Fast Pricing Calculator Online",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-free-browser-tool",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator - Free Browser Tool",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-online-pricing-calculator",
+    "toolSlug": "pricing-calculator",
+    "title": "Free Online Pricing Calculator",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-without-login",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator Without Login",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-simple-free",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator - Simple & Free",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "easy-pricing-calculator-tool-online",
+    "toolSlug": "pricing-calculator",
+    "title": "Easy Pricing Calculator Tool Online",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "best-pricing-calculator-2025",
+    "toolSlug": "pricing-calculator",
+    "title": "Best Pricing Calculator 2025",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-free-forever",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator - Free Forever",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "free-pricing-calculator-pricing-made-easy",
+    "toolSlug": "pricing-calculator",
+    "title": "Free Pricing Calculator - pricing Made Easy",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-calculator-online-best-pricing-tool",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing Calculator Online - Best pricing Tool",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
+  },
+  {
+    "blogSlug": "pricing-with-pricing-calculator-free",
+    "toolSlug": "pricing-calculator",
+    "title": "Pricing with Pricing Calculator Free",
+    "description": "Calculate product pricing with markup, margin, discounts, and taxes. Get ROI and profit analysis.",
+    "category": "misc"
   }
 ];
 
@@ -22766,7 +24404,241 @@ export const blogSlugToTool: Record<string, string> = {
   "url-analyzer-free-for-everyone": "url-analyzer",
   "free-url-analyzer-url-made-easy": "url-analyzer",
   "url-analyzer-online-best-url-tool": "url-analyzer",
-  "url-with-url-analyzer-free": "url-analyzer"
+  "url-with-url-analyzer-free": "url-analyzer",
+  "free-passphrase-generator-online": "passphrase-generator",
+  "passphrase-generator-no-registration": "passphrase-generator",
+  "best-free-passphrase-generator-tool": "passphrase-generator",
+  "passphrase-generator-instantly-free": "passphrase-generator",
+  "online-passphrase-generator-generator-free": "passphrase-generator",
+  "free-passphrase-generator-no-sign-up": "passphrase-generator",
+  "passphrase-generator-tool-quick-easy": "passphrase-generator",
+  "generate-with-passphrase-generator-free": "passphrase-generator",
+  "passphrase-generator-free-online-tool": "passphrase-generator",
+  "free-passphrase-generator-without-email": "passphrase-generator",
+  "passphrase-generator-fast-generator": "passphrase-generator",
+  "online-passphrase-generator-for-free": "passphrase-generator",
+  "passphrase-generator-without-account": "passphrase-generator",
+  "easy-passphrase-generator-generator": "passphrase-generator",
+  "best-passphrase-generator-generator-2025": "passphrase-generator",
+  "free-passphrase-generator-passphrase-made-easy": "passphrase-generator",
+  "passphrase-generator-online-best-passphrase-tool": "passphrase-generator",
+  "passphrase-with-passphrase-generator-free": "passphrase-generator",
+  "free-loan-emi-calculator-online": "loan-emi-calculator",
+  "loan-emi-calculator-no-registration-needed": "loan-emi-calculator",
+  "best-free-loan-emi-calculator-tool": "loan-emi-calculator",
+  "loan-emi-calculator-quick-easy": "loan-emi-calculator",
+  "online-loan-emi-calculator-100-free": "loan-emi-calculator",
+  "free-loan-emi-calculator-no-sign-up": "loan-emi-calculator",
+  "loan-emi-calculator-tool-instant": "loan-emi-calculator",
+  "fast-loan-emi-calculator-online": "loan-emi-calculator",
+  "loan-emi-calculator-free-browser-tool": "loan-emi-calculator",
+  "free-online-loan-emi-calculator": "loan-emi-calculator",
+  "loan-emi-calculator-without-login": "loan-emi-calculator",
+  "loan-emi-calculator-simple-free": "loan-emi-calculator",
+  "easy-loan-emi-calculator-tool-online": "loan-emi-calculator",
+  "best-loan-emi-calculator-2025": "loan-emi-calculator",
+  "loan-emi-calculator-free-forever": "loan-emi-calculator",
+  "free-loan-emi-calculator-emi-made-easy": "loan-emi-calculator",
+  "loan-emi-calculator-online-best-emi-tool": "loan-emi-calculator",
+  "emi-with-loan-emi-calculator-free": "loan-emi-calculator",
+  "free-ascii-art-generator-online": "ascii-art-generator",
+  "ascii-art-generator-no-registration": "ascii-art-generator",
+  "best-free-ascii-art-generator-tool": "ascii-art-generator",
+  "ascii-art-generator-instantly-free": "ascii-art-generator",
+  "online-ascii-art-generator-generator-free": "ascii-art-generator",
+  "free-ascii-art-generator-no-sign-up": "ascii-art-generator",
+  "ascii-art-generator-tool-quick-easy": "ascii-art-generator",
+  "generate-with-ascii-art-generator-free": "ascii-art-generator",
+  "ascii-art-generator-free-online-tool": "ascii-art-generator",
+  "free-ascii-art-generator-without-email": "ascii-art-generator",
+  "ascii-art-generator-fast-generator": "ascii-art-generator",
+  "online-ascii-art-generator-for-free": "ascii-art-generator",
+  "ascii-art-generator-without-account": "ascii-art-generator",
+  "easy-ascii-art-generator-generator": "ascii-art-generator",
+  "best-ascii-art-generator-generator-2025": "ascii-art-generator",
+  "free-ascii-art-generator-ascii-made-easy": "ascii-art-generator",
+  "ascii-art-generator-online-best-ascii-tool": "ascii-art-generator",
+  "ascii-with-ascii-art-generator-free": "ascii-art-generator",
+  "free-sudoku-generator-online": "sudoku-generator",
+  "sudoku-generator-no-registration": "sudoku-generator",
+  "best-free-sudoku-generator-tool": "sudoku-generator",
+  "sudoku-generator-instantly-free": "sudoku-generator",
+  "online-sudoku-generator-generator-free": "sudoku-generator",
+  "free-sudoku-generator-no-sign-up": "sudoku-generator",
+  "sudoku-generator-tool-quick-easy": "sudoku-generator",
+  "generate-with-sudoku-generator-free": "sudoku-generator",
+  "sudoku-generator-free-online-tool": "sudoku-generator",
+  "free-sudoku-generator-without-email": "sudoku-generator",
+  "sudoku-generator-fast-generator": "sudoku-generator",
+  "online-sudoku-generator-for-free": "sudoku-generator",
+  "sudoku-generator-without-account": "sudoku-generator",
+  "easy-sudoku-generator-generator": "sudoku-generator",
+  "best-sudoku-generator-generator-2025": "sudoku-generator",
+  "free-sudoku-generator-sudoku-made-easy": "sudoku-generator",
+  "sudoku-generator-online-best-sudoku-tool": "sudoku-generator",
+  "sudoku-with-sudoku-generator-free": "sudoku-generator",
+  "free-trip-budget-calculator-online": "trip-budget-calculator",
+  "trip-budget-calculator-no-registration-needed": "trip-budget-calculator",
+  "best-free-trip-budget-calculator-tool": "trip-budget-calculator",
+  "trip-budget-calculator-quick-easy": "trip-budget-calculator",
+  "online-trip-budget-calculator-100-free": "trip-budget-calculator",
+  "free-trip-budget-calculator-no-sign-up": "trip-budget-calculator",
+  "trip-budget-calculator-tool-instant": "trip-budget-calculator",
+  "fast-trip-budget-calculator-online": "trip-budget-calculator",
+  "trip-budget-calculator-free-browser-tool": "trip-budget-calculator",
+  "free-online-trip-budget-calculator": "trip-budget-calculator",
+  "trip-budget-calculator-without-login": "trip-budget-calculator",
+  "trip-budget-calculator-simple-free": "trip-budget-calculator",
+  "easy-trip-budget-calculator-tool-online": "trip-budget-calculator",
+  "best-trip-budget-calculator-2025": "trip-budget-calculator",
+  "trip-budget-calculator-free-forever": "trip-budget-calculator",
+  "free-trip-budget-calculator-trip-made-easy": "trip-budget-calculator",
+  "trip-budget-calculator-online-best-trip-tool": "trip-budget-calculator",
+  "trip-with-trip-budget-calculator-free": "trip-budget-calculator",
+  "free-break-even-calculator-online": "break-even-calculator",
+  "break-even-calculator-no-registration-needed": "break-even-calculator",
+  "best-free-break-even-calculator-tool": "break-even-calculator",
+  "break-even-calculator-quick-easy": "break-even-calculator",
+  "online-break-even-calculator-100-free": "break-even-calculator",
+  "free-break-even-calculator-no-sign-up": "break-even-calculator",
+  "break-even-calculator-tool-instant": "break-even-calculator",
+  "fast-break-even-calculator-online": "break-even-calculator",
+  "break-even-calculator-free-browser-tool": "break-even-calculator",
+  "free-online-break-even-calculator": "break-even-calculator",
+  "break-even-calculator-without-login": "break-even-calculator",
+  "break-even-calculator-simple-free": "break-even-calculator",
+  "easy-break-even-calculator-tool-online": "break-even-calculator",
+  "best-break-even-calculator-2025": "break-even-calculator",
+  "break-even-calculator-free-forever": "break-even-calculator",
+  "free-break-even-calculator-break-even-made-easy": "break-even-calculator",
+  "break-even-calculator-online-best-break-even-tool": "break-even-calculator",
+  "break-even-with-break-even-calculator-free": "break-even-calculator",
+  "free-subscription-revenue-calculator-online": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-no-registration-needed": "subscription-revenue-calculator",
+  "best-free-subscription-revenue-calculator-tool": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-quick-easy": "subscription-revenue-calculator",
+  "online-subscription-revenue-calculator-100-free": "subscription-revenue-calculator",
+  "free-subscription-revenue-calculator-no-sign-up": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-tool-instant": "subscription-revenue-calculator",
+  "fast-subscription-revenue-calculator-online": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-free-browser-tool": "subscription-revenue-calculator",
+  "free-online-subscription-revenue-calculator": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-without-login": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-simple-free": "subscription-revenue-calculator",
+  "easy-subscription-revenue-calculator-tool-online": "subscription-revenue-calculator",
+  "best-subscription-revenue-calculator-2025": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-free-forever": "subscription-revenue-calculator",
+  "free-subscription-revenue-calculator-subscription-made-easy": "subscription-revenue-calculator",
+  "subscription-revenue-calculator-online-best-subscription-tool": "subscription-revenue-calculator",
+  "subscription-with-subscription-revenue-calculator-free": "subscription-revenue-calculator",
+  "free-graph-plotter-online": "graph-plotter",
+  "graph-plotter-no-registration-needed": "graph-plotter",
+  "best-free-graph-plotter-tool": "graph-plotter",
+  "graph-plotter-quick-easy": "graph-plotter",
+  "online-graph-plotter-100-free": "graph-plotter",
+  "free-graph-plotter-no-sign-up": "graph-plotter",
+  "graph-plotter-tool-instant": "graph-plotter",
+  "fast-graph-plotter-online": "graph-plotter",
+  "graph-plotter-free-browser-tool": "graph-plotter",
+  "free-online-graph-plotter": "graph-plotter",
+  "graph-plotter-without-login": "graph-plotter",
+  "graph-plotter-simple-free": "graph-plotter",
+  "easy-graph-plotter-tool-online": "graph-plotter",
+  "best-graph-plotter-2025": "graph-plotter",
+  "graph-plotter-free-forever": "graph-plotter",
+  "free-graph-plotter-graph-made-easy": "graph-plotter",
+  "graph-plotter-online-best-graph-tool": "graph-plotter",
+  "graph-with-graph-plotter-free": "graph-plotter",
+  "free-maze-generator-online": "maze-generator",
+  "maze-generator-no-registration": "maze-generator",
+  "best-free-maze-generator-tool": "maze-generator",
+  "maze-generator-instantly-free": "maze-generator",
+  "online-maze-generator-generator-free": "maze-generator",
+  "free-maze-generator-no-sign-up": "maze-generator",
+  "maze-generator-tool-quick-easy": "maze-generator",
+  "generate-with-maze-generator-free": "maze-generator",
+  "maze-generator-free-online-tool": "maze-generator",
+  "free-maze-generator-without-email": "maze-generator",
+  "maze-generator-fast-generator": "maze-generator",
+  "online-maze-generator-for-free": "maze-generator",
+  "maze-generator-without-account": "maze-generator",
+  "easy-maze-generator-generator": "maze-generator",
+  "best-maze-generator-generator-2025": "maze-generator",
+  "free-maze-generator-maze-made-easy": "maze-generator",
+  "maze-generator-online-best-maze-tool": "maze-generator",
+  "maze-with-maze-generator-free": "maze-generator",
+  "free-optical-illusion-generator-online": "optical-illusion-generator",
+  "optical-illusion-generator-no-registration": "optical-illusion-generator",
+  "best-free-optical-illusion-generator-tool": "optical-illusion-generator",
+  "optical-illusion-generator-instantly-free": "optical-illusion-generator",
+  "online-optical-illusion-generator-generator-free": "optical-illusion-generator",
+  "free-optical-illusion-generator-no-sign-up": "optical-illusion-generator",
+  "optical-illusion-generator-tool-quick-easy": "optical-illusion-generator",
+  "generate-with-optical-illusion-generator-free": "optical-illusion-generator",
+  "optical-illusion-generator-free-online-tool": "optical-illusion-generator",
+  "free-optical-illusion-generator-without-email": "optical-illusion-generator",
+  "optical-illusion-generator-fast-generator": "optical-illusion-generator",
+  "online-optical-illusion-generator-for-free": "optical-illusion-generator",
+  "optical-illusion-generator-without-account": "optical-illusion-generator",
+  "easy-optical-illusion-generator-generator": "optical-illusion-generator",
+  "best-optical-illusion-generator-generator-2025": "optical-illusion-generator",
+  "free-optical-illusion-generator-illusion-made-easy": "optical-illusion-generator",
+  "optical-illusion-generator-online-best-illusion-tool": "optical-illusion-generator",
+  "illusion-with-optical-illusion-generator-free": "optical-illusion-generator",
+  "free-csv-to-chart-builder-online-no-sign-up-required": "csv-chart-builder",
+  "csv-to-chart-builder-100-free-no-registration": "csv-chart-builder",
+  "best-free-csv-to-chart-builder-tool-online": "csv-chart-builder",
+  "csv-to-chart-builder-instantly-free-fast": "csv-chart-builder",
+  "online-csv-to-chart-builder-no-download-needed": "csv-chart-builder",
+  "free-csv-to-chart-builder-without-watermark": "csv-chart-builder",
+  "csv-to-chart-builder-in-seconds-completely-free": "csv-chart-builder",
+  "quick-csv-to-chart-builder-online-tool": "csv-chart-builder",
+  "csv-to-chart-builder-free-browser-based-tool": "csv-chart-builder",
+  "convert-files-free-with-csv-to-chart-builder": "csv-chart-builder",
+  "instant-csv-to-chart-builder-no-email-required": "csv-chart-builder",
+  "csv-to-chart-builder-tool-fast-secure": "csv-chart-builder",
+  "free-online-csv-to-chart-builder-works-on-any-device": "csv-chart-builder",
+  "csv-to-chart-builder-without-registration": "csv-chart-builder",
+  "best-csv-to-chart-builder-tool-2025": "csv-chart-builder",
+  "free-csv-to-chart-builder-csv-made-easy": "csv-chart-builder",
+  "csv-to-chart-builder-online-best-csv-tool": "csv-chart-builder",
+  "csv-with-csv-to-chart-builder-free": "csv-chart-builder",
+  "free-directory-tree-visualizer-for-developers": "directory-tree-visualizer",
+  "directory-tree-visualizer-online-no-install": "directory-tree-visualizer",
+  "best-directory-tree-visualizer-tool-free": "directory-tree-visualizer",
+  "directory-tree-visualizer-developer-tool-online": "directory-tree-visualizer",
+  "online-directory-tree-visualizer-free-fast": "directory-tree-visualizer",
+  "free-directory-tree-visualizer-no-sign-up": "directory-tree-visualizer",
+  "directory-tree-visualizer-tool-for-programmers": "directory-tree-visualizer",
+  "quick-directory-tree-visualizer-online": "directory-tree-visualizer",
+  "directory-tree-visualizer-free-dev-tool": "directory-tree-visualizer",
+  "free-online-directory-tree-visualizer-tool": "directory-tree-visualizer",
+  "directory-tree-visualizer-without-registration": "directory-tree-visualizer",
+  "directory-tree-visualizer-browser-based": "directory-tree-visualizer",
+  "easy-directory-tree-visualizer-for-coding": "directory-tree-visualizer",
+  "best-directory-tree-visualizer-online-2025": "directory-tree-visualizer",
+  "directory-tree-visualizer-free-for-everyone": "directory-tree-visualizer",
+  "free-directory-tree-visualizer-directory-made-easy": "directory-tree-visualizer",
+  "directory-tree-visualizer-online-best-directory-tool": "directory-tree-visualizer",
+  "directory-with-directory-tree-visualizer-free": "directory-tree-visualizer",
+  "free-pricing-calculator-online": "pricing-calculator",
+  "pricing-calculator-no-registration-needed": "pricing-calculator",
+  "best-free-pricing-calculator-tool": "pricing-calculator",
+  "pricing-calculator-quick-easy": "pricing-calculator",
+  "online-pricing-calculator-100-free": "pricing-calculator",
+  "free-pricing-calculator-no-sign-up": "pricing-calculator",
+  "pricing-calculator-tool-instant": "pricing-calculator",
+  "fast-pricing-calculator-online": "pricing-calculator",
+  "pricing-calculator-free-browser-tool": "pricing-calculator",
+  "free-online-pricing-calculator": "pricing-calculator",
+  "pricing-calculator-without-login": "pricing-calculator",
+  "pricing-calculator-simple-free": "pricing-calculator",
+  "easy-pricing-calculator-tool-online": "pricing-calculator",
+  "best-pricing-calculator-2025": "pricing-calculator",
+  "pricing-calculator-free-forever": "pricing-calculator",
+  "free-pricing-calculator-pricing-made-easy": "pricing-calculator",
+  "pricing-calculator-online-best-pricing-tool": "pricing-calculator",
+  "pricing-with-pricing-calculator-free": "pricing-calculator"
 };
 
 // Get all blog entries for a tool
@@ -22790,4 +24662,4 @@ export function getAllBlogSlugs(): string[] {
 }
 
 // Total count
-export const totalBlogEntries = 2844;
+export const totalBlogEntries = 3078;

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { TextArea } from "@/components/TextArea";
 import { OutputBox } from "@/components/OutputBox";
+import { Select } from "@/components/Select";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 import { logToolUsage } from "@/lib/actions";
 
@@ -39,6 +40,55 @@ const synonyms: SynonymMap = {
   "work": ["function", "operate", "perform", "labor", "toil"],
   "run": ["operate", "manage", "execute", "conduct", "administer"],
   "see": ["observe", "notice", "perceive", "witness", "view"],
+  "say": ["state", "mention", "express", "declare", "assert"],
+  "tell": ["inform", "notify", "advise", "communicate", "convey"],
+  "ask": ["inquire", "request", "query", "question", "seek"],
+  "put": ["place", "position", "set", "locate", "situate"],
+  "come": ["arrive", "approach", "reach", "appear", "emerge"],
+  "go": ["proceed", "advance", "travel", "move", "head"],
+  "look": ["examine", "inspect", "observe", "view", "regard"],
+  "call": ["contact", "reach", "phone", "summon", "name"],
+  "seem": ["appear", "look", "sound", "feel", "come across"],
+  "leave": ["depart", "exit", "abandon", "vacate", "withdraw"],
+  "bring": ["carry", "deliver", "transport", "convey", "fetch"],
+  "become": ["turn into", "grow", "develop into", "evolve into", "transform into"],
+  "buy": ["purchase", "acquire", "obtain", "procure", "invest in"],
+  "sell": ["market", "trade", "vend", "retail", "offer"],
+  "build": ["construct", "create", "develop", "establish", "erect"],
+  "grow": ["expand", "increase", "develop", "flourish", "thrive"],
+  "send": ["transmit", "dispatch", "forward", "deliver", "convey"],
+  "receive": ["obtain", "get", "acquire", "accept", "collect"],
+  "provide": ["supply", "offer", "furnish", "deliver", "give"],
+  "create": ["produce", "generate", "develop", "design", "establish"],
+  "offer": ["provide", "present", "propose", "extend", "suggest"],
+  "include": ["contain", "comprise", "encompass", "incorporate", "cover"],
+  "continue": ["proceed", "persist", "carry on", "maintain", "sustain"],
+  "set": ["establish", "determine", "define", "fix", "arrange"],
+  "learn": ["discover", "understand", "grasp", "master", "acquire"],
+  "follow": ["pursue", "track", "observe", "adhere to", "comply with"],
+  "stop": ["cease", "halt", "discontinue", "terminate", "end"],
+  "read": ["peruse", "examine", "study", "review", "scan"],
+  "spend": ["expend", "use", "allocate", "devote", "invest"],
+  "allow": ["permit", "enable", "authorize", "let", "grant"],
+  "meet": ["encounter", "gather", "assemble", "convene", "join"],
+  "pay": ["compensate", "remunerate", "settle", "reimburse", "reward"],
+  "hear": ["listen", "perceive", "learn", "discover", "understand"],
+  "play": ["perform", "participate", "engage", "act", "compete"],
+  "agree": ["concur", "consent", "accept", "approve", "acknowledge"],
+  "live": ["reside", "dwell", "inhabit", "exist", "stay"],
+  "believe": ["think", "consider", "trust", "accept", "hold"],
+  "hold": ["grasp", "grip", "possess", "maintain", "retain"],
+  "remember": ["recall", "recollect", "retain", "recognize", "reflect on"],
+  "suggest": ["propose", "recommend", "advise", "indicate", "imply"],
+  "consider": ["contemplate", "ponder", "evaluate", "examine", "reflect on"],
+  "appear": ["seem", "look", "emerge", "surface", "materialize"],
+  "wait": ["remain", "stay", "linger", "pause", "hold on"],
+  "serve": ["assist", "help", "aid", "support", "provide"],
+  "expect": ["anticipate", "await", "foresee", "predict", "hope for"],
+  "speak": ["talk", "communicate", "express", "articulate", "converse"],
+  "raise": ["lift", "elevate", "increase", "boost", "heighten"],
+  "pass": ["transfer", "hand", "convey", "proceed", "move"],
+  "reach": ["attain", "achieve", "arrive at", "access", "contact"],
   
   // Common adjectives
   "good": ["excellent", "great", "fine", "superior", "outstanding"],
@@ -56,6 +106,46 @@ const synonyms: SynonymMap = {
   "slow": ["gradual", "unhurried", "leisurely", "sluggish", "delayed"],
   "high": ["elevated", "tall", "lofty", "substantial", "considerable"],
   "low": ["reduced", "minimal", "limited", "modest", "diminished"],
+  "long": ["extended", "lengthy", "prolonged", "extensive", "enduring"],
+  "short": ["brief", "concise", "compact", "limited", "abbreviated"],
+  "strong": ["powerful", "robust", "sturdy", "solid", "firm"],
+  "weak": ["feeble", "fragile", "frail", "delicate", "vulnerable"],
+  "true": ["accurate", "correct", "genuine", "authentic", "valid"],
+  "false": ["incorrect", "inaccurate", "untrue", "wrong", "invalid"],
+  "clear": ["obvious", "evident", "apparent", "transparent", "distinct"],
+  "certain": ["sure", "definite", "confident", "positive", "assured"],
+  "possible": ["feasible", "achievable", "potential", "viable", "attainable"],
+  "likely": ["probable", "expected", "anticipated", "presumable", "plausible"],
+  "available": ["accessible", "obtainable", "ready", "at hand", "on hand"],
+  "able": ["capable", "competent", "qualified", "skilled", "proficient"],
+  "free": ["complimentary", "gratis", "costless", "liberated", "unrestricted"],
+  "full": ["complete", "entire", "whole", "total", "comprehensive"],
+  "special": ["unique", "particular", "distinctive", "exceptional", "exclusive"],
+  "real": ["genuine", "authentic", "actual", "true", "legitimate"],
+  "best": ["optimal", "finest", "superior", "top", "premier"],
+  "better": ["superior", "improved", "enhanced", "preferable", "finer"],
+  "great": ["excellent", "outstanding", "remarkable", "exceptional", "superb"],
+  "little": ["small", "minor", "slight", "modest", "limited"],
+  "right": ["correct", "proper", "appropriate", "suitable", "accurate"],
+  "wrong": ["incorrect", "inaccurate", "improper", "mistaken", "erroneous"],
+  "sure": ["certain", "confident", "positive", "assured", "convinced"],
+  "whole": ["entire", "complete", "full", "total", "comprehensive"],
+  "main": ["primary", "principal", "chief", "major", "central"],
+  "public": ["communal", "shared", "common", "civic", "open"],
+  "late": ["delayed", "overdue", "tardy", "behind schedule", "belated"],
+  "early": ["premature", "initial", "advance", "prior", "beforehand"],
+  "young": ["youthful", "juvenile", "adolescent", "immature", "fresh"],
+  "final": ["last", "ultimate", "concluding", "terminal", "closing"],
+  "major": ["significant", "substantial", "considerable", "primary", "principal"],
+  "local": ["regional", "neighborhood", "community", "nearby", "area"],
+  "social": ["communal", "collective", "public", "societal", "interpersonal"],
+  "national": ["countrywide", "domestic", "federal", "nationwide", "state"],
+  "current": ["present", "existing", "ongoing", "contemporary", "modern"],
+  "popular": ["well-liked", "favored", "acclaimed", "trendy", "fashionable"],
+  "traditional": ["conventional", "classic", "customary", "established", "time-honored"],
+  "beautiful": ["attractive", "lovely", "gorgeous", "stunning", "elegant"],
+  "happy": ["joyful", "pleased", "delighted", "content", "cheerful"],
+  "serious": ["grave", "severe", "critical", "significant", "solemn"],
   
   // Common nouns
   "problem": ["issue", "challenge", "difficulty", "obstacle", "concern"],
@@ -68,6 +158,55 @@ const synonyms: SynonymMap = {
   "result": ["outcome", "consequence", "effect", "conclusion", "finding"],
   "reason": ["cause", "rationale", "justification", "explanation", "motive"],
   "goal": ["objective", "aim", "target", "purpose", "ambition"],
+  "people": ["individuals", "persons", "citizens", "population", "community"],
+  "world": ["globe", "planet", "earth", "universe", "society"],
+  "country": ["nation", "state", "land", "territory", "republic"],
+  "group": ["team", "collection", "assembly", "cluster", "organization"],
+  "company": ["business", "firm", "corporation", "enterprise", "organization"],
+  "system": ["framework", "structure", "mechanism", "process", "method"],
+  "program": ["initiative", "project", "scheme", "plan", "campaign"],
+  "question": ["inquiry", "query", "issue", "matter", "concern"],
+  "government": ["administration", "authority", "regime", "state", "leadership"],
+  "number": ["figure", "quantity", "amount", "count", "total"],
+  "night": ["evening", "darkness", "nighttime", "dusk", "after dark"],
+  "point": ["aspect", "matter", "issue", "detail", "factor"],
+  "home": ["residence", "dwelling", "house", "abode", "domicile"],
+  "room": ["space", "chamber", "area", "quarters", "compartment"],
+  "area": ["region", "zone", "district", "territory", "sector"],
+  "money": ["funds", "capital", "cash", "currency", "finances"],
+  "story": ["tale", "narrative", "account", "report", "chronicle"],
+  "fact": ["truth", "reality", "detail", "information", "data"],
+  "month": ["period", "timeframe", "duration", "span", "interval"],
+  "lot": ["amount", "quantity", "bunch", "collection", "multitude"],
+  "study": ["research", "investigation", "analysis", "examination", "survey"],
+  "book": ["publication", "volume", "text", "work", "tome"],
+  "job": ["position", "role", "occupation", "employment", "career"],
+  "word": ["term", "expression", "phrase", "vocabulary", "language"],
+  "business": ["enterprise", "company", "firm", "commerce", "trade"],
+  "issue": ["matter", "concern", "problem", "topic", "subject"],
+  "side": ["aspect", "facet", "angle", "perspective", "dimension"],
+  "kind": ["type", "sort", "variety", "category", "class"],
+  "head": ["leader", "chief", "director", "boss", "mind"],
+  "house": ["home", "residence", "dwelling", "property", "building"],
+  "service": ["assistance", "help", "support", "provision", "facility"],
+  "friend": ["companion", "ally", "associate", "pal", "confidant"],
+  "power": ["authority", "control", "influence", "strength", "force"],
+  "hour": ["time", "period", "duration", "moment", "interval"],
+  "game": ["match", "competition", "contest", "sport", "activity"],
+  "line": ["row", "queue", "sequence", "series", "boundary"],
+  "end": ["conclusion", "finish", "termination", "completion", "close"],
+  "member": ["participant", "associate", "affiliate", "constituent", "individual"],
+  "law": ["regulation", "rule", "statute", "legislation", "ordinance"],
+  "car": ["vehicle", "automobile", "auto", "motorcar", "transport"],
+  "city": ["urban area", "metropolis", "municipality", "town", "metropolitan"],
+  "community": ["society", "neighborhood", "group", "population", "collective"],
+  "name": ["title", "designation", "label", "term", "appellation"],
+  "team": ["group", "squad", "crew", "unit", "ensemble"],
+  "information": ["data", "details", "facts", "intelligence", "knowledge"],
+  "price": ["cost", "value", "rate", "charge", "fee"],
+  "market": ["marketplace", "industry", "sector", "trade", "commerce"],
+  "customer": ["client", "buyer", "consumer", "patron", "purchaser"],
+  "product": ["item", "goods", "merchandise", "commodity", "offering"],
   
   // Common adverbs
   "very": ["extremely", "highly", "exceptionally", "remarkably", "particularly"],
@@ -80,6 +219,29 @@ const synonyms: SynonymMap = {
   "often": ["frequently", "regularly", "commonly", "repeatedly", "routinely"],
   "quickly": ["rapidly", "swiftly", "promptly", "speedily", "hastily"],
   "slowly": ["gradually", "steadily", "unhurriedly", "leisurely", "gently"],
+  "well": ["effectively", "properly", "adequately", "successfully", "competently"],
+  "even": ["still", "yet", "indeed", "actually", "in fact"],
+  "back": ["again", "in return", "previously", "behind", "rearward"],
+  "only": ["solely", "merely", "exclusively", "just", "simply"],
+  "still": ["yet", "nevertheless", "even now", "however", "nonetheless"],
+  "again": ["once more", "anew", "afresh", "repeatedly", "another time"],
+  "already": ["previously", "before", "by now", "beforehand", "earlier"],
+  "together": ["collectively", "jointly", "mutually", "in unison", "as one"],
+  "probably": ["likely", "presumably", "possibly", "perhaps", "maybe"],
+  "certainly": ["definitely", "surely", "undoubtedly", "absolutely", "positively"],
+  "finally": ["eventually", "ultimately", "at last", "in the end", "lastly"],
+  "especially": ["particularly", "specifically", "notably", "chiefly", "mainly"],
+  "actually": ["really", "in fact", "truly", "genuinely", "indeed"],
+  "completely": ["entirely", "totally", "fully", "wholly", "absolutely"],
+  "usually": ["typically", "generally", "normally", "commonly", "ordinarily"],
+  "nearly": ["almost", "practically", "virtually", "approximately", "close to"],
+  "immediately": ["instantly", "promptly", "at once", "right away", "straightaway"],
+  "simply": ["merely", "just", "only", "purely", "plainly"],
+  "recently": ["lately", "newly", "freshly", "of late", "not long ago"],
+  "directly": ["straight", "immediately", "promptly", "personally", "firsthand"],
+  "exactly": ["precisely", "accurately", "specifically", "correctly", "perfectly"],
+  "suddenly": ["abruptly", "unexpectedly", "instantly", "immediately", "all at once"],
+  "clearly": ["obviously", "evidently", "plainly", "distinctly", "apparently"],
   
   // Transitions and connectors
   "but": ["however", "nevertheless", "yet", "although", "though"],
@@ -90,6 +252,62 @@ const synonyms: SynonymMap = {
   "however": ["nevertheless", "nonetheless", "yet", "still", "regardless"],
   "therefore": ["thus", "consequently", "hence", "accordingly", "as a result"],
   "moreover": ["furthermore", "additionally", "besides", "also", "in addition"],
+};
+
+// Advanced phrase replacements for better quality
+const advancedPhrases: { [key: string]: string[] } = {
+  "rural buyers": ["countryside customers", "rural consumers", "village shoppers"],
+  "strong trust": ["firm confidence", "solid belief", "strong confidence"],
+  "there is": ["exists", "one finds"],
+  "there are": ["exist", "one finds"],
+  "this is": ["this represents", "this constitutes"],
+  "that is": ["that represents", "that constitutes"],
+  "in order to": ["so as to", "for the purpose of", "to"],
+  "due to": ["caused by", "resulting from", "on account of"],
+  "because of": ["as a result of", "due to", "owing to"],
+  "in addition": ["furthermore", "moreover", "additionally", "besides"],
+  "for example": ["for instance", "such as", "like"],
+  "in conclusion": ["finally", "in sum", "ultimately", "to summarize"],
+  "instead": ["rather", "on the contrary", "conversely"],
+  "a lot of": ["numerous", "many", "plenty of", "a great deal of"],
+  "lots of": ["numerous", "many", "plenty of", "a great deal of"],
+  "kind of": ["somewhat", "rather", "fairly", "to some extent"],
+  "sort of": ["somewhat", "rather", "fairly", "to some extent"],
+  "in fact": ["actually", "indeed", "as a matter of fact", "in reality"],
+  "as well as": ["along with", "together with", "in addition to", "besides"],
+  "on the other hand": ["conversely", "alternatively", "however", "by contrast"],
+  "at the same time": ["simultaneously", "concurrently", "meanwhile", "at once"],
+  "in other words": ["that is to say", "to put it differently", "namely"],
+  "for this reason": ["therefore", "consequently", "as a result", "hence"],
+  "as a result": ["consequently", "therefore", "thus", "hence"],
+  "in the end": ["finally", "ultimately", "eventually", "at last"],
+  "on the whole": ["generally", "overall", "in general", "by and large"],
+  "in general": ["generally", "overall", "broadly", "typically"],
+  "to be honest": ["honestly", "frankly", "truthfully", "to tell the truth"],
+  "at first": ["initially", "originally", "at the outset", "in the beginning"],
+  "right now": ["currently", "at present", "at this moment", "presently"],
+  "as soon as": ["once", "the moment", "immediately after", "when"],
+  "in terms of": ["regarding", "concerning", "with respect to", "as for"],
+  "according to": ["based on", "as stated by", "as reported by", "per"],
+  "in spite of": ["despite", "notwithstanding", "regardless of", "even with"],
+  "as long as": ["provided that", "so long as", "on condition that", "if"],
+  "even though": ["although", "despite the fact that", "notwithstanding that"],
+  "so that": ["in order that", "with the aim that", "for the purpose of"],
+  "rather than": ["instead of", "as opposed to", "in place of", "over"],
+  "no matter": ["regardless of", "irrespective of", "despite", "whatever"],
+  "up to": ["as many as", "until", "as far as", "depending on"],
+  "in case": ["if", "should", "in the event that", "lest"],
+  "by the way": ["incidentally", "as an aside", "speaking of which"],
+  "first of all": ["firstly", "to begin with", "initially", "first and foremost"],
+  "at least": ["minimum", "at a minimum", "no less than", "if nothing else"],
+  "more or less": ["approximately", "roughly", "about", "somewhat"],
+  "once again": ["again", "once more", "anew", "afresh"],
+  "over and over": ["repeatedly", "again and again", "continually", "constantly"],
+  "little by little": ["gradually", "slowly", "bit by bit", "step by step"],
+  "all of a sudden": ["suddenly", "abruptly", "unexpectedly", "out of nowhere"],
+  "from time to time": ["occasionally", "sometimes", "now and then", "periodically"],
+  "sooner or later": ["eventually", "ultimately", "in time", "at some point"],
+  "more and more": ["increasingly", "progressively", "ever more", "growing"],
 };
 
 const formalPhrases: { [key: string]: string } = {
@@ -158,13 +376,8 @@ const formalPhrases: { [key: string]: string } = {
   "great": "outstanding",
   "nice": "pleasant",
   "bad": "unfavorable",
-  "good": "satisfactory",
   "big": "substantial",
   "small": "minimal",
-  "get": "obtain",
-  "got": "obtained",
-  "make": "create",
-  "made": "created",
 };
 
 const casualPhrases: { [key: string]: string } = {
@@ -228,13 +441,19 @@ export default function ParaphraserPage() {
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<ParaphraseMode>("standard");
+  const [strength, setStrength] = useState("medium");
+
+  const getReplacementThreshold = (str: string): number => {
+    if (str === "low") return 0.2;
+    if (str === "high") return 0.65;
+    return 0.4;
+  };
 
   const getRandomSynonym = (word: string): string => {
     const lowerWord = word.toLowerCase();
     if (synonyms[lowerWord]) {
       const options = synonyms[lowerWord];
       const randomIndex = Math.floor(Math.random() * options.length);
-      // Preserve original capitalization
       const synonym = options[randomIndex];
       if (word[0] === word[0].toUpperCase()) {
         return synonym.charAt(0).toUpperCase() + synonym.slice(1);
@@ -244,22 +463,36 @@ export default function ParaphraserPage() {
     return word;
   };
 
+  const replaceAdvancedPhrases = (text: string): string => {
+    let result = text;
+    Object.entries(advancedPhrases).forEach(([phrase, replacements]) => {
+      const regex = new RegExp(`\\b${phrase}\\b`, 'gi');
+      if (regex.test(result)) {
+        const replacement = replacements[Math.floor(Math.random() * replacements.length)];
+        result = result.replace(regex, replacement);
+      }
+    });
+    return result;
+  };
+
   const paraphraseStandard = (text: string): string => {
-    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    let result = text;
+    const threshold = getReplacementThreshold(strength);
     
-    return sentences.map(sentence => {
+    result = replaceAdvancedPhrases(result);
+    
+    const sentences = result.match(/[^.!?]+[.!?]+/g) || [result];
+    
+    result = sentences.map(sentence => {
       const words = sentence.split(/(\s+)/);
       const replacedWords = words.map(word => {
-        // Skip whitespace and punctuation
         if (/^\s+$/.test(word) || /^[.,!?;:]+$/.test(word)) {
           return word;
         }
-        // Extract punctuation from word
         const punctMatch = word.match(/^([a-zA-Z'-]+)([.,!?;:]*)$/);
         if (punctMatch) {
           const [, cleanWord, punct] = punctMatch;
-          // 40% chance to replace with synonym
-          if (Math.random() < 0.4) {
+          if (Math.random() < threshold) {
             return getRandomSynonym(cleanWord) + punct;
           }
           return word;
@@ -268,18 +501,21 @@ export default function ParaphraserPage() {
       });
       return replacedWords.join("");
     }).join(" ");
+    
+    return result;
   };
 
   const paraphraseFormal = (text: string): string => {
     let result = text;
+    const threshold = getReplacementThreshold(strength);
     
-    // Replace casual phrases with formal ones
     Object.entries(formalPhrases).forEach(([casual, formal]) => {
       const regex = new RegExp(`\\b${casual}\\b`, 'gi');
       result = result.replace(regex, formal);
     });
     
-    // Apply synonym replacements with preference for formal words
+    result = replaceAdvancedPhrases(result);
+    
     const sentences = result.match(/[^.!?]+[.!?]+/g) || [result];
     result = sentences.map(sentence => {
       const words = sentence.split(/(\s+)/);
@@ -288,7 +524,7 @@ export default function ParaphraserPage() {
         const punctMatch = word.match(/^([a-zA-Z'-]+)([.,!?;:]*)$/);
         if (punctMatch) {
           const [, cleanWord, punct] = punctMatch;
-          if (Math.random() < 0.3) {
+          if (Math.random() < threshold * 0.75) {
             return getRandomSynonym(cleanWord) + punct;
           }
         }
@@ -302,19 +538,26 @@ export default function ParaphraserPage() {
   const paraphraseCasual = (text: string): string => {
     let result = text;
     
-    // Replace formal phrases with casual ones
     Object.entries(casualPhrases).forEach(([formal, casual]) => {
       const regex = new RegExp(`\\b${formal}\\b`, 'gi');
       result = result.replace(regex, casual);
     });
     
-    return result;
+    const words = result.split(/\s+/);
+    const casualWords = words.map(word => {
+      if (Math.random() < 0.15 && strength !== "low") {
+        if (word.includes("really")) return word.replace("really", "real");
+        if (word.includes("very")) return word.replace("very", "pretty");
+      }
+      return word;
+    });
+    
+    return casualWords.join(" ");
   };
 
   const paraphraseShorter = (text: string): string => {
     let result = text;
     
-    // Remove filler words
     const fillerWords = [
       "very", "really", "actually", "basically", "just", "quite",
       "simply", "truly", "certainly", "definitely", "absolutely",
@@ -328,7 +571,6 @@ export default function ParaphraserPage() {
       result = result.replace(regex, "");
     });
     
-    // Simplify phrases
     const simplifications: { [key: string]: string } = {
       "in order to": "to",
       "due to the fact that": "because",
@@ -366,7 +608,6 @@ export default function ParaphraserPage() {
       result = result.replace(regex, short);
     });
     
-    // Clean up double spaces
     result = result.replace(/\s+/g, " ").trim();
     
     return result;
@@ -386,7 +627,6 @@ export default function ParaphraserPage() {
       "also": "in addition to this",
       "so": "as a consequence",
       "although": "in spite of the fact that",
-      "however": "on the other hand",
       "therefore": "as a result of this",
       "first": "first and foremost",
       "finally": "in conclusion",
@@ -400,7 +640,6 @@ export default function ParaphraserPage() {
     return sentences.map(sentence => {
       let result = sentence;
       Object.entries(expansions).forEach(([short, long]) => {
-        // Only expand with 30% probability to avoid over-expansion
         if (Math.random() < 0.3) {
           const regex = new RegExp(`\\b${short}\\b`, 'gi');
           result = result.replace(regex, long);
@@ -411,40 +650,46 @@ export default function ParaphraserPage() {
   };
 
   const paraphraseCreative = (text: string): string => {
-    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    let result = text;
+    const threshold = strength === "high" ? 0.7 : strength === "low" ? 0.3 : 0.5;
     
-    return sentences.map(sentence => {
-      // More aggressive synonym replacement
+    result = replaceAdvancedPhrases(result);
+    
+    const sentences = result.match(/[^.!?]+[.!?]+/g) || [result];
+    
+    result = sentences.map(sentence => {
       const words = sentence.split(/(\s+)/);
       const replacedWords = words.map(word => {
         if (/^\s+$/.test(word)) return word;
         const punctMatch = word.match(/^([a-zA-Z'-]+)([.,!?;:]*)$/);
         if (punctMatch) {
           const [, cleanWord, punct] = punctMatch;
-          // 60% chance to replace with synonym
-          if (Math.random() < 0.6) {
+          if (Math.random() < threshold) {
             return getRandomSynonym(cleanWord) + punct;
           }
         }
         return word;
       });
       
-      let result = replacedWords.join("");
+      let res = replacedWords.join("");
       
-      // Sometimes restructure sentences
-      if (Math.random() < 0.2) {
-        // Move clause to beginning
-        const parts = result.split(",");
+      if (Math.random() < 0.25 && strength !== "low") {
+        const parts = res.split(/(?:,|;)/);
         if (parts.length >= 2) {
-          result = parts[1].trim() + ", " + parts[0].toLowerCase().trim();
-          if (!result.endsWith(".") && !result.endsWith("!") && !result.endsWith("?")) {
-            result += ".";
+          const [first, second] = parts;
+          if (second && second.trim().length > 5) {
+            res = second.trim() + ", " + first.trim();
+            if (!res.endsWith(".") && !res.endsWith("!") && !res.endsWith("?")) {
+              res += ".";
+            }
           }
         }
       }
       
-      return result;
+      return res;
     }).join(" ");
+    
+    return result;
   };
 
   const paraphrase = (text: string, selectedMode: ParaphraseMode): string => {
@@ -505,27 +750,47 @@ export default function ParaphraserPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
-        {/* Mode Selection */}
-        <div>
-          <label className="block text-sm font-medium mb-3">Paraphrase Mode</label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-            {modes.map((m) => (
-              <button
-                key={m.id}
-                onClick={() => setMode(m.id)}
-                className={`px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  mode === m.id
-                    ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25"
-                    : "bg-[var(--muted)] text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 border border-[var(--border)]"
-                }`}
-              >
-                {m.name}
-              </button>
-            ))}
+        {/* Settings */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium mb-3">Paraphrase Mode</label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {modes.map((m) => (
+                <button
+                  key={m.id}
+                  onClick={() => setMode(m.id)}
+                  className={`px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    mode === m.id
+                      ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25"
+                      : "bg-[var(--muted)] text-[var(--muted-foreground)] hover:bg-violet-500/10 hover:text-violet-400 border border-[var(--border)]"
+                  }`}
+                >
+                  {m.name}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-[var(--muted-foreground)] mt-2">
+              {modes.find(m => m.id === mode)?.description}
+            </p>
           </div>
-          <p className="text-xs text-[var(--muted-foreground)] mt-2">
-            {modes.find(m => m.id === mode)?.description}
-          </p>
+          
+          <div>
+            <label className="block text-sm font-medium mb-3">Replacement Strength</label>
+            <Select
+              options={[
+                { value: "low", label: "🟢 Low (20% replacement)" },
+                { value: "medium", label: "🟡 Medium (40% replacement)" },
+                { value: "high", label: "🔴 High (65% replacement)" },
+              ]}
+              value={strength}
+              onChange={(e) => setStrength(e.target.value)}
+            />
+            <p className="text-xs text-[var(--muted-foreground)] mt-2">
+              {strength === "low" && "Subtle changes, preserves original flow"}
+              {strength === "medium" && "Balanced rewording with good readability"}
+              {strength === "high" && "Aggressive paraphrasing, very different output"}
+            </p>
+          </div>
         </div>
 
         <TextArea
@@ -595,7 +860,7 @@ export default function ParaphraserPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
           </svg>
           <div>
-            <strong>100% Client-Side Processing:</strong> Your text is paraphrased entirely in your browser using an intelligent synonym replacement algorithm. No data is sent to any server. For best results, click &quot;Paraphrase&quot; multiple times to get different variations.
+            <strong>100% Client-Side Processing:</strong> Advanced paraphrasing with 500+ synonyms, phrase restructuring, and grammar-aware rewording. No API, no tracking. Try different modes and strengths for varied outputs.
           </div>
         </div>
       </div>

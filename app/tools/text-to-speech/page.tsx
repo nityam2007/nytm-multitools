@@ -207,6 +207,17 @@ export default function TextToSpeechPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="max-w-2xl mx-auto space-y-6">
         
+        {/* Mobile Experimental Warning */}
+        <div className="block md:hidden p-3 bg-red-500/15 border border-red-500/30 rounded-lg">
+          <div className="flex items-start gap-2">
+            <div className="text-red-500 text-lg flex-shrink-0 mt-0.5">⚠️</div>
+            <div>
+              <div className="font-semibold text-sm text-red-500">Experimental on Mobile</div>
+              <p className="text-xs text-red-500/80 mt-0.5">Works best on desktop. Mobile support is limited and may be slow. Use desktop for best results.</p>
+            </div>
+          </div>
+        </div>
+        
         {/* Step 1: Load Model (only show if not ready) */}
         {status !== "ready" && status !== "generating" && (
           <div className="text-center py-12">

@@ -853,6 +853,16 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["jpg", "jpeg", "pdf", "convert", "image"],
     isNew: true,
   },
+  {
+    slug: "heic-to-jpg",
+    name: "HEIC to JPG",
+    description: "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    category: "converter",
+    icon: "photo",
+    inputType: "file",
+    keywords: ["heic", "heif", "jpg", "jpeg", "apple", "iphone", "convert"],
+    isNew: true,
+  },
   
   // Image Format Converters
   {

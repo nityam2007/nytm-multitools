@@ -19,6 +19,7 @@ const changelog: ChangelogEntry[] = [
     date: "Dec 6, 2025",
     version: "1.7.1",
     changes: [
+      { type: "new", text: "HEIC to JPG Converter - Convert Apple HEIC/HEIF images to JPG with batch support" },
       { type: "improved", text: "Magic Background Remover - Upgraded to AI-powered removal using @imgly/background-removal" },
       { type: "new", text: "40MB AI model downloads once, then works 100% offline forever" },
       { type: "improved", text: "Handles complex backgrounds, hair, and fine details automatically" },

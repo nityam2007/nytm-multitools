@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import * as React from "react";
 import { ToolConfig } from "@/lib/tools-config";
 import { ArrowUpRightIcon, getToolIcon } from "@/assets/icons";
 import { EmbedButton } from "@/components/EmbedButton";
@@ -15,15 +16,33 @@ interface ToolLayoutProps {
 }
 
 export function ToolLayout({ tool, children, similarTools = [], embedMode = false }: ToolLayoutProps) {
-  // Scroll to top on mount
-  useEffect(() => {
-    if (!embedMode) {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
+  const [isEmbedMode, setIsEmbedMode] = React.useState(embedMode);
+
+  // Auto-detect embed mode from body class
+  React.useEffect(() => {
+    const checkEmbedMode = () => {
+      const hasEmbedClass = document.body.classList.contains('embed-mode');
+      setIsEmbedMode(embedMode || hasEmbedClass);
+    };
+    
+    checkEmbedMode();
+    
+    // Watch for class changes
+    const observer = new MutationObserver(checkEmbedMode);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    
+    return () => observer.disconnect();
   }, [embedMode]);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    if (!isEmbedMode) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [isEmbedMode]);
+
   // In embed mode, just render the tool content without extra UI
-  if (embedMode) {
+  if (isEmbedMode) {
     return (
       <div className="max-w-full">
         {children}

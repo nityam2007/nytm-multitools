@@ -1,8 +1,7 @@
 // Dynamic Blog Post Route | TypeScript
 import { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { getBlogEntryBySlug, getAllBlogSlugs } from '@/lib/blog-info';
-import { getToolBySlug } from '@/lib/tools-config';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -14,7 +13,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-// Generate metadata for SEO
+// Generate metadata for SEO (Google Search Console)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const entry = getBlogEntryBySlug(slug);
@@ -60,12 +59,20 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const tool = getToolBySlug(entry.toolSlug);
-  
-  if (!tool) {
-    notFound();
-  }
-
-  // Redirect to the actual tool page
-  redirect(`/tools/${entry.toolSlug}`);
+  // Note: 301 redirect handled in next.config.ts for SEO
+  // This page is only rendered if redirect config fails
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">{entry.title}</h1>
+        <p className="text-gray-600 mb-4">Redirecting to tool page...</p>
+        <a 
+          href={`/tools/${entry.toolSlug}`}
+          className="text-blue-600 hover:underline"
+        >
+          Click here if not redirected automatically
+        </a>
+      </div>
+    </div>
+  );
 }

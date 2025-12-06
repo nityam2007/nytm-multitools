@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { blogEntries } from "./lib/blog-info";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
@@ -6,6 +7,15 @@ const nextConfig: NextConfig = {
   // Performance optimizations for high concurrency
   compress: true,
   poweredByHeader: false,
+  
+  // SEO: 301 permanent redirects for blog URLs to tool pages
+  async redirects() {
+    return blogEntries.map((entry) => ({
+      source: `/blog/${entry.blogSlug}`,
+      destination: `/tools/${entry.toolSlug}`,
+      permanent: true, // 301 status code for SEO
+    }));
+  },
   
   // Enable HTTP/2 streaming and improved caching
   async headers() {

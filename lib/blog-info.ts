@@ -1,5 +1,5 @@
 // Auto-generated Blog Info | TypeScript
-// Generated on: 2025-12-06T05:39:32.450Z
+// Generated on: 2025-12-06T07:04:09.093Z
 // DO NOT EDIT MANUALLY - Run: node scripts/generate-blog-titles.js
 
 export interface BlogEntry {
@@ -11601,6 +11601,132 @@ export const blogEntries: BlogEntry[] = [
     "toolSlug": "jpg-to-pdf",
     "title": "Jpg with JPG to PDF Free",
     "description": "Convert JPG/JPEG images to PDF documents. Client-side processing.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-heic-to-jpg-online-no-sign-up-required",
+    "toolSlug": "heic-to-jpg",
+    "title": "Free HEIC to JPG Online - No Sign Up Required",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-to-jpg-100-free-no-registration",
+    "toolSlug": "heic-to-jpg",
+    "title": "HEIC to JPG - 100% Free, No Registration",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "best-free-heic-to-jpg-tool-online",
+    "toolSlug": "heic-to-jpg",
+    "title": "Best Free HEIC to JPG Tool Online",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-to-jpg-instantly-free-fast",
+    "toolSlug": "heic-to-jpg",
+    "title": "HEIC to JPG Instantly - Free & Fast",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "online-heic-to-jpg-no-download-needed",
+    "toolSlug": "heic-to-jpg",
+    "title": "Online HEIC to JPG - No Download Needed",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-heic-to-jpg-without-watermark",
+    "toolSlug": "heic-to-jpg",
+    "title": "Free HEIC to JPG Without Watermark",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-to-jpg-in-seconds-completely-free",
+    "toolSlug": "heic-to-jpg",
+    "title": "HEIC to JPG in Seconds - Completely Free",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "quick-heic-to-jpg-online-tool",
+    "toolSlug": "heic-to-jpg",
+    "title": "Quick HEIC to JPG Online Tool",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-to-jpg-free-browser-based-tool",
+    "toolSlug": "heic-to-jpg",
+    "title": "HEIC to JPG - Free Browser-Based Tool",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "convert-files-free-with-heic-to-jpg",
+    "toolSlug": "heic-to-jpg",
+    "title": "Convert Files Free with HEIC to JPG",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "instant-heic-to-jpg-no-email-required",
+    "toolSlug": "heic-to-jpg",
+    "title": "Instant HEIC to JPG - No Email Required",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-to-jpg-tool-fast-secure",
+    "toolSlug": "heic-to-jpg",
+    "title": "HEIC to JPG Tool - Fast & Secure",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-online-heic-to-jpg-works-on-any-device",
+    "toolSlug": "heic-to-jpg",
+    "title": "Free Online HEIC to JPG - Works on Any Device",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-to-jpg-without-registration",
+    "toolSlug": "heic-to-jpg",
+    "title": "HEIC to JPG Without Registration",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "best-heic-to-jpg-tool-2025",
+    "toolSlug": "heic-to-jpg",
+    "title": "Best HEIC to JPG Tool 2025",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-heic-to-jpg-heic-made-easy",
+    "toolSlug": "heic-to-jpg",
+    "title": "Free HEIC to JPG - heic Made Easy",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-to-jpg-online-best-heic-tool",
+    "toolSlug": "heic-to-jpg",
+    "title": "HEIC to JPG Online - Best heic Tool",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "heic-with-heic-to-jpg-free",
+    "toolSlug": "heic-to-jpg",
+    "title": "Heic with HEIC to JPG Free",
+    "description": "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",
     "category": "converter"
   },
   {
@@ -23217,6 +23343,24 @@ export const blogSlugToTool: Record<string, string> = {
   "free-jpg-to-pdf-jpg-made-easy": "jpg-to-pdf",
   "jpg-to-pdf-online-best-jpg-tool": "jpg-to-pdf",
   "jpg-with-jpg-to-pdf-free": "jpg-to-pdf",
+  "free-heic-to-jpg-online-no-sign-up-required": "heic-to-jpg",
+  "heic-to-jpg-100-free-no-registration": "heic-to-jpg",
+  "best-free-heic-to-jpg-tool-online": "heic-to-jpg",
+  "heic-to-jpg-instantly-free-fast": "heic-to-jpg",
+  "online-heic-to-jpg-no-download-needed": "heic-to-jpg",
+  "free-heic-to-jpg-without-watermark": "heic-to-jpg",
+  "heic-to-jpg-in-seconds-completely-free": "heic-to-jpg",
+  "quick-heic-to-jpg-online-tool": "heic-to-jpg",
+  "heic-to-jpg-free-browser-based-tool": "heic-to-jpg",
+  "convert-files-free-with-heic-to-jpg": "heic-to-jpg",
+  "instant-heic-to-jpg-no-email-required": "heic-to-jpg",
+  "heic-to-jpg-tool-fast-secure": "heic-to-jpg",
+  "free-online-heic-to-jpg-works-on-any-device": "heic-to-jpg",
+  "heic-to-jpg-without-registration": "heic-to-jpg",
+  "best-heic-to-jpg-tool-2025": "heic-to-jpg",
+  "free-heic-to-jpg-heic-made-easy": "heic-to-jpg",
+  "heic-to-jpg-online-best-heic-tool": "heic-to-jpg",
+  "heic-with-heic-to-jpg-free": "heic-to-jpg",
   "free-png-to-webp-online-no-sign-up-required": "png-to-webp",
   "png-to-webp-100-free-no-registration": "png-to-webp",
   "best-free-png-to-webp-tool-online": "png-to-webp",
@@ -24662,4 +24806,4 @@ export function getAllBlogSlugs(): string[] {
 }
 
 // Total count
-export const totalBlogEntries = 3078;
+export const totalBlogEntries = 3096;

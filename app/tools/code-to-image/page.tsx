@@ -21,7 +21,7 @@ const languages = ["javascript", "typescript", "python", "html", "css", "json", 
 
 const paddings = [16, 32, 48, 64, 96];
 
-export default function CodeToImagePage() {
+export default function CodeToImagePage({ embedMode = false }: { embedMode?: boolean }) {
   const [code, setCode] = useState(`function greet(name) {
   // Say hello
   const message = "Hello, " + name + "!";
@@ -129,7 +129,7 @@ export default function CodeToImagePage() {
   }, [code, theme, padding, showLineNumbers, showWindowControls, fileName, fontSize, borderRadius, language]);
 
   return (
-    <ToolLayout tool={tool} similarTools={similarTools}>
+    <ToolLayout tool={tool} similarTools={similarTools} embedMode={embedMode}>
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Editor */}
         <div className="space-y-4">

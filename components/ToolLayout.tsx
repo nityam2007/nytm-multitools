@@ -4,18 +4,31 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { ToolConfig } from "@/lib/tools-config";
 import { ArrowUpRightIcon, getToolIcon } from "@/assets/icons";
+import { EmbedButton } from "@/components/EmbedButton";
 
 interface ToolLayoutProps {
   tool: ToolConfig;
   children: React.ReactNode;
   similarTools?: ToolConfig[];
+  embedMode?: boolean;
 }
 
-export function ToolLayout({ tool, children, similarTools = [] }: ToolLayoutProps) {
+export function ToolLayout({ tool, children, similarTools = [], embedMode = false }: ToolLayoutProps) {
   // Scroll to top on mount
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+    if (!embedMode) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [embedMode]);
+
+  // In embed mode, just render the tool content without extra UI
+  if (embedMode) {
+    return (
+      <div className="max-w-full">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -65,6 +78,7 @@ export function ToolLayout({ tool, children, similarTools = [] }: ToolLayoutProp
             <span className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-white/60 dark:bg-black/30 backdrop-blur-sm border border-violet-500/20 text-[var(--muted-foreground)] font-mono">
               Free • No signup
             </span>
+            <EmbedButton slug={tool.slug} toolName={tool.name} />
           </div>
         </div>
       </div>

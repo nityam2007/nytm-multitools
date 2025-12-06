@@ -1254,3 +1254,16 @@ p {
   }
 }
 
+/* Embed Mode Styles */
+body.embed-mode header,
+body.embed-mode aside,
+body.embed-mode footer,
+body.embed-mode nav {
+  display: none !important;
+}
+
+body.embed-mode main {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}

@@ -19,6 +19,9 @@ const changelog: ChangelogEntry[] = [
     date: "Dec 6, 2025",
     version: "1.7.1",
     changes: [
+      { type: "new", text: "Embed System - Embed any tool on your website with /embed/tools/{slug}" },
+      { type: "new", text: "Embed Button - One-click embed code generation for all tools" },
+      { type: "new", text: "Embed Preview - Live preview before embedding on your site" },
       { type: "new", text: "HEIC to JPG Converter - Convert Apple HEIC/HEIF images to JPG with batch support" },
       { type: "improved", text: "Magic Background Remover - Upgraded to AI-powered removal using @imgly/background-removal" },
       { type: "new", text: "40MB AI model downloads once, then works 100% offline forever" },

@@ -120,6 +120,10 @@ export function Changelog() {
 
   useEffect(() => {
     // Check if there are new updates since last visit
+    // Skip popup in embed mode
+    const isEmbedMode = document.body.classList.contains('embed-mode');
+    if (isEmbedMode) return;
+    
     const lastSeen = localStorage.getItem(STORAGE_KEY);
     const latestDate = changelog[0]?.date;
     const popupDismissed = localStorage.getItem(POPUP_DISMISSED_KEY);

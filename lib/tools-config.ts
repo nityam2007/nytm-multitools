@@ -514,12 +514,12 @@ export const toolsConfig: ToolConfig[] = [
   },
   {
     slug: "remove-bg",
-    name: "Remove Background",
-    description: "Remove image backgrounds automatically. Client-side processing, no uploads.",
+    name: "Magic Background Remover",
+    description: "AI-powered background removal. First use downloads ~40MB model, then works offline forever.",
     category: "image",
     icon: "scissors",
     inputType: "file",
-    keywords: ["remove", "background", "transparent", "cutout", "erase"],
+    keywords: ["remove", "background", "transparent", "cutout", "erase", "ai", "magic"],
     isNew: true,
   },
   {

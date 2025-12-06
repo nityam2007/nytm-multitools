@@ -16,6 +16,16 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Dec 6, 2025",
+    version: "1.7.1",
+    changes: [
+      { type: "improved", text: "Magic Background Remover - Upgraded to AI-powered removal using @imgly/background-removal" },
+      { type: "new", text: "40MB AI model downloads once, then works 100% offline forever" },
+      { type: "improved", text: "Handles complex backgrounds, hair, and fine details automatically" },
+      { type: "new", text: "Real-time progress tracking for model download and processing" },
+    ],
+  },
+  {
     date: "Dec 5, 2025",
     version: "1.7.0",
     changes: [

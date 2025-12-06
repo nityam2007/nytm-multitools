@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ToolConfig } from "@/lib/tools-config";
 import { ArrowUpRightIcon, getToolIcon } from "@/assets/icons";
 import { EmbedButton } from "@/components/EmbedButton";
+import { ShareButton } from "@/components/ShareButton";
 
 interface ToolLayoutProps {
   tool: ToolConfig;
@@ -78,6 +79,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
             <span className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-white/60 dark:bg-black/30 backdrop-blur-sm border border-violet-500/20 text-[var(--muted-foreground)] font-mono">
               Free • No signup
             </span>
+            <ShareButton slug={tool.slug} toolName={tool.name} />
             <EmbedButton slug={tool.slug} toolName={tool.name} />
           </div>
         </div>

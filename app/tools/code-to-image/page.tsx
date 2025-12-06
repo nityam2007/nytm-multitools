@@ -130,57 +130,67 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
 
   return (
     <ToolLayout tool={tool} similarTools={similarTools} embedMode={embedMode}>
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Editor */}
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">Code</label>
-            <textarea
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              className="w-full h-64 p-4 rounded-xl bg-[var(--muted)] border border-[var(--border)] font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
-              placeholder="Paste your code here..."
-              spellCheck={false}
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
+      {/* Main Content Card */}
+      <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Editor Section */}
+          <div className="space-y-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Code Editor</h3>
+            
+            {/* Code Input */}
             <div>
-              <label className="block text-sm font-medium mb-2">Theme</label>
-              <select
-                value={theme}
-                onChange={(e) => setTheme(e.target.value as keyof typeof themes)}
-                className="w-full p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
-              >
-                {Object.keys(themes).map(t => (
-                  <option key={t} value={t}>{t}</option>
-                ))}
-              </select>
+              <label className="block text-xs sm:text-sm font-medium mb-2">Code</label>
+              <textarea
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                className="w-full h-48 sm:h-64 p-3 sm:p-4 rounded-xl bg-[var(--muted)] border border-[var(--border)] font-mono text-xs sm:text-sm resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                placeholder="Paste your code here..."
+                spellCheck={false}
+              />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">Language</label>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="w-full p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
-              >
-                {languages.map(l => (
-                  <option key={l} value={l}>{l}</option>
-                ))}
-              </select>
-            </div>
-          </div>
+            {/* Theme & Language */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Theme</label>
+                <select
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value as keyof typeof themes)}
+                  className="w-full p-2.5 sm:p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                >
+                  {Object.keys(themes).map(t => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+              </div>
 
-          <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Language</label>
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  className="w-full p-2.5 sm:p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                >
+                  {languages.map(l => (
+                    <option key={l} value={l}>{l}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Padding Options */}
             <div>
-              <label className="block text-sm font-medium mb-2">Padding: {padding}px</label>
-              <div className="flex gap-2">
+              <label className="block text-xs sm:text-sm font-medium mb-2">Padding: {padding}px</label>
+              <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
                 {paddings.map(p => (
                   <button
                     key={p}
                     onClick={() => setPadding(p)}
-                    className={`flex-1 py-2 rounded-lg text-sm ${padding === p ? "bg-cyan-500 text-white" : "bg-[var(--muted)]"}`}
+                    className={`py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
+                      padding === p 
+                        ? "bg-cyan-500 text-white" 
+                        : "bg-[var(--muted)] hover:bg-[var(--muted)]/80"
+                    }`}
                   >
                     {p}
                   </button>
@@ -188,86 +198,89 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">Font Size: {fontSize}px</label>
-              <input
-                type="range"
-                min="10"
-                max="20"
-                value={fontSize}
-                onChange={(e) => setFontSize(parseInt(e.target.value))}
-                className="w-full h-2 bg-[var(--border)] rounded-lg appearance-none cursor-pointer accent-cyan-500"
-              />
-            </div>
-          </div>
+            {/* Font Size & Border Radius */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Font Size: {fontSize}px</label>
+                <input
+                  type="range"
+                  min="10"
+                  max="20"
+                  value={fontSize}
+                  onChange={(e) => setFontSize(parseInt(e.target.value))}
+                  className="w-full h-2 bg-[var(--border)] rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                />
+              </div>
 
-          <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs sm:text-sm font-medium mb-2">Border Radius: {borderRadius}px</label>
+                <input
+                  type="range"
+                  min="0"
+                  max="24"
+                  value={borderRadius}
+                  onChange={(e) => setBorderRadius(parseInt(e.target.value))}
+                  className="w-full h-2 bg-[var(--border)] rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                />
+              </div>
+            </div>
+
+            {/* File Name */}
             <div>
-              <label className="block text-sm font-medium mb-2">File Name</label>
+              <label className="block text-xs sm:text-sm font-medium mb-2">File Name</label>
               <input
                 type="text"
                 value={fileName}
                 onChange={(e) => setFileName(e.target.value)}
-                className="w-full p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                className="w-full p-2.5 sm:p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
                 placeholder="example.js"
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">Border Radius: {borderRadius}px</label>
-              <input
-                type="range"
-                min="0"
-                max="24"
-                value={borderRadius}
-                onChange={(e) => setBorderRadius(parseInt(e.target.value))}
-                className="w-full h-2 bg-[var(--border)] rounded-lg appearance-none cursor-pointer accent-cyan-500"
-              />
+            {/* Options */}
+            <div className="flex flex-wrap gap-3 sm:gap-4">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showLineNumbers}
+                  onChange={(e) => setShowLineNumbers(e.target.checked)}
+                  className="w-4 h-4 rounded accent-cyan-500"
+                />
+                <span className="text-xs sm:text-sm">Line Numbers</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showWindowControls}
+                  onChange={(e) => setShowWindowControls(e.target.checked)}
+                  className="w-4 h-4 rounded accent-cyan-500"
+                />
+                <span className="text-xs sm:text-sm">Window Controls</span>
+              </label>
             </div>
           </div>
 
-          <div className="flex gap-4">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={showLineNumbers}
-                onChange={(e) => setShowLineNumbers(e.target.checked)}
-                className="w-4 h-4 rounded accent-cyan-500"
-              />
-              <span className="text-sm">Line Numbers</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={showWindowControls}
-                onChange={(e) => setShowWindowControls(e.target.checked)}
-                className="w-4 h-4 rounded accent-cyan-500"
-              />
-              <span className="text-sm">Window Controls</span>
-            </label>
-          </div>
-        </div>
-
-        {/* Preview */}
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">Preview</label>
+          {/* Preview Section */}
+          <div className="space-y-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Preview</h3>
+            
             <div 
-              className="rounded-xl overflow-hidden"
+              className="rounded-xl overflow-auto border border-[var(--border)]"
               style={{ 
                 backgroundColor: themes[theme].bg,
-                padding: `${padding}px`,
-                borderRadius: `${borderRadius}px`
+                padding: `${Math.min(padding, 32)}px`,
+                borderRadius: `${borderRadius}px`,
+                minHeight: '300px'
               }}
             >
               {showWindowControls && (
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                  <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
                   {fileName && (
                     <span 
-                      className="flex-1 text-center text-xs"
+                      className="flex-1 text-center text-[10px] sm:text-xs font-mono"
                       style={{ color: themes[theme].comment }}
                     >
                       {fileName}
@@ -278,7 +291,7 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
               <pre
                 className="font-mono overflow-x-auto"
                 style={{ 
-                  fontSize: `${fontSize}px`,
+                  fontSize: `${Math.max(fontSize - 2, 10)}px`,
                   lineHeight: 1.6,
                   color: themes[theme].text 
                 }}
@@ -287,28 +300,28 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
                   <div key={i} className="flex">
                     {showLineNumbers && (
                       <span 
-                        className="select-none w-8 text-right pr-4"
+                        className="select-none min-w-[1.5rem] sm:min-w-[2rem] text-right pr-2 sm:pr-3 flex-shrink-0 font-mono"
                         style={{ color: themes[theme].comment }}
                       >
                         {i + 1}
                       </span>
                     )}
-                    <span>{line || " "}</span>
+                    <span className="whitespace-pre-wrap break-words sm:break-normal">{line || " "}</span>
                   </div>
                 ))}
               </pre>
             </div>
-          </div>
 
-          <button
-            onClick={generateImage}
-            className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all flex items-center justify-center gap-2"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Download Image
-          </button>
+            <button
+              onClick={generateImage}
+              className="w-full py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download Image
+            </button>
+          </div>
         </div>
       </div>
 

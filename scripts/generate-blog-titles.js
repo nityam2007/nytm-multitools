@@ -12,16 +12,6 @@ const titleTemplates = {
     "Best Free {name} Tool Online",
     "{name} Instantly - Free & Fast",
     "Online {name} - No Download Needed",
-    "Free {name} Without Watermark",
-    "{name} in Seconds - Completely Free",
-    "Quick {name} Online Tool",
-    "{name} - Free Browser-Based Tool",
-    "Convert Files Free with {name}",
-    "Instant {name} - No Email Required",
-    "{name} Tool - Fast & Secure",
-    "Free Online {name} - Works on Any Device",
-    "{name} Without Registration",
-    "Best {name} Tool 2025",
   ],
   image: [
     "Free {name} Online - No Sign Up",
@@ -29,16 +19,6 @@ const titleTemplates = {
     "Best Free {name} Online",
     "{name} Instantly - No Registration",
     "Online {name} - No Download Required",
-    "Free {name} - No Watermark",
-    "{name} in Seconds - Free",
-    "Quick {name} Tool Online",
-    "{name} - Browser-Based & Free",
-    "Free {name} Without Email",
-    "{name} - Fast & Secure",
-    "Online {name} for Free",
-    "{name} Without Account",
-    "Easy {name} Tool - Free",
-    "Best {name} 2025",
   ],
   text: [
     "Free {name} Online Tool",
@@ -46,16 +26,6 @@ const titleTemplates = {
     "Best {name} Tool Free",
     "{name} Instantly Online",
     "Online {name} - 100% Free",
-    "Free {name} - No Registration",
-    "{name} Tool - Fast & Easy",
-    "Quick {name} Online",
-    "{name} - Free Browser Tool",
-    "Free Online {name}",
-    "{name} Without Login",
-    "{name} - Secure & Private",
-    "Easy {name} Tool Online",
-    "{name} Free - No Download",
-    "Best Free {name} 2025",
   ],
   dev: [
     "Free {name} for Developers",
@@ -63,16 +33,6 @@ const titleTemplates = {
     "Best {name} Tool Free",
     "{name} - Developer Tool Online",
     "Online {name} - Free & Fast",
-    "Free {name} - No Sign Up",
-    "{name} Tool for Programmers",
-    "Quick {name} Online",
-    "{name} - Free Dev Tool",
-    "Free Online {name} Tool",
-    "{name} Without Registration",
-    "{name} - Browser-Based",
-    "Easy {name} for Coding",
-    "Best {name} Online 2025",
-    "{name} - Free for Everyone",
   ],
   generator: [
     "Free {name} Online",
@@ -80,16 +40,6 @@ const titleTemplates = {
     "Best Free {name} Tool",
     "{name} Instantly - Free",
     "Online {name} Generator Free",
-    "Free {name} - No Sign Up",
-    "{name} Tool - Quick & Easy",
-    "Generate with {name} Free",
-    "{name} - Free Online Tool",
-    "Free {name} Without Email",
-    "{name} - Fast Generator",
-    "Online {name} for Free",
-    "{name} Without Account",
-    "Easy {name} Generator",
-    "Best {name} Generator 2025",
   ],
   security: [
     "Free {name} Online - Secure",
@@ -97,54 +47,24 @@ const titleTemplates = {
     "Best Free {name} Tool",
     "{name} - No Data Stored",
     "Online {name} - Client-Side Only",
-    "Free {name} - No Registration",
-    "{name} Tool - Secure & Fast",
-    "Private {name} Online",
-    "{name} - Free & Encrypted",
-    "Free Secure {name}",
-    "{name} Without Sign Up",
-    "{name} - Browser-Based Security",
-    "Safe {name} Tool Online",
-    "Best Secure {name} 2025",
-    "{name} - Your Data Stays Private",
   ],
   network: [
     "Free {name} Online Tool",
     "{name} - No Sign Up Required",
-    "Best Free {name}",
-    "{name} - Instant Results",
-    "Online {name} - 100% Free",
-    "Free {name} Checker",
-    "{name} Tool - Fast & Easy",
-    "Quick {name} Online",
-    "{name} - Free Network Tool",
-    "Free Online {name}",
-    "{name} Without Registration",
-    "{name} - Browser-Based",
-    "Easy {name} Tool",
-    "Best {name} Tool 2025",
-    "{name} - Free for Everyone",
+    "Best {name} Tool Free",
+    "{name} Instantly Online",
+    "Online {name} - Free Access",
   ],
   misc: [
     "Free {name} Online",
     "{name} - No Registration Needed",
     "Best Free {name} Tool",
-    "{name} - Quick & Easy",
+    "{name} Instantly - Free",
     "Online {name} - 100% Free",
-    "Free {name} - No Sign Up",
-    "{name} Tool - Instant",
-    "Fast {name} Online",
-    "{name} - Free Browser Tool",
-    "Free Online {name}",
-    "{name} Without Login",
-    "{name} - Simple & Free",
-    "Easy {name} Tool Online",
-    "Best {name} 2025",
-    "{name} - Free Forever",
   ],
 };
 
-// Additional keyword-based modifiers
+// Additional keyword-based modifiers (not used anymore to reduce routes)
 const keywordModifiers = {
   convert: ["converter", "conversion", "transform"],
   image: ["photo", "picture", "image"],
@@ -214,7 +134,7 @@ function generateTitlesForTool(tool) {
   const templates = titleTemplates[tool.category] || titleTemplates.misc;
   const titles = [];
   
-  // Generate from templates
+  // Generate from templates (reduced to stay under 2048 route limit)
   templates.forEach(template => {
     const title = template.replace(/\{name\}/g, tool.name);
     titles.push({
@@ -223,21 +143,9 @@ function generateTitlesForTool(tool) {
     });
   });
   
-  // Add keyword variations
-  if (tool.keywords && tool.keywords.length > 0) {
-    const keywordTitles = [
-      `Free ${tool.name} - ${tool.keywords[0]} Made Easy`,
-      `${tool.name} Online - Best ${tool.keywords[0]} Tool`,
-      `${tool.keywords[0].charAt(0).toUpperCase() + tool.keywords[0].slice(1)} with ${tool.name} Free`,
-    ];
-    
-    keywordTitles.forEach(title => {
-      titles.push({
-        title,
-        slug: generateSlug(title),
-      });
-    });
-  }
+  // Removed keyword variations to reduce total routes
+  // Previous: ~18 titles per tool (15 + 3 keyword)
+  // Now: ~5 titles per tool (5 templates only)
   
   // Remove duplicates by slug
   const seen = new Set();

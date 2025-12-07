@@ -20,7 +20,7 @@
 
 Free online tools for everyone. No ads. No bullshit.
 
-172+ tools across text, images, converters, generators, security, coding utilities, and more. Everything runs in your browser — your data stays with you.
+173+ tools across text, images, converters, generators, security, coding utilities, and more. Everything runs in your browser — your data stays with you.
 
 > **Note:** The exact tool count is managed dynamically. See [Updating Tool Count](#updating-tool-count) below.
 

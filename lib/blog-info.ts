@@ -1,5 +1,5 @@
 // Auto-generated Blog Info | TypeScript
-// Generated on: 2025-12-06T10:51:54.345Z
+// Generated on: 2025-12-07T06:12:07.581Z
 // DO NOT EDIT MANUALLY - Run: node scripts/generate-blog-titles.js
 
 export interface BlogEntry {
@@ -4294,6 +4294,132 @@ export const blogEntries: BlogEntry[] = [
     "title": "Html with HTML Tag Stripper Free",
     "description": "Remove all HTML tags from text.",
     "category": "dev"
+  },
+  {
+    "blogSlug": "free-url-to-text-online-no-sign-up-required",
+    "toolSlug": "html-to-text",
+    "title": "Free URL to Text Online - No Sign Up Required",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "url-to-text-100-free-no-registration",
+    "toolSlug": "html-to-text",
+    "title": "URL to Text - 100% Free, No Registration",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "best-free-url-to-text-tool-online",
+    "toolSlug": "html-to-text",
+    "title": "Best Free URL to Text Tool Online",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "url-to-text-instantly-free-fast",
+    "toolSlug": "html-to-text",
+    "title": "URL to Text Instantly - Free & Fast",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "online-url-to-text-no-download-needed",
+    "toolSlug": "html-to-text",
+    "title": "Online URL to Text - No Download Needed",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-url-to-text-without-watermark",
+    "toolSlug": "html-to-text",
+    "title": "Free URL to Text Without Watermark",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "url-to-text-in-seconds-completely-free",
+    "toolSlug": "html-to-text",
+    "title": "URL to Text in Seconds - Completely Free",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "quick-url-to-text-online-tool",
+    "toolSlug": "html-to-text",
+    "title": "Quick URL to Text Online Tool",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "url-to-text-free-browser-based-tool",
+    "toolSlug": "html-to-text",
+    "title": "URL to Text - Free Browser-Based Tool",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "convert-files-free-with-url-to-text",
+    "toolSlug": "html-to-text",
+    "title": "Convert Files Free with URL to Text",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "instant-url-to-text-no-email-required",
+    "toolSlug": "html-to-text",
+    "title": "Instant URL to Text - No Email Required",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "url-to-text-tool-fast-secure",
+    "toolSlug": "html-to-text",
+    "title": "URL to Text Tool - Fast & Secure",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-online-url-to-text-works-on-any-device",
+    "toolSlug": "html-to-text",
+    "title": "Free Online URL to Text - Works on Any Device",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "url-to-text-without-registration",
+    "toolSlug": "html-to-text",
+    "title": "URL to Text Without Registration",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "best-url-to-text-tool-2025",
+    "toolSlug": "html-to-text",
+    "title": "Best URL to Text Tool 2025",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-url-to-text-html-made-easy",
+    "toolSlug": "html-to-text",
+    "title": "Free URL to Text - html Made Easy",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "url-to-text-online-best-html-tool",
+    "toolSlug": "html-to-text",
+    "title": "URL to Text Online - Best html Tool",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "html-with-url-to-text-free",
+    "toolSlug": "html-to-text",
+    "title": "Html with URL to Text Free",
+    "description": "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    "category": "converter"
   },
   {
     "blogSlug": "free-css-beautifier-for-developers",
@@ -22299,6 +22425,24 @@ export const blogSlugToTool: Record<string, string> = {
   "free-html-tag-stripper-html-made-easy": "html-strip",
   "html-tag-stripper-online-best-html-tool": "html-strip",
   "html-with-html-tag-stripper-free": "html-strip",
+  "free-url-to-text-online-no-sign-up-required": "html-to-text",
+  "url-to-text-100-free-no-registration": "html-to-text",
+  "best-free-url-to-text-tool-online": "html-to-text",
+  "url-to-text-instantly-free-fast": "html-to-text",
+  "online-url-to-text-no-download-needed": "html-to-text",
+  "free-url-to-text-without-watermark": "html-to-text",
+  "url-to-text-in-seconds-completely-free": "html-to-text",
+  "quick-url-to-text-online-tool": "html-to-text",
+  "url-to-text-free-browser-based-tool": "html-to-text",
+  "convert-files-free-with-url-to-text": "html-to-text",
+  "instant-url-to-text-no-email-required": "html-to-text",
+  "url-to-text-tool-fast-secure": "html-to-text",
+  "free-online-url-to-text-works-on-any-device": "html-to-text",
+  "url-to-text-without-registration": "html-to-text",
+  "best-url-to-text-tool-2025": "html-to-text",
+  "free-url-to-text-html-made-easy": "html-to-text",
+  "url-to-text-online-best-html-tool": "html-to-text",
+  "html-with-url-to-text-free": "html-to-text",
   "free-css-beautifier-for-developers": "css-beautify",
   "css-beautifier-online-no-install": "css-beautify",
   "best-css-beautifier-tool-free": "css-beautify",
@@ -24806,4 +24950,4 @@ export function getAllBlogSlugs(): string[] {
 }
 
 // Total count
-export const totalBlogEntries = 3096;
+export const totalBlogEntries = 3114;

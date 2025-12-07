@@ -16,6 +16,18 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Dec 7, 2025",
+    version: "1.8.1",
+    changes: [
+      { type: "new", text: "Star/Pin Tools - Pin your favorite tools to appear first in the list" },
+      { type: "new", text: "Pinned tools saved in browser cache (localStorage)" },
+      { type: "new", text: "URL to Text Converter - Fetch HTML from any URL and convert to plain text" },
+      { type: "new", text: "ChatGPT Text Scraper - Extract clean content from web pages for AI use" },
+      { type: "improved", text: "Tools page now defaults to 'Pinned First' sorting" },
+      { type: "new", text: "Visual pinned badge on tool cards" },
+    ],
+  },
+  {
     date: "Dec 6, 2025",
     version: "1.7.1",
     changes: [

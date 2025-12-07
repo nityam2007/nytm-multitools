@@ -19,6 +19,7 @@ const categories = [
 ];
 
 const sortOptions = [
+  { id: "pinned", name: "Pinned First" },
   { id: "name", name: "Name" },
   { id: "newest", name: "Newest" },
   { id: "category", name: "Category" },
@@ -30,11 +31,23 @@ function ToolsContent() {
   
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("newest");
+  const [sortBy, setSortBy] = useState("pinned");
+  const [pinnedTools, setPinnedTools] = useState<string[]>([]);
 
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
+  // Load pinned tools from localStorage
+  useEffect(() => {
+    const loadPinned = () => {
+      const pinned = JSON.parse(localStorage.getItem("pinnedTools") || "[]");
+      setPinnedTools(pinned);
+    };
+    loadPinned();
+    window.addEventListener("pinnedToolsChanged", loadPinned);
+    return () => window.removeEventListener("pinnedToolsChanged", loadPinned);
   }, []);
 
   // Keyboard shortcut for search
@@ -80,8 +93,19 @@ function ToolsContent() {
       tools.sort((a, b) => a.category.localeCompare(b.category));
     }
 
+    // Show pinned tools first (always, regardless of sort option)
+    if (sortBy === "pinned" || pinnedTools.length > 0) {
+      tools.sort((a, b) => {
+        const aIsPinned = pinnedTools.includes(a.slug);
+        const bIsPinned = pinnedTools.includes(b.slug);
+        if (aIsPinned && !bIsPinned) return -1;
+        if (!aIsPinned && bIsPinned) return 1;
+        return 0;
+      });
+    }
+
     return tools;
-  }, [selectedCategory, searchQuery, sortBy]);
+  }, [selectedCategory, searchQuery, sortBy, pinnedTools]);
 
   return (
     <div className="max-w-7xl mx-auto px-1 sm:px-2">

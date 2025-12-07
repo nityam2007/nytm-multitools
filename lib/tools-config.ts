@@ -321,6 +321,16 @@ export const toolsConfig: ToolConfig[] = [
     keywords: ["html", "strip", "remove", "tags"],
   },
   {
+    slug: "html-to-text",
+    name: "URL to Text",
+    description: "Convert HTML or fetch from URL to plain text. Extract clean content for ChatGPT.",
+    category: "converter",
+    icon: "document-text",
+    inputType: "text",
+    isNew: true,
+    keywords: ["html", "text", "convert", "extract", "scraper", "chatgpt", "web", "page", "url", "fetch"],
+  },
+  {
     slug: "css-beautify",
     name: "CSS Beautifier",
     description: "Format and beautify CSS code.",

@@ -16,6 +16,20 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Dec 8, 2025",
+    version: "1.8.2",
+    changes: [
+      { type: "improved", text: "SEO Optimization - Meta descriptions optimized to <1000 pixels" },
+      { type: "improved", text: "Homepage content expanded to 1200+ words for better search rankings" },
+      { type: "improved", text: "WWW to non-WWW redirect for domain consolidation" },
+      { type: "new", text: "Apple Touch Icon for iOS devices" },
+      { type: "new", text: "Social sharing buttons - Twitter, LinkedIn, Facebook" },
+      { type: "new", text: "Use Cases section highlighting workflows for developers, designers, analysts" },
+      { type: "improved", text: "Unique headings across all sections for better SEO" },
+      { type: "improved", text: "Hero section simplified for better readability" },
+    ],
+  },
+  {
     date: "Dec 7, 2025",
     version: "1.8.1",
     changes: [

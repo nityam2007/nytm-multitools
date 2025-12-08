@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     default: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
     template: "%s | NYTM Tools",
   },
-  description: `${TOOL_COUNT} free online tools for everyone. Text, images, converters, generators, and more. No ads, no sign-ups, 100% browser-based. Your data never leaves your device.`,
+  description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No ads for supporters, no sign-ups, 100% browser-based. Privacy-first tools.`,
   keywords: [
     "free online tools",
     "online utilities",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     url: "https://nytm.in",
     siteName: "NYTM Tools",
     title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
-    description: `${TOOL_COUNT} free online tools for everyone. Text, images, converters, generators, and more. No ads, no sign-ups, 100% browser-based. Your data stays on your device.`,
+    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No ads for supporters, no sign-ups, 100% browser-based. Privacy-first tools.`,
     images: [
       {
         url: "/metaimg.png",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
-    description: `${TOOL_COUNT} free online tools. No ads, no tracking, 100% browser-based. Text tools, converters, generators, image editing & more.`,
+    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No ads for supporters, no sign-ups. Privacy-first & browser-based.`,
     images: ["/metaimg.png"],
     creator: "@nityam2007",
   },
@@ -108,6 +108,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebsiteJsonLd()) }}

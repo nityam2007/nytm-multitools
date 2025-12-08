@@ -10,11 +10,26 @@ const nextConfig: NextConfig = {
   
   // SEO: 301 permanent redirects for blog URLs to tool pages
   async redirects() {
-    return blogEntries.map((entry) => ({
-      source: `/blog/${entry.blogSlug}`,
-      destination: `/tools/${entry.toolSlug}`,
-      permanent: true, // 301 status code for SEO
-    }));
+    return [
+      // Redirect www to non-www for SEO consolidation
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.nytm.in',
+          },
+        ],
+        destination: 'https://nytm.in/:path*',
+        permanent: true,
+      },
+      // Blog to tool redirects
+      ...blogEntries.map((entry) => ({
+        source: `/blog/${entry.blogSlug}`,
+        destination: `/tools/${entry.toolSlug}`,
+        permanent: true, // 301 status code for SEO
+      })),
+    ];
   },
   
   // Enable HTTP/2 streaming and improved caching

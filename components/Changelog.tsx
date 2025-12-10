@@ -16,6 +16,20 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Dec 11, 2025",
+    version: "1.9.0",
+    changes: [
+      { type: "new", text: "PDF Compress - Reduce PDF file size with quality control" },
+      { type: "new", text: "PDF Split - Extract pages or split into separate files" },
+      { type: "new", text: "PDF Rotate - Rotate pages with flexible selection (all/even/odd/custom)" },
+      { type: "new", text: "PDF Unlock - Remove password protection from PDFs" },
+      { type: "new", text: "PDF Lock - Add password protection (feature coming soon)" },
+      { type: "new", text: "Image Upscaler - Enlarge images 2x/3x/4x with bicubic interpolation" },
+      { type: "new", text: "PDF to Images - Convert PDF pages to PNG/JPG/WebP with quality control" },
+      { type: "new", text: "Images to PDF - Universal image to PDF converter with batch support" },
+    ],
+  },
+  {
     date: "Dec 10, 2025",
     version: "1.8.3",
     changes: [

@@ -263,6 +263,10 @@ export function Sidebar() {
                 setIsOpen(false);
               } else {
                 setCollapsed(!collapsed);
+                // Close all category dropdowns when collapsing sidebar
+                if (!collapsed) {
+                  setOpenCategories([]);
+                }
               }
             }}
             className={`p-2.5 rounded-xl hover:bg-violet-500/10 transition-all duration-200 ${collapsed ? "mx-auto" : ""}`}
@@ -348,7 +352,13 @@ export function Sidebar() {
               <div key={category.id} className="mb-1">
                 <Tooltip text={`${category.name} (${category.tools.length})`} show={collapsed}>
                   <button
-                    onClick={() => toggleCategory(category.id)}
+                    onClick={() => {
+                      // Auto-expand sidebar when clicking category in collapsed mode
+                      if (collapsed) {
+                        setCollapsed(false);
+                      }
+                      toggleCategory(category.id);
+                    }}
                     className={`
                       w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
                       hover:bg-[var(--muted)] text-[var(--muted-foreground)] hover:text-[var(--foreground)]

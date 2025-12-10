@@ -69,9 +69,11 @@
 
 TODO : 
 
-like
-STAGE 3
 
-An EMBEDE UI : like a endpoint for embeded : all tolls like : /embed/tools/toolname 
+ADD other PDF tools : compress , merge, split, rotate, unlock, lock etc.
+image upscaler tool
 
-where 1 common ui and it alllow to embed on there site a simple way 
+img to pdf all formates 
+
+pdf to images all formates 
+

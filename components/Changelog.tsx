@@ -16,6 +16,15 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Dec 10, 2025",
+    version: "1.8.3",
+    changes: [
+      { type: "fixed", text: "Sidebar auto-expands when clicking category icon in collapsed mode" },
+      { type: "fixed", text: "Category dropdowns now close automatically when collapsing sidebar" },
+      { type: "improved", text: "Better sidebar UX - no more hidden dropdowns in collapsed state" },
+    ],
+  },
+  {
     date: "Dec 8, 2025",
     version: "1.8.2",
     changes: [

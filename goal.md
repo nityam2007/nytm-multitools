@@ -69,11 +69,5 @@
 
 TODO : 
 
-
-ADD other PDF tools : compress , merge, split, rotate, unlock, lock etc.
-image upscaler tool
-
-img to pdf all formates 
-
-pdf to images all formates 
+ 
 

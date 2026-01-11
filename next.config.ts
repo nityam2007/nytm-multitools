@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { blogEntries } from "./lib/blog-info";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
@@ -8,7 +7,7 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   
-  // SEO: 301 permanent redirects for blog URLs to tool pages
+  // SEO redirects
   async redirects() {
     return [
       // Redirect www to non-www for SEO consolidation
@@ -23,12 +22,6 @@ const nextConfig: NextConfig = {
         destination: 'https://nytm.in/:path*',
         permanent: true,
       },
-      // Blog to tool redirects
-      ...blogEntries.map((entry) => ({
-        source: `/blog/${entry.blogSlug}`,
-        destination: `/tools/${entry.toolSlug}`,
-        permanent: true, // 301 status code for SEO
-      })),
     ];
   },
   

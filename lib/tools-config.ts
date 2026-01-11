@@ -942,6 +942,16 @@ export const toolsConfig: ToolConfig[] = [
     isNew: true,
   },
   {
+    slug: "txt-to-pdf",
+    name: "TXT to PDF",
+    description: "Convert plain text files to PDF documents with formatting options.",
+    category: "converter",
+    icon: "document",
+    inputType: "both",
+    keywords: ["txt", "text", "pdf", "convert", "document"],
+    isNew: true,
+  },
+  {
     slug: "heic-to-jpg",
     name: "HEIC to JPG",
     description: "Convert Apple HEIC/HEIF images to JPG. Batch conversion, 100% client-side.",

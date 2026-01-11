@@ -1,5 +1,5 @@
 // Auto-generated Blog Info | TypeScript
-// Generated on: 2025-12-10T14:57:50.761Z
+// Generated on: 2026-01-11T15:04:11.904Z
 // DO NOT EDIT MANUALLY - Run: node scripts/generate-blog-titles.js
 
 export interface BlogEntry {
@@ -3547,6 +3547,41 @@ export const blogEntries: BlogEntry[] = [
     "category": "converter"
   },
   {
+    "blogSlug": "free-txt-to-pdf-online",
+    "toolSlug": "txt-to-pdf",
+    "title": "Free TXT to PDF Online",
+    "description": "Convert plain text files to PDF documents with formatting options.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "txt-to-pdf-no-download",
+    "toolSlug": "txt-to-pdf",
+    "title": "TXT to PDF No Download",
+    "description": "Convert plain text files to PDF documents with formatting options.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "txt-to-pdf-without-installing",
+    "toolSlug": "txt-to-pdf",
+    "title": "TXT to PDF Without Installing",
+    "description": "Convert plain text files to PDF documents with formatting options.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "how-to-use-txt-to-pdf",
+    "toolSlug": "txt-to-pdf",
+    "title": "How to Use TXT to PDF",
+    "description": "Convert plain text files to PDF documents with formatting options.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "txt-to-pdf-free-tool",
+    "toolSlug": "txt-to-pdf",
+    "title": "TXT to PDF Free Tool",
+    "description": "Convert plain text files to PDF documents with formatting options.",
+    "category": "converter"
+  },
+  {
     "blogSlug": "free-heic-to-jpg-online",
     "toolSlug": "heic-to-jpg",
     "title": "Free HEIC to JPG Online",
@@ -6855,6 +6890,11 @@ export const blogSlugToTool: Record<string, string> = {
   "jpg-to-pdf-without-installing": "jpg-to-pdf",
   "how-to-use-jpg-to-pdf": "jpg-to-pdf",
   "jpg-to-pdf-free-tool": "jpg-to-pdf",
+  "free-txt-to-pdf-online": "txt-to-pdf",
+  "txt-to-pdf-no-download": "txt-to-pdf",
+  "txt-to-pdf-without-installing": "txt-to-pdf",
+  "how-to-use-txt-to-pdf": "txt-to-pdf",
+  "txt-to-pdf-free-tool": "txt-to-pdf",
   "free-heic-to-jpg-online": "heic-to-jpg",
   "heic-to-jpg-no-download": "heic-to-jpg",
   "heic-to-jpg-without-installing": "heic-to-jpg",
@@ -7278,4 +7318,4 @@ export function getAllBlogSlugs(): string[] {
 }
 
 // Total count
-export const totalBlogEntries = 905;
+export const totalBlogEntries = 910;

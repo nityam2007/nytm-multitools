@@ -13,7 +13,7 @@ import { generateWebsiteJsonLd } from "@/lib/seo";
 // NOTE: This must match toolsConfig.length in lib/tools-config.ts
 // Static metadata cannot use dynamic imports, so update this when adding tools
 // See lib/site-config.ts for the dynamic version used in components
-const TOOL_COUNT = 181;
+const TOOL_COUNT = 182;
 
 const inter = Inter({
   variable: "--font-inter",
@@ -96,6 +96,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nytm.in"),
   alternates: {
     canonical: "https://nytm.in",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   category: "technology",
 };

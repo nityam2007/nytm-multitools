@@ -134,3 +134,39 @@ import { Check, X, Info } from 'lucide-react';
 <span>❌</span>  // Avoid emoji
 <span>ℹ️</span>  // Avoid emoji
 ```
+
+## Favicon Setup (Next.js)
+
+**Required files in `/app` directory:**
+
+| File | Size | Purpose |
+|------|------|---------|
+| `favicon.ico` | 48x48 | Browser tab icon (legacy) |
+| `icon.png` | 192x192 | Modern browsers, PWA |
+| `icon.svg` | Scalable | Vector icon for high DPI |
+| `apple-icon.png` | 180x180 | iOS home screen |
+
+**Next.js auto-detection:** Place files directly in `/app` folder. Next.js automatically generates correct `<link>` tags.
+
+**Alternative - Metadata API:**
+```tsx
+// app/layout.tsx
+export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+};
+```
+
+**For manual HTML (non-Next.js):**
+```html
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-icon.png" />
+```

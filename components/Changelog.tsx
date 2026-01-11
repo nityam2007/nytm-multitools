@@ -16,6 +16,17 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Jan 11, 2026",
+    version: "2.0.0",
+    changes: [
+      { type: "new", text: "TXT to PDF - Convert text files to PDF with font, size, and margin options" },
+      { type: "new", text: "SVG Favicon - Modern scalable vector favicon for all devices" },
+      { type: "improved", text: "Blog pages now render full content instead of redirecting (better SEO indexing)" },
+      { type: "improved", text: "Favicon metadata added to layout with proper icon declarations" },
+      { type: "fixed", text: "Blog URLs now indexable by Google (removed 301 redirects)" },
+    ],
+  },
+  {
     date: "Dec 11, 2025",
     version: "1.9.0",
     changes: [

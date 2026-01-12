@@ -11,7 +11,8 @@ let dtype: "fp32" | "fp16" | "q8" | "q4" = "q8";
 // Detect WebGPU support - must actually request device to verify it works
 async function detectGPU(): Promise<boolean> {
   try {
-    const nav = navigator as unknown as { gpu?: GPU };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const nav = navigator as any;
     if (!nav.gpu) return false;
     
     const adapter = await nav.gpu.requestAdapter();

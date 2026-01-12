@@ -8,14 +8,25 @@ let tts: KokoroTTS | null = null;
 let device: "webgpu" | "wasm" = "wasm";
 let dtype: "fp32" | "fp16" | "q8" | "q4" = "q8";
 
-// Detect WebGPU support
+// Detect WebGPU support - must actually request device to verify it works
 async function detectGPU(): Promise<boolean> {
   try {
-    const nav = navigator as unknown as { gpu?: { requestAdapter: () => Promise<unknown> } };
+    const nav = navigator as unknown as { gpu?: GPU };
     if (!nav.gpu) return false;
+    
     const adapter = await nav.gpu.requestAdapter();
-    return adapter !== null;
-  } catch {
+    if (!adapter) return false;
+    
+    // Actually try to request the device - this is where DirectX errors occur
+    const gpuDevice = await adapter.requestDevice();
+    if (!gpuDevice) return false;
+    
+    // Cleanup - destroy the test device
+    gpuDevice.destroy();
+    return true;
+  } catch (err) {
+    // WebGPU detection failed (e.g., missing dxil.dll on Windows)
+    console.warn("WebGPU detection failed:", err);
     return false;
   }
 }

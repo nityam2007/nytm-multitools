@@ -1,5 +1,5 @@
 // Auto-generated Blog Info | TypeScript
-// Generated on: 2026-01-11T15:04:11.904Z
+// Generated on: 2026-01-20T07:18:38.899Z
 // DO NOT EDIT MANUALLY - Run: node scripts/generate-blog-titles.js
 
 export interface BlogEntry {
@@ -2532,6 +2532,41 @@ export const blogEntries: BlogEntry[] = [
     "category": "image"
   },
   {
+    "blogSlug": "free-image-watermark-online",
+    "toolSlug": "image-watermark",
+    "title": "Free Image Watermark Online",
+    "description": "Add text or image watermarks to PNG, JPG, WebP images. Customizable position and opacity.",
+    "category": "image"
+  },
+  {
+    "blogSlug": "image-watermark-no-sign-up",
+    "toolSlug": "image-watermark",
+    "title": "Image Watermark No Sign Up",
+    "description": "Add text or image watermarks to PNG, JPG, WebP images. Customizable position and opacity.",
+    "category": "image"
+  },
+  {
+    "blogSlug": "image-watermark-without-photoshop",
+    "toolSlug": "image-watermark",
+    "title": "Image Watermark Without Photoshop",
+    "description": "Add text or image watermarks to PNG, JPG, WebP images. Customizable position and opacity.",
+    "category": "image"
+  },
+  {
+    "blogSlug": "how-to-use-image-watermark",
+    "toolSlug": "image-watermark",
+    "title": "How to Use Image Watermark",
+    "description": "Add text or image watermarks to PNG, JPG, WebP images. Customizable position and opacity.",
+    "category": "image"
+  },
+  {
+    "blogSlug": "image-watermark-photo-editor",
+    "toolSlug": "image-watermark",
+    "title": "Image Watermark Photo Editor",
+    "description": "Add text or image watermarks to PNG, JPG, WebP images. Customizable position and opacity.",
+    "category": "image"
+  },
+  {
     "blogSlug": "free-json-to-csv-online",
     "toolSlug": "json-to-csv",
     "title": "Free JSON to CSV Online",
@@ -3404,6 +3439,41 @@ export const blogEntries: BlogEntry[] = [
     "toolSlug": "pdf-lock",
     "title": "PDF Lock Free Tool",
     "description": "Add password protection to PDF files (Coming Soon).",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "free-pdf-watermark-online",
+    "toolSlug": "pdf-watermark",
+    "title": "Free PDF Watermark Online",
+    "description": "Add text or image watermarks to PDF documents. Customizable position, opacity, and rotation.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "pdf-watermark-no-download",
+    "toolSlug": "pdf-watermark",
+    "title": "PDF Watermark No Download",
+    "description": "Add text or image watermarks to PDF documents. Customizable position, opacity, and rotation.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "pdf-watermark-without-installing",
+    "toolSlug": "pdf-watermark",
+    "title": "PDF Watermark Without Installing",
+    "description": "Add text or image watermarks to PDF documents. Customizable position, opacity, and rotation.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "how-to-use-pdf-watermark",
+    "toolSlug": "pdf-watermark",
+    "title": "How to Use PDF Watermark",
+    "description": "Add text or image watermarks to PDF documents. Customizable position, opacity, and rotation.",
+    "category": "converter"
+  },
+  {
+    "blogSlug": "pdf-watermark-free-tool",
+    "toolSlug": "pdf-watermark",
+    "title": "PDF Watermark Free Tool",
+    "description": "Add text or image watermarks to PDF documents. Customizable position, opacity, and rotation.",
     "category": "converter"
   },
   {
@@ -6745,6 +6815,11 @@ export const blogSlugToTool: Record<string, string> = {
   "placeholder-image-without-photoshop": "placeholder-image",
   "how-to-use-placeholder-image": "placeholder-image",
   "placeholder-image-photo-editor": "placeholder-image",
+  "free-image-watermark-online": "image-watermark",
+  "image-watermark-no-sign-up": "image-watermark",
+  "image-watermark-without-photoshop": "image-watermark",
+  "how-to-use-image-watermark": "image-watermark",
+  "image-watermark-photo-editor": "image-watermark",
   "free-json-to-csv-online": "json-to-csv",
   "json-to-csv-no-download": "json-to-csv",
   "json-to-csv-without-installing": "json-to-csv",
@@ -6870,6 +6945,11 @@ export const blogSlugToTool: Record<string, string> = {
   "pdf-lock-without-installing": "pdf-lock",
   "how-to-use-pdf-lock": "pdf-lock",
   "pdf-lock-free-tool": "pdf-lock",
+  "free-pdf-watermark-online": "pdf-watermark",
+  "pdf-watermark-no-download": "pdf-watermark",
+  "pdf-watermark-without-installing": "pdf-watermark",
+  "how-to-use-pdf-watermark": "pdf-watermark",
+  "pdf-watermark-free-tool": "pdf-watermark",
   "free-pdf-to-png-online": "pdf-to-images",
   "pdf-to-png-no-download": "pdf-to-images",
   "pdf-to-png-without-installing": "pdf-to-images",
@@ -7318,4 +7398,4 @@ export function getAllBlogSlugs(): string[] {
 }
 
 // Total count
-export const totalBlogEntries = 910;
+export const totalBlogEntries = 920;

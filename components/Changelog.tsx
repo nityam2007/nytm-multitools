@@ -16,6 +16,16 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Jan 20, 2026",
+    version: "2.1.0",
+    changes: [
+      { type: "new", text: "Image Watermark - Add text or logo watermarks to PNG, JPG, WebP images" },
+      { type: "new", text: "PDF Watermark - Add text watermarks to PDF documents with preset options" },
+      { type: "improved", text: "Watermark tools support custom position, opacity, rotation, and tiling" },
+      { type: "fixed", text: "Text-to-Speech WebGPU detection now properly falls back to CPU" },
+    ],
+  },
+  {
     date: "Jan 11, 2026",
     version: "2.0.0",
     changes: [

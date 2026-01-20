@@ -668,6 +668,16 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "none",
     keywords: ["placeholder", "dummy", "image"],
   },
+  {
+    slug: "image-watermark",
+    name: "Image Watermark",
+    description: "Add text or image watermarks to PNG, JPG, WebP images. Customizable position and opacity.",
+    category: "image",
+    icon: "photo",
+    inputType: "file",
+    keywords: ["watermark", "image", "text", "logo", "stamp", "overlay"],
+    isNew: true,
+  },
 
   // Converters
   {
@@ -900,6 +910,16 @@ export const toolsConfig: ToolConfig[] = [
     icon: "document",
     inputType: "file",
     keywords: ["pdf", "lock", "protect", "password", "encrypt", "secure"],
+    isNew: true,
+  },
+  {
+    slug: "pdf-watermark",
+    name: "PDF Watermark",
+    description: "Add text or image watermarks to PDF documents. Customizable position, opacity, and rotation.",
+    category: "converter",
+    icon: "document",
+    inputType: "file",
+    keywords: ["pdf", "watermark", "text", "logo", "stamp", "overlay"],
     isNew: true,
   },
   {

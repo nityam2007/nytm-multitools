@@ -7,6 +7,7 @@ export interface ToolConfig {
   inputType: "text" | "file" | "both" | "none";
   isNew?: boolean;
   keywords?: string[];
+  fileTypes?: ("pdf" | "image" | "document")[];
 }
 
 export const toolsConfig: ToolConfig[] = [
@@ -521,6 +522,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "photo",
     inputType: "file",
     keywords: ["screenshot", "beautify", "mockup"],
+    fileTypes: ["image"],
   },
   {
     slug: "remove-bg",
@@ -531,6 +533,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["remove", "background", "transparent", "cutout", "erase", "ai", "magic"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "image-resize",
@@ -540,6 +543,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "arrows-pointing-out",
     inputType: "file",
     keywords: ["resize", "scale", "dimensions"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-compress",
@@ -549,6 +553,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "archive-box",
     inputType: "file",
     keywords: ["compress", "optimize", "reduce"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-upscaler",
@@ -559,6 +564,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["upscale", "enlarge", "resize", "resolution", "enhance"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "image-crop",
@@ -568,6 +574,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "scissors",
     inputType: "file",
     keywords: ["crop", "cut", "trim"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-rotate",
@@ -577,6 +584,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "arrow-path",
     inputType: "file",
     keywords: ["rotate", "turn", "angle"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-flip",
@@ -586,6 +594,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "arrows-right-left",
     inputType: "file",
     keywords: ["flip", "mirror", "horizontal", "vertical"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-to-base64",
@@ -595,6 +604,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "hash",
     inputType: "file",
     keywords: ["image", "base64", "encode"],
+    fileTypes: ["image"],
   },
   {
     slug: "base64-to-image",
@@ -604,6 +614,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "photo",
     inputType: "text",
     keywords: ["base64", "image", "decode"],
+    fileTypes: ["image"],
   },
   {
     slug: "color-picker",
@@ -613,6 +624,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "color-swatch",
     inputType: "both",
     keywords: ["color", "picker", "hex", "rgb"],
+    fileTypes: ["image"],
   },
   {
     slug: "palette-generator",
@@ -622,6 +634,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "rainbow",
     inputType: "file",
     keywords: ["palette", "colors", "extract"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-filters",
@@ -631,6 +644,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "masks-theater",
     inputType: "file",
     keywords: ["filter", "effects", "grayscale"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-convert",
@@ -640,6 +654,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "arrow-path",
     inputType: "file",
     keywords: ["convert", "format", "png", "jpg"],
+    fileTypes: ["image"],
   },
   {
     slug: "svg-to-png",
@@ -649,6 +664,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "arrow-path",
     inputType: "file",
     keywords: ["svg", "png", "convert"],
+    fileTypes: ["image"],
   },
   {
     slug: "favicon-generator",
@@ -658,6 +674,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "star",
     inputType: "file",
     keywords: ["favicon", "icon", "generate"],
+    fileTypes: ["image"],
   },
   {
     slug: "placeholder-image",
@@ -667,6 +684,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "photo",
     inputType: "none",
     keywords: ["placeholder", "dummy", "image"],
+    fileTypes: ["image"],
   },
   {
     slug: "image-watermark",
@@ -677,6 +695,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["watermark", "image", "text", "logo", "stamp", "overlay"],
     isNew: true,
+    fileTypes: ["image"],
   },
 
   // Converters
@@ -861,6 +880,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "document",
     inputType: "file",
     keywords: ["pdf", "merge", "combine", "join"],
+    fileTypes: ["pdf"],
   },
   {
     slug: "pdf-compress",
@@ -871,6 +891,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["pdf", "compress", "reduce", "optimize", "size"],
     isNew: true,
+    fileTypes: ["pdf"],
   },
   {
     slug: "pdf-split",
@@ -881,6 +902,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["pdf", "split", "extract", "separate", "pages"],
     isNew: true,
+    fileTypes: ["pdf"],
   },
   {
     slug: "pdf-rotate",
@@ -891,6 +913,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["pdf", "rotate", "turn", "orientation", "pages"],
     isNew: true,
+    fileTypes: ["pdf"],
   },
   {
     slug: "pdf-unlock",
@@ -901,6 +924,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["pdf", "unlock", "remove", "password", "decrypt"],
     isNew: true,
+    fileTypes: ["pdf"],
   },
   {
     slug: "pdf-lock",
@@ -911,6 +935,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["pdf", "lock", "protect", "password", "encrypt", "secure"],
     isNew: true,
+    fileTypes: ["pdf"],
   },
   {
     slug: "pdf-watermark",
@@ -921,6 +946,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["pdf", "watermark", "text", "logo", "stamp", "overlay"],
     isNew: true,
+    fileTypes: ["pdf"],
   },
   {
     slug: "pdf-to-images",
@@ -931,6 +957,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["pdf", "convert", "image", "png", "jpg", "webp", "export"],
     isNew: true,
+    fileTypes: ["pdf", "image"],
   },
   {
     slug: "images-to-pdf",
@@ -941,6 +968,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["image", "pdf", "convert", "png", "jpg", "webp", "gif", "batch"],
     isNew: true,
+    fileTypes: ["pdf", "image"],
   },
   {
     slug: "png-to-pdf",
@@ -950,6 +978,7 @@ export const toolsConfig: ToolConfig[] = [
     icon: "document",
     inputType: "file",
     keywords: ["png", "pdf", "convert", "image"],
+    fileTypes: ["pdf", "image"],
   },
   {
     slug: "jpg-to-pdf",
@@ -960,6 +989,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["jpg", "jpeg", "pdf", "convert", "image"],
     isNew: true,
+    fileTypes: ["pdf", "image"],
   },
   {
     slug: "txt-to-pdf",
@@ -970,6 +1000,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "both",
     keywords: ["txt", "text", "pdf", "convert", "document"],
     isNew: true,
+    fileTypes: ["pdf", "document"],
   },
   {
     slug: "heic-to-jpg",
@@ -980,6 +1011,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["heic", "heif", "jpg", "jpeg", "apple", "iphone", "convert"],
     isNew: true,
+    fileTypes: ["image"],
   },
   
   // Image Format Converters
@@ -992,6 +1024,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["png", "webp", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "png-to-jpg",
@@ -1002,6 +1035,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["png", "jpg", "jpeg", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "jpg-to-png",
@@ -1012,6 +1046,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["jpg", "jpeg", "png", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "jpg-to-webp",
@@ -1022,6 +1057,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["jpg", "jpeg", "webp", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "webp-to-png",
@@ -1032,6 +1068,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["webp", "png", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "webp-to-jpg",
@@ -1042,6 +1079,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["webp", "jpg", "jpeg", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "gif-to-png",
@@ -1052,6 +1090,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["gif", "png", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "png-to-gif",
@@ -1062,6 +1101,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["png", "gif", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "jpg-to-gif",
@@ -1072,6 +1112,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["jpg", "jpeg", "gif", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "gif-to-webp",
@@ -1082,6 +1123,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["gif", "webp", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
   {
     slug: "gif-to-jpg",
@@ -1092,6 +1134,7 @@ export const toolsConfig: ToolConfig[] = [
     inputType: "file",
     keywords: ["gif", "jpg", "jpeg", "convert", "image"],
     isNew: true,
+    fileTypes: ["image"],
   },
 
   // Generators

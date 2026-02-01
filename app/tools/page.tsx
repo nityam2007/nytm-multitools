@@ -18,6 +18,13 @@ const categories = [
   { id: "misc", name: "Misc" },
 ];
 
+const fileTypes = [
+  { id: "all", name: "All Files", icon: "M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776" },
+  { id: "pdf", name: "PDF", icon: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" },
+  { id: "image", name: "Images", icon: "M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" },
+  { id: "document", name: "Documents", icon: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" },
+];
+
 const sortOptions = [
   { id: "pinned", name: "Pinned First" },
   { id: "name", name: "Name" },
@@ -30,6 +37,7 @@ function ToolsContent() {
   const initialCategory = searchParams.get("category") || "all";
   
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [selectedFileType, setSelectedFileType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("pinned");
   const [pinnedTools, setPinnedTools] = useState<string[]>([]);
@@ -73,6 +81,11 @@ function ToolsContent() {
       tools = tools.filter((tool) => tool.category === selectedCategory);
     }
 
+    // Filter by file type
+    if (selectedFileType !== "all") {
+      tools = tools.filter((tool) => tool.fileTypes?.includes(selectedFileType as "pdf" | "image" | "document"));
+    }
+
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
@@ -105,7 +118,7 @@ function ToolsContent() {
     }
 
     return tools;
-  }, [selectedCategory, searchQuery, sortBy, pinnedTools]);
+  }, [selectedCategory, selectedFileType, searchQuery, sortBy, pinnedTools]);
 
   return (
     <div className="max-w-7xl mx-auto px-1 sm:px-2">
@@ -122,26 +135,26 @@ function ToolsContent() {
 
       {/* Search & Filters Bar */}
       <div className="mb-4 sm:mb-6 md:mb-8 flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-slide-up animate-delay-100" style={{ opacity: 0, animationFillMode: 'forwards' }}>
-        {/* Search */}
-        <div className="relative flex-1 max-w-md">
+        {/* Search - Improved */}
+        <div className="relative flex-1 max-w-2xl">
           <input
             id="tools-search"
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search tools..."
-            className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pl-9 sm:pl-11 rounded-xl bg-[var(--muted)] border border-transparent focus:border-violet-500/50 focus:bg-violet-500/5 text-sm transition-all duration-200"
+            placeholder="Search 180+ tools..."
+            className="w-full px-4 sm:px-5 py-3.5 sm:py-4 pl-12 sm:pl-14 rounded-2xl bg-[var(--card)] border-2 border-[var(--border)] focus:border-violet-500 focus:bg-violet-500/5 focus:shadow-lg focus:shadow-violet-500/10 text-base transition-all duration-300 placeholder:text-[var(--muted-foreground)]"
           />
           <SearchIcon
-            className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)]"
+            className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted-foreground)]"
           />
-          <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 kbd text-[10px] hidden sm:flex">/</span>
+          <span className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2 kbd text-xs hidden sm:flex px-2 py-1">/</span>
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-8 sm:right-12 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-violet-400 transition-colors p-1"
+              className="absolute right-12 sm:right-16 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-violet-400 transition-colors p-1.5 hover:bg-violet-500/10 rounded-lg"
             >
-              <CloseIcon className="w-4 h-4" />
+              <CloseIcon className="w-5 h-5" />
             </button>
           )}
         </div>
@@ -151,7 +164,7 @@ function ToolsContent() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="appearance-none w-full sm:w-auto px-3 sm:px-4 py-2.5 sm:py-3 pr-9 sm:pr-10 rounded-xl bg-[var(--muted)] border border-transparent focus:border-violet-500/50 text-sm transition-all duration-200 cursor-pointer"
+            className="appearance-none w-full sm:w-auto px-4 sm:px-5 py-3.5 sm:py-4 pr-10 sm:pr-12 rounded-2xl bg-[var(--card)] border-2 border-[var(--border)] focus:border-violet-500 text-base transition-all duration-300 cursor-pointer"
           >
             {sortOptions.map((option) => (
               <option key={option.id} value={option.id}>
@@ -160,8 +173,39 @@ function ToolsContent() {
             ))}
           </select>
           <ChevronDownIcon
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)] pointer-events-none"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted-foreground)] pointer-events-none"
           />
+        </div>
+      </div>
+
+      {/* File Type Filter Pills */}
+      <div className="mb-4 sm:mb-5 overflow-x-auto -mx-1 px-1 animate-fade-slide-up animate-delay-150" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+        <div className="flex gap-2 min-w-max pb-2">
+          {fileTypes.map((ft) => {
+            const count = ft.id === "all" 
+              ? toolsConfig.length 
+              : toolsConfig.filter(t => t.fileTypes?.includes(ft.id as "pdf" | "image" | "document")).length;
+            return (
+              <button
+                key={ft.id}
+                onClick={() => setSelectedFileType(ft.id)}
+                className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 active:scale-95 ${selectedFileType === ft.id
+                    ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/25"
+                    : "text-[var(--muted-foreground)] hover:bg-orange-500/10 hover:text-orange-400 border border-[var(--border)]"
+                }`}
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d={ft.icon} />
+                </svg>
+                <span>{ft.name}</span>
+                {count > 0 && (
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-md ${selectedFileType === ft.id ? "bg-white/20" : "bg-[var(--muted)]"}`}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -230,6 +274,7 @@ function ToolsContent() {
             onClick={() => {
               setSearchQuery("");
               setSelectedCategory("all");
+              setSelectedFileType("all");
             }}
             className="px-4 py-2 text-sm rounded-xl bg-violet-500/10 text-violet-400 hover:bg-violet-500/20 transition-colors active:scale-95"
           >

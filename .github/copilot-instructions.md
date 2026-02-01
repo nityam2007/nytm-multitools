@@ -52,8 +52,8 @@ Adapt syntax to avoid errors (use `<!--` for HTML, `#` for Python/Shell, etc.).
 
 1. **Create backup first:**
    ```bash
-   # Before splitting, backup to ~/BKP/
-   cp path/to/code.txt ~/BKP/code.txt.bak
+   # Before splitting, backup to ./BKP/
+   cp path/to/code.txt ./BKP/code.txt.bak
    ```
 
 2. **Split by logical function groups:**

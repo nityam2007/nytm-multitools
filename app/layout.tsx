@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { SubscriptionProvider } from "@/lib/subscription-context";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { ToastProvider } from "@/components/Toast";
+import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import { generateWebsiteJsonLd } from "@/lib/seo";
 
 // NOTE: This must match toolsConfig.length in lib/tools-config.ts
@@ -109,6 +110,13 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F8F7FA" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -139,6 +147,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen`}>
+        <ServiceWorkerRegistrar />
         <PostHogProvider>
           <ThemeProvider>
             <SubscriptionProvider>

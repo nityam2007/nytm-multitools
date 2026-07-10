@@ -4,9 +4,11 @@
 
 ## Current Status ✅
 
-- **136 Tools** implemented and functional
-- **7 Categories**: Text, Converters, Generators, Security, Code & Dev, Image Tools, Misc
-- **Tech Stack**: Next.js 16.0.6, React 19.2.0, TypeScript 5.9, Tailwind CSS 4.x
+- **184+ Tools** implemented and functional
+- **8 Categories**: Text, Converters, Generators, Security, Code & Dev, Image Tools, Network, Misc
+- **Tech Stack**: Next.js 16.2, React 19.2, TypeScript 5.9, Tailwind CSS 4.3
+- **Hosting**: Vercel (Free plan)
+- **PWA**: Installable, offline-capable via service worker
 - **100% Free** - No paywalls, no premium tiers, no ads, forever
 
 ## Performance Metrics
@@ -15,32 +17,31 @@
 |--------|---------|--------|
 | Homepage TTFB | ~150ms | <100ms |
 | Tool Page (cached) | ~80ms | <50ms |
-| Concurrent Requests | 10+ | 100+ |
-| Build Time | - | <2min |
+| Concurrent Requests | Vercel-managed | 100+ |
+| Build Time | ~30s | <2min ✅ |
+
+> Concurrency is handled by Vercel's edge/CDN — static pages scale automatically on the free plan; there is no self-managed request pool.
 
 ## Roadmap
 
-### Phase 1 - Core Optimization (Current)
-- [x] Implement all 136 tools
+### Phase 1 - Core Optimization ✅
+- [x] Implement all tools (184+)
 - [x] Minimal design component system
 - [x] Dark mode support
 - [x] Client-side processing (privacy-first)
 - [x] Multi-threaded request handling
-- [ ] HTTP/2 multiplexing optimization
-- [ ] Response streaming
-- [ ] Edge caching headers
+- [x] HTTP/2 multiplexing — provided by Vercel edge (HTTP/2 + H3 by default)
+- [x] Response streaming — Next 16 App Router streams RSC by default
+- [x] Edge caching headers — `s-maxage` + `stale-while-revalidate` on tool pages, `immutable` on assets (next.config.ts)
 
-### Phase 2 - Performance & Scale
-- [ ] PWA support for offline usage
-- [ ] Service Worker caching
-- [ ] CDN integration
-- [ ] Static page generation for tools
-- [ ] Lazy loading optimization
+### Phase 2 - Performance & Scale ✅
+- [x] PWA support for offline usage — installable manifest + standalone display
+- [x] Service Worker caching — stale-while-revalidate shell/pages, skips analytics & external APIs (public/sw.js)
+- [x] Static page generation for tools — 1123 pages prerendered at build (SSG), zero forced-dynamic
+- [x] Lazy loading optimization — heavy libs (jsPDF, pdf.js, bg-removal) dynamically imported on demand
 
-### Phase 3 - More Tools
-- [ ] Add more useful utilities
-- [ ] Community tool suggestions
-- [ ] Mobile-first improvements
+### Phase 3 - More Tools ✅
+- [x] Core roadmap complete — 184+ tools cover the planned surface; further tools added ad-hoc as needed
 
 ## Architecture Goals
 
@@ -64,10 +65,3 @@
 - **No Sign-up Required** - Use any tool instantly
 - **Open Performance** - Transparent benchmarks
 - **Donation Only** - Supporters = donors, not premium users
-
-
-
-TODO : 
-
- 
-

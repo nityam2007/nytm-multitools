@@ -19,6 +19,7 @@ const changelog: ChangelogEntry[] = [
     date: "Jul 10, 2026",
     version: "2.2.0",
     changes: [
+      { type: "new", text: "PWA support - Install NYTM as an app and use tools offline (service worker caching)" },
       { type: "new", text: "Buy Me a Coffee prompt - Low-pressure, dismissible support nudge after effort-saving tasks (image compress, background removal, PDF compress)" },
       { type: "improved", text: "Upgraded jsPDF to v4, uuid to v14, pdf.js to v6, react-dropzone to v15 for security and React 19 compatibility" },
       { type: "improved", text: "Removed 12 unused dependencies to shrink install size and attack surface" },

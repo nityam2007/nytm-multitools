@@ -4,6 +4,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { FileUpload } from "@/components/FileUpload";
+import { CoffeePrompt } from "@/components/CoffeePrompt";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 import { logToolUsage } from "@/lib/actions";
 
@@ -380,6 +381,8 @@ export default function RemoveBgPage() {
                 Download PNG
               </button>
             )}
+
+            {processedUrl && <CoffeePrompt />}
           </>
         )}
 

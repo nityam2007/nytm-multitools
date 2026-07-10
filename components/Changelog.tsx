@@ -16,6 +16,16 @@ interface ChangelogEntry {
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
   {
+    date: "Jul 10, 2026",
+    version: "2.2.0",
+    changes: [
+      { type: "new", text: "Buy Me a Coffee prompt - Low-pressure, dismissible support nudge after effort-saving tasks (image compress, background removal, PDF compress)" },
+      { type: "improved", text: "Upgraded jsPDF to v4, uuid to v14, pdf.js to v6, react-dropzone to v15 for security and React 19 compatibility" },
+      { type: "improved", text: "Removed 12 unused dependencies to shrink install size and attack surface" },
+      { type: "fixed", text: "Patched security vulnerabilities across PDF, crypto, and build dependencies (19 to 2, remaining are upstream-only)" },
+    ],
+  },
+  {
     date: "Jan 20, 2026",
     version: "2.1.0",
     changes: [

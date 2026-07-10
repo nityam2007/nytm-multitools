@@ -5,6 +5,7 @@ import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { FileUpload } from "@/components/FileUpload";
 import { Button } from "@/components/Button";
+import { CoffeePrompt } from "@/components/CoffeePrompt";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
 const tool = getToolBySlug("pdf-compress")!;
@@ -118,9 +119,14 @@ export default function PDFCompressPage() {
                 Original size: {formatSize(originalSize)}
               </div>
               {compressedSize > 0 && (
-                <div className="text-xs text-green-500 mt-1">
-                  Compressed: {formatSize(compressedSize)} ({compressionRatio}% reduction)
-                </div>
+                <>
+                  <div className="text-xs text-green-500 mt-1">
+                    Compressed: {formatSize(compressedSize)} ({compressionRatio}% reduction)
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-[var(--border)]">
+                    <CoffeePrompt />
+                  </div>
+                </>
               )}
             </div>
           )}

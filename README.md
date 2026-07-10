@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/nityam2007/nytm-multitools/main/package.json&query=$.toolCount&label=Tools&color=8b5cf6&style=for-the-badge" alt="Tools" />
-  <img src="https://img.shields.io/badge/Next.js-16.0.6-black?style=for-the-badge&logo=next.js" alt="Next.js" />
-  <img src="https://img.shields.io/badge/React-19.2.0-61dafb?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Next.js-16.2.10-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19.2.7-61dafb?style=for-the-badge&logo=react" alt="React" />
   <img src="https://img.shields.io/badge/TypeScript-5.9.3-3178c6?style=for-the-badge&logo=typescript" alt="TypeScript" />
 </p>
 
@@ -109,11 +109,11 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 </tr>
 <tr>
 <td><strong>Framework</strong></td>
-<td>Next.js 16.0.6 (Turbopack)</td>
+<td>Next.js 16.2.10 (Turbopack)</td>
 </tr>
 <tr>
 <td><strong>UI</strong></td>
-<td>React 19.2.0 + React Compiler</td>
+<td>React 19.2.7 + React Compiler</td>
 </tr>
 <tr>
 <td><strong>Language</strong></td>
@@ -121,7 +121,7 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 </tr>
 <tr>
 <td><strong>Styling</strong></td>
-<td>Tailwind CSS 4.1.17</td>
+<td>Tailwind CSS 4.3.2</td>
 </tr>
 <tr>
 <td><strong>Icons</strong></td>

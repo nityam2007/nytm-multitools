@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { FileUpload } from "@/components/FileUpload";
+import { CoffeePrompt } from "@/components/CoffeePrompt";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 import { logToolUsage } from "@/lib/actions";
 
@@ -218,6 +219,10 @@ export default function ImageCompressPage() {
                 </div>
 
                 <img src={output} alt="Compressed" className="max-w-full h-auto rounded" />
+
+                <div className="mt-4 pt-4 border-t border-[var(--border)]">
+                  <CoffeePrompt />
+                </div>
               </div>
             )}
           </>

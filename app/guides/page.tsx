@@ -24,7 +24,7 @@ export default function Guides() {
         {guides.map((guide) => (
           <article
             key={guide.slug}
-            className="border-t border-[var(--border)] pt-6"
+            className="guide-card"
           >
             <h2 className="text-2xl font-semibold">
               <Link href={`/guides/${guide.slug}`}>{guide.title}</Link>
@@ -33,7 +33,8 @@ export default function Guides() {
               {guide.description}
             </p>
             <Link
-              className="underline underline-offset-4 text-sm"
+              className="btn btn-secondary"
+              aria-label={`Read guide: ${guide.title}`}
               href={`/guides/${guide.slug}`}
             >
               Read the guide →

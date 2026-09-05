@@ -1,0 +1,34 @@
+/* Readable controls and tool discovery surfaces | CSS */
+.btn { min-height: 44px; text-align: center; text-decoration: none; line-height: 1.4; touch-action: manipulation; }
+.btn-secondary:hover:not(:disabled) { color: var(--foreground) !important; }
+.action-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.action-row > * { max-width: 100%; }
+.skip-link { position: fixed; top: 8px; left: 12px; z-index: 100; padding: 12px 18px; background: var(--foreground); color: var(--background); border-radius: 8px; transform: translateY(-150%); }
+.skip-link:focus { transform: translateY(0); }
+:is(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+:is(h1, h2, h3, section[id], main[id]) { scroll-margin-top: 88px; }
+.guide-card { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
+.guide-card .btn { align-self: flex-start; margin-top: auto; }
+.guide-card h2 { font-size: 1.25rem; line-height: 1.45; letter-spacing: -.025em; }
+.discovery-card { min-width: 0; display: flex; flex-direction: column; gap: 16px; padding: 20px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); transition: border-color 160ms, box-shadow 160ms; }
+.discovery-card:hover, .discovery-card:focus-within { border-color: var(--primary); }
+.discovery-card-head { display: flex; align-items: center; gap: 12px; }
+.discovery-card-icon { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 9px; color: var(--primary); background: var(--muted); }
+.discovery-card h3 { font-size: 1rem; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.discovery-card h3 a:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 4px; }
+.discovery-card p { font-size: .875rem; color: var(--muted-foreground); line-height: 1.6; }
+.discovery-card-meta { display: flex; gap: 8px; flex-wrap: wrap; color: var(--muted-foreground); font-size: .75rem; }
+.discovery-card-meta .new-label { color: var(--primary); font-weight: 600; }
+.discovery-card-actions { margin-top: auto; display: flex; gap: 8px; }
+.discovery-card-actions .btn { flex: 1; padding: 9px 12px; }
+.pin-button { flex: none; min-width: 70px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 10px; font-size: .8rem; background: var(--background); color: var(--muted-foreground); }
+.pin-button:hover, .pin-button[aria-pressed="true"] { color: var(--primary); border-color: var(--primary); background: var(--muted); }
+.recent-tools { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.recent-tools .recent-links { display: flex; gap: 8px; overflow-x: auto; padding: 6px 3px; }
+.recent-tools .recent-links a { flex-shrink: 0; }
+.dark { color-scheme: dark; }
+.light { color-scheme: light; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

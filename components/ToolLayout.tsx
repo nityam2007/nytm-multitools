@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import * as React from "react";
 import { ToolConfig } from "@/lib/tools-config";
-import { ArrowUpRightIcon, getToolIcon } from "@/assets/icons";
+import { ToolCard } from "@/components/ToolCard";
 import { EmbedButton } from "@/components/EmbedButton";
 import { ShareButton } from "@/components/ShareButton";
 
@@ -84,7 +84,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
         {children}
       </div>
 
-      {guide && <Link className="inline-block text-sm underline underline-offset-4 mb-3" href={`/guides/${guide}`}>Read the step-by-step guide →</Link>}
+      {guide && <Link className="btn btn-secondary mb-3" href={`/guides/${guide}`}>Read the step-by-step guide →</Link>}
       <NShethPromotion tool={tool} />
 
       {/* Similar Tools - Enhanced cards */}
@@ -97,35 +97,11 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
                 You might also be interested in
               </p>
             </div>
-            <span className="text-[10px] sm:text-xs text-[var(--muted-foreground)] tabular-nums font-mono bg-[var(--muted)] px-2 py-1 rounded-md w-fit">
-              {similarTools.length} tools
-            </span>
+            <Link className="btn btn-secondary" href={`/tools?category=${tool.category}`}>Browse this category →</Link>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {similarTools.slice(0, 6).map((similarTool) => (
-              <Link
-                key={similarTool.slug}
-                href={`/tools/${similarTool.slug}`}
-                className="group p-4 sm:p-5 bg-[var(--card)] border border-[var(--border)] rounded-xl sm:rounded-2xl hover:border-violet-500/50 hover:bg-gradient-to-br hover:from-violet-500/5 hover:to-purple-500/5 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10"
-              >
-                <div className="flex items-start justify-between mb-2 sm:mb-3">
-                  <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
-                    {(() => {
-                      const IconComponent = getToolIcon(similarTool.icon || "document");
-                      return <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-violet-500 flex-shrink-0" />;
-                    })()}
-                    <span className="font-semibold text-xs sm:text-sm group-hover:text-violet-400 transition-colors duration-300 truncate">
-                      {similarTool.name}
-                    </span>
-                  </div>
-                  <ArrowUpRightIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[var(--muted-foreground)] opacity-0 group-hover:opacity-100 group-hover:text-violet-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0" />
-                </div>
-                <p className="text-xs sm:text-sm text-[var(--muted-foreground)] line-clamp-2" style={{ lineHeight: '1.6' }}>
-                  {similarTool.description}
-                </p>
-              </Link>
-            ))}
+            {similarTools.slice(0, 6).map((similarTool) => <ToolCard key={similarTool.slug} tool={similarTool} />)}
           </div>
         </div>
       )}

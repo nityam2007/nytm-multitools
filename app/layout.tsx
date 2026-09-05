@@ -3,6 +3,7 @@ import { AppShell } from "@/components/AppShell";
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "./discovery.css";
 import { Header } from "@/components/Header";
 import { Sidebar, SidebarProvider } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
@@ -149,6 +150,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen`}>
+        <a className="skip-link" href="#main-content">Skip to main content</a>
         <ServiceWorkerRegistrar />
         <PostHogProvider>
           <ThemeProvider>
@@ -158,7 +160,7 @@ export default function RootLayout({
                   <AppShell>
                     <Header />
                     <Sidebar />
-                    <main className="flex-1 px-3 py-4 sm:px-4 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-8 overflow-auto scroll-smooth">
+                    <main id="main-content" tabIndex={-1} className="flex-1 min-w-0 px-3 py-4 sm:px-4 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-8">
                       {children}
                     </main>
                     <Footer />

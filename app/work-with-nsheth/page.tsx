@@ -83,7 +83,7 @@ export default async function WorkWithNSheth({
               {text}
             </p>
             <NShethLink
-              className="text-sm underline underline-offset-4"
+              className="btn btn-secondary"
               source={source}
               service={id}
             >
@@ -100,7 +100,7 @@ export default async function WorkWithNSheth({
           the tools, then visit NSheth to see more work and start a
           conversation.
         </p>
-        <Link className="underline" href="/tools">
+        <Link className="btn btn-secondary" href="/tools">
           Browse the tool collection →
         </Link>
       </section>

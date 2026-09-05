@@ -70,13 +70,13 @@ export default function BusinessTools() {
         </p>
         <Link
           href="/work-with-nsheth"
-          className="inline-block mt-5 underline underline-offset-4"
+          className="btn btn-primary mt-5 mr-3"
         >
           Need a website or custom automation? Meet NSheth →
         </Link>
         <Link
           href="/guides"
-          className="block mt-3 text-sm underline underline-offset-4"
+          className="btn btn-secondary mt-3"
         >
           Read practical workflow guides →
         </Link>

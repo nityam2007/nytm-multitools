@@ -16,6 +16,10 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.10.0", changes: [
+    { type: "improved", text: "Visible guide and service buttons, readable tool cards with Open and Pin controls, and larger touch targets" },
+    { type: "improved", text: "Keyboard skip navigation, reduced-motion support, and responsive header navigation" },
+  ] },
   { date: "Sep 5, 2026", version: "2.9.0", changes: [
     { type: "fixed", text: "Updated Next.js to 16.3.4, PDF.js to 6.3.289, and compatible dependency patches" },
     { type: "improved", text: "Keyboard-safe favourites, resilient local preferences, and local-image social previews" },

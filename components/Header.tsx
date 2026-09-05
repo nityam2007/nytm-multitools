@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
 import { Changelog } from "./Changelog";
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "@/assets/icons";
 
 export function Header() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
@@ -31,11 +33,12 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation - Center */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={(link.href === "/" ? pathname === "/" : pathname.startsWith(link.href)) ? "page" : undefined}
                 className="px-4 py-2 text-sm text-[var(--muted-foreground)] hover:text-violet-400 transition-all duration-300 rounded-xl hover:bg-violet-500/10 font-medium"
               >
                 {link.label}
@@ -48,7 +51,7 @@ export function Header() {
             {/* Support Badge - Desktop */}
             <Link
               href="/pricing"
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20 hover:border-violet-500/40 transition-all text-sm group"
+              className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20 hover:border-violet-500/40 transition-all text-sm group"
             >
               <svg className="w-4 h-4 text-violet-500" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
@@ -75,8 +78,10 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg sm:rounded-xl hover:bg-violet-500/10 transition-all duration-300 active:scale-95"
+              className="lg:hidden min-w-11 min-h-11 flex items-center justify-center rounded-lg hover:bg-violet-500/10"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? (
                 <CloseIcon className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -90,8 +95,8 @@ export function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-xl animate-fade-slide-up" style={{ animationDuration: '0.2s' }}>
-          <nav className="px-3 sm:px-6 py-4 sm:py-5 space-y-1">
+        <div id="mobile-navigation" className="lg:hidden border-t border-[var(--border)] bg-[var(--background)]/95">
+          <nav aria-label="Mobile navigation" className="px-3 sm:px-6 py-4 sm:py-5 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

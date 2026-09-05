@@ -34,7 +34,7 @@ export default async function Guide({
   const tool = getToolBySlug(guide.tool)!;
   return (
     <article className="max-w-3xl mx-auto px-4 py-10">
-      <Link className="text-sm underline" href="/guides">
+      <Link className="btn btn-secondary" href="/guides">
         ← All guides
       </Link>
       <header className="mt-8 mb-10">

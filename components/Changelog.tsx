@@ -16,6 +16,10 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.18.0", changes: [
+    { type: "improved", text: "New social share image and clearer previews for the homepage, tools and guides" },
+    { type: "fixed", text: "Outdated tool counts and missing blog preview images, with consistent app and feed descriptions" },
+  ] },
   { date: "Sep 5, 2026", version: "2.17.0", changes: [
     { type: "improved", text: "Simpler homepage with direct tool shortcuts, six task filters and the existing light and dark colours" },
     { type: "improved", text: "Instant search suggestions, arrow-key selection and quick access to pinned tools" },

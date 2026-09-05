@@ -1,16 +1,13 @@
 // Blog Layout | TypeScript
-import { Metadata } from 'next';
+import { generateCollectionMetadata } from '@/lib/seo';
+import { TOTAL_TOOLS } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Free Online Tools - No Sign Up Required',
-  description: 'Browse our collection of 2800+ free online tools. No registration, no email, no downloads. Text tools, image converters, developer utilities, and more.',
+export const metadata = generateCollectionMetadata({
+  title: 'Tool Guides for PDFs, Images, Text & Code | NYTM',
+  description: `Explore guides to ${TOTAL_TOOLS} free online tools for PDFs, images, text, code and everyday tasks. Find the right tool and learn how to use it.`,
+  path: '/blog',
   keywords: ['free online tools', 'no sign up', 'free converter', 'online tool', 'browser tool'],
-  openGraph: {
-    title: 'Free Online Tools - No Sign Up Required',
-    description: 'Browse our collection of 2800+ free online tools. No registration required.',
-    type: 'website',
-  },
-};
+});
 
 export default function BlogLayout({
   children,

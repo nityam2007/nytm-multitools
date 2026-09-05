@@ -14,6 +14,7 @@ import { PostHogProvider } from "@/components/PostHogProvider";
 import { ToastProvider } from "@/components/Toast";
 import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import { generateWebsiteJsonLd } from "@/lib/seo";
+import { SITE_NAME, SITE_DESCRIPTION, SOCIAL_TITLE, SOCIAL_IMAGE, SOCIAL_CREATOR } from "@/lib/site-config";
 
 // NOTE: This must match toolsConfig.length in lib/tools-config.ts
 // Static metadata cannot use dynamic imports, so update this when adding tools
@@ -37,7 +38,8 @@ export const metadata: Metadata = {
     default: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
     template: "%s | NYTM Tools",
   },
-  description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No sign-ups. Find browser utilities for everyday tasks and client work.`,
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
     "free online tools",
     "online utilities",
@@ -56,7 +58,7 @@ export const metadata: Metadata = {
     "regex tester",
     "jwt decoder",
     "timestamp converter",
-    "privacy-focused tools",
+    "pdf tools",
     "browser-based tools",
     "online business utilities",
   ],
@@ -79,28 +81,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://nytm.in",
     siteName: "NYTM Tools",
-    title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
-    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No sign-ups. Find browser utilities for everyday tasks and client work.`,
-    images: [
-      {
-        url: "/metaimg.png",
-        width: 1200,
-        height: 630,
-        alt: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
-        type: "image/png",
-      },
-    ],
+    title: SOCIAL_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SOCIAL_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
-    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No sign-ups. Browser utilities for everyday tasks and client work.`,
-    images: ["/metaimg.png"],
-    creator: "@nityam2007",
+    title: SOCIAL_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SOCIAL_IMAGE],
+    creator: SOCIAL_CREATOR,
   },
   metadataBase: new URL("https://nytm.in"),
   alternates: {
     canonical: "https://nytm.in",
+    types: { "application/rss+xml": "https://nytm.in/feed.xml" },
   },
   icons: {
     icon: [

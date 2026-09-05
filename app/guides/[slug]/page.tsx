@@ -6,6 +6,7 @@ import { guides } from "@/lib/guides";
 import { getToolBySlug } from "@/lib/tools-config";
 import { NShethPromotion } from "@/components/NShethPromotion";
 import { generateCollectionMetadata } from "@/lib/seo";
+import { SOCIAL_IMAGE } from "@/lib/site-config";
 export function generateStaticParams() {
   return guides.map(({ slug }) => ({ slug }));
 }
@@ -53,7 +54,7 @@ export default async function Guide({
               name: "NYTM",
               url: "https://nytm.in",
             },
-            image: "https://nytm.in/metaimg.png",
+            image: SOCIAL_IMAGE.url,
           }).replace(/</g, "\\u003c"),
         }}
       />

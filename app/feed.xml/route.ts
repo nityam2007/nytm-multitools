@@ -1,14 +1,11 @@
+// Public RSS feed for NYTM tools | TypeScript
 import { toolsConfig } from "@/lib/tools-config";
+import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/site-config";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://nytm.in";
-const SITE_NAME = "NYTM MultiTools";
-const SITE_DESCRIPTION = "Free online tools for developers, designers, and everyone. Text tools, image tools, converters, generators, and more.";
 
 export async function GET() {
   const currentDate = new Date().toUTCString();
-
-  // Group tools by category for better organization
-  const categories = [...new Set(toolsConfig.map((tool) => tool.category))];
 
   const rssItems = toolsConfig
     .map((tool) => {
@@ -30,7 +27,7 @@ export async function GET() {
   <channel>
     <title>${SITE_NAME}</title>
     <link>${BASE_URL}</link>
-    <description>${SITE_DESCRIPTION}</description>
+    <description><![CDATA[${SITE_DESCRIPTION}]]></description>
     <language>en-us</language>
     <lastBuildDate>${currentDate}</lastBuildDate>
     <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>

@@ -1,7 +1,7 @@
 // Task-first homepage for everyday browser tools | TypeScript
 import Link from "next/link";
 import { toolsConfig } from "@/lib/tools-config";
-import { TOTAL_TOOLS } from "@/lib/site-config";
+import { TOTAL_TOOLS, SITE_TITLE, SITE_DESCRIPTION, SOCIAL_TITLE } from "@/lib/site-config";
 import { HomeSearch } from "@/components/HomeSearch";
 import { RecentTools } from "@/components/RecentTools";
 import { HomeToolPicker } from "@/components/ToolCard";
@@ -18,8 +18,9 @@ import {
 import { generateCollectionMetadata } from "@/lib/seo";
 
 export const metadata = generateCollectionMetadata({
-  title: "Free Online Tools for PDFs, Images, Text & Code | NYTM",
-  description: `Find ${TOTAL_TOOLS} free online tools: merge PDFs, compress images, format JSON, clean CSV files, and create business assets. No signup required.`,
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  socialTitle: SOCIAL_TITLE,
   path: "/",
   keywords: [
     "free online tools",

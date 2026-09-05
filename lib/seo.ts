@@ -3,9 +3,9 @@ import { Metadata } from "next";
 import { toolsConfig, ToolConfig } from "./tools-config";
 import { searchKeywords } from "./tool-search";
 import { toolSearchTitles } from "./seo-intents";
+import { SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, SOCIAL_TITLE, SOCIAL_IMAGE, SOCIAL_CREATOR } from "./site-config";
 
 const BASE_URL = "https://nytm.in";
-const SITE_NAME = process.env.NEXT_PUBLIC_APP_NAME || "NYTM Tools";
 
 // Category display names and descriptions
 export const categoryMeta: Record<
@@ -68,40 +68,39 @@ export function generateCollectionMetadata({
   path,
   keywords = [],
   article = false,
+  socialTitle = title,
 }: {
   title: string;
   description: string;
   path: string;
   keywords?: string[];
   article?: boolean;
+  socialTitle?: string;
 }): Metadata {
   const url = new URL(path, BASE_URL).toString();
   return {
     title: { absolute: title },
     description,
     keywords,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      types: { "application/rss+xml": `${BASE_URL}/feed.xml` },
+    },
     openGraph: {
       type: article ? "article" : "website",
       locale: "en_US",
       siteName: SITE_NAME,
       url,
-      title,
+      title: socialTitle,
       description,
-      images: [
-        {
-          url: BASE_URL + "/metaimg.png",
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      images: [SOCIAL_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: socialTitle,
       description,
-      images: [BASE_URL + "/metaimg.png"],
+      images: [SOCIAL_IMAGE],
+      creator: SOCIAL_CREATOR,
     },
   };
 }
@@ -166,8 +165,8 @@ export function generatePageMetadata(
     { title: string; description: string; path: string }
   > = {
     home: {
-      title: `${SITE_NAME} — ${toolCount} Free Online Tools`,
-      description: `${toolCount} free online tools for everyone. Text, images, converters, generators, and more. No sign-ups. Browse text, image, PDF, developer and business utilities.`,
+      title: SITE_TITLE,
+      description: SITE_DESCRIPTION,
       path: "",
     },
     about: {
@@ -198,38 +197,10 @@ export function generatePageMetadata(
   };
 
   const pageInfo = pages[page];
-  const url = `${BASE_URL}${pageInfo.path}`;
-
-  return {
-    title: { absolute: pageInfo.title },
-    description: pageInfo.description,
-    openGraph: {
-      type: "website",
-      locale: "en_US",
-      url,
-      siteName: SITE_NAME,
-      title: pageInfo.title,
-      description: pageInfo.description,
-      images: [
-        {
-          url: `${BASE_URL}/metaimg.png`,
-          width: 1200,
-          height: 630,
-          alt: SITE_NAME,
-          type: "image/png",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: pageInfo.title,
-      description: pageInfo.description,
-      images: [`${BASE_URL}/metaimg.png`],
-    },
-    alternates: {
-      canonical: url,
-    },
-  };
+  return generateCollectionMetadata({
+    ...pageInfo,
+    socialTitle: page === "home" ? SOCIAL_TITLE : pageInfo.title,
+  });
 }
 
 /**
@@ -294,7 +265,9 @@ export function generateWebsiteJsonLd(): object {
     "@type": "WebSite",
     name: SITE_NAME,
     url: BASE_URL,
-    description: `${toolsConfig.length} free online tools for everyone.`,
+    description: SITE_DESCRIPTION,
+    image: SOCIAL_IMAGE.url,
+    inLanguage: "en",
     author: {
       "@type": "Person",
       name: "Nityam Sheth",

@@ -1,8 +1,9 @@
+// Site footer and social sharing links | TypeScript
 "use client";
 
 import Link from "next/link";
 import { GitHubIcon } from "@/assets/icons";
-import { SITE_TAGLINE } from "@/lib/site-config";
+import { SITE_TAGLINE, SOCIAL_TITLE, TOTAL_TOOLS } from "@/lib/site-config";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -79,7 +80,7 @@ export function Footer() {
                   <GitHubIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </a>
                 <a 
-                  href="https://twitter.com/intent/tweet?text=Free%20browser%20tools%20by%20NYTM&url=https://nytm.in" 
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${SOCIAL_TITLE} ${TOTAL_TOOLS} free tools for PDFs, images, text and code. No signup.`)}&url=https%3A%2F%2Fnytm.in`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[var(--muted)] flex items-center justify-center text-[var(--muted-foreground)] hover:bg-blue-500/10 hover:text-blue-400 transition-all duration-300 active:scale-95"

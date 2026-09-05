@@ -1,6 +1,7 @@
 // TXT to PDF Converter | TypeScript
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useCallback, useRef } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -55,26 +56,6 @@ export default function TxtToPdfPage() {
     reader.readAsText(file);
 
     e.target.value = "";
-  }, []);
-
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (!file) return;
-
-    if (!file.name.endsWith(".txt") && file.type !== "text/plain") {
-      setError("Please drop a .txt file");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const content = event.target?.result as string;
-      setTextContent(content);
-      setFileName(file.name.replace(/\.txt$/i, ""));
-      setError("");
-    };
-    reader.readAsText(file);
   }, []);
 
   const convertToPDF = async () => {
@@ -138,29 +119,12 @@ export default function TxtToPdfPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="max-w-3xl mx-auto space-y-6">
         {/* File Upload Zone */}
-        <div
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={handleDrop}
-          className="border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center hover:border-violet-500/50 transition-colors"
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".txt,text/plain"
-            onChange={handleFileUpload}
-            className="hidden"
-            id="txt-upload"
-          />
-          <label htmlFor="txt-upload" className="cursor-pointer">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-violet-500/10 flex items-center justify-center">
-              <svg className="w-8 h-8 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-              </svg>
-            </div>
-            <p className="font-semibold text-lg mb-1">Drop a .txt file here</p>
-            <p className="text-sm text-[var(--muted-foreground)]">or click to browse</p>
-          </label>
-        </div>
+        <FilePicker label="Import a text file"
+        ref={fileInputRef}
+        accept=".txt,text/plain"
+        onChange={handleFileUpload}
+        id="txt-upload"
+      />
 
         {/* Text Input Area */}
         <div className="space-y-2">
@@ -198,7 +162,7 @@ export default function TxtToPdfPage() {
         {/* Settings Panel */}
         <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4">
           <h3 className="font-semibold">PDF Settings</h3>
-          
+
           <div className="grid sm:grid-cols-2 gap-4">
             {/* Font Size */}
             <div className="space-y-2">

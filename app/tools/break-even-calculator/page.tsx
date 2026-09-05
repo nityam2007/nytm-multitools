@@ -108,7 +108,7 @@ export default function BreakEvenCalculatorPage() {
         {results && (
           <div className="space-y-6">
             {/* Summary Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 break-words">
               <div className="p-4 sm:p-6 bg-gradient-to-br from-violet-500/10 to-purple-500/10 rounded-xl border border-violet-500/20">
                 <div className="text-xs text-[var(--muted-foreground)] mb-1">Break-Even Units</div>
                 <div className="text-xl sm:text-2xl font-bold text-violet-500">
@@ -145,7 +145,7 @@ export default function BreakEvenCalculatorPage() {
                   <span>{formatCurrency(maxY / 2)}</span>
                   <span>$0</span>
                 </div>
-                
+
                 {/* Chart area */}
                 <div className="ml-16 relative" style={{ height: chartHeight }}>
                   {/* Grid lines */}
@@ -154,37 +154,39 @@ export default function BreakEvenCalculatorPage() {
                       <div key={i} className="border-t border-[var(--border)]" />
                     ))}
                   </div>
-                  
+
                   {/* Break-even point line */}
-                  <div 
+                  <div
                     className="absolute top-0 bottom-0 border-l-2 border-dashed border-violet-500"
                     style={{ left: `${(results.breakEvenUnits / (results.breakEvenUnits * 2)) * 100}%` }}
                   >
-                    <div className="absolute -top-1 left-1 text-xs text-violet-500 whitespace-nowrap">
+                    <div className="absolute -top-5 left-0 -translate-x-1/2 text-xs text-violet-500 whitespace-nowrap">
                       Break-even
                     </div>
                   </div>
 
                   {/* Revenue line (simplified) */}
-                  <svg className="absolute inset-0 overflow-visible" preserveAspectRatio="none">
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="Revenue and total costs by units sold; values appear in the table below.">
                     <polyline
                       fill="none"
                       stroke="#22c55e"
                       strokeWidth="2"
+                      vectorEffect="non-scaling-stroke"
                       points={results.chartData.map((d, i) => {
                         const x = (i / (results.chartData.length - 1)) * 100;
                         const y = ((maxY - d.revenue) / maxY) * 100;
-                        return `${x}%,${y}%`;
+                        return `${x},${y}`;
                       }).join(" ")}
                     />
                     <polyline
                       fill="none"
                       stroke="#ef4444"
                       strokeWidth="2"
+                      vectorEffect="non-scaling-stroke"
                       points={results.chartData.map((d, i) => {
                         const x = (i / (results.chartData.length - 1)) * 100;
                         const y = ((maxY - d.totalCost) / maxY) * 100;
-                        return `${x}%,${y}%`;
+                        return `${x},${y}`;
                       }).join(" ")}
                     />
                   </svg>
@@ -224,8 +226,8 @@ export default function BreakEvenCalculatorPage() {
                 </thead>
                 <tbody>
                   {results.chartData.map((row) => (
-                    <tr 
-                      key={row.units} 
+                    <tr
+                      key={row.units}
                       className={`border-b border-[var(--border)] ${row.units === results.breakEvenUnits ? 'bg-violet-500/10' : ''}`}
                     >
                       <td className="py-2 px-2">{row.units.toLocaleString()}</td>

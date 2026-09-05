@@ -220,6 +220,8 @@ button.btn-secondary {
   box-shadow: 0 4px 12px -2px rgba(139, 92, 246, 0.2);
 }
 
+/* Base defaults yield to component styles and spacing utilities. */
+@layer base {
 /* All text inputs get modern styling */
 input[type="text"]:not(.checkbox-modern):not(.radio-modern),
 input[type="email"],
@@ -229,12 +231,12 @@ input[type="tel"],
 input[type="url"],
 input[type="search"],
 textarea:not(.option-card) {
-  padding: 0.75rem 1rem !important;
-  border-radius: 0.75rem !important;
-  background: var(--card) !important;
-  border: 2px solid var(--border) !important;
-  font-size: 0.875rem;
-  transition: all 0.3s ease !important;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--control-border, var(--border));
+  font-size: 1rem;
+  transition: border-color 160ms ease, background-color 160ms ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -246,9 +248,10 @@ input[type="tel"]:focus,
 input[type="url"]:focus,
 input[type="search"]:focus,
 textarea:focus {
-  outline: none !important;
-  border-color: rgba(139, 92, 246, 1) !important;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: rgba(139, 92, 246, 1);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 input[type="text"]:hover,
@@ -272,30 +275,33 @@ textarea:not(.option-card) {
 /* All select dropdowns get modern styling */
 select:not(.select-modern) {
   appearance: none;
-  padding: 0.75rem 2.5rem 0.75rem 1rem !important;
-  border-radius: 0.75rem !important;
-  border: 2px solid var(--border) !important;
-  background: var(--card) !important;
-  font-size: 0.875rem;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--control-border, var(--border));
+  background: var(--card);
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 0.75rem center !important;
-  background-size: 1.25rem !important;
+  transition: border-color 160ms ease, background-color 160ms ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 select:hover {
-  border-color: rgba(139, 92, 246, 0.5) !important;
+  border-color: rgba(139, 92, 246, 0.5);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 select:focus {
-  outline: none !important;
-  border-color: rgba(139, 92, 246, 1) !important;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: rgba(139, 92, 246, 1);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
 }
 
 /* All checkboxes get modern styling */
@@ -484,7 +490,7 @@ textarea:focus-visible {
 .tool-card:hover {
   border-color: rgba(139, 92, 246, 0.5);
   transform: translateY(-4px);
-  box-shadow: 
+  box-shadow:
     0 10px 40px -10px rgba(139, 92, 246, 0.3),
     0 4px 12px -2px rgba(0, 0, 0, 0.1);
 }
@@ -883,14 +889,14 @@ p {
   border: 2px solid var(--border);
   border-radius: 1.5rem;
   padding: 2rem;
-  box-shadow: 
+  box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.05),
     0 0 0 1px rgba(0, 0, 0, 0.02);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tool-container:hover {
-  box-shadow: 
+  box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.08),
     0 0 0 1px rgba(139, 92, 246, 0.1);
 }
@@ -1187,48 +1193,48 @@ p {
   .hide-mobile {
     display: none !important;
   }
-  
+
   .tool-container {
     padding: 1rem;
     border-radius: 1rem;
     border-width: 1px;
   }
-  
+
   /* Smaller touch targets for mobile */
   button:not(.option-card):not(.toggle-slider) {
     min-height: 44px;
   }
-  
+
   /* Reduce animation on mobile for performance */
   .animate-fade-slide-up,
   .animate-fade-slide-right {
     animation-duration: 0.3s;
   }
-  
+
   /* Better textarea sizing on mobile */
   textarea:not(.option-card) {
     min-height: 120px;
   }
-  
+
   /* Option cards on mobile */
   .option-card {
     padding: 0.75rem 1rem;
   }
-  
+
   /* Tool section spacing */
   .tool-section {
     padding: 1rem 0;
   }
-  
+
   .tool-section + .tool-section {
     margin-top: 1rem;
   }
-  
+
   /* Reduce hover effects on touch devices */
   .tool-card:hover {
     transform: none;
   }
-  
+
   /* Better scrollbar for mobile */
   ::-webkit-scrollbar {
     width: 4px;
@@ -1247,7 +1253,7 @@ p {
   .hide-desktop {
     display: none !important;
   }
-  
+
   .tool-container {
     padding: 2rem;
     border-radius: 1.5rem;

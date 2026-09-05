@@ -18,7 +18,7 @@ export default function EscapeUnescapePage() {
 
   const process = (): string => {
     if (!input) return "";
-    
+
     if (mode === "escape") {
       switch (type) {
         case "javascript":
@@ -82,7 +82,7 @@ export default function EscapeUnescapePage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div className="flex flex-wrap gap-4">
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setMode("escape")}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
@@ -104,8 +104,8 @@ export default function EscapeUnescapePage() {
               Unescape
             </button>
           </div>
-          
-          <div className="flex gap-2">
+
+          <div className="flex flex-wrap gap-2">
             {[
               { id: "javascript", label: "JavaScript" },
               { id: "html", label: "HTML" },

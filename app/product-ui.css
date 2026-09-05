@@ -1,0 +1,160 @@
+/* Product controls: fluid spacing, visible actions and accessible input states | CSS */
+:root {
+  --space-gutter: clamp(1rem, 0.55rem + 1.8vw, 2.5rem);
+  --space-panel: clamp(1rem, 0.65rem + 1.4vw, 2rem);
+  --space-section: clamp(2rem, 1rem + 3vw, 4rem);
+  --text-title: clamp(1.625rem, 1.2rem + 1.3vw, 2.5rem);
+  --text-body: clamp(0.9375rem, 0.91rem + 0.12vw, 1rem);
+  --control-border: #96909f;
+  --control-fill: #ffffff;
+  --action-fill: #6d28d9;
+  --action-hover: #5b21b6;
+  --action-ink: #ffffff;
+  --error-ink: #b42318;
+  --radius-control: 0.625rem;
+  --radius-panel: 1rem;
+}
+.dark {
+  color-scheme: dark;
+  --control-border: #66636f;
+  --control-fill: #151517;
+  --action-fill: #a78bfa;
+  --action-hover: #c4b5fd;
+  --action-ink: #171222;
+  --error-ink: #ffaaa3;
+}
+.light { color-scheme: light; }
+.btn, .ui-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-control);
+  padding: 0.6875rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  touch-action: manipulation;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, opacity 160ms ease;
+}
+.btn-primary, button.btn-primary, .ui-button--primary {
+  background: var(--action-fill) !important;
+  color: var(--action-ink) !important;
+  box-shadow: none !important;
+  border: 1px solid transparent !important;
+}
+.btn-primary::before { display: none; }
+.btn-primary:hover:not(:disabled), .ui-button--primary:hover:not(:disabled) {
+  background: var(--action-hover) !important;
+  box-shadow: none;
+  transform: none;
+}
+.btn-secondary, button.btn-secondary, .ui-button--secondary, .ui-button--outline {
+  background: var(--control-fill) !important;
+  border: 1px solid var(--control-border) !important;
+  color: var(--foreground) !important;
+  box-shadow: none;
+}
+.btn-secondary:hover:not(:disabled), .ui-button--secondary:hover:not(:disabled), .ui-button--outline:hover:not(:disabled) {
+  background: var(--muted) !important;
+  border-color: var(--foreground) !important;
+  color: var(--foreground) !important;
+  transform: none;
+  box-shadow: none;
+}
+.ui-button--ghost { background: transparent; color: var(--foreground); border: 1px solid transparent; }
+.ui-button--ghost:hover:not(:disabled) { background: var(--muted); }
+.ui-button--destructive { background: #b42318; color: white; border: 1px solid transparent; }
+.ui-button--sm { padding-inline: 0.875rem; }
+.ui-button--lg { min-height: 48px; padding-inline: 1.5rem; font-size: 1rem; }
+.ui-button:disabled, .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.ui-button:focus-visible, .btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.button-spinner { width: 1rem; height: 1rem; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin 800ms linear infinite; }
+.field { min-width: 0; }
+.field-label { display: block; margin-bottom: 0.5rem; font-size: 0.9375rem; line-height: 1.5; font-weight: 500; color: var(--foreground); }
+.field-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+.field-count, .field-help { font-size: 0.875rem; line-height: 1.5; color: var(--muted-foreground); }
+.field-count { font-variant-numeric: tabular-nums; }
+.field-help { margin-top: 0.5rem; }
+.field-input-wrap { position: relative; }
+.field-icon { position: absolute; top: 50%; transform: translateY(-50%); color: var(--muted-foreground); pointer-events: none; }
+.field-icon--left { left: 0.875rem; }
+.field-icon--right { right: 0.875rem; }
+input.field-control, select.field-control, textarea.field-control {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 0.6875rem 0.875rem;
+  background-color: var(--control-fill);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-control);
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.5;
+  box-shadow: none;
+  transition: border-color 160ms ease;
+}
+input.field-control--icon-left { padding-left: 2.75rem; }
+input.field-control--icon-right { padding-right: 2.75rem; }
+select.field-control { padding-right: 2.5rem; }
+textarea.field-textarea { min-height: clamp(10rem, 8rem + 8vw, 16rem); resize: vertical; }
+.field-control::placeholder { color: var(--muted-foreground); opacity: 1; }
+.field-control:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.field-control[aria-invalid="true"] { border-color: var(--error-ink); }
+.field-control:disabled { opacity: 0.65; cursor: not-allowed; }
+.file-picker { width: 100%; min-width: 0; }
+.file-picker-label { display: block; font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--foreground); }
+.file-dropzone {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  border: 1.5px dashed var(--control-border);
+  border-radius: var(--radius-panel);
+  padding: clamp(1.25rem, 0.9rem + 1.3vw, 2rem);
+  background: var(--control-fill);
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+.file-dropzone:focus-within { outline: 2px solid var(--primary); outline-offset: 4px; }
+.file-dropzone[data-dragging] { border-style: solid; border-color: var(--primary); background: var(--accent); }
+.file-dropzone[data-invalid] { border-color: var(--error-ink); }
+.file-picker[data-disabled] { opacity: 0.65; }
+.file-picker-icon { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 0.75rem; background: var(--muted); color: var(--foreground); }
+.file-picker-prompt { font-size: clamp(1rem, 0.94rem + 0.3vw, 1.125rem); font-weight: 600; line-height: 1.4; color: var(--foreground); }
+.file-picker-hint { font-size: 0.875rem; line-height: 1.65; margin-top: 0.375rem; color: var(--muted-foreground); overflow-wrap: anywhere; }
+.file-picker-browse { white-space: nowrap; }
+.file-picker-selection { min-height: 1.5rem; display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.5; color: var(--muted-foreground); overflow-wrap: anywhere; }
+.file-picker-selection > span:first-child { flex-shrink: 0; }
+.file-picker-selection > span:last-child { min-width: 0; }
+.file-picker-size { font-variant-numeric: tabular-nums; }
+.file-picker-preview { margin-top: 1rem; }
+.file-picker-preview img { display: block; width: min(100%, 320px); height: 180px; object-fit: contain; border-radius: 0.75rem; background: var(--muted); }
+.field-error { color: var(--error-ink); font-size: 0.875rem; line-height: 1.5; margin-top: 0.5rem; }
+@media (max-width: 640px) {
+  .file-dropzone { grid-template-columns: auto minmax(0, 1fr); gap: 0.75rem; }
+  .file-picker-browse { grid-column: 1 / -1; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .file-dropzone, .ui-button, .btn, .field-control { transition: none; }
+  .button-spinner { animation: none; }
+}
+
+/* Fluid tool workspace and search controls. */
+input.sidebar-search-control { padding-inline: 2.75rem; min-height: 46px; font-size: 1rem; }
+.sidebar-active-link { background: var(--action-fill); color: var(--action-ink); box-shadow: none; }
+.tool-shell { padding-inline: clamp(0rem, -0.4rem + 1.5vw, 2rem); min-width: 0; }
+.tool-shell h1 { font-size: var(--text-title); line-height: 1.18; letter-spacing: -0.025em; text-wrap: balance; }
+.tool-container { padding: var(--space-panel); border-width: 1px; border-radius: var(--radius-panel); min-width: 0; }
+.tool-container:hover { box-shadow: none; }
+.business-workspace { font-size: var(--text-body); }
+.business-workspace input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.business-workspace select { min-height: 46px; }
+.business-workspace .grid > *, .tool-container .grid > * { min-width: 0; }
+.tool-container input:not([type="checkbox"]):not([type="radio"]), .tool-container textarea, .tool-container select { max-width: 100%; }
+.tool-container :is(h2, h3, p) { overflow-wrap: break-word; }
+.tool-shell nav[aria-label="Breadcrumb"] { min-height: 44px; }
+@media (max-width: 640px) {
+  .tool-container { padding: var(--space-panel); }
+  .tool-container input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), .tool-container select, .tool-container textarea { font-size: 1rem; }
+}

@@ -1,5 +1,6 @@
 // Verified metadata removal from JPEG and PNG files | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useState } from "react";
 import { Workspace, Notice } from "./ToolUI";
 import { stripImageMetadata } from "@/lib/image-metadata";
@@ -14,20 +15,15 @@ export default function MetadataRemover() {
       slug="metadata-remover"
       help="Losslessly removes JPEG EXIF/XMP (APP1), IPTC (APP13), and comments, plus PNG text and EXIF chunks. Colour profiles and image pixels are retained. JPEG orientation metadata is removed, so some photos may display rotated; review the result before sharing. Visible information inside the image is not removed."
     >
-      <label className="block text-sm font-medium">
-        JPEG or PNG (up to 25 MB)
-        <input
-          className="block mt-2"
-          type="file"
-          accept="image/jpeg,image/png"
-          disabled={busy}
-          onChange={(e) => {
+      <FilePicker label="JPEG or PNG (up to 25 MB)"
+        accept="image/jpeg,image/png"
+        disabled={busy}
+        onChange={(e) => {
             setFile(e.target.files?.[0] || null);
             setResult(null);
             setNotice("");
           }}
-        />
-      </label>
+      />
       <button
         className="btn btn-primary"
         disabled={!file || busy}

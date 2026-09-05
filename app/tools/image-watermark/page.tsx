@@ -1,6 +1,7 @@
 // Image Watermark Tool | TypeScript
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -57,7 +58,7 @@ export default function ImageWatermarkPage() {
   const handleImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     setFileName(file.name.replace(/\.[^/.]+$/, ""));
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -70,7 +71,7 @@ export default function ImageWatermarkPage() {
   const handleWatermarkImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     const reader = new FileReader();
     reader.onload = (event) => {
       setWatermarkImage(event.target?.result as string);
@@ -81,14 +82,14 @@ export default function ImageWatermarkPage() {
 
   const drawWatermark = useCallback((ctx: CanvasRenderingContext2D, width: number, height: number, wmImg?: HTMLImageElement) => {
     const { type, text, fontSize, fontFamily, color, opacity, rotation, position, padding } = settings;
-    
+
     ctx.globalAlpha = opacity / 100;
-    
+
     const drawSingleWatermark = (x: number, y: number) => {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate((rotation * Math.PI) / 180);
-      
+
       if (type === "text") {
         ctx.font = `bold ${fontSize}px ${fontFamily}`;
         ctx.fillStyle = color;
@@ -101,7 +102,7 @@ export default function ImageWatermarkPage() {
         const wmHeight = wmImg.height * scale;
         ctx.drawImage(wmImg, -wmWidth / 2, -wmHeight / 2, wmWidth, wmHeight);
       }
-      
+
       ctx.restore();
     };
 
@@ -115,7 +116,7 @@ export default function ImageWatermarkPage() {
     } else {
       let x = width / 2;
       let y = height / 2;
-      
+
       switch (position) {
         case "top-left":
           x = padding + fontSize;
@@ -134,31 +135,31 @@ export default function ImageWatermarkPage() {
           y = height - padding - fontSize / 2;
           break;
       }
-      
+
       drawSingleWatermark(x, y);
     }
-    
+
     ctx.globalAlpha = 1;
   }, [settings]);
 
   const processImage = useCallback(async () => {
     if (!image || !canvasRef.current) return;
-    
+
     setProcessing(true);
-    
+
     try {
       const img = new Image();
       img.src = image;
       await new Promise(resolve => img.onload = resolve);
-      
+
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d")!;
-      
+
       canvas.width = img.width;
       canvas.height = img.height;
-      
+
       ctx.drawImage(img, 0, 0);
-      
+
       if (settings.type === "image" && watermarkImage) {
         const wmImg = new Image();
         wmImg.src = watermarkImage;
@@ -167,7 +168,7 @@ export default function ImageWatermarkPage() {
       } else {
         drawWatermark(ctx, img.width, img.height);
       }
-      
+
       const link = document.createElement("a");
       link.download = `${fileName || "image"}_watermarked.png`;
       link.href = canvas.toDataURL("image/png");
@@ -187,45 +188,19 @@ export default function ImageWatermarkPage() {
         {/* Upload Section */}
         <div className="grid md:grid-cols-2 gap-4">
           {/* Main Image Upload */}
-          <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-6 text-center hover:border-violet-500/50 transition-colors">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="hidden"
-              id="image-upload"
-            />
-            <label htmlFor="image-upload" className="cursor-pointer block">
-              <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-violet-500/10 flex items-center justify-center">
-                <svg className="w-6 h-6 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                </svg>
-              </div>
-              <p className="font-medium mb-1">Upload Image</p>
-              <p className="text-xs text-[var(--muted-foreground)]">PNG, JPG, WebP</p>
-            </label>
-          </div>
+          <FilePicker label="Select an image"
+        accept="image/*"
+        onChange={handleImageUpload}
+        id="image-upload"
+      />
 
           {/* Watermark Image Upload (only shown when type is image) */}
           {settings.type === "image" && (
-            <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-6 text-center hover:border-violet-500/50 transition-colors">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleWatermarkImageUpload}
-                className="hidden"
-                id="watermark-upload"
-              />
-              <label htmlFor="watermark-upload" className="cursor-pointer block">
-                <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-orange-500/10 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                  </svg>
-                </div>
-                <p className="font-medium mb-1">Upload Watermark</p>
-                <p className="text-xs text-[var(--muted-foreground)]">Logo or stamp image</p>
-              </label>
-            </div>
+            <FilePicker label="Select watermark image"
+        accept="image/*"
+        onChange={handleWatermarkImageUpload}
+        id="watermark-upload"
+      />
           )}
         </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -23,7 +24,7 @@ export default function FileHashPage() {
   const calculateHashes = useCallback(async (file: File) => {
     setLoading(true);
     setProgress(0);
-    
+
     const algorithms: Algorithm[] = ["SHA-1", "SHA-256", "SHA-384", "SHA-512"];
     const results: Record<Algorithm, string> = {
       "SHA-1": "",
@@ -31,9 +32,9 @@ export default function FileHashPage() {
       "SHA-384": "",
       "SHA-512": "",
     };
-    
+
     const arrayBuffer = await file.arrayBuffer();
-    
+
     for (let i = 0; i < algorithms.length; i++) {
       const algo = algorithms[i];
       try {
@@ -45,19 +46,10 @@ export default function FileHashPage() {
       }
       setProgress(((i + 1) / algorithms.length) * 100);
     }
-    
+
     setHashes(results);
     setLoading(false);
   }, []);
-
-  const handleFileDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    const droppedFile = e.dataTransfer.files[0];
-    if (droppedFile) {
-      setFile(droppedFile);
-      calculateHashes(droppedFile);
-    }
-  }, [calculateHashes]);
 
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -81,31 +73,10 @@ export default function FileHashPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
-        <div
-          onDrop={handleFileDrop}
-          onDragOver={(e) => e.preventDefault()}
-          className="border-2 border-dashed border-[var(--border)] rounded-xl p-12 text-center hover:border-[var(--primary)] transition-colors"
-        >
-          <input
-            type="file"
-            onChange={handleFileSelect}
-            className="hidden"
-            id="file-input"
-          />
-          <label htmlFor="file-input" className="cursor-pointer">
-            <div className="flex justify-center mb-4">
-              <svg className="w-10 h-10 text-[var(--muted-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-              </svg>
-            </div>
-            <div className="text-lg font-medium mb-2">
-              Drop a file here or click to select
-            </div>
-            <div className="text-sm text-[var(--muted-foreground)]">
-              Supports any file type
-            </div>
-          </label>
-        </div>
+        <FilePicker label="Select a file to hash"
+        onChange={handleFileSelect}
+        id="file-input"
+      />
 
         {file && (
           <div className="bg-[var(--muted)] rounded-xl p-4">

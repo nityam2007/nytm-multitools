@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { FilePicker } from "@/components/FilePicker";
+import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -16,64 +17,54 @@ interface ColorInfo {
 export default function PaletteGeneratorPage() {
   const [image, setImage] = useState<string | null>(null);
   const [colors, setColors] = useState<ColorInfo[]>([]);
+  const [error, setError] = useState("");
   const [numColors, setNumColors] = useState(5);
   const [isExtracting, setIsExtracting] = useState(false);
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      setImage(event.target?.result as string);
-      setColors([]);
-    };
-    reader.readAsDataURL(file);
-  }, []);
-
-  const extractColors = useCallback(() => {
-    if (!image || !canvasRef.current) return;
+  const extractColors = useCallback((source = image, count = numColors) => {
+    if (!source || !canvasRef.current) return;
 
     setIsExtracting(true);
+    setError("");
     const img = new Image();
     img.onload = () => {
       const canvas = canvasRef.current!;
       const ctx = canvas.getContext("2d")!;
-      
+
       // Resize for faster processing
       const maxSize = 100;
       const scale = Math.min(maxSize / img.width, maxSize / img.height);
       canvas.width = img.width * scale;
       canvas.height = img.height * scale;
-      
+
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      
+
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
-      
+
       // Count colors
       const colorMap = new Map<string, number>();
-      
+
       for (let i = 0; i < data.length; i += 4) {
-        const r = Math.round(data[i] / 16) * 16;
-        const g = Math.round(data[i + 1] / 16) * 16;
-        const b = Math.round(data[i + 2] / 16) * 16;
+        const r = Math.min(255, Math.round(data[i] / 16) * 16);
+        const g = Math.min(255, Math.round(data[i + 1] / 16) * 16);
+        const b = Math.min(255, Math.round(data[i + 2] / 16) * 16);
         const key = `${r},${g},${b}`;
         colorMap.set(key, (colorMap.get(key) || 0) + 1);
       }
-      
+
       // Sort by frequency and get top colors
       const sortedColors = Array.from(colorMap.entries())
         .sort((a, b) => b[1] - a[1])
-        .slice(0, numColors * 3) // Get more to filter similar colors
+        .slice(0, count * 3) // Get more to filter similar colors
         .map(([rgb, count]) => {
           const [r, g, b] = rgb.split(",").map(Number);
           const hex = `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
           return { hex, rgb: `rgb(${r}, ${g}, ${b})`, count };
         });
-      
+
       // Filter similar colors
       const distinctColors: ColorInfo[] = [];
       for (const color of sortedColors) {
@@ -83,24 +74,32 @@ export default function PaletteGeneratorPage() {
           const diff = Math.abs(r - cr) + Math.abs(g - cg) + Math.abs(b - cb);
           return diff < 60;
         });
-        
+
         if (!isSimilar) {
           distinctColors.push(color);
-          if (distinctColors.length >= numColors) break;
+          if (distinctColors.length >= count) break;
         }
       }
-      
+
       setColors(distinctColors);
       setIsExtracting(false);
     };
-    img.src = image;
+    img.onerror = () => { setIsExtracting(false); setError("Could not read this image. Choose a different file."); };
+    img.src = source;
   }, [image, numColors]);
 
-  useEffect(() => {
-    if (image) {
-      extractColors();
-    }
-  }, [image, numColors]);
+  const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setImage(event.target?.result as string);
+      setColors([]);
+      extractColors(event.target?.result as string, numColors);
+    };
+    reader.readAsDataURL(file);
+  }, [extractColors, numColors]);
 
   const copyColor = async (color: string) => {
     await navigator.clipboard.writeText(color);
@@ -119,7 +118,7 @@ export default function PaletteGeneratorPage() {
   const exportPalette = (formatType: "css" | "scss" | "json" | "tailwind") => {
     let content = "";
     const colorNames = ["primary", "secondary", "tertiary", "quaternary", "quinary", "senary", "septenary", "octonary", "nonary", "denary"];
-    
+
     switch (formatType) {
       case "css":
         content = `:root {\n${colors.map((c, i) => `  --color-${colorNames[i] || i}: ${c.hex};`).join("\n")}\n}`;
@@ -134,7 +133,7 @@ export default function PaletteGeneratorPage() {
         content = `module.exports = {\n  colors: {\n${colors.map((c, i) => `    '${colorNames[i] || i}': '${c.hex}',`).join("\n")}\n  }\n}`;
         break;
     }
-    
+
     navigator.clipboard.writeText(content);
     alert(`${formatType.toUpperCase()} palette copied to clipboard!`);
   };
@@ -142,22 +141,12 @@ export default function PaletteGeneratorPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
-        <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileUpload}
-            className="hidden"
-            id="file-upload"
-          />
-          <label htmlFor="file-upload" className="cursor-pointer">
-            <div className="text-4xl mb-2 flex justify-center"><svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></div>
-            <p className="font-medium">Click to upload an image</p>
-            <p className="text-sm text-[var(--muted-foreground)]">
-              Extract color palette from any image
-            </p>
-          </label>
-        </div>
+        {error && <p role="alert" className="field-error">{error}</p>}
+        <FilePicker label="Select an image"
+        accept="image/*"
+        onChange={handleFileUpload}
+        id="file-upload"
+      />
 
         {image && (
           <>
@@ -173,7 +162,7 @@ export default function PaletteGeneratorPage() {
               <div className="flex items-center justify-between mb-3">
                 <label className="text-sm font-medium">Number of Colors: {numColors}</label>
                 <button
-                  onClick={extractColors}
+                  onClick={() => extractColors()}
                   disabled={isExtracting}
                   className="text-sm px-3 py-1 rounded bg-[var(--muted)] hover:bg-[var(--accent)]"
                 >
@@ -183,7 +172,7 @@ export default function PaletteGeneratorPage() {
               <input
                 type="range"
                 value={numColors}
-                onChange={(e) => setNumColors(parseInt(e.target.value))}
+                onChange={(e) => { const count = parseInt(e.target.value); setNumColors(count); extractColors(image, count); }}
                 min="3"
                 max="10"
                 className="w-full"
@@ -207,7 +196,7 @@ export default function PaletteGeneratorPage() {
                         onClick={() => copyColor(color.hex)}
                       >
                         {copiedColor === color.hex && (
-                          <span 
+                          <span
                             className="absolute text-sm font-bold"
                             style={{ color: getContrastColor(color.hex) }}
                           >
@@ -231,13 +220,13 @@ export default function PaletteGeneratorPage() {
                         onClick={() => copyColor(color.hex)}
                       />
                       <div className="flex-1 min-w-0">
-                        <div 
+                        <div
                           className="font-mono text-sm font-bold cursor-pointer hover:underline"
                           onClick={() => copyColor(color.hex)}
                         >
                           {color.hex}
                         </div>
-                        <div 
+                        <div
                           className="font-mono text-xs text-[var(--muted-foreground)] cursor-pointer hover:underline"
                           onClick={() => copyColor(color.rgb)}
                         >

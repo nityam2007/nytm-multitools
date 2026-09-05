@@ -1,6 +1,7 @@
 // PNG to PDF Tool | TypeScript
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -64,7 +65,7 @@ export default function PNGToPDFPage() {
       const { jsPDF } = await import("jspdf");
 
       let pdf: InstanceType<typeof jsPDF>;
-      
+
       if (pageSize === "a4") {
         pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
       } else if (pageSize === "letter") {
@@ -75,7 +76,7 @@ export default function PNGToPDFPage() {
 
       for (let i = 0; i < images.length; i++) {
         const img = images[i];
-        
+
         // Load image dimensions
         const imgElement = new Image();
         imgElement.src = img.preview;
@@ -131,25 +132,12 @@ export default function PNGToPDFPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Upload Area */}
-        <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center hover:border-blue-500/50 transition-colors">
-          <input
-            type="file"
-            accept="image/png"
-            multiple
-            onChange={handleFileUpload}
-            className="hidden"
-            id="png-upload"
-          />
-          <label htmlFor="png-upload" className="cursor-pointer">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-blue-500/10 flex items-center justify-center">
-              <svg className="w-8 h-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-              </svg>
-            </div>
-            <p className="font-semibold text-lg mb-1">Drop PNG images here</p>
-            <p className="text-sm text-[var(--muted-foreground)]">or click to browse</p>
-          </label>
-        </div>
+        <FilePicker label="Select images"
+        accept="image/png"
+        multiple
+        onChange={handleFileUpload}
+        id="png-upload"
+      />
 
         {error && (
           <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500 text-sm">
@@ -161,7 +149,7 @@ export default function PNGToPDFPage() {
         {images.length > 0 && (
           <div className="space-y-4">
             <h3 className="font-semibold">{images.length} image{images.length > 1 ? "s" : ""} selected</h3>
-            
+
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {images.map((img, index) => (
                 <div key={img.id} className="relative group rounded-lg overflow-hidden border border-[var(--border)]">

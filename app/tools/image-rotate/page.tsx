@@ -1,5 +1,6 @@
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -13,32 +14,8 @@ export default function ImageRotatePage() {
   const [rotation, setRotation] = useState(0);
   const [fileName, setFileName] = useState("");
   const [originalSize, setOriginalSize] = useState({ width: 0, height: 0 });
-  const [isDragging, setIsDragging] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleFile = useCallback((file: File) => {
-    if (!file.type.startsWith("image/")) {
-      alert("Please select an image file");
-      return;
-    }
-
-    setFileName(file.name);
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const dataUrl = e.target?.result as string;
-      setImage(dataUrl);
-      
-      const img = new Image();
-      img.onload = () => {
-        setOriginalSize({ width: img.width, height: img.height });
-        setRotation(0);
-        rotateImage(dataUrl, 0);
-      };
-      img.src = dataUrl;
-    };
-    reader.readAsDataURL(file);
-  }, []);
 
   const rotateImage = useCallback((imageSrc: string, degrees: number) => {
     const img = new Image();
@@ -74,6 +51,29 @@ export default function ImageRotatePage() {
     img.src = imageSrc;
   }, []);
 
+  const handleFile = useCallback((file: File) => {
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file");
+      return;
+    }
+
+    setFileName(file.name);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      setImage(dataUrl);
+
+      const img = new Image();
+      img.onload = () => {
+        setOriginalSize({ width: img.width, height: img.height });
+        setRotation(0);
+        rotateImage(dataUrl, 0);
+      };
+      img.src = dataUrl;
+    };
+    reader.readAsDataURL(file);
+  }, [rotateImage]);
+
   const handleRotate = (degrees: number) => {
     if (!image) return;
     const newRotation = (rotation + degrees + 360) % 360;
@@ -86,13 +86,6 @@ export default function ImageRotatePage() {
     setRotation(degrees);
     rotateImage(image, degrees);
   };
-
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files[0];
-    if (file) handleFile(file);
-  }, [handleFile]);
 
   const handleDownload = () => {
     if (!rotatedImage) return;
@@ -125,34 +118,11 @@ export default function ImageRotatePage() {
       <div className="space-y-6">
         {/* Upload Area */}
         {!image ? (
-          <div
-            onDrop={handleDrop}
-            onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
-            onDragLeave={() => setIsDragging(false)}
-            onClick={() => fileInputRef.current?.click()}
-            className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-colors ${
-              isDragging
-                ? "border-[var(--primary)] bg-[var(--primary)]/10"
-                : "border-[var(--border)] hover:border-[var(--primary)]"
-            }`}
-          >
-            <div className="flex justify-center mb-4">
-              <svg className="w-14 h-14 text-[var(--muted-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-              </svg>
-            </div>
-            <p className="text-lg font-medium mb-2">Drop an image here or click to upload</p>
-            <p className="text-sm text-[var(--muted-foreground)]">
-              Supports JPG, PNG, GIF, WebP, SVG
-            </p>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
-              className="hidden"
-            />
-          </div>
+          <FilePicker label="Select an image"
+        ref={fileInputRef}
+        accept="image/*"
+        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
+      />
         ) : (
           <>
             {/* Controls */}

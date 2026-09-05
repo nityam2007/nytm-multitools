@@ -16,6 +16,11 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.14.0", changes: [
+    { type: "improved", text: "Clear file drop zones and Browse files buttons across image, PDF and business tools, with selection feedback and validation" },
+    { type: "improved", text: "Consistent form controls, connected shared labels, visible keyboard focus and fluid workspace spacing" },
+    { type: "fixed", text: "Sidebar search icon overlap, mobile tool overflow and break-even chart rendering" },
+  ] },
   { date: "Sep 5, 2026", version: "2.13.0", changes: [
     { type: "improved", text: "Clear privacy and service terms, phased DPDP guidance, data-request contacts and practical tool precautions" },
     { type: "improved", text: "NSAL v1.1 clarifies hosted commercial use, source restrictions, contributor rights and statutory protections" },
@@ -307,20 +312,20 @@ export function Changelog() {
         className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg sm:rounded-xl hover:bg-violet-500/10 transition-all duration-300 group active:scale-95"
         aria-label="View updates"
       >
-        <svg 
-          className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:text-violet-400" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor" 
+        <svg
+          className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:text-violet-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
           strokeWidth={2}
         >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" 
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
           />
         </svg>
-        
+
         {/* Notification dot */}
         {hasNew && (
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
@@ -364,9 +369,9 @@ export function Changelog() {
 
           {/* Footer */}
           <div className="px-4 py-2 border-t border-[var(--border)] bg-[var(--muted)]">
-            <a 
-              href="https://github.com/nityam2007/nytm-multitools/commits/main" 
-              target="_blank" 
+            <a
+              href="https://github.com/nityam2007/nytm-multitools/commits/main"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-violet-400 hover:text-violet-300 transition-colors flex items-center gap-1"
             >
@@ -383,25 +388,25 @@ export function Changelog() {
       {mounted && isOpen && createPortal(
         <div className="sm:hidden fixed inset-0 z-[9999]">
           {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm" 
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
-          
+
           {/* Modal */}
           <div className="absolute inset-x-0 bottom-0 max-h-[85vh] bg-[var(--background)] border-t border-[var(--border)] rounded-t-2xl shadow-2xl shadow-black/40 overflow-hidden animate-slide-up">
             {/* Handle */}
             <div className="flex justify-center py-2">
               <div className="w-10 h-1 rounded-full bg-[var(--border)]" />
             </div>
-            
+
             {/* Header */}
             <div className="px-5 py-3 border-b border-[var(--border)] bg-[var(--muted)] flex items-center justify-between">
               <div>
                 <h3 className="font-semibold text-base">What&apos;s New</h3>
                 <p className="text-xs text-[var(--muted-foreground)]">Latest updates and improvements</p>
               </div>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 hover:bg-[var(--background)] rounded-lg transition-colors"
                 aria-label="Close"
@@ -440,9 +445,9 @@ export function Changelog() {
 
             {/* Footer */}
             <div className="px-5 py-4 border-t border-[var(--border)] bg-[var(--muted)]">
-              <a 
-                href="https://github.com/nityam2007/nytm-multitools/commits/main" 
-                target="_blank" 
+              <a
+                href="https://github.com/nityam2007/nytm-multitools/commits/main"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-violet-400 hover:text-violet-300 transition-colors flex items-center justify-center gap-2"
               >
@@ -461,11 +466,11 @@ export function Changelog() {
       {mounted && showPopup && createPortal(
         <>
           {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999]" 
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999]"
             onClick={dismissPopup}
           />
-          
+
           {/* Mobile: Bottom sheet style | Desktop: Centered modal */}
           <div className="fixed inset-0 z-[10000] flex items-end sm:items-center justify-center sm:p-4 pointer-events-none">
             {/* Modal */}
@@ -474,7 +479,7 @@ export function Changelog() {
               <div className="sm:hidden flex justify-center py-2 bg-gradient-to-r from-violet-500/10 to-purple-500/10">
                 <div className="w-10 h-1 rounded-full bg-[var(--border)]" />
               </div>
-              
+
               {/* Header */}
               <div className="p-4 sm:p-5 pb-3 sm:pb-4 border-b border-[var(--border)] bg-gradient-to-r from-violet-500/10 to-purple-500/10">
                 <div className="flex items-start justify-between gap-3">
@@ -489,7 +494,7 @@ export function Changelog() {
                       <p className="text-xs sm:text-sm text-[var(--muted-foreground)]">{changelog[0]?.version ? `Version ${changelog[0].version}` : changelog[0]?.date}</p>
                     </div>
                   </div>
-                  <button 
+                  <button
                     onClick={dismissPopup}
                     className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors p-1.5 hover:bg-[var(--muted)] rounded-lg shrink-0"
                     aria-label="Dismiss"
@@ -500,7 +505,7 @@ export function Changelog() {
                   </button>
                 </div>
               </div>
-              
+
               {/* Changes list */}
               <div className="p-4 sm:p-5 space-y-2.5 sm:space-y-3 max-h-[50vh] sm:max-h-64 overflow-y-auto">
                 {changelog[0]?.changes.map((change, i) => (

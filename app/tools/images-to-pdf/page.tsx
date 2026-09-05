@@ -1,9 +1,9 @@
 // Images to PDF Tool | TypeScript
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
-import { FileUpload } from "@/components/FileUpload";
 import { Button } from "@/components/Button";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -27,7 +27,7 @@ export default function ImagesToPDFPage() {
     const uploadedFiles = e.target.files;
     if (!uploadedFiles) return;
 
-    const validFiles = Array.from(uploadedFiles).filter(file => 
+    const validFiles = Array.from(uploadedFiles).filter(file =>
       file.type.startsWith("image/")
     );
 
@@ -78,7 +78,7 @@ export default function ImagesToPDFPage() {
       const { jsPDF } = await import("jspdf");
 
       let pdf: InstanceType<typeof jsPDF>;
-      
+
       // Initialize PDF
       if (pageSize === "a4") {
         pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
@@ -90,7 +90,7 @@ export default function ImagesToPDFPage() {
 
       for (let i = 0; i < images.length; i++) {
         const img = images[i];
-        
+
         // Load image dimensions
         const imgElement = new Image();
         imgElement.src = img.preview;
@@ -114,12 +114,12 @@ export default function ImagesToPDFPage() {
           // Fit image to page
           const pageWidth = pdf.internal.pageSize.getWidth();
           const pageHeight = pdf.internal.pageSize.getHeight();
-          
+
           const ratio = Math.min(
             pageWidth / imgElement.width,
             pageHeight / imgElement.height
           );
-          
+
           const width = imgElement.width * ratio;
           const height = imgElement.height * ratio;
           const x = (pageWidth - width) / 2;
@@ -147,24 +147,11 @@ export default function ImagesToPDFPage() {
               <label className="text-xs sm:text-sm font-semibold text-[var(--foreground)]">Choose images (PNG, JPG, WebP, GIF, etc.)</label>
               <span className="text-[10px] sm:text-xs text-[var(--muted-foreground)] font-mono">Multiple files</span>
             </div>
-            <label className="relative overflow-hidden border-2 border-dashed rounded-xl sm:rounded-2xl p-6 sm:p-10 text-center cursor-pointer transition-all duration-300 hover:border-violet-500/50 hover:bg-gradient-to-br hover:from-violet-500/5 hover:to-purple-500/5 shadow-sm hover:shadow-md flex flex-col items-center gap-3 sm:gap-4 border-[var(--border)]">
-              <input 
-                type="file" 
-                multiple 
-                accept="image/*" 
-                onChange={handleFileUpload}
-                className="sr-only"
-              />
-              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-xl sm:rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center shadow-lg">
-                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
-              </div>
-              <div className="space-y-1.5 sm:space-y-2">
-                <p className="font-semibold text-sm sm:text-base text-[var(--foreground)]">Drag & drop or tap to upload</p>
-                <p className="text-[10px] sm:text-sm text-[var(--muted-foreground)]">Supports: .png, .jpg, .jpeg, .webp, .gif, .bmp, .svg</p>
-              </div>
-            </label>
+            <FilePicker label="Select images"
+        multiple
+        accept="image/*"
+        onChange={handleFileUpload}
+      />
           </div>
 
           {images.length > 0 && (

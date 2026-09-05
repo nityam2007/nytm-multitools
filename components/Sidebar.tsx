@@ -39,7 +39,7 @@ const categoryMeta: Record<string, { name: string }> = {
 // Generate sidebar categories from tools config
 function generateSidebarCategories(): SidebarCategory[] {
   const categoryMap = new Map<string, { slug: string; name: string; icon?: string }[]>();
-  
+
   toolsConfig.forEach((tool) => {
     if (!categoryMap.has(tool.category)) {
       categoryMap.set(tool.category, []);
@@ -157,7 +157,7 @@ export function Sidebar() {
   // Filter categories based on search
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return sidebarCategories;
-    
+
     const matchingSlugs = new Set(searchTools(searchQuery).map(tool => tool.slug));
     return sidebarCategories
       .map((cat) => ({
@@ -199,7 +199,7 @@ export function Sidebar() {
 
       {/* Sidebar */}
       <aside className={`
-        fixed top-0 left-0 h-full z-50 
+        fixed top-0 left-0 h-full z-50
         bg-[var(--background)] border-r border-[var(--border)]
         transition-all duration-300 ease-out overflow-hidden
         ${isOpen ? "translate-x-0 visible" : "-translate-x-full invisible"}
@@ -250,10 +250,10 @@ export function Sidebar() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search tools..."
                 aria-label="Search sidebar tools"
-                className="w-full px-4 py-2.5 pl-10 rounded-xl bg-[var(--muted)] border border-transparent text-sm focus:border-violet-500/40 focus:bg-violet-500/5 placeholder-[var(--muted-foreground)] transition-all duration-200"
+                className="sidebar-search-control field-control"
               />
-              <SearchIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)]" />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 kbd text-[10px]">/</span>
+              <SearchIcon aria-hidden="true" className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)]" />
+              <span aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 kbd text-[10px]">/</span>
             </div>
           </div>
         )}
@@ -265,11 +265,12 @@ export function Sidebar() {
             <Link
               href="/"
               aria-label="Home"
+              aria-current={isActive("/", true) ? "page" : undefined}
               onClick={() => window.innerWidth < 1024 && setIsOpen(false)}
               className={`
                 relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
                 ${isActive("/", true)
-                  ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25"
+                  ? "sidebar-active-link"
                   : "hover:bg-[var(--muted)] text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
                 }
                 ${collapsed ? "justify-center !px-2" : ""}
@@ -287,11 +288,12 @@ export function Sidebar() {
             <Link
               href="/tools"
               aria-label="All tools"
+              aria-current={isActive("/tools", true) ? "page" : undefined}
               onClick={() => window.innerWidth < 1024 && setIsOpen(false)}
               className={`
                 relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
                 ${isActive("/tools", true)
-                  ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25"
+                  ? "sidebar-active-link"
                   : "hover:bg-[var(--muted)] text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
                 }
                 ${collapsed ? "justify-center !px-2" : ""}
@@ -344,7 +346,7 @@ export function Sidebar() {
                     )}
                   </button>
                 </Tooltip>
-                
+
                 {!collapsed && expandedCategories.includes(category.id) && (
                   <div className="ml-5 pl-3 border-l-2 border-violet-500/20 space-y-0.5 mt-1.5 mb-3">
                     {category.tools.map((tool) => (

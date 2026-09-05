@@ -1,5 +1,6 @@
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -49,7 +50,7 @@ export default function ImageFiltersPage() {
   const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     setFileName(file.name);
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -59,7 +60,7 @@ export default function ImageFiltersPage() {
     reader.readAsDataURL(file);
   }, []);
 
-  const getFilterStyle = () => {
+  const getFilterStyle = useCallback(() => {
     return `
       brightness(${filters.brightness}%)
       contrast(${filters.contrast}%)
@@ -70,7 +71,7 @@ export default function ImageFiltersPage() {
       hue-rotate(${filters.hueRotate}deg)
       invert(${filters.invert}%)
     `.trim();
-  };
+  }, [filters]);
 
   const downloadImage = useCallback(() => {
     if (!image || !canvasRef.current) return;
@@ -95,7 +96,7 @@ export default function ImageFiltersPage() {
       link.click();
     };
     img.src = image;
-  }, [image, filters, fileName]);
+  }, [image, getFilterStyle, fileName]);
 
   const updateFilter = (key: keyof Filters, value: number) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -115,26 +116,11 @@ export default function ImageFiltersPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
-        <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileUpload}
-            className="hidden"
-            id="file-upload"
-          />
-          <label htmlFor="file-upload" className="cursor-pointer">
-            <div className="flex justify-center mb-2">
-              <svg className="w-12 h-12 text-[var(--muted-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
-              </svg>
-            </div>
-            <p className="font-medium">Click to upload an image</p>
-            <p className="text-sm text-[var(--muted-foreground)]">
-              Apply filters and effects to your image
-            </p>
-          </label>
-        </div>
+        <FilePicker label="Select an image"
+        accept="image/*"
+        onChange={handleFileUpload}
+        id="file-upload"
+      />
 
         {image && (
           <>

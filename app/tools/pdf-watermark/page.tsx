@@ -1,6 +1,7 @@
 // PDF Watermark Tool | TypeScript
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { FileUpload } from "@/components/FileUpload";
@@ -88,7 +89,7 @@ export default function PDFWatermarkPage() {
   const handleWatermarkImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
     if (!uploadedFile) return;
-    
+
     if (!uploadedFile.type.startsWith("image/")) {
       setError("Please select an image file (PNG, JPG)");
       return;
@@ -124,7 +125,7 @@ export default function PDFWatermarkPage() {
 
     try {
       const { PDFDocument, rgb, degrees, StandardFonts } = await import("pdf-lib");
-      
+
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(arrayBuffer);
       const pages = pdfDoc.getPages();
@@ -404,30 +405,11 @@ export default function PDFWatermarkPage() {
           {settings.type === "image" && (
             <div className="space-y-2">
               <label className="text-sm text-[var(--muted-foreground)]">Watermark Image</label>
-              <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-6 text-center hover:border-violet-500/50 transition-colors">
-                <input
-                  type="file"
-                  accept="image/png,image/jpeg,image/jpg"
-                  onChange={handleWatermarkImageUpload}
-                  className="hidden"
-                  id="watermark-img-upload"
-                />
-                <label htmlFor="watermark-img-upload" className="cursor-pointer block">
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-orange-500/10 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                    </svg>
-                  </div>
-                  {watermarkImage ? (
-                    <p className="font-medium text-sm text-green-500">{watermarkImageName}</p>
-                  ) : (
-                    <>
-                      <p className="font-medium mb-1">Upload Logo or Stamp</p>
-                      <p className="text-xs text-[var(--muted-foreground)]">PNG (with transparency) or JPG</p>
-                    </>
-                  )}
-                </label>
-              </div>
+              <FilePicker label="Select watermark image"
+        accept="image/png,image/jpeg,image/jpg"
+        onChange={handleWatermarkImageUpload}
+        id="watermark-img-upload"
+      />
               {watermarkImage && (
                 <button
                   onClick={() => { setWatermarkImage(null); setWatermarkImageName(""); }}

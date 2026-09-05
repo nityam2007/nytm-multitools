@@ -27,13 +27,13 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
       const hasEmbedClass = document.body.classList.contains('embed-mode');
       setIsEmbedMode(embedMode || hasEmbedClass);
     };
-    
+
     checkEmbedMode();
-    
+
     // Watch for class changes
     const observer = new MutationObserver(checkEmbedMode);
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-    
+
     return () => observer.disconnect();
   }, [embedMode]);
 
@@ -60,7 +60,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
   const guide = ({ "product-photos": "prepare-product-photos", "whatsapp-link": "whatsapp-enquiry-qr", "csv-cleanup": "clean-recurring-csv", "website-brief": "write-a-website-brief" } as Record<string, string>)[tool.slug];
 
   return (
-    <div className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
+    <div className="tool-shell max-w-6xl mx-auto">
       {/* Breadcrumb - Swiss style */}
       <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-[var(--muted-foreground)] mb-4 sm:mb-6 md:mb-8 py-2 sm:py-4 overflow-x-auto">
         <Link href="/" className="hover:text-violet-400 transition-colors duration-300 whitespace-nowrap">Home</Link>
@@ -99,7 +99,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
             </div>
             <Link className="btn btn-secondary" href={`/tools?category=${tool.category}`}>Browse this category →</Link>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {similarTools.slice(0, 6).map((similarTool) => <ToolCard key={similarTool.slug} tool={similarTool} />)}
           </div>

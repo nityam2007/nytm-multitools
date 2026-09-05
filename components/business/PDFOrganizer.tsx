@@ -1,5 +1,6 @@
 // Thumbnail-based PDF page reorder and extraction | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useEffect, useRef, useState } from "react";
 import { Workspace, Notice } from "./ToolUI";
 import { downloadBlob } from "@/lib/browser-files";
@@ -34,14 +35,10 @@ export default function PDFOrganizer() {
       slug="pdf-organizer"
       help="Drag pages or use Move up / Move down to reorder. Uncheck pages to leave them out of the export. Maximum 25 MB and 100 pages. Encrypted PDFs must be unlocked first. Document-level forms, bookmarks, attachments, and digital signatures may not survive page copying; this tool is for page content."
     >
-      <label className="block text-sm font-medium">
-        Choose PDF
-        <input
-          type="file"
-          accept="application/pdf,.pdf"
-          className="block mt-2"
-          disabled={busy}
-          onChange={async (e) => {
+      <FilePicker label="Choose PDF" maxSize={25 * 1024 * 1024}
+        accept="application/pdf,.pdf"
+        disabled={busy}
+        onChange={async (e) => {
             const file = e.target.files?.[0];
             if (!file) return;
             const id = ++run.current;
@@ -106,8 +103,7 @@ export default function PDFOrganizer() {
               if (run.current === id) setBusy(false);
             }
           }}
-        />
-      </label>
+      />
       {busy && !pages.length && (
         <button
           className="btn btn-secondary"

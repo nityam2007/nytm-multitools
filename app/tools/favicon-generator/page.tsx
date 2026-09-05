@@ -1,5 +1,6 @@
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -20,7 +21,7 @@ export default function FaviconGeneratorPage() {
   const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     const reader = new FileReader();
     reader.onload = (event) => {
       setImage(event.target?.result as string);
@@ -41,7 +42,7 @@ export default function FaviconGeneratorPage() {
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d")!;
-    
+
     canvas.width = size;
     canvas.height = size;
 
@@ -76,7 +77,7 @@ export default function FaviconGeneratorPage() {
       await new Promise<void>((resolve) => {
         const canvas = canvasRef.current!;
         const ctx = canvas.getContext("2d")!;
-        
+
         canvas.width = size;
         canvas.height = size;
 
@@ -95,12 +96,12 @@ export default function FaviconGeneratorPage() {
         const img = new Image();
         img.onload = () => {
           ctx.drawImage(img, 0, 0, size, size);
-          
+
           const link = document.createElement("a");
           link.download = `favicon-${size}x${size}.png`;
           link.href = canvas.toDataURL("image/png");
           link.click();
-          
+
           setTimeout(resolve, 300);
         };
         img.src = image;
@@ -115,26 +116,11 @@ export default function FaviconGeneratorPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
-        <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileUpload}
-            className="hidden"
-            id="file-upload"
-          />
-          <label htmlFor="file-upload" className="cursor-pointer">
-            <div className="flex justify-center mb-2">
-              <svg className="w-10 h-10 text-[var(--muted-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-              </svg>
-            </div>
-            <p className="font-medium">Click to upload an image</p>
-            <p className="text-sm text-[var(--muted-foreground)]">
-              Square images work best (512x512 or larger)
-            </p>
-          </label>
-        </div>
+        <FilePicker label="Select an image"
+        accept="image/*"
+        onChange={handleFileUpload}
+        id="file-upload"
+      />
 
         {image && (
           <>
@@ -143,10 +129,10 @@ export default function FaviconGeneratorPage() {
               <div className="flex flex-wrap justify-center gap-4 items-end">
                 {[16, 32, 64, 128].map((size) => (
                   <div key={size} className="text-center">
-                    <div 
+                    <div
                       className="mx-auto mb-2 overflow-hidden"
-                      style={{ 
-                        width: size, 
+                      style={{
+                        width: size,
                         height: size,
                         borderRadius: `${(borderRadius / 100) * (size / 2)}px`,
                         backgroundColor: bgColor,

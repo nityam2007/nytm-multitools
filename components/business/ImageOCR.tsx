@@ -1,5 +1,6 @@
 // English OCR with a self-hosted local engine | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useEffect, useRef, useState } from "react";
 import type { Worker } from "tesseract.js";
 import { Workspace, Result, Notice } from "./ToolUI";
@@ -83,19 +84,14 @@ export default function ImageOCR() {
           </button>
         )}
       </div>
-      <label className="block text-sm font-medium">
-        Image with printed English text
-        <input
-          className="block mt-2"
-          type="file"
-          accept="image/png,image/jpeg,image/webp"
-          disabled={busy}
-          onChange={(e) => {
+      <FilePicker label="Image with printed English text" maxSize={15 * 1024 * 1024}
+        accept="image/png,image/jpeg,image/webp"
+        disabled={busy}
+        onChange={(e) => {
             setFile(e.target.files?.[0] || null);
             setText("");
           }}
-        />
-      </label>
+      />
       <button
         className="btn btn-primary"
         disabled={!file || !ready || busy}

@@ -1,5 +1,6 @@
 // Batch product image workflow | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useEffect, useRef, useState } from "react";
 import { Workspace, Field, Choice, Notice } from "./ToolUI";
 import { downloadBlob } from "@/lib/browser-files";
@@ -110,15 +111,11 @@ export default function ProductPhotos() {
       slug="product-photos"
       help="Resize, crop or pad, convert, and rename a batch in one pass. Contain keeps the full image with your chosen background; cover crops the edges. JPEG/WebP use lossy quality; PNG is lossless. Maximum 30 images, 20 MB each, 100 MB total, 40 MP per image, and 4096 px output dimensions."
     >
-      <label className="block text-sm font-medium">
-        Choose product images
-        <input
-          className="block mt-2"
-          type="file"
-          multiple
-          accept="image/jpeg,image/png,image/webp"
-          disabled={busy}
-          onChange={(e) => {
+      <FilePicker label="Choose product images" maxSize={20 * 1024 * 1024} maxFiles={30} maxTotalSize={100 * 1024 * 1024}
+        multiple
+        accept="image/jpeg,image/png,image/webp"
+        disabled={busy}
+        onChange={(e) => {
             const next = Array.from(e.target.files || []);
             clear();
             if (
@@ -133,8 +130,7 @@ export default function ProductPhotos() {
             setFiles(next);
             setNotice(`${next.length} images selected.`);
           }}
-        />
-      </label>
+      />
       <fieldset
         disabled={busy}
         className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"

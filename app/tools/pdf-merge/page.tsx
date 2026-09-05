@@ -1,6 +1,7 @@
 // PDF Merge Tool | TypeScript
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -67,7 +68,7 @@ export default function PDFMergePage() {
     try {
       // Dynamic import pdf-lib
       const { PDFDocument } = await import("pdf-lib");
-      
+
       const mergedPdf = await PDFDocument.create();
 
       for (const pdfFile of files) {
@@ -108,25 +109,12 @@ export default function PDFMergePage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Upload Area */}
-        <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center hover:border-red-500/50 transition-colors">
-          <input
-            type="file"
-            accept=".pdf,application/pdf"
-            multiple
-            onChange={handleFileUpload}
-            className="hidden"
-            id="pdf-upload"
-          />
-          <label htmlFor="pdf-upload" className="cursor-pointer">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-red-500/10 flex items-center justify-center">
-              <svg className="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-              </svg>
-            </div>
-            <p className="font-semibold text-lg mb-1">Drop PDF files here</p>
-            <p className="text-sm text-[var(--muted-foreground)]">or click to browse</p>
-          </label>
-        </div>
+        <FilePicker label="Select PDF files"
+        accept=".pdf,application/pdf"
+        multiple
+        onChange={handleFileUpload}
+        id="pdf-upload"
+      />
 
         {/* Error */}
         {error && (

@@ -1,5 +1,6 @@
 // CSV import, cleanup, column editing, and export | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useEffect, useRef, useState } from "react";
 import { Workspace, Field, Choice, Notice } from "./ToolUI";
 import { writeCSV } from "@/lib/csv-workbench";
@@ -77,14 +78,10 @@ export default function CSVWorkbench() {
       slug="csv-cleanup"
       help="Supports up to 100,000 rows and 200 columns of UTF-8 CSV with quoted delimiters, escaped quotes, and line breaks inside fields. Preview shows the first 15 rows; export includes all rows. Spreadsheet-safe export prefixes potentially executable formulas with an apostrophe, which can also change negative numeric cells to text."
     >
-      <label className="block text-sm font-medium">
-        Import CSV (up to 10 MB)
-        <input
-          type="file"
-          accept=".csv,.tsv,text/csv,text/tab-separated-values"
-          disabled={busy}
-          className="block mt-2"
-          onChange={async (e) => {
+      <FilePicker label="Import CSV (up to 10 MB)" maxSize={10 * 1024 * 1024}
+        accept=".csv,.tsv,text/csv,text/tab-separated-values"
+        disabled={busy}
+        onChange={async (e) => {
             const file = e.target.files?.[0];
             if (!file) return;
             clearResult();
@@ -99,8 +96,7 @@ export default function CSVWorkbench() {
               setNotice("Could not read this file.");
             }
           }}
-        />
-      </label>
+      />
       <fieldset disabled={busy} className="space-y-5">
         <Field
           label="CSV input"

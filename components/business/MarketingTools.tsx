@@ -1,5 +1,6 @@
 // Search previews, social tags, structured data, and contrast | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useState } from "react";
 import { Workspace, Field, Choice, Result, Notice } from "./ToolUI";
 import { escapeHtml as h, httpUrl } from "@/lib/browser-files";
@@ -113,13 +114,9 @@ export function SocialMeta() {
         onChange={setDescription}
         multiline
       />
-      <label className="block text-sm font-medium">
-        Local image for preview (optional, up to 5 MB)
-        <input
-          type="file"
-          className="block mt-2"
-          accept="image/png,image/jpeg,image/webp"
-          onChange={async (e) => {
+      <FilePicker label="Local image for preview (optional, up to 5 MB)"
+        accept="image/png,image/jpeg,image/webp"
+        onChange={async (e) => {
             const file = e.target.files?.[0];
             setPreview("");
             if (!file) return;
@@ -144,8 +141,7 @@ export function SocialMeta() {
               setImageNotice("Choose a valid JPEG, PNG, or WebP image.");
             }
           }}
-        />
-      </label>
+      />
       <Notice>{imageNotice}</Notice>
       <section
         className="max-w-xl border border-[var(--border)] rounded-lg overflow-hidden"

@@ -1,5 +1,6 @@
 // Product catalogue with embedded images and print-to-PDF export | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useState } from "react";
 import { Workspace, Field, Notice } from "./ToolUI";
 import { transformImage } from "@/lib/image-pipeline";
@@ -44,15 +45,11 @@ export default function CatalogueMaker() {
           onChange={setContact}
         />
       </div>
-      <label className="block text-sm font-medium">
-        Add product photos (JPEG, PNG, WebP)
-        <input
-          type="file"
-          className="block mt-2"
-          multiple
-          accept="image/jpeg,image/png,image/webp"
-          disabled={busy}
-          onChange={async (e) => {
+      <FilePicker label="Add product photos (JPEG, PNG, WebP)" maxSize={10 * 1024 * 1024} maxFiles={12}
+        multiple
+        accept="image/jpeg,image/png,image/webp"
+        disabled={busy}
+        onChange={async (e) => {
             const files = Array.from(e.target.files || []);
             e.target.value = "";
             if (files.length + products.length > 12) {
@@ -95,8 +92,7 @@ export default function CatalogueMaker() {
             setBusy(false);
             setNotice(errors.join("\n") || `${next.length} products added.`);
           }}
-        />
-      </label>
+      />
       <fieldset disabled={busy} className="space-y-8">
         {products.map((product, index) => (
           <article

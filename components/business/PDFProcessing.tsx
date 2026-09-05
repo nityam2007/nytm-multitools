@@ -1,5 +1,6 @@
 // Verified PDF password and compression controls | TypeScript
 "use client";
+import { FilePicker } from "@/components/FilePicker";
 import { useEffect, useRef, useState } from "react";
 import { Workspace, Field, Notice } from "./ToolUI";
 import { downloadBlob } from "@/lib/browser-files";
@@ -96,20 +97,15 @@ export default function PDFProcessing({
           </button>
         )}
       </div>
-      <label className="block text-sm font-medium">
-        Choose PDF (up to 25 MB)
-        <input
-          className="block mt-2"
-          type="file"
-          accept="application/pdf,.pdf"
-          disabled={busy}
-          onChange={(e) => {
+      <FilePicker label="Choose PDF (up to 25 MB)"
+        accept="application/pdf,.pdf"
+        disabled={busy}
+        onChange={(e) => {
             setFile(e.target.files?.[0] || null);
             setOutput(null);
             setNotice("");
           }}
-        />
-      </label>
+      />
       <fieldset disabled={busy} className="grid sm:grid-cols-2 gap-5">
         {mode !== "compress" && (
           <Field

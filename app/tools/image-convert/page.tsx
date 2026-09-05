@@ -1,5 +1,6 @@
 "use client";
 
+import { FilePicker } from "@/components/FilePicker";
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -29,12 +30,12 @@ export default function ImageConvertPage() {
   const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     const extension = file.name.split(".").pop()?.toLowerCase() || "";
     setOriginalFormat(extension);
     setFileName(file.name.replace(/\.[^/.]+$/, ""));
     setOriginalSize(file.size);
-    
+
     const reader = new FileReader();
     reader.onload = (event) => {
       setImage(event.target?.result as string);
@@ -53,19 +54,19 @@ export default function ImageConvertPage() {
 
       canvas.width = img.width;
       canvas.height = img.height;
-      
+
       // For JPEG, fill with white background (no alpha channel)
       if (outputFormat === "jpeg") {
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
-      
+
       ctx.drawImage(img, 0, 0);
 
       const mime = formats.find(f => f.value === outputFormat)?.mime || "image/png";
       const qualityVal = outputFormat === "png" ? undefined : quality / 100;
       const dataUrl = canvas.toDataURL(mime, qualityVal);
-      
+
       // Calculate converted size
       const base64 = dataUrl.split(",")[1];
       const converted = atob(base64).length;
@@ -91,26 +92,11 @@ export default function ImageConvertPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
-        <div className="border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileUpload}
-            className="hidden"
-            id="file-upload"
-          />
-          <label htmlFor="file-upload" className="cursor-pointer">
-            <div className="flex justify-center mb-2">
-              <svg className="w-12 h-12 text-[var(--muted-foreground)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-            </div>
-            <p className="font-medium">Click to upload an image</p>
-            <p className="text-sm text-[var(--muted-foreground)]">
-              Convert between PNG, JPEG, WebP, and GIF
-            </p>
-          </label>
-        </div>
+        <FilePicker label="Select an image"
+        accept="image/*"
+        onChange={handleFileUpload}
+        id="file-upload"
+      />
 
         {image && (
           <>

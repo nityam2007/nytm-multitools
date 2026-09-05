@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/License-NSAL_v1.0-8b5cf6?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/badge/License-NSAL_v1.1-8b5cf6?style=flat-square" alt="License" />
   <img src="https://img.shields.io/badge/Ads-None-22c55e?style=flat-square" alt="No Ads" />
   <img src="https://img.shields.io/badge/Price-Free-22c55e?style=flat-square" alt="Free" />
   <img src="https://img.shields.io/badge/Privacy-Client--Side-8b5cf6?style=flat-square" alt="Privacy" />
@@ -235,13 +235,13 @@ Found a bug? Want a feature? Open an issue or start a discussion. PRs welcome fo
 
 ## License
 
-<img src="https://img.shields.io/badge/NSAL_v1.0-Source_Available-8b5cf6?style=for-the-badge" alt="NSAL v1.0" />
+<img src="https://img.shields.io/badge/NSAL_v1.1-Source_Available-8b5cf6?style=for-the-badge" alt="NSAL v1.1" />
 
-Licensed under the **NYTM Source Available License (NSAL) v1.0**.
+Licensed under the **NYTM Source Available License (NSAL) v1.1**.
 
 Source code is public for transparency. Not open source. See [LICENSE](LICENSE) for full terms.
 
-Third-party dependencies retain their original open source licenses.
+Hosted tools and their outputs may be used for lawful personal and client work. Source reuse, rebranding and deployments require permission except for the evaluation and contribution rights in the licence. Third-party dependencies retain their own licences.
 
 ---
 

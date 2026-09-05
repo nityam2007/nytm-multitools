@@ -212,7 +212,7 @@ export default function BeautifyScreenshotPage() {
         rawInput: imageFile?.name || "image",
         outputResult: "PNG image generated",
         processingDuration: Date.now() - startTime,
-        metadata: options,
+        metadata: { ...options },
       });
     } catch (error) {
       console.error("Error generating image:", error);

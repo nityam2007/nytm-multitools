@@ -12,11 +12,7 @@ const similarTools = getToolsByCategory("text").filter(t => t.slug !== "text-cas
 
 type CaseType = "upper" | "lower" | "title" | "sentence" | "camel" | "pascal" | "snake" | "kebab" | "constant" | "toggle";
 
-export default function TextCasePage() {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
-
-  const convertCase = async (type: CaseType) => {
+async function convertCase(type: CaseType, input: string, setOutput: (value: string) => void) {
     if (!input.trim()) return;
 
     let result = "";
@@ -93,6 +89,12 @@ export default function TextCasePage() {
     });
   };
 
+export default function TextCasePage() {
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
+
+
+
   const caseButtons: { type: CaseType; label: string; example: string }[] = [
     { type: "upper", label: "UPPERCASE", example: "HELLO WORLD" },
     { type: "lower", label: "lowercase", example: "hello world" },
@@ -122,7 +124,7 @@ export default function TextCasePage() {
             {caseButtons.map(({ type, label, example }) => (
               <button
                 key={type}
-                onClick={() => convertCase(type)}
+                onClick={() => convertCase(type, input, setOutput)}
                 disabled={!input.trim()}
                 className="p-3 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] hover:bg-[var(--primary)]/5 transition-all text-left disabled:opacity-50"
                 title={example}

@@ -19,7 +19,7 @@ export interface LogToolUsageParams {
   outputResult?: string;
   outputFilePath?: string;
   processingDuration?: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export async function logToolUsage(params: LogToolUsageParams): Promise<{ success: boolean }> {

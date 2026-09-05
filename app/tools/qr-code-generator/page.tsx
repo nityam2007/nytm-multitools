@@ -12,8 +12,8 @@ const similarTools = getToolsByCategory("generator").filter(t => t.slug !== "qr-
 
 export default function QrCodeGeneratorPage() {
   const [input, setInput] = useState("");
-  const [qrDataUrl, setQrDataUrl] = useState<string>("");
-  const [error, setError] = useState("");
+  const [generatedQrDataUrl, setQrDataUrl] = useState<string>("");
+  const [qrError, setError] = useState("");
   const [options, setOptions] = useState({
     size: 256,
     errorCorrectionLevel: "M" as "L" | "M" | "Q" | "H",
@@ -23,34 +23,22 @@ export default function QrCodeGeneratorPage() {
   });
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const qrDataUrl = input.trim() ? generatedQrDataUrl : "";
+  const error = input.trim() ? qrError : "";
   useEffect(() => {
-    generateQR();
+    if (!input.trim()) return;
+    let cancelled = false;
+    QRCode.toDataURL(input, {
+      width: options.size, margin: options.margin,
+      errorCorrectionLevel: options.errorCorrectionLevel,
+      color: { dark: options.darkColor, light: options.lightColor },
+    }).then(dataUrl => {
+      if (!cancelled) { setQrDataUrl(dataUrl); setError(""); }
+    }).catch(() => {
+      if (!cancelled) { setError("Failed to generate QR code. Text might be too long."); setQrDataUrl(""); }
+    });
+    return () => { cancelled = true; };
   }, [input, options]);
-
-  const generateQR = async () => {
-    if (!input.trim()) {
-      setQrDataUrl("");
-      setError("");
-      return;
-    }
-
-    try {
-      const dataUrl = await QRCode.toDataURL(input, {
-        width: options.size,
-        margin: options.margin,
-        errorCorrectionLevel: options.errorCorrectionLevel,
-        color: {
-          dark: options.darkColor,
-          light: options.lightColor,
-        },
-      });
-      setQrDataUrl(dataUrl);
-      setError("");
-    } catch (e) {
-      setError("Failed to generate QR code. Text might be too long.");
-      setQrDataUrl("");
-    }
-  };
 
   const handleDownload = async () => {
     if (!qrDataUrl) return;
@@ -103,7 +91,7 @@ export default function QrCodeGeneratorPage() {
             <label htmlFor="qr-code-generator-field-2" className="block text-sm font-medium mb-2">Error Correction</label>
             <select id="qr-code-generator-field-2"
               value={options.errorCorrectionLevel}
-              onChange={(e) => setOptions((prev) => ({ ...prev, errorCorrectionLevel: e.target.value as any }))}
+              onChange={(e) => setOptions((prev) => ({ ...prev, errorCorrectionLevel: e.target.value as "L" | "M" | "Q" | "H" }))}
               className="w-full px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
             >
               <option value="L">Low (7%)</option>

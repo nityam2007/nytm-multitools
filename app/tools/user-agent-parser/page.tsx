@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -85,21 +85,14 @@ function parseUserAgent(ua: string): ParsedUA {
   return result;
 }
 
+const subscribeUserAgent = () => () => {};
+const readUserAgent = () => navigator.userAgent;
+const serverUserAgent = () => "";
 export default function UserAgentParserPage() {
-  const [ua, setUa] = useState("");
-  const [parsed, setParsed] = useState<ParsedUA | null>(null);
-
-  useEffect(() => {
-    if (typeof navigator !== "undefined") {
-      setUa(navigator.userAgent);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (ua) {
-      setParsed(parseUserAgent(ua));
-    }
-  }, [ua]);
+  const browserAgent = useSyncExternalStore(subscribeUserAgent, readUserAgent, serverUserAgent);
+  const [customAgent, setUa] = useState<string | null>(null);
+  const ua = customAgent ?? browserAgent;
+  const parsed = ua ? parseUserAgent(ua) : null;
 
   const useCurrentUA = () => {
     if (typeof navigator !== "undefined") {

@@ -17,7 +17,7 @@ function base64UrlEncode(str: string): string {
 
 export default function JwtGeneratorPage() {
   const [header, setHeader] = useState(JSON.stringify({ alg: "HS256", typ: "JWT" }, null, 2));
-  const [payload, setPayload] = useState(JSON.stringify({
+  const [payload, setPayload] = useState(() => JSON.stringify({
     sub: "1234567890",
     name: "John Doe",
     iat: Math.floor(Date.now() / 1000),

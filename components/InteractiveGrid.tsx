@@ -40,7 +40,7 @@ export function InteractiveGrid() {
   }, []);
 
   // Animation loop
-  const animate = useCallback(() => {
+  const animate = useCallback(function drawFrame() {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
@@ -111,7 +111,7 @@ export function InteractiveGrid() {
     // Outer rotating squares
     ctx.save();
     ctx.translate(centerX, centerY);
-    
+
     // Draw multiple rotating squares
     for (let i = 0; i < 3; i++) {
       ctx.save();
@@ -162,7 +162,7 @@ export function InteractiveGrid() {
       ctx.save();
       ctx.translate(corner.x, corner.y);
       ctx.rotate((time * 0.5 + i * Math.PI / 2) % (Math.PI * 2));
-      
+
       // Small cross
       ctx.strokeStyle = `rgba(${lineColor}, 0.3)`;
       ctx.lineWidth = 1;
@@ -175,7 +175,7 @@ export function InteractiveGrid() {
       ctx.restore();
     });
 
-    animationRef.current = requestAnimationFrame(animate);
+    animationRef.current = requestAnimationFrame(drawFrame);
   }, []);
 
   // Start animation
@@ -191,7 +191,7 @@ export function InteractiveGrid() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     mouseRef.current = { x, y, isHovering: true };
-    
+
     // Update 3D rotation
     const rotX = ((y / rect.height) - 0.5) * 10;
     const rotY = ((x / rect.width) - 0.5) * -10;
@@ -234,7 +234,7 @@ export function InteractiveGrid() {
 
         {/* Border frame - Swiss style with violet accent */}
         <div className="absolute inset-0 border border-violet-500/20 pointer-events-none rounded-lg" />
-        
+
         {/* Corner brackets with violet */}
         <div className="absolute top-0 left-0 w-5 h-5 border-l-2 border-t-2 border-violet-500/50 rounded-tl-lg" />
         <div className="absolute top-0 right-0 w-5 h-5 border-r-2 border-t-2 border-violet-500/50 rounded-tr-lg" />

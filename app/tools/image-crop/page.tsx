@@ -19,14 +19,10 @@ export default function ImageCropPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    if (!file) {
-      setPreview(null);
-      setOutput(null);
-      return;
-    }
-
-    const url = URL.createObjectURL(file);
+  const handleFileSelect = (next: File) => {
+    setFile(next);
+    setOutput(null);
+    const url = URL.createObjectURL(next);
     setPreview(url);
 
     const img = new Image();
@@ -36,8 +32,8 @@ export default function ImageCropPage() {
     };
     img.src = url;
 
-    return () => URL.revokeObjectURL(url);
-  }, [file]);
+  };
+  useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
   const handleAspectChange = (ratio: string) => {
     setAspectRatio(ratio);
@@ -103,7 +99,7 @@ export default function ImageCropPage() {
       <div className="space-y-6">
         <FileUpload
           accept={{ "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif"] }}
-          onFileSelect={setFile}
+          onFileSelect={handleFileSelect}
           maxSize={20 * 1024 * 1024}
         />
 

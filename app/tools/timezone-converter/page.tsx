@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -26,20 +26,11 @@ const timezones = [
 ];
 
 export default function TimezoneConverterPage() {
-  const [sourceTime, setSourceTime] = useState("");
+  const [sourceTime, setSourceTime] = useState(() => new Date().toISOString().slice(0, 16));
   const [sourceZone, setSourceZone] = useState("UTC");
   const [targetZone, setTargetZone] = useState("America/New_York");
-  const [convertedTime, setConvertedTime] = useState("");
-  const [worldTimes, setWorldTimes] = useState<{name: string; time: string}[]>([]);
-
-  useEffect(() => {
-    // Initialize with current time
-    const now = new Date();
-    setSourceTime(now.toISOString().slice(0, 16));
-  }, []);
-
-  useEffect(() => {
-    if (!sourceTime) return;
+  const { convertedTime, worldTimes } = useMemo(() => {
+    if (!sourceTime) return { convertedTime: "", worldTimes: [] };
 
     try {
       const date = new Date(sourceTime);
@@ -55,7 +46,6 @@ export default function TimezoneConverterPage() {
         hour12: true,
       }).format(date);
 
-      setConvertedTime(targetTime);
 
       // Calculate world times
       const times = timezones.slice(0, 8).map(tz => ({
@@ -68,9 +58,9 @@ export default function TimezoneConverterPage() {
         }).format(date),
       }));
 
-      setWorldTimes(times);
+      return { convertedTime: targetTime, worldTimes: times };
     } catch {
-      setConvertedTime("Invalid date");
+      return { convertedTime: "Invalid date", worldTimes: [] };
     }
   }, [sourceTime, sourceZone, targetZone]);
 

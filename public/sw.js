@@ -3,7 +3,7 @@
 // Strategy: cache-first for static assets, stale-while-revalidate for pages.
 // Bump CACHE_VERSION to invalidate old caches on deploy.
 
-const CACHE_VERSION = "nytm-v2.15.0";
+const CACHE_VERSION = "nytm-v2.16.0";
 const CACHE = `nytm-cache-${CACHE_VERSION}`;
 
 // Never touch analytics, external APIs, or non-GET — let them hit the network raw.

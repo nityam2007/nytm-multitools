@@ -16,18 +16,14 @@ export default function ImageToBase64Page() {
   const [output, setOutput] = useState("");
   const [includePrefix, setIncludePrefix] = useState(true);
 
-  useEffect(() => {
-    if (!file) {
-      setPreview(null);
-      setOutput("");
-      return;
-    }
-
-    const url = URL.createObjectURL(file);
+  const handleFileSelect = (next: File) => {
+    setFile(next);
+    setOutput("");
+    const url = URL.createObjectURL(next);
     setPreview(url);
 
-    return () => URL.revokeObjectURL(url);
-  }, [file]);
+  };
+  useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
   const handleConvert = async () => {
     if (!file) return;
@@ -56,7 +52,7 @@ export default function ImageToBase64Page() {
       <div className="space-y-6">
         <FileUpload
           accept={{ "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".ico"] }}
-          onFileSelect={setFile}
+          onFileSelect={handleFileSelect}
           maxSize={10 * 1024 * 1024}
         />
 

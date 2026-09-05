@@ -31,14 +31,10 @@ export default function ImageCompressPage() {
   const [processing, setProcessing] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    if (!file) {
-      setPreview(null);
-      setOutput(null);
-      return;
-    }
-
-    const url = URL.createObjectURL(file);
+  const handleFileSelect = (next: File) => {
+    setFile(next);
+    setOutput(null);
+    const url = URL.createObjectURL(next);
     setPreview(url);
 
     const img = new Image();
@@ -48,8 +44,8 @@ export default function ImageCompressPage() {
     };
     img.src = url;
 
-    return () => URL.revokeObjectURL(url);
-  }, [file]);
+  };
+  useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
   const handleCompress = async () => {
     if (!file || !canvasRef.current) return;
@@ -113,7 +109,7 @@ export default function ImageCompressPage() {
       <div className="space-y-6">
         <FileUpload
           accept={{ "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif"] }}
-          onFileSelect={setFile}
+          onFileSelect={handleFileSelect}
           maxSize={50 * 1024 * 1024}
         />
 

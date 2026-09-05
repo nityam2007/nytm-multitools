@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -10,28 +10,16 @@ const similarTools = getToolsByCategory("misc").filter(t => t.slug !== "age-calc
 export default function AgeCalculatorPage() {
   const [birthDate, setBirthDate] = useState("");
   const [targetDate, setTargetDate] = useState(new Date().toISOString().split("T")[0]);
-  const [age, setAge] = useState<{
-    years: number;
-    months: number;
-    days: number;
-    totalDays: number;
-    totalWeeks: number;
-    totalMonths: number;
-    nextBirthday: number;
-  } | null>(null);
-
-  useEffect(() => {
+  const age = useMemo(() => {
     if (!birthDate || !targetDate) {
-      setAge(null);
-      return;
+      return null;
     }
 
     const birth = new Date(birthDate);
     const target = new Date(targetDate);
 
     if (birth > target) {
-      setAge(null);
-      return;
+      return null;
     }
 
     // Calculate age
@@ -63,7 +51,7 @@ export default function AgeCalculatorPage() {
     }
     const nextBirthday = Math.ceil((nextBday.getTime() - target.getTime()) / (1000 * 60 * 60 * 24));
 
-    setAge({ years, months, days, totalDays, totalWeeks, totalMonths, nextBirthday });
+    return { years, months, days, totalDays, totalWeeks, totalMonths, nextBirthday };
   }, [birthDate, targetDate]);
 
   return (

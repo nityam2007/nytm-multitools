@@ -119,7 +119,7 @@ export default function LoremIpsumPage() {
                 onChange={(e) => setStartWithLorem(e.target.checked)}
                 className="w-4 h-4"
               />
-              <span className="text-sm">Start with "Lorem ipsum"</span>
+              <span className="text-sm">Start with &quot;Lorem ipsum&quot;</span>
             </label>
           </div>
         </div>

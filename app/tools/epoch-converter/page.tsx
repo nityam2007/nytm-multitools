@@ -8,10 +8,10 @@ const tool = getToolBySlug("epoch-converter")!;
 const similarTools = getToolsByCategory("converter").filter(t => t.slug !== "epoch-converter");
 
 export default function EpochConverterPage() {
-  const [epoch, setEpoch] = useState(Math.floor(Date.now() / 1000).toString());
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [currentEpoch, setCurrentEpoch] = useState(Math.floor(Date.now() / 1000));
+  const [epoch, setEpoch] = useState(() => Math.floor(Date.now() / 1000).toString());
+  const [date, setDate] = useState(() => new Date(Number(epoch) * 1000).toISOString().split("T")[0]);
+  const [time, setTime] = useState(() => new Date(Number(epoch) * 1000).toISOString().split("T")[1].slice(0, 8));
+  const [currentEpoch, setCurrentEpoch] = useState(() => Math.floor(Date.now() / 1000));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,17 +20,11 @@ export default function EpochConverterPage() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const ts = parseInt(epoch);
-    if (!isNaN(ts)) {
-      const d = new Date(ts * 1000);
-      setDate(d.toISOString().split("T")[0]);
-      setTime(d.toISOString().split("T")[1].slice(0, 8));
-    }
-  }, []);
+
 
   const epochToDate = (ts: number) => {
     const d = new Date(ts * 1000);
+    if (Number.isNaN(d.getTime())) return null;
     return {
       utc: d.toUTCString(),
       local: d.toLocaleString(),
@@ -49,6 +43,7 @@ export default function EpochConverterPage() {
     const ts = parseInt(val);
     if (!isNaN(ts)) {
       const d = new Date(ts * 1000);
+      if (Number.isNaN(d.getTime())) return;
       setDate(d.toISOString().split("T")[0]);
       setTime(d.toISOString().split("T")[1].slice(0, 8));
     }
@@ -159,7 +154,7 @@ export default function EpochConverterPage() {
             </div>
             <div className="flex justify-between p-3 bg-[var(--muted)] rounded-lg">
               <span>Milliseconds (JS style)</span>
-              <span className="font-mono">{Date.now()}</span>
+              <span className="font-mono">{currentEpoch * 1000}</span>
             </div>
           </div>
         </div>

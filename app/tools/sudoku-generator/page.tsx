@@ -20,15 +20,7 @@ const difficultyOptions = [
   { value: "expert", label: "Expert (20 clues)" },
 ];
 
-export default function SudokuGeneratorPage() {
-  const [puzzle, setPuzzle] = useState<SudokuGrid | null>(null);
-  const [solution, setSolution] = useState<SudokuGrid | null>(null);
-  const [difficulty, setDifficulty] = useState("medium");
-  const [showSolution, setShowSolution] = useState(false);
-  const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
-
-  // Check if number is valid in position
-  const isValid = (grid: SudokuGrid, row: number, col: number, num: number): boolean => {
+const isValid = (grid: SudokuGrid, row: number, col: number, num: number): boolean => {
     // Check row
     for (let x = 0; x < 9; x++) {
       if (grid[row][x] === num) return false;
@@ -48,8 +40,7 @@ export default function SudokuGeneratorPage() {
     return true;
   };
 
-  // Solve sudoku using backtracking
-  const solve = (grid: SudokuGrid): boolean => {
+const solve = (grid: SudokuGrid): boolean => {
     for (let row = 0; row < 9; row++) {
       for (let col = 0; col < 9; col++) {
         if (grid[row][col] === null) {
@@ -73,52 +64,69 @@ export default function SudokuGeneratorPage() {
     return true;
   };
 
-  // Generate a complete solved grid
-  const generateSolvedGrid = (): SudokuGrid => {
+const generateSolvedGrid = (): SudokuGrid => {
     const grid: SudokuGrid = Array(9).fill(null).map(() => Array(9).fill(null));
     solve(grid);
     return grid;
   };
 
-  // Remove numbers based on difficulty
-  const createPuzzle = (solvedGrid: SudokuGrid, diff: string): SudokuGrid => {
+const createPuzzle = (solvedGrid: SudokuGrid, diff: string): SudokuGrid => {
     const clues: Record<string, number> = {
       easy: 40,
       medium: 32,
       hard: 25,
       expert: 20,
     };
-    
+
     const puzzle: SudokuGrid = solvedGrid.map(row => [...row]);
     const cellsToRemove = 81 - clues[diff];
-    
+
     const positions: [number, number][] = [];
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         positions.push([i, j]);
       }
     }
-    
+
     // Shuffle positions
     for (let i = positions.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [positions[i], positions[j]] = [positions[j], positions[i]];
     }
-    
+
     for (let i = 0; i < cellsToRemove; i++) {
       const [row, col] = positions[i];
       puzzle[row][col] = null;
     }
-    
+
     return puzzle;
   };
 
+export default function SudokuGeneratorPage() {
+  const [puzzle, setPuzzle] = useState<SudokuGrid | null>(null);
+  const [solution, setSolution] = useState<SudokuGrid | null>(null);
+  const [difficulty, setDifficulty] = useState("medium");
+  const [showSolution, setShowSolution] = useState(false);
+  const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
+
+  // Check if number is valid in position
+
+
+  // Solve sudoku using backtracking
+
+
+  // Generate a complete solved grid
+
+
+  // Remove numbers based on difficulty
+
+
   const generateSudoku = useCallback(async () => {
     const startTime = Date.now();
-    
+
     const solvedGrid = generateSolvedGrid();
     const puzzleGrid = createPuzzle(solvedGrid, difficulty);
-    
+
     setSolution(solvedGrid);
     setPuzzle(puzzleGrid);
     setShowSolution(false);
@@ -153,16 +161,16 @@ export default function SudokuGeneratorPage() {
     const baseClass = "w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm sm:text-lg font-mono transition-all duration-200";
     const borderRight = (col + 1) % 3 === 0 && col !== 8 ? "border-r-2 border-r-violet-500/50" : "border-r border-r-[var(--border)]";
     const borderBottom = (row + 1) % 3 === 0 && row !== 8 ? "border-b-2 border-b-violet-500/50" : "border-b border-b-[var(--border)]";
-    
+
     const isSelected = selectedCell?.row === row && selectedCell?.col === col;
     const isEmpty = value === null;
-    
+
     let bgClass = "bg-[var(--card)]";
     if (isSelected) bgClass = "bg-violet-500/20";
     else if (isEmpty && !showSolution) bgClass = "bg-[var(--muted)]";
-    
+
     const textClass = isEmpty && showSolution ? "text-green-500 font-bold" : "text-[var(--foreground)]";
-    
+
     return `${baseClass} ${borderRight} ${borderBottom} ${bgClass} ${textClass} cursor-pointer hover:bg-violet-500/10`;
   };
 

@@ -67,10 +67,10 @@ export default function DirectoryTreeVisualizerPage() {
 
   const getIcon = (name: string) => {
     if (!showIcons) return "";
-    
+
     // Folders (no extension)
     if (!name.includes(".")) return "📁 ";
-    
+
     const ext = name.split(".").pop()?.toLowerCase();
     const icons: Record<string, string> = {
       tsx: "⚛️  ",
@@ -98,7 +98,7 @@ export default function DirectoryTreeVisualizerPage() {
       git: "🔀 ",
       lock: "🔒 ",
     };
-    
+
     return icons[ext || ""] || "📄 ";
   };
 
@@ -148,7 +148,7 @@ export default function DirectoryTreeVisualizerPage() {
       const isLast = index === nodes.length - 1;
       const connector = isLast ? chars.last : chars.branch;
       const icon = getIcon(node.name);
-      
+
       result += prefix + connector + icon + node.name + "\n";
 
       if (node.children.length > 0) {
@@ -160,10 +160,7 @@ export default function DirectoryTreeVisualizerPage() {
     return result;
   };
 
-  const tree = useMemo(() => {
-    const nodes = parseInput(input);
-    return renderTree(nodes);
-  }, [input, style, showIcons]);
+  const tree = renderTree(parseInput(input));
 
   const stats = useMemo(() => {
     const lines = input.split("\n").filter(line => line.trim());

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -13,16 +13,14 @@ export default function DateCalculatorPage() {
   // Difference mode
   const [date1, setDate1] = useState(new Date().toISOString().split("T")[0]);
   const [date2, setDate2] = useState("");
-  const [diff, setDiff] = useState<{ days: number; weeks: number; months: number; years: number } | null>(null);
 
   // Add/subtract mode
   const [startDate, setStartDate] = useState(new Date().toISOString().split("T")[0]);
   const [amount, setAmount] = useState(7);
   const [unit, setUnit] = useState<"days" | "weeks" | "months" | "years">("days");
   const [operation, setOperation] = useState<"add" | "subtract">("add");
-  const [resultDate, setResultDate] = useState<string>("");
 
-  useEffect(() => {
+  const diff = useMemo(() => {
     if (date1 && date2) {
       const d1 = new Date(date1);
       const d2 = new Date(date2);
@@ -33,14 +31,14 @@ export default function DateCalculatorPage() {
       const months = Math.floor(days / 30.44);
       const years = Math.floor(days / 365.25);
 
-      setDiff({ days, weeks, months, years });
+      return { days, weeks, months, years };
     } else {
-      setDiff(null);
+      return null;
     }
   }, [date1, date2]);
 
-  useEffect(() => {
-    if (startDate && amount) {
+  const resultDate = useMemo(() => {
+    if (startDate) {
       const date = new Date(startDate);
       const multiplier = operation === "add" ? 1 : -1;
 
@@ -59,8 +57,9 @@ export default function DateCalculatorPage() {
           break;
       }
 
-      setResultDate(date.toISOString().split("T")[0]);
+      return date.toISOString().split("T")[0];
     }
+    return "";
   }, [startDate, amount, unit, operation]);
 
   return (

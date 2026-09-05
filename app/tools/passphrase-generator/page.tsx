@@ -1,7 +1,7 @@
 // Passphrase Generator Tool | TypeScript
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
@@ -102,7 +102,7 @@ export default function PassphraseGeneratorPage() {
     return wordLists[wordList as keyof typeof wordLists] || wordLists.common;
   };
 
-  const generatePassphrase = useCallback(async () => {
+  const generatePassphrase = async () => {
     const startTime = Date.now();
     const words = getWords();
     const selected: string[] = [];
@@ -140,7 +140,7 @@ export default function PassphraseGeneratorPage() {
       processingDuration: Date.now() - startTime,
       metadata: { wordCount, separator, wordList, caseStyle, includeNumber, includeSymbol },
     });
-  }, [wordCount, separator, wordList, caseStyle, includeNumber, includeSymbol]);
+  };
 
   const getStrength = (): { label: string; color: string; percentage: number; entropy: number } => {
     if (!passphrase) return { label: "N/A", color: "gray", percentage: 0, entropy: 0 };

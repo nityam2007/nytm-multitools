@@ -19,7 +19,7 @@ function PostHogPageview() {
       if (search) {
         url = url + '?' + search
       }
-      
+
       // Capture pageview with full context
       posthogClient.capture('$pageview', {
         $current_url: url,
@@ -59,11 +59,11 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 
     posthog.init(posthogKey, {
       api_host: posthogHost,
-      
+
       // Pageview & Navigation
       capture_pageview: false, // Manual capture for SPA navigation accuracy
       capture_pageleave: true, // Track when users leave pages
-      
+
       // Autocapture - capture all user interactions
       autocapture: {
         dom_event_allowlist: ['click', 'change', 'submit'],
@@ -71,10 +71,10 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         css_selector_allowlist: ['[data-ph-capture]', '[data-track]'],
         capture_copied_text: true,
       },
-      
+
       // Exception & Error Tracking
       capture_exceptions: true,
-      
+
       // Session Recording
       session_recording: {
         maskAllInputs: false,
@@ -84,28 +84,28 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         maskTextSelector: '[data-ph-mask]',
         recordCrossOriginIframes: false,
       },
-      
+
       // Performance & Web Vitals
       capture_performance: true,
-      
+
       // Persistence
       persistence: 'localStorage+cookie',
-      
+
       // Person Profiles - create profiles for all users
       person_profiles: 'always',
-      
+
       // Property sanitization - keep default properties
       property_denylist: [],
-      
+
       // Enable heatmaps
       enable_heatmaps: true,
-      
+
       // Cross-subdomain tracking
       cross_subdomain_cookie: true,
-      
+
       // Secure cookies in production
       secure_cookie: window.location.protocol === 'https:',
-      
+
       // Loaded callback
       loaded: (ph) => {
         // Set super properties that persist across all events
@@ -114,7 +114,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
           app_version: '1.6.0',
           platform: 'web',
         })
-        
+
         // Capture initial session start
         ph.capture('$session_start', {
           $referrer: document.referrer || undefined,
@@ -128,6 +128,8 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const initialized = initPostHog()
+    // SDK initialization publishes external readiness after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsReady(initialized)
   }, [initPostHog])
 
@@ -154,7 +156,7 @@ export { posthog }
 // Helper hook to capture custom events with proper typing
 export function useTrackEvent() {
   const posthogClient = usePostHog()
-  
+
   return useCallback((eventName: string, properties?: Record<string, unknown>) => {
     if (posthogClient) {
       posthogClient.capture(eventName, {

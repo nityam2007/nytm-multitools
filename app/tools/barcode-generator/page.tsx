@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -36,13 +36,7 @@ const code128Patterns: { [key: number]: string } = {
   105: "11010011100", 106: "1100011101011",
 };
 
-export default function BarcodeGeneratorPage() {
-  const [text, setText] = useState("Hello123");
-  const [height, setHeight] = useState(100);
-  const [showText, setShowText] = useState(true);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const generateCode128 = (data: string): string => {
+const generateCode128 = (data: string): string => {
     let pattern = code128Patterns[CODE128_START_B];
     let checksum = CODE128_START_B;
 
@@ -61,7 +55,15 @@ export default function BarcodeGeneratorPage() {
     return pattern;
   };
 
-  const drawBarcode = () => {
+export default function BarcodeGeneratorPage() {
+  const [text, setText] = useState("Hello123");
+  const [height, setHeight] = useState(100);
+  const [showText, setShowText] = useState(true);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+
+
+  const drawBarcode = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -96,7 +98,7 @@ export default function BarcodeGeneratorPage() {
       ctx.textAlign = "center";
       ctx.fillText(text, canvas.width / 2, height + padding + 20);
     }
-  };
+  }, [text, height, showText]);
 
   const downloadBarcode = () => {
     const canvas = canvasRef.current;
@@ -108,9 +110,7 @@ export default function BarcodeGeneratorPage() {
     link.click();
   };
 
-  useState(() => {
-    drawBarcode();
-  });
+  useEffect(() => { drawBarcode(); }, [drawBarcode]);
 
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>

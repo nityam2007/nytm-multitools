@@ -53,9 +53,6 @@ export default function BlogPage() {
 
   const totalPages = Math.ceil(filteredEntries.length / perPage);
 
-  useEffect(() => {
-    setPage(1);
-  }, [selectedCategory, searchQuery]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -73,7 +70,7 @@ export default function BlogPage() {
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => { setSearchQuery(e.target.value); setPage(1); }}
             placeholder="Search tools..."
             className="w-full px-4 py-3 pl-11 rounded-xl bg-[var(--muted)] border border-transparent focus:border-violet-500/50 text-sm transition-all"
           />
@@ -91,7 +88,7 @@ export default function BlogPage() {
             return (
               <button
                 key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => { setSelectedCategory(category.id); setPage(1); }}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                   selectedCategory === category.id
                     ? 'bg-violet-500 text-white'
@@ -153,7 +150,7 @@ export default function BlogPage() {
           >
             Previous
           </button>
-          
+
           <div className="flex items-center gap-1">
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
               let pageNum;
@@ -166,7 +163,7 @@ export default function BlogPage() {
               } else {
                 pageNum = page - 2 + i;
               }
-              
+
               return (
                 <button
                   key={pageNum}
@@ -198,12 +195,12 @@ export default function BlogPage() {
         <h2 className="text-xl font-bold mb-4">Free Online Tools - No Sign Up Required</h2>
         <div className="prose prose-sm dark:prose-invert max-w-none text-[var(--muted-foreground)]">
           <p>
-            Welcome to our comprehensive collection of free online tools. All tools work directly in your browser 
-            with no registration, no email, and no downloads required. Your data stays private as everything 
+            Welcome to our comprehensive collection of free online tools. All tools work directly in your browser
+            with no registration, no email, and no downloads required. Your data stays private as everything
             processes locally on your device.
           </p>
           <p className="mt-3">
-            Whether you need text manipulation, image conversion, developer utilities, or security tools - 
+            Whether you need text manipulation, image conversion, developer utilities, or security tools -
             we have you covered with over 150 free tools available instantly.
           </p>
         </div>

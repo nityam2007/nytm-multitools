@@ -49,6 +49,7 @@ export default function JwtDecoderPage() {
   const [input, setInput] = useState("");
   const [decoded, setDecoded] = useState<DecodedJWT | null>(null);
   const [error, setError] = useState("");
+  const [decodedAt, setDecodedAt] = useState(0);
 
   const handleDecode = async () => {
     if (!input.trim()) return;
@@ -63,6 +64,7 @@ export default function JwtDecoderPage() {
     }
 
     setDecoded(result);
+    setDecodedAt(Date.now());
 
     await logToolUsage({
       toolName: tool.name,
@@ -74,8 +76,8 @@ export default function JwtDecoderPage() {
     });
   };
 
-  const isExpired = decoded?.payload.exp 
-    ? (decoded.payload.exp as number) * 1000 < Date.now() 
+  const isExpired = decoded?.payload.exp
+    ? (decoded.payload.exp as number) * 1000 < decodedAt
     : false;
 
   const timeFields = ["exp", "iat", "nbf"];
@@ -123,7 +125,7 @@ export default function JwtDecoderPage() {
               <pre className="bg-muted p-3 rounded text-sm overflow-x-auto">
                 {JSON.stringify(decoded.payload, null, 2)}
               </pre>
-              
+
               {/* Show decoded timestamps */}
               <div className="mt-4 space-y-2">
                 {timeFields.map((field) => {

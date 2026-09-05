@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 
@@ -23,29 +23,7 @@ export default function PomodoroTimerPage() {
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (isRunning && timeLeft > 0) {
-      intervalRef.current = setInterval(() => {
-        setTimeLeft(prev => {
-          if (prev <= 1) {
-            handleSessionComplete();
-            return 0;
-          }
-          if (currentSession === "work") {
-            setTotalWorkTime(t => t + 1);
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    } else if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isRunning, timeLeft, currentSession]);
-
-  const handleSessionComplete = () => {
+  const handleSessionComplete = useCallback(() => {
     setIsRunning(false);
 
     // Play notification sound
@@ -77,7 +55,18 @@ export default function PomodoroTimerPage() {
       setCurrentSession("work");
       setTimeLeft(workDuration * 60);
     }
-  };
+  }, [currentSession, completedSessions, sessionsUntilLong, longBreak, shortBreak, workDuration]);
+
+  useEffect(() => {
+    if (!isRunning || timeLeft <= 0) return;
+    const interval = setInterval(() => {
+      if (currentSession === "work") setTotalWorkTime(value => value + 1);
+      if (timeLeft <= 1) handleSessionComplete();
+      else setTimeLeft(timeLeft - 1);
+    }, 1000);
+    intervalRef.current = interval;
+    return () => clearInterval(interval);
+  }, [isRunning, timeLeft, currentSession, handleSessionComplete]);
 
   const startPause = () => {
     if (!isRunning && "Notification" in window && Notification.permission === "default") {

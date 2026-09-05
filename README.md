@@ -280,3 +280,11 @@ Before claiming DPDP readiness, the operator needs to complete and document thes
 Official references: [DPDP Act](https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf), [commencement notification](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf), [final Rules](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf), and [MeitY rules and corrigendum index](https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025). Core duties and rights have a notified eighteen-month phase; do not present the whole framework as already enforceable or ignore other currently applicable law.
 
 Release v2.13.0 validation: production build and TypeScript passed (1,159 generated pages); focused ESLint passed. Chrome and WebKit checked all four legal/contact pages at 320, 390 and 1,366 px (24 checks), with no horizontal overflow, broken section targets or short action buttons. Canonical URLs and JavaScript-disabled privacy content passed. The privacy-request anchor and mailto destination were verified; no email was sent. Dark and light layouts were visually reviewed.
+
+## UI release verification — v2.16.0
+
+The v2.14–v2.16 releases add consistent upload controls, connected field labels, fluid workspace and homepage spacing, and accessible mobile tool navigation. Public tool URLs are preserved; internal UI demos are excluded from indexing.
+
+Final checks: `npx tsc --noEmit` passed; repository-wide `npx eslint .` reported zero errors and 100 warnings. Remaining warnings include existing image-element guidance, unused variables and effect dependencies. CommonJS maintenance scripts have a language-specific lint override. The SDK readiness effect has a documented local exception so analytics initialization behavior stays unchanged.
+
+After the request to stop testing, verification used TypeScript and ESLint only; no further browser tests or production builds were run locally. These checks do not guarantee every legacy tool's runtime behavior or search rankings.

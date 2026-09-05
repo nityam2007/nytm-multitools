@@ -1,6 +1,7 @@
 // Text to Speech Tool | TypeScript
 "use client";
 
+import { readPreference, writePreference } from "@/lib/tool-history";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -48,6 +49,25 @@ export default function TextToSpeechPage() {
   const genStartRef = useRef<number>(0);
 
   // Initialize Web Worker
+  const initModel = () => {
+    if (status === "loading" || status === "ready") return;
+
+    setStatus("loading");
+    setError("");
+    setProgress(0);
+
+    // Start progress animation
+    const interval = setInterval(() => {
+      setProgress(p => Math.min(p + 2, 95));
+    }, 150);
+
+    // Send init message to worker
+    workerRef.current?.postMessage({ type: "init" });
+
+    // Clear interval after a bit (worker will set 100 when done)
+    setTimeout(() => clearInterval(interval), 30000);
+  };
+
   useEffect(() => {
     // Create worker
     workerRef.current = new Worker(
@@ -58,6 +78,8 @@ export default function TextToSpeechPage() {
     // Handle messages from worker
     workerRef.current.onmessage = (e: MessageEvent) => {
       const { type, status: workerStatus, error: workerError, blob, elapsed, device, note } = e.data;
+
+      if (type === "worker-ready" && readPreference("kokoro-tts-cached") === "true") initModel();
 
       if (type === "device-info") {
         setDeviceInfo({ device, note });
@@ -73,7 +95,7 @@ export default function TextToSpeechPage() {
         } else if (workerStatus === "ready") {
           setProgress(100);
           setStatus("ready");
-          localStorage.setItem("kokoro-tts-cached", "true");
+          writePreference("kokoro-tts-cached", "true");
         } else if (workerStatus === "generating") {
           // Worker started generating
         }
@@ -118,12 +140,6 @@ export default function TextToSpeechPage() {
       }
     };
 
-    // Check if model was previously cached - auto-init
-    const cached = localStorage.getItem("kokoro-tts-cached");
-    if (cached === "true") {
-      initModel();
-    }
-
     // Cleanup
     return () => {
       workerRef.current?.terminate();
@@ -136,24 +152,7 @@ export default function TextToSpeechPage() {
     return () => { if (audioUrl) URL.revokeObjectURL(audioUrl); };
   }, [audioUrl]);
 
-  const initModel = () => {
-    if (status === "loading" || status === "ready") return;
 
-    setStatus("loading");
-    setError("");
-    setProgress(0);
-
-    // Start progress animation
-    const interval = setInterval(() => {
-      setProgress(p => Math.min(p + 2, 95));
-    }, 150);
-
-    // Send init message to worker
-    workerRef.current?.postMessage({ type: "init" });
-
-    // Clear interval after a bit (worker will set 100 when done)
-    setTimeout(() => clearInterval(interval), 30000);
-  };
 
   const generate = useCallback(() => {
     if (!text.trim() || status !== "ready" || !workerRef.current) return;
@@ -491,7 +490,7 @@ export default function TextToSpeechPage() {
                 </div>
                 <div className="pt-2 border-t border-[var(--border)]">
                   <p className="text-xs text-[var(--muted-foreground)]">
-                    Please use responsibly. Don't create content that impersonates others or spreads misinformation.
+                    Please use responsibly. Don&apos;t create content that impersonates others or spreads misinformation.
                     See our <a href="/terms" className="text-violet-400 hover:underline">Terms</a> for full usage policy.
                   </p>
                 </div>

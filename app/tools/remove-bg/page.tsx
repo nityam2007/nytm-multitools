@@ -24,13 +24,13 @@ export default function RemoveBgPage() {
   const [bgColor, setBgColor] = useState<string | null>(null);
   const [modelLoaded, setModelLoaded] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [removeBackgroundFn, setRemoveBackgroundFn] = useState<any>(null);
+  const [removeBackgroundFn, setRemoveBackgroundFn] = useState<typeof import("@imgly/background-removal").removeBackground | null>(null);
 
   useEffect(() => {
     const loadLibrary = async () => {
       try {
-        const module = await import("@imgly/background-removal");
-        setRemoveBackgroundFn(() => module.removeBackground);
+        const backgroundLibrary = await import("@imgly/background-removal");
+        setRemoveBackgroundFn(() => backgroundLibrary.removeBackground);
       } catch (error) {
         console.error("Failed to load background removal library:", error);
       }

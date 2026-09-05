@@ -177,3 +177,6 @@ input.sidebar-search-control { padding-inline: 2.75rem; min-height: 46px; font-s
 #tools-sidebar { height: 100dvh; }
 
 @media (max-width: 1023px) { #tools-sidebar { z-index: 70; } }
+
+/* Keep text and workspace surfaces in sync when switching themes. */
+.tool-container { transition: border-color 160ms ease; }

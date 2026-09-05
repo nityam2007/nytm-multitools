@@ -16,6 +16,11 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.16.0", changes: [
+    { type: "fixed", text: "Barcode canvas initialization, Pomodoro session transitions and stale QR generation callbacks" },
+    { type: "improved", text: "Derived calculator results, file-preview cleanup, persistent themes and browser-state initialization" },
+    { type: "fixed", text: "Project-wide ESLint errors resolved; TypeScript check passes" },
+  ] },
   { date: "Sep 5, 2026", version: "2.15.0", changes: [
     { type: "improved", text: "Connected labels and descriptive field names across the tool library, with fluid homepage and workspace spacing" },
     { type: "fixed", text: "Mobile sidebar labels, keyboard focus, search clearing and empty-result feedback" },

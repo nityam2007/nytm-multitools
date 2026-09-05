@@ -1,3 +1,4 @@
+import { RecentTools } from "@/components/RecentTools";
 import Link from "next/link";
 import { toolsConfig, getToolsByCategory } from "@/lib/tools-config";
 import { InteractiveGrid } from "@/components/InteractiveGrid";
@@ -14,18 +15,20 @@ export default function Home() {
   ];
 
   const featuredTools = [
-    { slug: "json-pretty", name: "JSON Formatter", desc: "Format and validate JSON", uses: "12.5k" },
-    { slug: "base64-encode", name: "Base64 Encode", desc: "Encode text to Base64", uses: "8.2k" },
-    { slug: "password-generator", name: "Password Gen", desc: "Generate secure passwords", uses: "15.1k" },
-    { slug: "hash-generator", name: "Hash Generator", desc: "MD5, SHA-1, SHA-256", uses: "6.8k" },
-    { slug: "uuid-generator", name: "UUID Generator", desc: "Generate unique IDs", uses: "9.4k" },
-    { slug: "color-converter", name: "Color Converter", desc: "HEX, RGB, HSL conversion", uses: "5.2k" },
-    { slug: "image-compress", name: "Image Compress", desc: "Reduce image file size", uses: "18.7k" },
-    { slug: "markdown-preview", name: "Markdown Preview", desc: "Live markdown editor", uses: "4.9k" },
+    { slug: "json-pretty", name: "JSON Formatter", desc: "Format and validate JSON" },
+    { slug: "base64-encode", name: "Base64 Encode", desc: "Encode text to Base64" },
+    { slug: "password-generator", name: "Password Gen", desc: "Generate secure passwords" },
+    { slug: "hash-generator", name: "Hash Generator", desc: "MD5, SHA-1, SHA-256" },
+    { slug: "uuid-generator", name: "UUID Generator", desc: "Generate unique IDs" },
+    { slug: "color-converter", name: "Color Converter", desc: "HEX, RGB, HSL conversion" },
+    { slug: "image-compress", name: "Image Compress", desc: "Reduce image file size" },
+    { slug: "markdown-preview", name: "Markdown Preview", desc: "Live markdown editor" },
   ];
 
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+      <RecentTools />
+      <div className="flex flex-wrap gap-4 py-4 text-sm border-b border-[var(--border)]"><Link href="/business-tools" className="underline underline-offset-4">Tools for your business</Link><Link href="/work-with-nsheth" className="text-[var(--primary)]">Built by NSheth · Websites & automation ↗</Link></div>
       {/* Hero - Split Layout with Animations */}
       <section className="py-10 sm:py-16 md:py-20 lg:py-24 xl:py-32 border-b border-[var(--border)]">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 items-center">
@@ -127,8 +130,8 @@ export default function Home() {
       <section className="py-10 sm:py-16 md:py-20 border-t border-[var(--border)]">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-6 sm:mb-8 md:mb-10">
           <div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-[-0.02em]">Most Popular Tools</h2>
-            <p className="text-xs sm:text-sm text-[var(--muted-foreground)] mt-1 sm:mt-2" style={{ lineHeight: '1.6' }}>Community favorites used by thousands</p>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-[-0.02em]">Featured Tools</h2>
+            <p className="text-xs sm:text-sm text-[var(--muted-foreground)] mt-1 sm:mt-2" style={{ lineHeight: '1.6' }}>Useful starting points for everyday tasks</p>
           </div>
           <span className="text-[10px] sm:text-xs text-[var(--muted-foreground)] tabular-nums font-mono bg-[var(--muted)] px-2 py-1 rounded-md w-fit">{featuredTools.length} tools</span>
         </div>
@@ -148,7 +151,7 @@ export default function Home() {
               </div>
               <p className="text-[11px] sm:text-sm text-[var(--muted-foreground)] mb-3 sm:mb-4" style={{ lineHeight: '1.5' }}>{tool.desc}</p>
               <div className="flex items-center gap-2 text-[9px] sm:text-[10px] text-[var(--muted-foreground)]">
-                <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-[var(--muted)]">{tool.uses} uses</span>
+                
               </div>
             </Link>
           ))}
@@ -239,7 +242,7 @@ export default function Home() {
             { 
               icon: "heart", 
               title: "Free Forever, Ad-Free Option", 
-              desc: "All {toolsConfig.length} tools are completely free to use forever. Support us to remove ads and get an even cleaner experience. No premium tiers, no feature restrictions, no hidden costs.",
+              desc: `All ${toolsConfig.length} tools are completely free to use forever. Support us to remove ads and get an even cleaner experience. No premium tiers, no feature restrictions, no hidden costs.`,
               details: "Built by developers, for developers and creators who value both functionality and user experience."
             },
           ].map((feature, index) => (

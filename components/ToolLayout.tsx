@@ -1,5 +1,8 @@
+// Shared tool shell | TypeScript
 "use client";
 
+import { NShethPromotion } from "@/components/NShethPromotion";
+import { readToolList, writeToolList } from "@/lib/tool-history";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import * as React from "react";
@@ -41,6 +44,10 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
     }
   }, [isEmbedMode]);
 
+  useEffect(() => {
+    if (!isEmbedMode) writeToolList("recentTools", [tool.slug, ...readToolList("recentTools").filter(s => s !== tool.slug)].slice(0, 6));
+  }, [tool.slug, isEmbedMode]);
+
   // In embed mode, just render the tool content without extra UI
   if (isEmbedMode) {
     return (
@@ -61,53 +68,21 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
         <span className="text-[var(--foreground)] font-medium truncate max-w-[150px] sm:max-w-none">{tool.name}</span>
       </nav>
 
-      {/* Hero Header - Modern card with gradient */}
-      <div className="mb-6 sm:mb-8 md:mb-10 p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-violet-500/10 via-purple-500/5 to-pink-500/10 border border-violet-500/20 relative overflow-hidden">
-        {/* Decorative gradient orb */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-violet-500/20 to-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        
-        <div className="relative">
-          <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-white/20 shadow-lg flex-shrink-0">
-              {(() => {
-                const IconComponent = getToolIcon(tool.icon || "document");
-                return <IconComponent className="w-7 h-7 sm:w-10 sm:h-10 text-violet-500" />;
-              })()}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-[-0.02em]">{tool.name}</h1>
-                {tool.isNew && (
-                  <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 text-[10px] sm:text-xs font-medium text-green-600 dark:text-green-400">
-                    <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    New
-                  </span>
-                )}
-              </div>
-              <p className="text-sm sm:text-base md:text-lg text-[var(--muted-foreground)] max-w-2xl" style={{ lineHeight: '1.6' }}>
-                {tool.description}
-              </p>
-            </div>
-          </div>
-          
-          <div className="flex flex-wrap items-center gap-2 mt-3 sm:mt-4">
-            <span className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-white/60 dark:bg-black/30 backdrop-blur-sm border border-violet-500/20 text-[var(--foreground)] font-medium capitalize">
-              <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-violet-500" />
-              {tool.category}
-            </span>
-            <span className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-white/60 dark:bg-black/30 backdrop-blur-sm border border-violet-500/20 text-[var(--muted-foreground)] font-mono">
-              Free • No signup
-            </span>
-            <ShareButton slug={tool.slug} toolName={tool.name} />
-            <EmbedButton slug={tool.slug} toolName={tool.name} />
-          </div>
+      <header className="mb-6 border-b border-[var(--border)] pb-5">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">{tool.name}</h1>
+          <div className="flex gap-2"><ShareButton slug={tool.slug} toolName={tool.name} /><EmbedButton slug={tool.slug} toolName={tool.name} /></div>
         </div>
-      </div>
+        <p className="mt-3 text-sm text-[var(--muted-foreground)] max-w-3xl leading-relaxed">{tool.description}</p>
+        <p className="mt-3 text-xs font-mono text-[var(--primary)]">Free · No signup</p>
+      </header>
 
       {/* Tool Content - Enhanced container */}
       <div className="tool-container mb-8 sm:mb-10 md:mb-12">
         {children}
       </div>
+
+      <NShethPromotion tool={tool} />
 
       {/* Similar Tools - Enhanced cards */}
       {similarTools.length > 0 && (

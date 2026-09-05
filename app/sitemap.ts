@@ -53,6 +53,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  for (const path of ["business-tools", "work-with-nsheth"]) staticPages.push({ url: `${BASE_URL}/${path}`, changeFrequency: "monthly", priority: 0.8 });
+
   // Tool pages - dynamically generated from tools config
   const toolPages: MetadataRoute.Sitemap = toolsConfig.map((tool) => ({
     url: `${BASE_URL}/tools/${tool.slug}`,

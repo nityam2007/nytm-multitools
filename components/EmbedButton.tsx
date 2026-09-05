@@ -14,7 +14,7 @@ export function EmbedButton({ slug, toolName }: EmbedButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const embedUrl = useMemo(() => {
-    if (typeof window === 'undefined') return `https://nytm.tools/embed/tools/${slug}`;
+    if (typeof window === 'undefined') return `https://nytm.in/embed/tools/${slug}`;
     return `${window.location.origin}/embed/tools/${slug}`;
   }, [slug]);
   

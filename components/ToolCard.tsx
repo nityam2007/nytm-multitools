@@ -2,6 +2,7 @@
 
 "use client";
 
+import { readToolList, writeToolList } from "@/lib/tool-history";
 import Link from "next/link";
 import { ToolConfig } from "@/lib/tools-config";
 import { getCategoryIcon, ArrowUpRightIcon, StarIcon } from "@/assets/icons";
@@ -15,18 +16,18 @@ export function ToolCard({ tool }: ToolCardProps) {
   const [isPinned, setIsPinned] = useState(false);
 
   useEffect(() => {
-    const pinnedTools = JSON.parse(localStorage.getItem("pinnedTools") || "[]");
+    const pinnedTools = readToolList("pinnedTools");
     setIsPinned(pinnedTools.includes(tool.slug));
   }, [tool.slug]);
 
   const togglePin = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const pinnedTools = JSON.parse(localStorage.getItem("pinnedTools") || "[]");
+    const pinnedTools = readToolList("pinnedTools");
     const newPinned = isPinned
       ? pinnedTools.filter((s: string) => s !== tool.slug)
       : [...pinnedTools, tool.slug];
-    localStorage.setItem("pinnedTools", JSON.stringify(newPinned));
+    writeToolList("pinnedTools", newPinned);
     setIsPinned(!isPinned);
     window.dispatchEvent(new Event("pinnedToolsChanged"));
   };
@@ -54,6 +55,8 @@ export function ToolCard({ tool }: ToolCardProps) {
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button
+              aria-label={isPinned ? `Unpin ${tool.name}` : `Pin ${tool.name}`}
+              aria-pressed={isPinned}
               onClick={togglePin}
               className="p-1 sm:p-1.5 rounded-lg hover:bg-violet-500/10 transition-all duration-300 active:scale-90"
               title={isPinned ? "Unpin tool" : "Pin tool"}

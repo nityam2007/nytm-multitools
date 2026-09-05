@@ -2,6 +2,9 @@
 
 import { useState, useMemo, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { RecentTools } from "@/components/RecentTools";
+import { readToolList } from "@/lib/tool-history";
 import { ToolCard } from "@/components/ToolCard";
 import { toolsConfig } from "@/lib/tools-config";
 import { SearchIcon, CloseIcon, ChevronDownIcon, getCategoryIcon } from "@/assets/icons";
@@ -50,7 +53,7 @@ function ToolsContent() {
   // Load pinned tools from localStorage
   useEffect(() => {
     const loadPinned = () => {
-      const pinned = JSON.parse(localStorage.getItem("pinnedTools") || "[]");
+      const pinned = readToolList("pinnedTools");
       setPinnedTools(pinned);
     };
     loadPinned();
@@ -107,7 +110,7 @@ function ToolsContent() {
     }
 
     // Show pinned tools first (always, regardless of sort option)
-    if (sortBy === "pinned" || pinnedTools.length > 0) {
+    if (sortBy === "pinned") {
       tools.sort((a, b) => {
         const aIsPinned = pinnedTools.includes(a.slug);
         const bIsPinned = pinnedTools.includes(b.slug);
@@ -122,6 +125,8 @@ function ToolsContent() {
 
   return (
     <div className="max-w-7xl mx-auto px-1 sm:px-2">
+      <RecentTools />
+      <Link href="/business-tools" className="inline-block mb-5 text-sm underline">Explore tools for your business →</Link>
       {/* Header - Swiss style with animation */}
       <div className="mb-6 sm:mb-8 md:mb-12 animate-fade-slide-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
         <div className="flex flex-wrap items-baseline gap-2 sm:gap-4 mb-2 sm:mb-3">

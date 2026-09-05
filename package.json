@@ -1,6 +1,6 @@
 {
   "name": "nytm-tools",
-  "version": "0.1.0",
+  "version": "2.3.0",
   "private": true,
   "toolCount": 184,
   "engines": {
@@ -11,7 +11,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "starthttps" : "next dev --experimental-https",
+    "starthttps": "next dev --experimental-https",
     "lint": "eslint"
   },
   "overrides": {

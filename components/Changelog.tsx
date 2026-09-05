@@ -15,6 +15,12 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.3.0", changes: [
+    { type: "new", text: "Business tools collection and contextual NSheth website and automation invitations" },
+    { type: "new", text: "Recently used tools with local history and a clear control" },
+    { type: "improved", text: "Compact tool headers, working sort preferences, and safer favourites" },
+    { type: "fixed", text: "Removed hardcoded popularity counts and corrected homepage and embed links" },
+  ] },
   {
     date: "Jul 10, 2026",
     version: "2.2.0",

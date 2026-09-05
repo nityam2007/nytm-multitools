@@ -16,6 +16,11 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.13.0", changes: [
+    { type: "improved", text: "Clear privacy and service terms, phased DPDP guidance, data-request contacts and practical tool precautions" },
+    { type: "improved", text: "NSAL v1.1 clarifies hosted commercial use, source restrictions, contributor rights and statutory protections" },
+    { type: "fixed", text: "Misleading privacy claims and simulated contact submission replaced with clear disclosures and direct email actions" },
+  ] },
   { date: "Sep 5, 2026", version: "2.12.0", changes: [
     { type: "new", text: "Nine crawlable tool collections with selection guidance and complete tool lists" },
     { type: "improved", text: "Search-intent keywords, concise tool titles, page-specific social previews, and breadcrumb structured data" },

@@ -11,7 +11,7 @@ export const TOTAL_CATEGORIES = new Set(toolsConfig.map(tool => tool.category)).
 // Site metadata
 export const SITE_NAME = "NYTM MULTITOOLS";
 export const SITE_TAGLINE = `${TOTAL_TOOLS} tools. Zero friction. Built for everyone.`;
-export const SITE_DESCRIPTION = `${TOTAL_TOOLS} free online tools for text, images, converters, generators, security, and more. Everything runs in your browser — your data stays with you.`;
+export const SITE_DESCRIPTION = `${TOTAL_TOOLS} free online tools for text, images, converters, generators, security, and more. Browser utilities for everyday tasks, with no sign-up required.`;
 
 // Owner information
 export const OWNER_NAME = "Nityam Sheth";
@@ -27,5 +27,5 @@ export const getOtherToolsCount = (exceptCount: number = 1) => TOTAL_TOOLS - exc
 // Formatted strings for common use cases
 export const getToolsTagline = () => `${TOTAL_TOOLS} tools. Zero friction. Built for everyone.`;
 export const getAllToolsIncluded = () => `All ${TOTAL_TOOLS} tools included`;
-export const getAllToolsProcessLocally = () => `All ${TOTAL_TOOLS} tools process data entirely in your browser.`;
-export const getToolsNoLimits = () => `${TOTAL_TOOLS} tools. No ads. No tracking. No limits. No catch.`;
+export const getAllToolsProcessLocally = () => `Most tool processing runs in your browser; analytics and network features can send data to servers.`;
+export const getToolsNoLimits = () => `${TOTAL_TOOLS} tools. No subscription. No sign-up required.`;

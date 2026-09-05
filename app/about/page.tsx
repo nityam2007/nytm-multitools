@@ -93,7 +93,7 @@ export default function AboutPage() {
                 So we built it. A single, unified platform bringing together <strong className="text-[var(--foreground)]">{TOTAL_TOOLS} essential tools</strong> for developers, designers, content creators, and everyday users. No ads. No sign-ups. No paywalls. Ever.
               </p>
               <p>
-                Every tool is designed to be fast, intuitive, and privacy-first. <strong className="text-[var(--foreground)]">All operations happen entirely in your browser</strong> — your data never leaves your device.
+                Tools are designed to be fast and intuitive. <strong className="text-[var(--foreground)]">Most processing happens in your browser.</strong> Analytics, usage logging and network tools also communicate with servers; see our privacy notice.
               </p>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
             <span className="text-xs font-mono text-emerald-400 tracking-widest uppercase">Vision</span>
             <h3 className="text-2xl font-bold mt-2 mb-4 tracking-tight">Your go-to toolbox</h3>
             <p className="text-[var(--muted-foreground)] leading-relaxed">
-              To become the definitive platform for anyone who needs quick, reliable tools — whether you're a developer debugging code, a student formatting an essay, or anyone in between.
+              To become the definitive platform for anyone who needs quick, reliable tools — whether you&apos;re a developer debugging code, a student formatting an essay, or anyone in between.
             </p>
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { icon: BoltIcon, title: "Speed", description: "Instant results, zero waiting", color: "amber" },
-            { icon: ShieldCheckIcon, title: "Privacy", description: "Your data stays with you", color: "blue" },
+            { icon: ShieldCheckIcon, title: "Privacy", description: "Understand how your data is used", color: "blue" },
             { icon: GiftIcon, title: "Free", description: "No hidden costs ever", color: "emerald" },
             { icon: SparklesIcon, title: "Quality", description: "Tools that just work", color: "violet" },
           ].map((value) => (
@@ -239,12 +239,9 @@ export default function AboutPage() {
               <ShieldCheckIcon className="w-6 h-6 text-emerald-400" />
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-2">100% Client-Side Processing</h3>
+              <h3 className="text-xl font-bold mb-2">Browser processing and data flows</h3>
               <p className="text-[var(--muted-foreground)] leading-relaxed">
-                <strong className="text-[var(--foreground)]">{getAllToolsProcessLocally()}</strong> Your text, images, 
-                code, and files never leave your device. We have no servers storing your data because there's 
-                nothing to store. The only external service used is <strong className="text-[var(--foreground)]">IP Lookup</strong> which 
-                requires an API call to ipinfo.io — this is clearly disclosed on that tool's page.
+                <strong className="text-[var(--foreground)]">{getAllToolsProcessLocally()}</strong> Read the privacy notice for usage logging, analytics, cookies and external services before using sensitive material.
               </p>
             </div>
           </div>
@@ -267,13 +264,13 @@ export default function AboutPage() {
                   <strong className="text-[var(--foreground)]">NYTM</strong> is a project name only — not a registered organization, company, or legal entity.
                 </p>
                 <p>
-                  <strong className="text-[var(--foreground)]">Nityam Sheth</strong> (the owner/operator) is not liable for any damages, losses, or issues arising from use of this service. All tools are provided "as-is" without warranty.
+                  <strong className="text-[var(--foreground)]">Nityam Sheth</strong> (the owner/operator) provides these tools as available. Verify results before relying on them. Any liability limits are subject to applicable law and do not remove statutory rights.
                 </p>
                 <p>
-                  Third-party services (payment processors, DNS providers, hosting, analytics) are independent entities. Neither NYTM nor its owner are liable for their actions or policies.
+                  Third-party services (payment processors, DNS providers, hosting, analytics) are independent entities. Their terms apply to their services; our own legal obligations remain unaffected.
                 </p>
                 <p className="text-xs pt-2 border-t border-amber-500/20">
-                  See our <a href="/terms" className="text-amber-400 hover:underline">Terms of Service</a> and <a href="/privacy" className="text-amber-400 hover:underline">Privacy Policy</a> for full details.
+                  See our <a href="/terms" className="btn btn-secondary">Terms of Service</a> and <a href="/privacy" className="btn btn-secondary">Privacy Policy</a> for full details.
                 </p>
               </div>
             </div>

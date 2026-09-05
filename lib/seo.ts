@@ -167,12 +167,12 @@ export function generatePageMetadata(
   > = {
     home: {
       title: `${SITE_NAME} — ${toolCount} Free Online Tools`,
-      description: `${toolCount} free online tools for everyone. Text, images, converters, generators, and more. No ads, no sign-ups, 100% browser-based.`,
+      description: `${toolCount} free online tools for everyone. Text, images, converters, generators, and more. No sign-ups. Browse text, image, PDF, developer and business utilities.`,
       path: "",
     },
     about: {
       title: `About ${SITE_NAME} — Free Online Tools for Everyone`,
-      description: `Learn about ${SITE_NAME} — ${toolCount} free online tools for everyone. Privacy-first, no sign-up required, 100% browser-based.`,
+      description: `Learn about ${SITE_NAME} — ${toolCount} free online tools for everyone. Browser tools with no sign-up required; see our privacy notice for network and analytics data flows.`,
       path: "/about",
     },
     contact: {
@@ -182,12 +182,12 @@ export function generatePageMetadata(
     },
     pricing: {
       title: `Pricing - Free Forever | ${SITE_NAME}`,
-      description: `${SITE_NAME} is completely free. ${toolCount} tools, no ads, no tracking, no limits. Support the project with a donation if you find it useful.`,
+      description: `${SITE_NAME} is completely free. ${toolCount} tools, no subscription or sign-up required. Support the project with a donation if you find it useful.`,
       path: "/pricing",
     },
     privacy: {
       title: `Privacy Policy | ${SITE_NAME}`,
-      description: `Privacy Policy for ${SITE_NAME}. All tools run in your browser. Your data never leaves your device. We don't track you.`,
+      description: `Privacy Policy for ${SITE_NAME}. Read about analytics, local processing, network tools, data requests and the phased Indian DPDP framework.`,
       path: "/privacy",
     },
     terms: {

@@ -29,7 +29,7 @@ export function Footer() {
       ],
     },
     {
-      title: "Company",
+      title: "Project",
       links: [
         { href: "/work-with-nsheth", label: "Built by NSheth" },
         { href: "/business-tools", label: "Business Tools" },
@@ -39,6 +39,7 @@ export function Footer() {
         { href: "/pricing", label: "Donate" },
         { href: "/privacy", label: "Privacy" },
         { href: "/terms", label: "Terms" },
+        { href: "/license", label: "Licence" },
       ],
     },
   ];

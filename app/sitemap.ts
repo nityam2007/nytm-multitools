@@ -54,6 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    { url: `${BASE_URL}/license`, lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   for (const path of ["business-tools", "work-with-nsheth", "guides"])

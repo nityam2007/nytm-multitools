@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { HeartIcon, CheckIcon } from "@/assets/icons";
-import { TOTAL_TOOLS, getToolsNoLimits, getAllToolsIncluded } from "@/lib/site-config";
+import { getToolsNoLimits, getAllToolsIncluded } from "@/lib/site-config";
 
 // Donation URL from environment variable (fallback to empty)
 const DONATION_URL = process.env.NEXT_PUBLIC_DONATION_URL || "";
@@ -91,7 +91,7 @@ export default function PricingPage() {
               "Unlimited usage",
               "No ads, ever",
               "No account required",
-              "No tracking cookies",
+              "No sign-up required",
               "Client-side processing",
               "Dark mode",
               "Mobile friendly",
@@ -188,7 +188,7 @@ export default function PricingPage() {
               <UserIcon className="w-5 h-5" />
             </div>
             <strong className="text-[var(--foreground)]">Self-funded by owner</strong>
-            <p className="mt-1">When donations don't cover costs, Nityam Sheth funds it personally.</p>
+            <p className="mt-1">When donations don&apos;t cover costs, Nityam Sheth funds it personally.</p>
           </div>
           <div className="p-4 rounded-xl bg-[var(--muted)]">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-2">
@@ -201,8 +201,8 @@ export default function PricingPage() {
             <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 mb-2">
               <ShieldExclamationIcon className="w-5 h-5" />
             </div>
-            <strong className="text-[var(--foreground)]">No liability assumed</strong>
-            <p className="mt-1">Provided as-is. No warranties. See disclaimer below.</p>
+            <strong className="text-[var(--foreground)]">Review the service terms</strong>
+            <p className="mt-1">Check outputs and keep originals. Statutory rights remain protected.</p>
           </div>
         </div>
       </div>
@@ -217,14 +217,14 @@ export default function PricingPage() {
             <h4 className="font-bold text-[var(--foreground)]">Disclaimer & Liability Notice</h4>
             <ul className="space-y-2">
               <li><strong className="text-[var(--foreground)]">NYTM</strong> is a project name only, not a registered organization, company, or legal entity.</li>
-              <li><strong className="text-[var(--foreground)]">Nityam Sheth</strong> (the owner/operator) is not liable for any damages, losses, or issues arising from use of this service.</li>
-              <li>All tools are provided <strong className="text-[var(--foreground)]">"AS IS"</strong> without warranty of any kind, express or implied.</li>
-              <li>Third-party services used (including but not limited to payment processors, DNS providers, domain registrars, hosting services, and analytics) are independent entities. NYTM and its owner assume no liability for their actions, policies, or service interruptions.</li>
-              <li>Donations are voluntary, non-refundable, and do not constitute payment for goods or services.</li>
-              <li>By using NYTM, you agree that neither the project, its owner, contributors, nor any affiliated third-party services shall be held liable for any claim, damage, or loss.</li>
+              <li><strong className="text-[var(--foreground)]">Nityam Sheth</strong> (the owner/operator) remains responsible for obligations imposed by applicable law.</li>
+              <li>Tools are provided <strong className="text-[var(--foreground)]">as available</strong>, subject to warranties and remedies that cannot lawfully be excluded.</li>
+              <li>Third-party services used (including but not limited to payment processors, DNS providers, domain registrars, hosting services, and analytics) are independent entities. Their own terms apply, without removing our legal obligations.</li>
+              <li>Donations are voluntary support, not a subscription. Contact hello@nytm.in about payment errors or refund requests; statutory rights remain available.</li>
+              <li>Any liability limits are subject to applicable law. Using NYTM does not waive consumer or data-protection rights.</li>
             </ul>
             <p className="text-xs pt-2 border-t border-amber-500/20">
-              For full terms, see our <Link href="/terms" className="text-amber-400 hover:underline">Terms of Service</Link> and <Link href="/privacy" className="text-amber-400 hover:underline">Privacy Policy</Link>.
+              For full terms, see our <Link href="/terms" className="btn btn-secondary">Terms of Service</Link> and <Link href="/privacy" className="btn btn-secondary">Privacy Policy</Link>.
             </p>
           </div>
         </div>

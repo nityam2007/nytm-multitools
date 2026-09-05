@@ -78,7 +78,7 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 <table>
 <tr>
 <td><strong>✅ Client-Side</strong></td>
-<td>All tools process data in your browser. Nothing is sent to any server.</td>
+<td>Most tool processing is local. Some usage calls send input/output text or filenames to our server; analytics and network tools make additional requests. See the privacy notice.</td>
 </tr>
 <tr>
 <td><strong>✅ Self-Hosted Fonts</strong></td>
@@ -89,12 +89,12 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 <td>All icons are inline SVG components. No requests to icon CDNs or external services.</td>
 </tr>
 <tr>
-<td><strong>✅ No Tracking</strong></td>
-<td>Optional privacy-respecting analytics (PostHog) only. No advertising trackers.</td>
+<td><strong>Analytics</strong></td>
+<td>Configured PostHog analytics uses identifiers, cookies/storage, page and interaction events. Some configurations permit session replay. There is currently no site-wide consent switch.</td>
 </tr>
 <tr>
 <td><strong>⚠️ Exception</strong></td>
-<td>IP Lookup tool uses ipinfo.io API (clearly disclosed on the tool page).</td>
+<td>Network features use ipinfo.io, ipify, Google DNS, AllOrigins and our HTTP Headers endpoint. Some AI tools download third-party model assets.</td>
 </tr>
 </table>
 
@@ -159,6 +159,7 @@ NYTM now includes 18 additional browser tools for business workflows. Start at `
 | 2.9.0 | Dependency patches and cross-browser usability checks |
 | 2.10.0 | Visible action buttons, readable tool cards, keyboard navigation |
 | 2.11.0 | Search-first homepage, URL filters, grid/list views, pins, pagination |
+| 2.13.0 | Legal refresh, NSAL v1.1, DPDP notice, precautions and direct contact routes |
 | 2.12.0 | SEO titles and search intents, nine crawlable collections, social previews |
 
 ### Discovery and SEO maintenance
@@ -223,7 +224,7 @@ If you find it useful:
 
 ## Disclaimer
 
-NYTM is a project name, not a registered organization or legal entity. The owner (Nityam Sheth) and all affiliated third-party services are not liable for any damages arising from use. Tools are provided "as-is" without warranty. See [Terms](https://nytm.in/terms).
+NYTM is a project name, not a registered organization or legal entity. Nityam Sheth operates the project as an individual. Service and licence limitations are subject to applicable law; statutory consumer and privacy rights are preserved. See [Terms](https://nytm.in/terms).
 
 ---
 
@@ -261,3 +262,21 @@ Release 2.9.0 validation: production build generated 1,149 routes; changed TypeS
 ### Validation for the homepage and SEO refresh
 
 The v2.12.0 production build generates 1,158 routes. Focused checks cover Chrome and WebKit search navigation, URL filters, refresh/Back, list/pagination, mobile menu dismissal, and 320–1366px layouts. Chrome keyboard checks include the skip link and focus return; both themes were visually reviewed. All 202 tool metadata records have unique titles and canonical URLs. The nine category collections expose their complete tool lists with JavaScript disabled. Repository-wide legacy lint and dependency caveats above still apply.
+
+
+### Legal operations and DPDP readiness (5 September 2026)
+
+The current public notices describe the existing implementation; they are not a compliance certification. Analytics remains unchanged by request. The contact page now opens email rather than claiming a simulated form submission succeeded.
+
+Before claiming DPDP readiness, the operator needs to complete and document these operational checks:
+
+- Confirm that hello@nytm.in and the alternate mailbox receive mail and are monitored. Record and resolve privacy requests; the notice sets a 30-day target, subject to shorter legal deadlines, and a maximum of 90 days where the DPDP grievance rule applies.
+- Audit production PostHog initialization, replay/masking settings, vendor contracts and retention. Existing tools send raw inputs/outputs to a server action even though its analytics event primarily uses size and metadata. Decide and implement data minimisation and an appropriate consent/withdrawal flow; a notice is not consent. Do not treat IP-derived identifiers as anonymous.
+- Set justified retention and deletion schedules for logs, analytics, email and payment records; verify deletion across processors and backups. Verify transfer locations and access controls rather than asserting India-only storage or immediate erasure.
+- Before processing children's information, establish applicable age/parental-authority safeguards or prevent that processing. The adult-use statement alone is not verification. Review accessible, language-appropriate notices and requests.
+- Maintain an incident response process, provider contacts and a record of disclosures. When applicable, DPDP breach rules require prompt affected-person/Board notification and additional Board details within 72 hours unless extended. Separately assess current CERT-In and other sector-specific obligations; the DPDP transition does not suspend them.
+- Review third-party licences, including the background-removal dependency's copyleft terms and bundled models, before distributing or reusing code. NSAL does not override those licences. Have Indian counsel review the licence, privacy practices and terms against actual operations.
+
+Official references: [DPDP Act](https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf), [commencement notification](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf), [final Rules](https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf), and [MeitY rules and corrigendum index](https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025). Core duties and rights have a notified eighteen-month phase; do not present the whole framework as already enforceable or ignore other currently applicable law.
+
+Release v2.13.0 validation: production build and TypeScript passed (1,159 generated pages); focused ESLint passed. Chrome and WebKit checked all four legal/contact pages at 320, 390 and 1,366 px (24 checks), with no horizontal overflow, broken section targets or short action buttons. Canonical URLs and JavaScript-disabled privacy content passed. The privacy-request anchor and mailto destination were verified; no email was sent. Dark and light layouts were visually reviewed.

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     default: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
     template: "%s | NYTM Tools",
   },
-  description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No ads for supporters, no sign-ups, 100% browser-based. Privacy-first tools.`,
+  description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No sign-ups. Find browser utilities for everyday tasks and client work.`,
   keywords: [
     "free online tools",
     "online utilities",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     "timestamp converter",
     "privacy-focused tools",
     "browser-based tools",
-    "no tracking tools",
+    "online business utilities",
   ],
   authors: [{ name: "Nityam Sheth", url: "https://nsheth.in" }],
   creator: "Nityam Sheth",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     url: "https://nytm.in",
     siteName: "NYTM Tools",
     title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
-    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No ads for supporters, no sign-ups, 100% browser-based. Privacy-first tools.`,
+    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No sign-ups. Find browser utilities for everyday tasks and client work.`,
     images: [
       {
         url: "/metaimg.png",
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `NYTM Tools — ${TOOL_COUNT} Free Online Tools`,
-    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No ads for supporters, no sign-ups. Privacy-first & browser-based.`,
+    description: `${TOOL_COUNT} free online tools for text, images, converters & generators. No sign-ups. Browser utilities for everyday tasks and client work.`,
     images: ["/metaimg.png"],
     creator: "@nityam2007",
   },

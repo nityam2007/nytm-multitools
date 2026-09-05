@@ -67,8 +67,8 @@ Shared components in [components/](components/) (`Button`, `Input`, `TextArea`, 
 
 **Known exceptions to that rule** (don't "fix" them as bugs):
 - [lib/actions.ts](lib/actions.ts) `logToolUsage` is a `"use server"` action that sends usage + input metadata to PostHog server-side. It is called from tool pages despite the "no tracking" language in apprules.md.
-- `app/api/http-headers/route.ts` and the IP Lookup tool (`ipinfo.io`) are the only intentional network calls.
-- Analytics: PostHog (client via `PostHogProvider`, proxied through `/ingest/*` rewrites in `next.config.ts`).
+- Intentional network features include HTTP Headers, IP Lookup (ipinfo.io), My IP (ipify), DNS Lookup (Google DNS), URL extraction (AllOrigins), and some AI model downloads.
+- Analytics: PostHog (client via `PostHogProvider` and instrumentation, proxied through `/ingest/*`). Existing analytics configuration is intentionally unchanged. Do not describe it as anonymous or claim zero tracking. Keep public statements consistent with `/privacy`, including server usage payloads and conditional replay. Legal text alone does not establish DPDP compliance.
 
 ### Other notable pieces
 

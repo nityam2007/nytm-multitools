@@ -1,303 +1,63 @@
-import { Metadata } from "next";
+// Privacy notice based on deployed data flows and India's phased DPDP framework | TypeScript
+import Link from "next/link";
 import { generatePageMetadata } from "@/lib/seo";
-import ScrollToTop from "@/components/ScrollToTop";
-import { getAllToolsProcessLocally } from "@/lib/site-config";
+import LegalPage, { type LegalSection } from "@/components/LegalPage";
 
-export const metadata: Metadata = generatePageMetadata("privacy");
+export const metadata = generatePageMetadata("privacy");
+
+const sections: LegalSection[] = [
+  { id: "operator", title: "Who this notice covers", content: <>
+    <p>Nityam Sheth operates NYTM MULTITOOLS at nytm.in. This notice covers the website, its tools, usage analytics and messages sent to us. It does not replace the notices of websites you choose to visit through external links, including NSheth.</p>
+    <p>You do not need an ordinary user account to use the tools. <strong>Browser-based processing does not mean that the website makes no network requests or collects no personal data.</strong></p>
+  </> },
+  { id: "data", title: "Data, purposes and recipients", content: <>
+    <ul>
+      <li><strong>Tool processing:</strong> many conversions and file operations run on your device. Some existing tools also send a usage request to our server containing input text, output text, filenames or settings, depending on the tool. The server computes input length and sends tool name, category, input type, timing and supplied metadata to PostHog. Raw input and output fields are not deliberately included in that server analytics event, but they have reached our server.</li>
+      <li><strong>Usage and diagnostics:</strong> when configured, PostHog receives page URLs including query strings, referrers, device/browser details, interaction and error events, identifiers, and tool/download/referral events. Server usage events use an identifier derived from your IP address; this is not anonymous data. These records help us understand usage, troubleshoot faults and measure referrals.</li>
+      <li><strong>Interaction capture:</strong> depending on which analytics configuration initializes and the project settings, autocapture or session replay may collect page content and interactions. One configuration permits recording of non-password inputs. Do not assume that text displayed or entered on the site is excluded from analytics.</li>
+      <li><strong>Website delivery:</strong> Vercel and network infrastructure process connection data such as IP address, URL, user agent and request timing to deliver, secure and diagnose the service.</li>
+      <li><strong>Support and business enquiries:</strong> if you email us, we receive your email address, message and any details you include, to answer that enquiry. A contact or NSheth link does not by itself subscribe you to marketing.</li>
+      <li><strong>Voluntary support:</strong> an external payment provider processes payment details if you follow a donation link. We may receive transaction confirmations and donor details provided by that service for reconciliation or resolving payment issues. Do not send payment credentials to NYTM.</li>
+    </ul>
+  </> },
+  { id: "network", title: "Tools that contact other services", content: <>
+    <p>IP Lookup sends the queried IP to ipinfo.io. My IP calls ipify. DNS Lookup sends the domain and record type to Google DNS. The URL mode of HTML to Text sends the entered URL to AllOrigins. HTTP Headers sends the entered URL to our server, which contacts the destination website. Those providers or destinations can receive the relevant request and connection information.</p>
+    <p>Some AI tools download models or runtime files from third-party hosts before processing locally. Model downloads expose connection data to the host; this does not by itself mean your selected file is uploaded. Self-hosted OCR and PDF assets are served from NYTM.</p>
+    <p>Only query addresses you are authorised to use. Avoid personal details, credentials or private tokens in URLs, filenames and sample content.</p>
+  </> },
+  { id: "storage", title: "Cookies, local storage and choices", content: <>
+    <p>Browser storage holds preferences such as theme, recent and pinned tools, update status, and explicitly saved checklist progress. The service worker caches website resources for performance and offline use. Clearing site data removes these local items; it does not erase records already received by our servers or providers.</p>
+    <p>Configured PostHog analytics can use cookies and local storage for visitor/session identifiers. This release does not provide a site-wide analytics consent or withdrawal switch. Browser Do Not Track is respected by one initialization path but is not a guarantee that all analytics, including server usage events, stops.</p>
+    <p>You can manage storage and tracking restrictions in your browser and contact us about processing or deletion. These browser controls do not replace any consent mechanism required by applicable law. <strong>This notice and acceptance of the Terms are not consent to optional analytics.</strong></p>
+  </> },
+  { id: "retention", title: "Retention, transfers and security", content: <>
+    <p>Tool state held only in page memory is normally lost when the page is closed or reset. Downloads remain wherever you save them; browser caches and saved preferences remain until cleared or evicted. Browser session restoration may preserve some state.</p>
+    <p>Hosting logs, analytics records, email and payment records have different retention settings. We have not published a verified, fixed retention period for all these systems. Contact us for information about the records relevant to you or to request deletion. Records may need to be retained for legal obligations, security investigations or resolving a dispute; we will explain an applicable reason when responding.</p>
+    <p>Data may be processed outside India. The analytics proxy and server logger target PostHog&apos;s EU service; hosting, email, payment and other providers may use other locations and subprocessors. Applicable transfer restrictions still apply. We do not offer a guarantee that all processing stays in India.</p>
+    <p>No website or device can guarantee absolute security. Keep your browser updated, use a trusted device, retain originals and avoid confidential or regulated material where these data flows are unsuitable. Report suspected exposure privately using the contact below.</p>
+  </> },
+  { id: "dpdp", title: "India: DPDP Act and phased commencement", content: <>
+    <p>The Digital Personal Data Protection Act, 2023 and the final DPDP Rules, 2025 have phased commencement. As of this notice date, the core processing duties and individual-rights provisions are in the eighteen-month phase under the November 2025 notifications; consent-manager registration has a separate one-year phase. This page does not claim that every provision is already in force or that NYTM is certified compliant.</p>
+    <p>When applicable, the framework provides for access to processing information, correction and erasure, consent withdrawal, grievance redressal and nomination of another individual to exercise rights after death or incapacity. Legal exceptions and commencement dates affect those rights. Contact us now about your information; you need not wait to raise a concern.</p>
+    <p>Official references: <a href="https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf">DPDP Act, 2023</a>, <a href="https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf">Act commencement notification</a>, and <a href="https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025">MeitY rules, timeline and corrigendum</a>.</p>
+  </> },
+  { id: "requests", title: "Privacy requests and grievances", content: <>
+    <p><strong>Contact: Nityam Sheth, operator and privacy contact.</strong> Email hello@nytm.in, or hello@nsheth.in if needed, with the subject “NYTM privacy request” or “NYTM privacy grievance”. This contact is not a claim of formal Data Protection Officer or Consent Manager registration.</p>
+    <p>Tell us what you want reviewed and, if relevant, the tool, approximate visit date and the email address used to contact us. We may ask for proportionate information to locate a record and verify authority. Do not send Aadhaar, passwords, payment credentials or full confidential files as initial proof.</p>
+    <p>We will assess and respond to requests under applicable law, explain any information needed or lawful refusal, and aim to resolve grievances within 30 days. Where applicable DPDP Rules require a published grievance period, that period will not exceed 90 days; any shorter mandatory deadline takes precedence. We cannot retrieve or delete files that exist only on your device.</p>
+    <p>When the relevant provisions and complaint process apply, you may approach the Data Protection Board of India after first using our grievance process. Other available statutory remedies remain unaffected.</p>
+    <div className="action-row"><a className="btn btn-primary" href="mailto:hello@nytm.in?subject=NYTM%20privacy%20request">Make a privacy request</a><a className="btn btn-secondary" href="mailto:hello@nytm.in?subject=NYTM%20privacy%20grievance">Raise a grievance</a></div>
+  </> },
+  { id: "children", title: "Children and other people's information", content: <>
+    <p>NYTM is intended for adults aged 18 or over. We do not currently provide a verified parental-consent flow. If you are under 18, please do not submit personal information or use the service; a parent or guardian can contact us about information already provided. An age statement alone does not verify age or satisfy child-data obligations.</p>
+    <p>Under the DPDP framework, children are generally people under 18; when applicable, child-data processing requires safeguards including verifiable parental consent, subject to legal exceptions. Do not enter children&apos;s records or another person&apos;s personal data unless you have appropriate authority and have assessed the processing described here.</p>
+  </> },
+  { id: "updates", title: "Changes and safe use", content: <>
+    <p>This notice replaces the previous blanket claims that no information ever leaves your device and that NYTM uses no tracking. The update explains existing data flows; it does not make a retroactive consent request. We will revise the notice when our practices materially change and obtain consent where required.</p>
+    <Link className="btn btn-secondary" href="/terms#precautions">Read tool-use precautions</Link>
+  </> },
+];
 
 export default function PrivacyPage() {
-  return (
-    <div className="max-w-4xl mx-auto py-8 sm:py-12 md:py-16 px-3 sm:px-4">
-      <ScrollToTop />
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-sm font-medium mb-8">
-          <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
-          Your privacy matters
-        </div>
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-          Privacy <span className="gradient-text">Policy</span>
-        </h1>
-        <p className="text-lg text-[var(--muted-foreground)]">
-          Last updated: December 2, 2025
-        </p>
-      </div>
-
-      {/* TL;DR Box */}
-      <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/5 p-6 mb-8">
-        <h3 className="font-bold text-lg mb-2 text-emerald-400">TL;DR</h3>
-        <p className="text-[var(--muted-foreground)]">
-          All tools run in your browser. Your data never leaves your device. We don't track you. We don't sell data. We don't use cookies for tracking.
-        </p>
-      </div>
-
-      {/* Content Card */}
-      <div className="relative rounded-3xl bg-[var(--card)] border border-[var(--border)] p-8 md:p-12 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="relative space-y-12">
-          
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">1</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Introduction</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed">
-                  NYTM MULTITOOLS ("we," "our," or "us"), operated by Nityam Sheth, is committed to protecting your privacy. 
-                  This Privacy Policy explains what information we collect (spoiler: almost nothing) and how we handle it.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">2</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Data We DO NOT Collect</h2>
-                <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1 flex items-center gap-2">
-                      <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                      </svg>
-                      Your Tool Data
-                    </p>
-                    <p className="text-sm text-[var(--muted-foreground)]">
-                      <strong>{getAllToolsProcessLocally()}</strong> Text, images, code, and any other content you input is processed locally on your device. It never touches our servers. We cannot see it. We do not store it.
-                    </p>
-                  </div>
-                  <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1 flex items-center gap-2">
-                      <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                      </svg>
-                      Personal Information
-                    </p>
-                    <p className="text-sm text-[var(--muted-foreground)]">
-                      We do not require accounts, sign-ups, or registration. We do not collect names, emails, phone numbers, or any personally identifiable information.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">3</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Analytics (Optional)</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed mb-4">
-                  We may use privacy-respecting analytics to understand basic usage patterns:
-                </p>
-                <div className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/20">
-                  <p className="text-[var(--foreground)] font-medium mb-2 flex items-center gap-2">
-                    <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                    </svg>
-                    What we might collect:
-                  </p>
-                  <ul className="grid grid-cols-2 gap-2 text-sm text-[var(--muted-foreground)]">
-                    <li className="flex items-center gap-2"><span className="text-violet-400">◈</span> Page views (anonymous)</li>
-                    <li className="flex items-center gap-2"><span className="text-violet-400">◈</span> Country (not city)</li>
-                    <li className="flex items-center gap-2"><span className="text-violet-400">◈</span> Browser type</li>
-                    <li className="flex items-center gap-2"><span className="text-violet-400">◈</span> Device type</li>
-                  </ul>
-                  <p className="text-xs text-[var(--muted-foreground)] mt-3">
-                    Analytics are processed by PostHog (EU-hosted, privacy-focused). No personal identifiers are collected.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">4</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Cookies</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed mb-4">
-                  We use minimal cookies for essential functionality only:
-                </p>
-                <ul className="space-y-2 text-[var(--muted-foreground)]">
-                  <li className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                    </svg>
-                    Theme preference (dark/light mode)
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    No tracking cookies
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    No advertising cookies
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    No third-party cookies
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">5</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Third-Party Services</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed mb-4">
-                  We do not use advertising networks, social media trackers, or data brokers. 
-                  Here's our complete third-party disclosure:
-                </p>
-                <div className="space-y-3">
-                  <div className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1">Analytics (Optional)</p>
-                    <p className="text-sm text-[var(--muted-foreground)]">
-                      PostHog (EU-hosted, privacy-focused) for anonymous usage statistics. No personal identifiers.
-                    </p>
-                  </div>
-                  <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1">IP Lookup Tool</p>
-                    <p className="text-sm text-[var(--muted-foreground)]">
-                      Uses ipinfo.io API. Your IP address is sent to ipinfo.io servers for geolocation lookup.
-                    </p>
-                  </div>
-                  <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1">Text to Speech Tool</p>
-                    <p className="text-sm text-[var(--muted-foreground)]">
-                      Downloads AI voice model (~100MB) from Hugging Face on first use. After download, all processing is local. No text or audio is sent externally.
-                    </p>
-                  </div>
-                  <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                    <p className="text-[var(--foreground)] font-medium mb-1">Fonts & Icons</p>
-                    <p className="text-sm text-[var(--muted-foreground)]">
-                      Fonts (Inter, JetBrains Mono) are self-hosted via Next.js — bundled at build time, served from our servers. 
-                      All icons are inline SVG. <strong>No external font CDNs or icon services.</strong>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">6</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Third-Party Service Liability</h2>
-                <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 mb-4">
-                  <p className="text-[var(--foreground)] font-medium mb-2 flex items-center gap-2">
-                    <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                    </svg>
-                    Important Disclosure
-                  </p>
-                  <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                    NYTM uses third-party services that have their own privacy policies and terms:
-                  </p>
-                  <ul className="space-y-2 text-sm text-[var(--muted-foreground)]">
-                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Payment processors</strong> (e.g., Razorpay) — for donations</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>DNS/CDN</strong> (e.g., Cloudflare) — for site delivery</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Analytics</strong> (e.g., PostHog) — for anonymous usage stats</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Model hosting</strong> (e.g., Hugging Face) — for AI model downloads</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>IP Geolocation</strong> (e.g., ipinfo.io) — for IP lookup tool</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400">•</span> <strong>Hosting & Domain</strong> — for infrastructure</li>
-                  </ul>
-                  <p className="text-xs text-[var(--muted-foreground)] mt-3 pt-3 border-t border-amber-500/20">
-                    NYTM and its owner (Nityam Sheth) are not liable for the data practices, policies, or actions of these third-party services.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">7</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Data Security</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed">
-                  Since we don't collect personal data, there's minimal risk. The site is served 
-                  over HTTPS. All tool processing happens client-side. We implement security best 
-                  practices for the minimal infrastructure we maintain.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">8</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Children's Privacy</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed">
-                  Our Service is not directed to children under 13. We do not knowingly collect 
-                  information from children. Since we don't collect personal data from anyone, 
-                  this is naturally compliant.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">9</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Changes to This Policy</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed">
-                  We may update this Privacy Policy occasionally. Changes will be posted on this 
-                  page with an updated date. Significant changes will be noted prominently.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="group">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-lg font-bold text-violet-400 flex-shrink-0">10</div>
-              <div>
-                <h2 className="text-xl font-bold mb-4 tracking-tight group-hover:text-violet-400 transition-colors">Contact</h2>
-                <p className="text-[var(--muted-foreground)] leading-relaxed mb-4">
-                  Questions about this Privacy Policy? Contact us:
-                </p>
-                <div className="space-y-2">
-                  <p className="text-sm text-[var(--muted-foreground)]"><strong className="text-[var(--foreground)]">Owner:</strong> Nityam Sheth</p>
-                  <div className="flex flex-wrap gap-2">
-                    <a 
-                      href="mailto:hello@nytm.in" 
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 hover:bg-violet-500/20 transition-colors font-medium"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                      </svg>
-                      hello@nytm.in
-                    </a>
-                    <a 
-                      href="mailto:hello@nsheth.in" 
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 hover:bg-violet-500/20 transition-colors font-medium"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                      </svg>
-                      hello@nsheth.in
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-        </div>
-      </div>
-    </div>
-  );
+  return <LegalPage title="Privacy & data requests" summary="Most tools work in your browser. Website delivery, analytics, some tool-usage requests and network utilities still send data off your device. Here is what that means and how to contact us." sections={sections} />;
 }

@@ -14,7 +14,7 @@ import { generateWebsiteJsonLd } from "@/lib/seo";
 // NOTE: This must match toolsConfig.length in lib/tools-config.ts
 // Static metadata cannot use dynamic imports, so update this when adding tools
 // See lib/site-config.ts for the dynamic version used in components
-const TOOL_COUNT = 197;
+const TOOL_COUNT = 202;
 
 const inter = Inter({
   variable: "--font-inter",

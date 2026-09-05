@@ -7,7 +7,7 @@ import { ToolCard } from "@/components/ToolCard";
 export const metadata: Metadata = { title: "Free business tools | NYTM", description: "Prepare product images, clean spreadsheets, create campaign links, and plan your website with free browser-based business tools.", alternates: { canonical: "https://nytm.in/business-tools" } };
 export default function BusinessTools() {
   const collections = [
-    { title: "Launch & promote", description: "Prepare your business for its next customer.", slugs: ["whatsapp-link", "website-brief", "website-checklist", "utm-builder", "seo-preview", "social-meta", "schema-generator", "email-signature", "contact-card", "qr-code"] },
+    { title: "Launch & promote", description: "Prepare your business for its next customer.", slugs: ["whatsapp-link", "website-brief", "website-checklist", "utm-builder", "seo-preview", "social-meta", "schema-generator", "email-signature", "contact-card", "qr-code-generator"] },
     { title: "Sell & present", description: "Turn products and ideas into something ready to share.", slugs: ["quotation-maker", "product-photos", "catalogue-maker", "image-compress", "image-resize", "pricing-calculator"] },
     { title: "Simplify the work", description: "Make recurring document and data tasks easier.", slugs: ["csv-cleanup", "automation-savings", "pdf-organizer", "image-ocr", "metadata-remover", "contrast-checker", "csv-chart-builder", "break-even-calculator"] },
   ];

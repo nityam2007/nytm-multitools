@@ -1,8 +1,8 @@
 {
   "name": "nytm-tools",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "private": true,
-  "toolCount": 197,
+  "toolCount": 202,
   "engines": {
     "node": ">=24.0.0",
     "npm": ">=11.0.0"

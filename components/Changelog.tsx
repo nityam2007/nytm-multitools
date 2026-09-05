@@ -15,6 +15,11 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.6.0", changes: [
+    { type: "new", text: "Product photo batches with ZIP export, printable product catalogues, and PDF page organising" },
+    { type: "new", text: "Verified JPEG/PNG metadata removal and self-hosted English image-to-text OCR" },
+    { type: "improved", text: "Heavy processing workers, cancellation, size limits, and local asset loading" },
+  ] },
   { date: "Sep 5, 2026", version: "2.5.0", changes: [
     { type: "new", text: "Search snippets, social meta tags, structured data, and colour contrast tools" },
     { type: "new", text: "CSV workbench with background cleanup, column selection, renaming, and spreadsheet-safe export" },

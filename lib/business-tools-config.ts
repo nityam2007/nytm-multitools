@@ -193,5 +193,92 @@ export const businessTools: ToolConfig[] = [
     ],
     isNew: true
   }
+,
+
+  {
+    slug: "product-photos",
+    name: "Product Photo Batch Processor",
+    description: "Resize, crop or pad, compress, convert, and rename product images with ZIP download.",
+    category: "image",
+    icon: "document-text",
+    inputType: "file",
+    keywords: [
+      "product",
+      "photos",
+      "business"
+    ],
+    fileTypes: [
+      "image"
+    ],
+    isNew: true
+  },
+  {
+    slug: "catalogue-maker",
+    name: "Product Catalogue Maker",
+    description: "Create a branded product catalogue with embedded photos and print-to-PDF export.",
+    category: "misc",
+    icon: "document-text",
+    inputType: "file",
+    keywords: [
+      "catalogue",
+      "maker",
+      "business"
+    ],
+    fileTypes: [
+      "image"
+    ],
+    isNew: true
+  },
+  {
+    slug: "metadata-remover",
+    name: "Image Metadata Remover",
+    description: "Remove supported EXIF, XMP, IPTC, and text metadata from JPEG and PNG without re-encoding.",
+    category: "image",
+    icon: "document-text",
+    inputType: "file",
+    keywords: [
+      "metadata",
+      "remover",
+      "business"
+    ],
+    fileTypes: [
+      "image"
+    ],
+    isNew: true
+  },
+  {
+    slug: "pdf-organizer",
+    name: "PDF Page Organiser",
+    description: "Preview, reorder, select, and extract PDF pages in your browser.",
+    category: "converter",
+    icon: "document-text",
+    inputType: "file",
+    keywords: [
+      "pdf",
+      "organizer",
+      "business"
+    ],
+    fileTypes: [
+      "pdf"
+    ],
+    isNew: true
+  },
+  {
+    slug: "image-ocr",
+    name: "Image to Text OCR",
+    description: "Extract printed English text using a self-hosted OCR engine running in your browser.",
+    category: "converter",
+    icon: "document-text",
+    inputType: "file",
+    keywords: [
+      "image",
+      "ocr",
+      "business"
+    ],
+    fileTypes: [
+      "image"
+    ],
+    isNew: true
+  }
 
 ];

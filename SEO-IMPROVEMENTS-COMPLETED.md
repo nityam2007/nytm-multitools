@@ -1,5 +1,40 @@
 # SEO Improvements Completed - NYTM Tools
 
+## Current refresh — 5 September 2026, v2.12.0
+
+The older audit below is historical. Current tool counts, titles, descriptions, and social previews come from the registry and shared SEO helpers. Meta descriptions have no fixed pixel guarantee; search engines choose their displayed snippets.
+
+- All 202 tool pages have unique titles, production canonical URLs, specific descriptions, and relevant capability keywords. Duplicate brand suffixes are removed.
+- Task synonyms support discovery in the homepage, library, and sidebar. Search state survives refresh and can be shared.
+- Nine category collections (eight registry categories plus PDF) expose their complete tool links in server-rendered HTML, with selection advice, CollectionPage/ItemList and BreadcrumbList data.
+- Tool pages include WebApplication and breadcrumb data. Guides have Article metadata. No ratings or review counts were invented.
+- Guide, business, and service pages have their own Open Graph/Twitter titles, descriptions, and URLs instead of inheriting the homepage preview.
+- The website SearchAction now targets the working `/tools?q=` route.
+- The sitemap includes the new category URLs and uses the content release date instead of pretending every build changed every page.
+
+### Search-intent examples
+
+| Visitor task | Primary destination | Phrases used in discovery/metadata |
+|---|---|---|
+| Combine documents | `/tools/pdf-merge` | merge PDF files, combine PDF, join PDF files |
+| Reduce photo size | `/tools/image-compress` | image compressor, compress JPG/PNG, reduce image size |
+| Prepare product images | `/tools/product-photos` | batch product photo resizer, batch resize images |
+| Clean a spreadsheet | `/tools/csv-cleanup` | CSV cleaner, duplicate row remover, deduplicate CSV |
+| Format code data | `/tools/json-pretty` | JSON formatter, validator, pretty print JSON |
+| Create a business enquiry link | `/tools/whatsapp-link` | WhatsApp link generator, QR code, click to chat |
+| Extract printed text | `/tools/image-ocr` | image to text, English OCR, extract text from image |
+| Plan a website | `/tools/website-brief` | website project brief, web design questionnaire |
+
+These phrases are selected from implemented features and expected visitor language. Search Console and paid keyword-volume data were not accessed. Existing generated blog pages were not expanded into more variations.
+
+### Measurement and next review
+
+Submit the updated sitemap in the owner Search Console account. Review category/tool impressions, queries, click-through rates, and qualified NSheth enquiries after Google recrawls the pages. Compare real query data before prioritising further content. Ranking or lead-volume improvements are not guaranteed by this release.
+
+Google does not use the meta-keywords tag for web rankings. The useful changes here are descriptive titles/content, working navigation, canonical URLs, and accessible internal links. References: [title guidance](https://developers.google.com/search/docs/appearance/title-link), [snippet guidance](https://developers.google.com/search/docs/appearance/snippet), [meta-keywords explanation](https://developers.google.com/search/blog/2009/09/google-does-not-use-keywords-meta-tag).
+
+---
+
 ## ✅ All Critical & High Priority Issues Fixed
 
 ### 1. Meta Description Length - FIXED ✓

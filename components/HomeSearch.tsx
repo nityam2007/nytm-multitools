@@ -9,6 +9,8 @@ export function HomeSearch() {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  const form = useRef<HTMLFormElement>(null);
+  const pointerInside = useRef(false);
   const matches = query.trim() ? rankTools(toolsConfig, query).slice(0, 5) : [];
   useEffect(() => {
     const shortcut = (event: KeyboardEvent) => {
@@ -25,16 +27,39 @@ export function HomeSearch() {
       }
     };
     window.addEventListener("keydown", shortcut);
-    return () => window.removeEventListener("keydown", shortcut);
+    const dismissOutside = (event: PointerEvent) => {
+      pointerInside.current = !!form.current?.contains(event.target as Node);
+      if (!pointerInside.current) setOpen(false);
+    };
+    const releasePointer = () => {
+      pointerInside.current = false;
+    };
+    document.addEventListener("pointerdown", dismissOutside);
+    document.addEventListener("pointerup", releasePointer);
+    document.addEventListener("pointercancel", releasePointer);
+    return () => {
+      window.removeEventListener("keydown", shortcut);
+      document.removeEventListener("pointerdown", dismissOutside);
+      document.removeEventListener("pointerup", releasePointer);
+      document.removeEventListener("pointercancel", releasePointer);
+    };
   }, []);
   return (
     <form
+      ref={form}
       action="/tools"
       method="get"
       role="search"
       className="home-search"
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+        // Safari does not focus clicked links; let pointerdown handle those
+        // clicks so a suggestion survives until its navigation event.
+        if (
+          !pointerInside.current &&
+          event.relatedTarget &&
+          !event.currentTarget.contains(event.relatedTarget)
+        )
+          setOpen(false);
       }}
       onKeyDown={(event) => {
         if (event.key === "Escape") setOpen(false);

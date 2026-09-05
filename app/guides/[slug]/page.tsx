@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { guides } from "@/lib/guides";
 import { getToolBySlug } from "@/lib/tools-config";
 import { NShethPromotion } from "@/components/NShethPromotion";
+import { generateCollectionMetadata } from "@/lib/seo";
 export function generateStaticParams() {
   return guides.map(({ slug }) => ({ slug }));
 }
@@ -16,11 +17,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const guide = guides.find((g) => g.slug === slug);
   return guide
-    ? {
+    ? generateCollectionMetadata({
         title: `${guide.title} | NYTM`,
         description: guide.description,
-        alternates: { canonical: `https://nytm.in/guides/${slug}` },
-      }
+        path: `/guides/${slug}`,
+        article: true,
+        keywords: [guide.title.toLowerCase(), guide.tool.replaceAll("-", " ")],
+      })
     : {};
 }
 export default async function Guide({
@@ -34,6 +37,26 @@ export default async function Guide({
   const tool = getToolBySlug(guide.tool)!;
   return (
     <article className="max-w-3xl mx-auto px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: guide.title,
+            description: guide.description,
+            mainEntityOfPage: `https://nytm.in/guides/${slug}`,
+            datePublished: "2026-09-05",
+            dateModified: "2026-09-05",
+            author: {
+              "@type": "Organization",
+              name: "NYTM",
+              url: "https://nytm.in",
+            },
+            image: "https://nytm.in/metaimg.png",
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <Link className="btn btn-secondary" href="/guides">
         ← All guides
       </Link>

@@ -2,13 +2,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NShethLink } from "@/components/NShethLink";
+import { generateCollectionMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateCollectionMetadata({
   title: "Websites & custom tools by NSheth | NYTM",
   description:
     "Meet the studio behind NYTM. Discuss a business website, online store, booking flow, or custom automation with NSheth.",
-  alternates: { canonical: "https://nytm.in/work-with-nsheth" },
-};
+  path: "/work-with-nsheth",
+  keywords: [
+    "NSheth",
+    "business website development",
+    "custom automation",
+    "online store development",
+  ],
+});
 
 export default async function WorkWithNSheth({
   searchParams,

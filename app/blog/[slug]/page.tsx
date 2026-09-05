@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBlogEntryBySlug, getAllBlogSlugs, blogEntries } from '@/lib/blog-info';
 import { toolsConfig } from '@/lib/tools-config';
+import { searchKeywords } from '@/lib/tool-search';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -26,12 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://nytm.in';
+  const baseUrl = 'https://nytm.in';
 
   return {
-    title: `${entry.title} - Free Online Tool | NYTM`,
+    title: { absolute: `${entry.title} | NYTM` },
     description: `${entry.description} Use this free online tool with no sign up required. Works in your browser instantly.`,
-    keywords: [entry.title, 'free', 'online', 'no sign up', 'tool', entry.category, 'browser tool'],
+    keywords: [entry.title.toLowerCase(), ...searchKeywords(toolsConfig.find(tool => tool.slug === entry.toolSlug)!)],
     openGraph: {
       title: `${entry.title} - Free Online Tool`,
       description: entry.description,

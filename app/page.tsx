@@ -11,6 +11,21 @@ import {
 } from "@/lib/tool-discovery";
 import { guides } from "@/lib/guides";
 import { categoryIconMap, CircleIcon } from "@/assets/icons";
+import { generateCollectionMetadata } from "@/lib/seo";
+export const metadata = generateCollectionMetadata({
+  title: "Free Online Tools for PDFs, Images, Text & Code | NYTM",
+  description: `Find ${toolsConfig.length} free online tools: merge PDFs, compress images, format JSON, clean CSV files, and create business assets. No signup required.`,
+  path: "/",
+  keywords: [
+    "free online tools",
+    "pdf tools",
+    "image compressor",
+    "json formatter",
+    "csv cleaner",
+    "whatsapp link generator",
+    "business tools",
+  ],
+});
 export default function Home() {
   return (
     <div className="discovery-page">
@@ -32,8 +47,8 @@ export default function Home() {
           <div className="quick-starts" aria-label="Common searches">
             <span>Jump to</span>
             {[
-              ["PDF tools", "/tools?file=pdf"],
-              ["Image tools", "/tools?category=image"],
+              ["PDF tools", "/categories/pdf"],
+              ["Image tools", "/categories/image"],
               ["JSON formatter", "/tools/json-pretty"],
             ].map(([name, href]) => (
               <Link key={href} href={href}>
@@ -91,8 +106,12 @@ export default function Home() {
       <div className="home-facts">
         <span>No account needed</span>
         <span>Free to use</span>
-        <Link href="/tools?scope=pinned">Pin your go-to tools →</Link>
-        <Link href="/work-with-nsheth">Built by NSheth ↗</Link>
+        <Link className="btn btn-secondary" href="/tools?scope=pinned">
+          Your pinned tools →
+        </Link>
+        <Link className="btn btn-secondary" href="/work-with-nsheth">
+          Meet NSheth ↗
+        </Link>
       </div>
       <RecentTools />
       <section className="home-section" id="workflows">
@@ -154,7 +173,7 @@ export default function Home() {
               <Link
                 key={category.id}
                 className="category-tile"
-                href={`/tools?category=${category.id}`}
+                href={`/categories/${category.id}`}
               >
                 <span className="category-tile-icon" aria-hidden="true">
                   <Icon className="w-5 h-5" />

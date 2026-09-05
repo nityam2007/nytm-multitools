@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
 import { Changelog } from "./Changelog";
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "@/assets/icons";
@@ -11,6 +11,17 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+        document.getElementById("menu-toggle")?.focus();
+      }
+    };
+    document.addEventListener("keydown", dismiss);
+    return () => document.removeEventListener("keydown", dismiss);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -80,6 +91,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden min-w-11 min-h-11 flex items-center justify-center rounded-lg hover:bg-violet-500/10"
               aria-label="Toggle menu"
+              id="menu-toggle"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
             >

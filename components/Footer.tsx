@@ -11,11 +11,11 @@ export function Footer() {
     {
       title: "Tools",
       links: [
-        { href: "/tools?category=text", label: "Text Tools" },
-        { href: "/tools?category=dev", label: "Developer" },
-        { href: "/tools?category=image", label: "Image" },
-        { href: "/tools?category=converter", label: "Converters" },
-        { href: "/tools?category=generator", label: "Generators" },
+        { href: "/categories/text", label: "Text Tools" },
+        { href: "/categories/dev", label: "Developer" },
+        { href: "/categories/image", label: "Image" },
+        { href: "/categories/converter", label: "Converters" },
+        { href: "/categories/generator", label: "Generators" },
       ],
     },
     {

@@ -3,13 +3,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { toolsConfig } from "@/lib/tools-config";
 import { ToolCard } from "@/components/ToolCard";
+import { generateCollectionMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Free business tools | NYTM",
+export const metadata: Metadata = generateCollectionMetadata({
+  title: "Free Business Tools: Quotes, QR Codes & Marketing | NYTM",
   description:
     "Prepare product images, clean spreadsheets, create campaign links, and plan your website with free browser-based business tools.",
-  alternates: { canonical: "https://nytm.in/business-tools" },
-};
+  path: "/business-tools",
+  keywords: [
+    "free business tools",
+    "quotation maker",
+    "whatsapp qr code",
+    "product photo tools",
+    "utm builder",
+    "website brief",
+  ],
+});
 export default function BusinessTools() {
   const collections = [
     {
@@ -68,16 +77,10 @@ export default function BusinessTools() {
           Prepare a launch, organise your products, or finish the admin. Start
           with the task in front of you.
         </p>
-        <Link
-          href="/work-with-nsheth"
-          className="btn btn-primary mt-5 mr-3"
-        >
+        <Link href="/work-with-nsheth" className="btn btn-primary mt-5 mr-3">
           Need a website or custom automation? Meet NSheth →
         </Link>
-        <Link
-          href="/guides"
-          className="btn btn-secondary mt-3"
-        >
+        <Link href="/guides" className="btn btn-secondary mt-3">
           Read practical workflow guides →
         </Link>
       </header>

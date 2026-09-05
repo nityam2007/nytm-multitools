@@ -202,8 +202,8 @@ export function Sidebar() {
         fixed top-0 left-0 h-full z-50 
         bg-[var(--background)] border-r border-[var(--border)]
         transition-all duration-300 ease-out overflow-hidden
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
-        lg:translate-x-0
+        ${isOpen ? "translate-x-0 visible" : "-translate-x-full invisible"}
+        lg:translate-x-0 lg:visible
         w-[280px] sm:w-72 lg:w-auto
         ${collapsed ? "lg:!w-[72px]" : "lg:!w-64"}
       `}>
@@ -218,6 +218,7 @@ export function Sidebar() {
             </Link>
           )}
           <button
+            aria-label={collapsed ? "Expand tool sidebar" : "Collapse tool sidebar"}
             onClick={() => {
               if (window.innerWidth < 1024) {
                 setIsOpen(false);
@@ -263,6 +264,7 @@ export function Sidebar() {
           <Tooltip text="Home" show={collapsed}>
             <Link
               href="/"
+              aria-label="Home"
               onClick={() => window.innerWidth < 1024 && setIsOpen(false)}
               className={`
                 relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
@@ -284,6 +286,7 @@ export function Sidebar() {
           <Tooltip text="All Tools" show={collapsed}>
             <Link
               href="/tools"
+              aria-label="All tools"
               onClick={() => window.innerWidth < 1024 && setIsOpen(false)}
               className={`
                 relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
@@ -313,6 +316,8 @@ export function Sidebar() {
               <div key={category.id} className="mb-1">
                 <Tooltip text={`${category.name} (${category.tools.length})`} show={collapsed}>
                   <button
+                    aria-label={`${category.name} tools`}
+                    aria-expanded={!collapsed && expandedCategories.includes(category.id)}
                     onClick={() => {
                       // Auto-expand sidebar when clicking category in collapsed mode
                       if (collapsed) {

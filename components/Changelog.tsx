@@ -16,6 +16,12 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.12.0", changes: [
+    { type: "new", text: "Nine crawlable tool collections with selection guidance and complete tool lists" },
+    { type: "improved", text: "Search-intent keywords, concise tool titles, page-specific social previews, and breadcrumb structured data" },
+    { type: "fixed", text: "Duplicate title branding, network metadata, category sitemap links, and the website search URL" },
+    { type: "fixed", text: "WebKit search suggestion clicks and mobile menu keyboard dismissal" },
+  ] },
   { date: "Sep 5, 2026", version: "2.11.0", changes: [
     { type: "new", text: "Search-first homepage with task shortcuts, all eight categories, useful tool picks, and guides" },
     { type: "improved", text: "Ranked multi-word search, shareable filters, grid/list views, pagination, and a dedicated pinned collection" },

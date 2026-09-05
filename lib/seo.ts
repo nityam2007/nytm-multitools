@@ -1,174 +1,170 @@
+// Canonical metadata and structured data for NYTM pages | TypeScript
 import { Metadata } from "next";
 import { toolsConfig, ToolConfig } from "./tools-config";
+import { searchKeywords } from "./tool-search";
+import { toolSearchTitles } from "./seo-intents";
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://nytm.in";
+const BASE_URL = "https://nytm.in";
 const SITE_NAME = process.env.NEXT_PUBLIC_APP_NAME || "NYTM Tools";
 
 // Category display names and descriptions
-export const categoryMeta: Record<string, { name: string; description: string }> = {
+export const categoryMeta: Record<
+  string,
+  { name: string; description: string }
+> = {
   text: {
     name: "Text Tools",
-    description: "Free text manipulation tools - case conversion, find & replace, word counter, line sorter, and more.",
+    description:
+      "Free text manipulation tools - case conversion, find & replace, word counter, line sorter, and more.",
   },
   image: {
     name: "Image Tools",
-    description: "Free image editing tools - resize, compress, crop, rotate, filters, format conversion, and more.",
+    description:
+      "Free image editing tools - resize, compress, crop, rotate, filters, format conversion, and more.",
   },
   dev: {
     name: "Code & Dev Tools",
-    description: "Free coding tools — JSON formatter, code beautifiers, regex tester, JWT decoder, and more.",
+    description:
+      "Free coding tools — JSON formatter, code beautifiers, regex tester, JWT decoder, and more.",
   },
   converter: {
     name: "Converters",
-    description: "Free format converters - JSON to CSV, YAML to JSON, Base64, timestamps, colors, and more.",
+    description:
+      "Free format converters - JSON to CSV, YAML to JSON, Base64, timestamps, colors, and more.",
   },
   generator: {
     name: "Generators",
-    description: "Free generators - UUID, passwords, QR codes, fake data, hashes, and more.",
+    description:
+      "Free generators - UUID, passwords, QR codes, fake data, hashes, and more.",
   },
   security: {
     name: "Security Tools",
-    description: "Free security tools - hash generators, encryption/decryption, password strength checker, and more.",
+    description:
+      "Free security tools - hash generators, encryption/decryption, password strength checker, and more.",
+  },
+  network: {
+    name: "Network Tools",
+    description:
+      "Inspect IP addresses, DNS records, HTTP headers, and subnet ranges with free online network utilities.",
+  },
+  pdf: {
+    name: "PDF Tools",
+    description:
+      "Merge, split, organise, compress, password-protect, and convert PDF files with free browser tools.",
   },
   misc: {
     name: "Miscellaneous Tools",
-    description: "Free utility tools - calculators, timers, converters, and various productivity tools.",
+    description:
+      "Free utility tools - calculators, timers, converters, and various productivity tools.",
   },
 };
 
 /**
  * Generate metadata for a specific tool page
  */
-export function generateToolMetadata(slug: string): Metadata {
-  const tool = toolsConfig.find((t) => t.slug === slug);
-  
-  if (!tool) {
-    return {
-      title: "Tool Not Found",
-      description: "The requested tool could not be found.",
-    };
-  }
-
-  const title = `${tool.name} - Free Online Tool | ${SITE_NAME}`;
-  const description = `${tool.description} Free, no sign-up required. Works in your browser - your data stays private.`;
-  const url = `${BASE_URL}/tools/${tool.slug}`;
-  const category = categoryMeta[tool.category];
-
+export function generateCollectionMetadata({
+  title,
+  description,
+  path,
+  keywords = [],
+  article = false,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  keywords?: string[];
+  article?: boolean;
+}): Metadata {
+  const url = new URL(path, BASE_URL).toString();
   return {
-    title,
+    title: { absolute: title },
     description,
-    keywords: [
-      tool.name.toLowerCase(),
-      `${tool.name.toLowerCase()} online`,
-      `free ${tool.name.toLowerCase()}`,
-      ...(tool.keywords || []),
-      category?.name.toLowerCase() || tool.category,
-      "online tool",
-      "free tool",
-      "no signup",
-      "browser-based",
-    ],
+    keywords,
+    alternates: { canonical: url },
     openGraph: {
-      type: "website",
+      type: article ? "article" : "website",
       locale: "en_US",
-      url,
       siteName: SITE_NAME,
-      title: `${tool.name} - Free Online Tool`,
+      url,
+      title,
       description,
       images: [
         {
-          url: `${BASE_URL}/metaimg.png`,
+          url: BASE_URL + "/metaimg.png",
           width: 1200,
           height: 630,
-          alt: `${tool.name} - ${SITE_NAME}`,
-          type: "image/png",
+          alt: title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${tool.name} - Free Online Tool`,
+      title,
       description,
-      images: [`${BASE_URL}/metaimg.png`],
-    },
-    alternates: {
-      canonical: url,
-    },
-    other: {
-      "application-name": SITE_NAME,
+      images: [BASE_URL + "/metaimg.png"],
     },
   };
 }
-
-/**
- * Generate metadata for the tools listing page
- */
-export function generateToolsListMetadata(category?: string): Metadata {
-  const isAllTools = !category || category === "all";
-  const categoryInfo = category ? categoryMeta[category] : null;
-  const toolCount = isAllTools 
-    ? toolsConfig.length 
-    : toolsConfig.filter((t) => t.category === category).length;
-
-  const title = isAllTools
-    ? `All ${toolCount} Free Online Tools | ${SITE_NAME}`
-    : `${categoryInfo?.name || category} - ${toolCount} Free Tools | ${SITE_NAME}`;
-
-  const description = isAllTools
-    ? `Browse ${toolCount} free online tools for everyone. Text, images, converters, generators, and more. No sign-up required.`
-    : categoryInfo?.description || `Free ${category} tools. No sign-up required.`;
-
-  const url = isAllTools ? `${BASE_URL}/tools` : `${BASE_URL}/tools?category=${category}`;
-
-  return {
+export function generateToolMetadata(slug: string): Metadata {
+  const tool = toolsConfig.find((t) => t.slug === slug);
+  if (!tool) return { title: "Tool Not Found", robots: { index: false } };
+  const title = (toolSearchTitles[slug] || tool.name) + " – Free Online | NYTM";
+  const description =
+    tool.description.length < 138
+      ? tool.description + " Free, no signup."
+      : tool.description;
+  return generateCollectionMetadata({
     title,
     description,
+    path: "/tools/" + slug,
     keywords: [
-      "free online tools",
-      "online utilities",
-      "productivity tools",
-      "web tools",
-      "no signup tools",
-      ...(categoryInfo ? [categoryInfo.name.toLowerCase()] : []),
+      ...new Set([
+        tool.name.toLowerCase(),
+        (toolSearchTitles[slug] || tool.name).toLowerCase(),
+        ...searchKeywords(tool),
+      ]),
     ],
-    openGraph: {
-      type: "website",
-      locale: "en_US",
-      url,
-      siteName: SITE_NAME,
-      title,
-      description,
-      images: [
-        {
-          url: `${BASE_URL}/metaimg.png`,
-          width: 1200,
-          height: 630,
-          alt: SITE_NAME,
-          type: "image/png",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [`${BASE_URL}/metaimg.png`],
-    },
-    alternates: {
-      canonical: url,
-    },
-  };
+  });
+}
+export function generateToolsListMetadata(category?: string): Metadata {
+  const info = category ? categoryMeta[category] : undefined;
+  const title = info
+    ? "Free " + info.name + " Online | NYTM"
+    : toolsConfig.length + " Free Online Tools: PDF, Image, Text & Code | NYTM";
+  const description = info
+    ? info.description
+    : "Search " +
+      toolsConfig.length +
+      " free tools for PDFs, images, text, code, and business. Filter by task, pin favourites, and open a tool without signing up.";
+  return generateCollectionMetadata({
+    title,
+    description,
+    path: info ? "/categories/" + category : "/tools",
+    keywords: info
+      ? [info.name.toLowerCase(), "free " + info.name.toLowerCase()]
+      : [
+          "free online tools",
+          "pdf tools",
+          "image tools",
+          "text tools",
+          "developer tools",
+          "business tools",
+        ],
+  });
 }
 
 /**
  * Generate metadata for static pages
  */
 export function generatePageMetadata(
-  page: "home" | "about" | "contact" | "pricing" | "privacy" | "terms"
+  page: "home" | "about" | "contact" | "pricing" | "privacy" | "terms",
 ): Metadata {
   const toolCount = toolsConfig.length;
 
-  const pages: Record<string, { title: string; description: string; path: string }> = {
+  const pages: Record<
+    string,
+    { title: string; description: string; path: string }
+  > = {
     home: {
       title: `${SITE_NAME} — ${toolCount} Free Online Tools`,
       description: `${toolCount} free online tools for everyone. Text, images, converters, generators, and more. No ads, no sign-ups, 100% browser-based.`,
@@ -205,7 +201,7 @@ export function generatePageMetadata(
   const url = `${BASE_URL}${pageInfo.path}`;
 
   return {
-    title: pageInfo.title,
+    title: { absolute: pageInfo.title },
     description: pageInfo.description,
     openGraph: {
       type: "website",
@@ -240,8 +236,7 @@ export function generatePageMetadata(
  * Generate JSON-LD structured data for a tool
  */
 export function generateToolJsonLd(tool: ToolConfig): object {
-  return {
-    "@context": "https://schema.org",
+  const application = {
     "@type": "WebApplication",
     name: tool.name,
     description: tool.description,
@@ -264,6 +259,30 @@ export function generateToolJsonLd(tool: ToolConfig): object {
       url: BASE_URL,
     },
   };
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      application,
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Tools",
+            item: BASE_URL + "/tools",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: tool.name,
+            item: BASE_URL + "/tools/" + tool.slug,
+          },
+        ],
+      },
+    ],
+  };
 }
 
 /**
@@ -283,7 +302,7 @@ export function generateWebsiteJsonLd(): object {
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: `${BASE_URL}/tools?search={search_term_string}`,
+      target: `${BASE_URL}/tools?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };

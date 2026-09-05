@@ -157,6 +157,17 @@ NYTM now includes 18 additional browser tools for business workflows. Start at `
 | 2.7.0 | Verified PDF processing, sidebar and embed fixes |
 | 2.8.0 | Four original guides and promotion preparation |
 | 2.9.0 | Dependency patches and cross-browser usability checks |
+| 2.10.0 | Visible action buttons, readable tool cards, keyboard navigation |
+| 2.11.0 | Search-first homepage, URL filters, grid/list views, pins, pagination |
+| 2.12.0 | SEO titles and search intents, nine crawlable collections, social previews |
+
+### Discovery and SEO maintenance
+
+`lib/tool-discovery.ts` defines the eight registry categories and homepage workflows. `lib/tool-search.ts` adds task phrases and ranks multi-word queries for the homepage, library, and sidebar. Search state lives in `/tools?q=...&category=...&file=...&scope=...&sort=...&view=...&page=...`; the older `search` parameter is accepted. Pins remain local to the browser.
+
+`lib/seo-intents.ts` contains editorial tool titles and category guidance. These are capability-based phrases, not measured search-volume claims. `lib/seo.ts` produces unique tool metadata, canonical URLs, and structured data. `/categories/[category]` serves the eight registry categories plus a PDF collection with full server-rendered tool lists. Add a matching category description when extending the registry. Sitemap modification dates must reflect an actual content release, rather than every build.
+
+The homepage and guides use button-styled links for navigation; native buttons handle local actions. Keep Open and Pin separate, label controls, retain visible keyboard focus, and check 320px layouts in both themes when changing shared discovery styles.
 
 ### Runtime asset maintenance
 
@@ -246,3 +257,7 @@ GitHub: [@nityam2007](https://github.com/nityam2007)
 Production builds and TypeScript checks cover all routes. Focused browser checks exercise the new tools, exports, PDF password roundtrips, and offline engine use. Repository-wide lint still contains pre-existing issues in older tools; do not describe it as clean. The current npm audit retains three high advisories in the existing kokoro-js → transformers → sharp dependency chain, for which npm reports no available upstream fix.
 
 Release 2.9.0 validation: production build generated 1,149 routes; changed TypeScript sources have no lint errors. Chrome checks cover 320px layouts, QR and CSV exports, image ZIPs, PDF page order, password roundtrips, and offline OCR. WebKit checks cover CSV cleanup, image ZIPs, PDF export, narrow layouts, and local OCR while connected. WebKit's automated offline mode failed reading image files, so Safari offline OCR remains unverified. Firefox could not launch in this Windows test environment. The sandboxed email preview remains isolated; WebKit automation reported a frame-access diagnostic during that check.
+
+### Validation for the homepage and SEO refresh
+
+The v2.12.0 production build generates 1,158 routes. Focused checks cover Chrome and WebKit search navigation, URL filters, refresh/Back, list/pagination, mobile menu dismissal, and 320–1366px layouts. Chrome keyboard checks include the skip link and focus return; both themes were visually reviewed. All 202 tool metadata records have unique titles and canonical URLs. The nine category collections expose their complete tool lists with JavaScript disabled. Repository-wide legacy lint and dependency caveats above still apply.

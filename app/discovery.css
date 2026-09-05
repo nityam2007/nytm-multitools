@@ -876,3 +876,40 @@ header nav a[aria-current="page"] {
     width: 100%;
   }
 }
+/* Consistent action contrast and collection guidance | CSS */
+.btn.btn-primary {
+  background: #6d28d9 !important;
+  box-shadow: none;
+}
+.btn.btn-primary::before {
+  background: #5b21b6;
+}
+.home-facts a.btn {
+  text-decoration: none;
+  min-height: 40px;
+  font-size: 0.75rem;
+  padding: 8px 12px;
+}
+header button {
+  min-height: 44px;
+  min-width: 44px;
+}
+.library-results-heading h2 {
+  overflow-wrap: anywhere;
+}
+.category-advice {
+  max-width: 800px;
+  border-left: 2px solid var(--primary);
+  padding-left: 20px;
+  margin: 0 0 32px;
+}
+.category-advice h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.category-advice p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.8;
+  margin-top: 10px;
+}

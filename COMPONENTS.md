@@ -1,6 +1,6 @@
 # UI Components Guide
 
-Modern, minimal design system for NYTM MULTITOOLS (136 tools). Clean, consistent, and accessible across all tools.
+Modern, minimal design system for NYTM MULTITOOLS (202 tools). Clean, consistent, and accessible across all tools.
 
 ## 🎨 AUTOMATIC STYLING
 
@@ -737,3 +737,8 @@ Check these tools for implementation examples:
 ## Support
 
 For questions or improvements, check the main README.md or open an issue.
+
+
+## Business workspace additions (September 2026)
+
+`components/business/ToolUI.tsx` provides labelled `Field`, `Choice`, `Result`, `Notice`, and `Workspace` components. Use `Workspace` for the existing ToolLayout and related-service invitation. Heavy CSV/image operations run in workers; OCR and qpdf use version-matched local assets. Downloads are never gated by contact forms. Use `lib/browser-files.ts` for safe downloads and escaped printable documents.

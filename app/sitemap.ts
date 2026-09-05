@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { toolsConfig } from "@/lib/tools-config";
+import { guides } from "@/lib/guides";
 import { blogEntries } from "@/lib/blog-info";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://nytm.in";
@@ -53,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  for (const path of ["business-tools", "work-with-nsheth"]) staticPages.push({ url: `${BASE_URL}/${path}`, changeFrequency: "monthly", priority: 0.8 });
+  for (const path of ["business-tools", "work-with-nsheth", "guides"]) staticPages.push({ url: `${BASE_URL}/${path}`, changeFrequency: "monthly", priority: 0.8 });
 
   // Tool pages - dynamically generated from tools config
   const toolPages: MetadataRoute.Sitemap = toolsConfig.map((tool) => ({
@@ -71,5 +72,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...toolPages, ...blogPages];
+  return [...staticPages, ...toolPages, ...blogPages, ...guides.map(guide => ({ url: `${BASE_URL}/guides/${guide.slug}`, lastModified: new Date("2026-09-05"), changeFrequency: "monthly" as const, priority: 0.7 }))];
 }

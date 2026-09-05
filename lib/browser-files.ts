@@ -1,5 +1,8 @@
 // Local file export helpers | TypeScript
+import posthog from "posthog-js";
 export function downloadBlob(blob: Blob, filename: string) {
+  const slug = window.location.pathname.match(/^\/tools\/([a-z0-9-]+)$/)?.[1];
+  if (slug && posthog.__loaded) posthog.capture("tool_download", { tool_slug: slug });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
@@ -17,6 +20,6 @@ export function printDocument(title: string, body: string) {
   const popup = window.open("", "_blank");
   if (!popup) throw new Error("Allow popups for NYTM to open the print preview.");
   popup.opener = null;
-  popup.document.open(); popup.document.write(printableDocument(title, body)); popup.document.close();
   popup.addEventListener("load", () => popup.print(), { once: true });
+  popup.document.open(); popup.document.write(printableDocument(title, body)); popup.document.close();
 }

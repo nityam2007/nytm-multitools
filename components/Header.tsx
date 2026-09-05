@@ -15,7 +15,7 @@ export function Header() {
     { href: "/tools", label: "Tools" },
     { href: "/business-tools", label: "Business" },
     { href: "/work-with-nsheth", label: "Hire NSheth" },
-    { href: "/about", label: "About" },
+    { href: "/guides", label: "Guides" },
   ];
 
   return (

@@ -57,6 +57,8 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
     );
   }
 
+  const guide = ({ "product-photos": "prepare-product-photos", "whatsapp-link": "whatsapp-enquiry-qr", "csv-cleanup": "clean-recurring-csv", "website-brief": "write-a-website-brief" } as Record<string, string>)[tool.slug];
+
   return (
     <div className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
       {/* Breadcrumb - Swiss style */}
@@ -82,6 +84,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
         {children}
       </div>
 
+      {guide && <Link className="inline-block text-sm underline underline-offset-4 mb-3" href={`/guides/${guide}`}>Read the step-by-step guide →</Link>}
       <NShethPromotion tool={tool} />
 
       {/* Similar Tools - Enhanced cards */}

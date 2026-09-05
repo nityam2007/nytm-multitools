@@ -38,6 +38,7 @@ export function Footer() {
       links: [
         { href: "/work-with-nsheth", label: "Built by NSheth" },
         { href: "/business-tools", label: "Business Tools" },
+        { href: "/guides", label: "Guides" },
         { href: "/about", label: "About" },
         { href: "/contact", label: "Contact" },
         { href: "/pricing", label: "Donate" },

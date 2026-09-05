@@ -1,3 +1,9 @@
+# Current status (September 2026)
+
+The redirect documentation below describes the older implementation. Current `/blog/[slug]` pages render content; `next.config.ts` does not redirect them. Original task-based tutorials now live at `/guides/[slug]` and are linked from the relevant tools and sitemap. Prefer improving useful content over generating more keyword variants.
+
+---
+
 # Blog SEO Configuration | NYTM Multitools
 
 ## Overview

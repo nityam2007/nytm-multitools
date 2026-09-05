@@ -15,6 +15,11 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.8.0", changes: [
+    { type: "new", text: "Four practical guides for product photos, WhatsApp enquiries, CSV cleanup, and website briefs" },
+    { type: "improved", text: "Related guides, business workflow links, and NSheth referral attribution" },
+    { type: "improved", text: "Updated project documentation, release history, and ready-to-use promotion copy" },
+  ] },
   { date: "Sep 5, 2026", version: "2.7.0", changes: [
     { type: "fixed", text: "PDF lock and unlock now use verified AES-256 encryption and password-aware decryption" },
     { type: "improved", text: "PDF compression uses real lossless stream recompression and reports when files cannot shrink" },

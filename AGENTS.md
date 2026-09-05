@@ -23,15 +23,15 @@ node scripts/generate-blog-titles.js  # Regenerate lib/blog-info.ts (marked "DO 
 node scripts/update-changelog.js      # Interactive CLI to prepend a Changelog.tsx entry
 ```
 
-Run `update-tool-count.js` and `generate-seo-layouts.js` after adding/removing tools.
+Run `update-tool-count.js` and `generate-seo-layouts.js` after adding/removing tools. Both scripts read `lib/business-tools-config.ts` as well as the core registry.
 
 ## Architecture
 
-Next.js 16 App Router, React 19 (React Compiler on via `next.config.ts`), TypeScript, Tailwind CSS 4. `@/*` maps to the repo root. This is a collection of ~184 self-contained browser utilities under one site.
+Next.js 16 App Router, React 19 (React Compiler on via `next.config.ts`), TypeScript, Tailwind CSS 4. `@/*` maps to the repo root. This is a collection of ~202 self-contained browser utilities under one site.
 
 ### The tool registry is the source of truth
 
-[lib/tools-config.ts](lib/tools-config.ts) exports `toolsConfig: ToolConfig[]` — a single flat array where every entry (slug, name, description, `category`, `icon`, `inputType`, `keywords`) defines one tool. Everything else derives from it:
+[lib/tools-config.ts](lib/tools-config.ts) exports `toolsConfig: ToolConfig[]` — the combined core and business registry where every entry (slug, name, description, `category`, `icon`, `inputType`, `keywords`) defines one tool. Everything else derives from it:
 
 - [lib/site-config.ts](lib/site-config.ts) computes `TOTAL_TOOLS = toolsConfig.length` and all taglines. Import counts/strings from here; don't hardcode.
 - [lib/seo.ts](lib/seo.ts) generates per-tool `<title>`/description/JSON-LD and holds `categoryMeta` (category display names + descriptions).

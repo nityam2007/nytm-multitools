@@ -269,3 +269,76 @@ All changes maintain responsive design with:
 **Implementation Date**: December 8, 2025
 **Status**: ✅ All code-based improvements COMPLETED
 **Action Required**: Begin manual backlink campaign
+
+
+---
+
+## September 2026: business launch pack
+
+The historical SEO scores, traffic forecasts, and benchmarks above are not validated measurements for this release. Current work prioritises useful tools, original guides, and qualified NSheth enquiries.
+
+### Pages to promote
+
+- Business collection: https://nytm.in/business-tools
+- Agency introduction on NYTM: https://nytm.in/work-with-nsheth
+- Product photo workflow: https://nytm.in/tools/product-photos
+- WhatsApp enquiries: https://nytm.in/tools/whatsapp-link
+- Website project brief: https://nytm.in/tools/website-brief
+- Guides: https://nytm.in/guides
+
+### Ready-to-use post: product photos
+
+Preparing product images for a store? NYTM can resize, crop or pad, convert, and rename a batch, then download it as a ZIP. Try a few images, check the result, and use the same settings for the rest. Free, with no signup.
+
+Try it: https://nytm.in/tools/product-photos?utm_source=linkedin&utm_medium=social&utm_campaign=business_tools_launch&utm_content=product_photos
+
+Built by NSheth, the studio behind NYTM. If you need a website for those products, start here: https://nytm.in/work-with-nsheth?service=ecommerce&from=product-photos
+
+### Ready-to-use post: WhatsApp QR
+
+Make it easier for customers to ask about your business. Create a WhatsApp link with a useful opening message, then download a QR for a brochure or sign. Test the code on a phone before printing.
+
+Builder: https://nytm.in/tools/whatsapp-link?utm_source=linkedin&utm_medium=social&utm_campaign=business_tools_launch&utm_content=whatsapp_qr
+
+Guide: https://nytm.in/guides/whatsapp-enquiry-qr
+
+### Ready-to-use post: website brief
+
+Planning a website? Start with what your customers should be able to do. NYTM's free website brief builder helps organise your goals, pages, features, and timeline into a downloadable brief. Share it with your chosen developer, or discuss it with NSheth.
+
+Start here: https://nytm.in/tools/website-brief?utm_source=linkedin&utm_medium=social&utm_campaign=business_tools_launch&utm_content=website_brief
+
+### Short demo outline
+
+1. Show the problem with a realistic sample (avoid client-confidential material).
+2. Open the matching tool and explain one important setting.
+3. Run the tool and inspect the output.
+4. Download the result.
+5. Show the optional NSheth invitation and explain the related service.
+
+### First-week distribution plan
+
+- Day 1: check live tool behaviour and links; publish the business collection announcement.
+- Day 2: demonstrate product photos and link to its guide.
+- Day 3: demonstrate WhatsApp QR on a printed sample.
+- Day 4: share the website brief builder with a realistic example.
+- Day 5: publish a CSV cleanup walkthrough; invite discussion of recurring manual work.
+- Day 6: review genuine questions and improve the matching guide.
+- Day 7: compare completed tasks, NSheth clicks, and qualified conversations.
+
+Share only in communities where self-promotion is permitted. These drafts have not been posted or sent to anyone.
+
+### Measurement
+
+New downloads using the shared browser export helper emit `tool_download` with only the tool slug. Outbound links from the NYTM agency page emit `nsheth_referral_click` with tool slug, service, and placement when the existing PostHog client is configured. These new events contain no uploaded file contents or generated output. Existing analytics configuration is unchanged. Referral URLs carry UTM campaign information.
+
+Build a report of tool page visits → downloads → NSheth referral clicks. Record qualified conversations and won projects separately; a click is not a lead. This repository does not configure the NSheth site's analytics or a CRM.
+
+### Owner-account actions still needed
+
+- Verify ownership of nytm.in in Google Search Console and submit https://nytm.in/sitemap.xml.
+- Inspect indexing for the business collection, guides, and priority tools.
+- Publish the prepared posts using the owner's accounts.
+- Set a budget and qualified-lead definition before starting paid campaigns.
+
+No changes to nsheth.in, external messages, directory submissions, or ad purchases were made.

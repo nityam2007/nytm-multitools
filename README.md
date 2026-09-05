@@ -135,13 +135,39 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 
 ---
 
+## Business tools and NSheth referrals
+
+NYTM now includes 18 additional browser tools for business workflows. Start at `/business-tools`, read practical tutorials at `/guides`, and meet the studio behind NYTM at `/work-with-nsheth`. All agency content is hosted here; nsheth.in itself is unchanged.
+
+- Launch: WhatsApp links/QR, UTM URLs, vCards, website briefs, launch checklists, email signatures.
+- Marketing: SEO previews, social metadata, JSON-LD, and colour contrast.
+- Operations: quotations, automation estimates, CSV cleanup, product image batches, catalogues, PDF page organising, metadata removal, and English OCR.
+- Existing PDF lock, unlock, and compression now use self-hosted qpdf WebAssembly with verified results.
+- OCR uses self-hosted Tesseract 7 and the English tessdata_fast model. Load the engine before working offline in the current tab. Browser cache availability is device-dependent.
+- Files stay in tool memory; launch-checklist progress is saved only on request. Recent tools and favourites store tool identifiers. Existing analytics/privacy configuration has not been changed.
+
+### Releases on 5 September 2026
+
+| Version | Scope |
+|---|---|
+| 2.3.0 | NSheth referrals, business collection, recent tools, compact headers |
+| 2.4.0 | Eight business tools |
+| 2.5.0 | Five marketing/data tools |
+| 2.6.0 | Five image/document tools; 202 total tools |
+| 2.7.0 | Verified PDF processing, sidebar and embed fixes |
+| 2.8.0 | Four original guides and promotion preparation |
+
+### Runtime asset maintenance
+
+When changing `tesseract.js`, copy the matching worker and all core `.wasm.js` variants into `public/ocr`, retaining licences. The English model comes from `tesseract-ocr/tessdata_fast`. When changing `pdfstudio`, copy its browser JS modules and WASM into `public/pdf-engine`. Keep `public/workers/pdf.worker.mjs` matched to `pdfjs-dist`. Bump the service-worker cache version when changing these files.
+
 ## Updating Tool Count
 
 When adding or removing tools, update the count in these locations:
 
 | File | What to Update |
 |------|----------------|
-| `lib/tools-config.ts` | Add/remove tool from `toolsConfig` array (this is the source of truth) |
+| `lib/tools-config.ts` and `lib/business-tools-config.ts` | Add/remove entries; the main registry includes both |
 | `app/layout.tsx` | Update `TOOL_COUNT` constant (for SEO metadata) |
 
 **Automatic Updates:** Most of the site uses `lib/site-config.ts` which dynamically calculates the tool count from `toolsConfig.length`. These locations update automatically:
@@ -155,6 +181,8 @@ When adding or removing tools, update the count in these locations:
 **Manual Updates Required:**
 - `app/layout.tsx` → `TOOL_COUNT` constant (Next.js metadata can't use dynamic imports)
 - `README.md`, `COMPONENTS.md`, `goal.md` → Documentation files
+
+The count and SEO-layout scripts read both registry files. Run `node scripts/update-tool-count.js` and `node scripts/generate-seo-layouts.js` after adding tools. Write original guides separately rather than generating repetitive blog variants.
 
 ---
 

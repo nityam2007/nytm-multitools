@@ -2,6 +2,10 @@
 
 This file provides repository guidance for contributors and coding assistants.
 
+## Repository identity
+
+Use the configured human Git identity. Do not add assistant or provider branding, promotional links, or automated co-author trailers to project files or commit messages. Preserve required third-party licence notices.
+
 ## Commands
 
 ```bash

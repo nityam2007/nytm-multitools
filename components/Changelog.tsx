@@ -15,6 +15,10 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.5.0", changes: [
+    { type: "new", text: "Search snippets, social meta tags, structured data, and colour contrast tools" },
+    { type: "new", text: "CSV workbench with background cleanup, column selection, renaming, and spreadsheet-safe export" },
+  ] },
   { date: "Sep 5, 2026", version: "2.4.0", changes: [
     { type: "new", text: "Eight business tools: WhatsApp links, UTM campaigns, contact cards, website briefs, launch checklists, automation estimates, quotations, and email signatures" },
     { type: "improved", text: "Local downloads, QR exports, printable quotations, and business collection discovery" },

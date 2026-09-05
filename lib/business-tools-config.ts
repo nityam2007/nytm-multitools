@@ -121,5 +121,77 @@ export const businessTools: ToolConfig[] = [
       "html"
     ],
     isNew: true
+  },
+
+  {
+    slug: "seo-preview",
+    name: "SEO Title & Description Preview",
+    description: "Preview search snippets and generate title, description, and canonical tags.",
+    category: "generator",
+    icon: "document-text",
+    inputType: "text",
+    keywords: [
+      "seo",
+      "preview",
+      "business"
+    ],
+    isNew: true
+  },
+  {
+    slug: "social-meta",
+    name: "Social Sharing Preview & Meta Tags",
+    description: "Prepare Open Graph and social card metadata without fetching a website.",
+    category: "generator",
+    icon: "document-text",
+    inputType: "text",
+    keywords: [
+      "social",
+      "meta",
+      "business"
+    ],
+    isNew: true
+  },
+  {
+    slug: "schema-generator",
+    name: "Structured Data Generator",
+    description: "Create Organization, LocalBusiness, or Product JSON-LD from your details.",
+    category: "generator",
+    icon: "document-text",
+    inputType: "text",
+    keywords: [
+      "schema",
+      "generator",
+      "business"
+    ],
+    isNew: true
+  },
+  {
+    slug: "contrast-checker",
+    name: "Colour Contrast Checker",
+    description: "Check WCAG contrast ratios for opaque text and background colours.",
+    category: "dev",
+    icon: "document-text",
+    inputType: "text",
+    keywords: [
+      "contrast",
+      "checker",
+      "business"
+    ],
+    isNew: true
+  },
+  {
+    slug: "csv-cleanup",
+    name: "CSV Cleanup Workbench",
+    description: "Clean duplicate rows, trim cells, rename columns, and export CSV in your browser.",
+    category: "converter",
+    icon: "document-text",
+    inputType: "text",
+    keywords: [
+      "csv",
+      "cleanup",
+      "business"
+    ],
+    isNew: true
   }
+
 ];

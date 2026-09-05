@@ -4,7 +4,7 @@
 import { NShethPromotion } from "@/components/NShethPromotion";
 import { readToolList, writeToolList } from "@/lib/tool-history";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import * as React from "react";
 import { ToolConfig } from "@/lib/tools-config";
 import { ArrowUpRightIcon, getToolIcon } from "@/assets/icons";

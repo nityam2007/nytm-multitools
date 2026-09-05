@@ -6,7 +6,7 @@
 
 - **202+ Tools** implemented and functional
 - **8 Categories**: Text, Converters, Generators, Security, Code & Dev, Image Tools, Network, Misc
-- **Tech Stack**: Next.js 16.2, React 19.2, TypeScript 5.9, Tailwind CSS 4.3
+- **Tech Stack**: Next.js 16.3, React 19.2, TypeScript 5.9, Tailwind CSS 4.3
 - **Hosting**: Vercel (Free plan)
 - **PWA**: Installable, offline-capable via service worker
 - **100% Free** - No paywalls, no premium tiers, no ads, forever

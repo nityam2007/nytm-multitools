@@ -17,6 +17,9 @@ console.log(`\n📊 Found ${toolCount} tools in tools-config.ts\n`);
 
 // Files and patterns to update
 const updates = [
+  { file: "../COMPONENTS.md", patterns: [{ regex: /\(\d+ tools\)/, replacement: `(${toolCount} tools)` }] },
+  { file: "../goal.md", patterns: [{ regex: /\d+\+ Tools/g, replacement: `${toolCount}+ Tools` }] },
+  { file: "../AGENTS.md", patterns: [{ regex: /~\d+ self-contained/, replacement: `~${toolCount} self-contained` }] },
   {
     file: '../app/layout.tsx',
     patterns: [

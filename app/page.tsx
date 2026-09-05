@@ -167,7 +167,7 @@ export default function Home() {
 
         <div className="space-y-8 sm:space-y-10 md:space-y-12">
           {categories.slice(0, 4).map((category) => {
-            const tools = getToolsByCategory(category.id as any).slice(0, 6);
+            const tools = getToolsByCategory(category.id as Parameters<typeof getToolsByCategory>[0]).slice(0, 6);
             if (tools.length === 0) return null;
             const CategoryIcon = getCategoryIcon(category.id);
 
@@ -231,7 +231,7 @@ export default function Home() {
               icon: "bolt", 
               title: "Lightning Fast & Private", 
               desc: "All tools run entirely in your browser using client-side processing. No server uploads, no data storage, no tracking. Your files and data never leave your device, ensuring complete privacy and instant results.",
-              details: "Whether you're formatting JSON, compressing images, or generating hashes, everything happens locally at lightning speed."
+              details: "Whether you are formatting JSON, compressing images, or generating hashes, everything happens locally at lightning speed."
             },
             { 
               icon: "spark", 
@@ -245,7 +245,7 @@ export default function Home() {
               desc: `All ${toolsConfig.length} tools are completely free to use forever. Support us to remove ads and get an even cleaner experience. No premium tiers, no feature restrictions, no hidden costs.`,
               details: "Built by developers, for developers and creators who value both functionality and user experience."
             },
-          ].map((feature, index) => (
+          ].map((feature) => (
             <div key={feature.title} className="text-center md:text-left group">
               <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20 text-lg sm:text-xl mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-violet-500/20">
                 {feature.icon === "bolt" && (
@@ -277,7 +277,7 @@ export default function Home() {
         <div className="mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-[-0.02em] mb-3 sm:mb-4">Perfect For Every Workflow</h2>
           <p className="text-sm sm:text-base text-[var(--muted-foreground)] max-w-3xl" style={{ lineHeight: '1.7' }}>
-            Whether you're a developer debugging code, a designer optimizing assets, a content creator formatting text, or simply someone who needs to convert files quickly, 
+            Whether you are a developer debugging code, a designer optimizing assets, a content creator formatting text, or simply someone who needs to convert files quickly,
             NYTM Tools provides the utilities you need without the hassle of installing software or creating accounts.
           </p>
         </div>
@@ -352,7 +352,7 @@ export default function Home() {
             { icon: "bolt", title: "Fast & Private", desc: "Tools run in your browser. Your data stays on your device." },
             { icon: "spark", title: "No Signup", desc: "Use any tool instantly. No account or registration required." },
             { icon: "heart", title: "Always Free", desc: "All tools are free forever. Support us to remove ads." },
-          ].map((feature, index) => (
+          ].map((feature) => (
             <div key={feature.title} className="text-center md:text-left group">
               <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20 text-lg sm:text-xl mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-violet-500/20">
                 {feature.icon === "bolt" && (

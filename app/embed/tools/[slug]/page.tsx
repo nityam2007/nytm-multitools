@@ -4,13 +4,13 @@
 import { useParams } from "next/navigation";
 import { getToolBySlug } from "@/lib/tools-config";
 import { EmbedLayout } from "@/components/EmbedLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 
 export default function EmbedToolPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const tool = getToolBySlug(slug);
-  const [ToolComponent, setToolComponent] = useState<any>(null);
+  const [ToolComponent, setToolComponent] = useState<ComponentType<{ embedMode?: boolean }> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -20,8 +20,8 @@ export default function EmbedToolPage() {
     const loadTool = async () => {
       try {
         setLoading(true);
-        const module = await import(`@/app/tools/${slug}/page`);
-        setToolComponent(() => module.default);
+        const toolModule = await import(`@/app/tools/${slug}/page`);
+        setToolComponent(() => toolModule.default);
         setLoading(false);
       } catch (err) {
         console.error(`Failed to load tool: ${slug}`, err);

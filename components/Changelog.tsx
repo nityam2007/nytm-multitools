@@ -1,7 +1,8 @@
 // Changelog/Updates Component | TypeScript
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { usePreference, writePreference } from "@/lib/tool-history";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 interface ChangelogEntry {
@@ -15,6 +16,12 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.9.0", changes: [
+    { type: "fixed", text: "Updated Next.js to 16.3.4, PDF.js to 6.3.289, and compatible dependency patches" },
+    { type: "improved", text: "Keyboard-safe favourites, resilient local preferences, and local-image social previews" },
+    { type: "improved", text: "CSV limits, cancellation handling, and maintainable tool source formatting" },
+    { type: "fixed", text: "Worker switching with offline caching and file inputs on narrow mobile screens" },
+  ] },
   { date: "Sep 5, 2026", version: "2.8.0", changes: [
     { type: "new", text: "Four practical guides for product photos, WhatsApp enquiries, CSV cleanup, and website briefs" },
     { type: "improved", text: "Related guides, business workflow links, and NSheth referral attribution" },
@@ -220,34 +227,12 @@ const POPUP_DISMISSED_KEY = "nytm-changelog-popup-dismissed";
 
 export function Changelog() {
   const [isOpen, setIsOpen] = useState(false);
-  const [hasNew, setHasNew] = useState(false);
+  const lastSeen = usePreference(STORAGE_KEY);
+  const [seenSession, setSeenSession] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
+  const hasNew = mounted && !seenSession && lastSeen !== (changelog[0]?.version || changelog[0]?.date);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    // Check if there are new updates since last visit
-    // Skip popup in embed mode
-    const isEmbedMode = document.body.classList.contains('embed-mode');
-    if (isEmbedMode) return;
-    
-    const lastSeen = localStorage.getItem(STORAGE_KEY);
-    const latestDate = changelog[0]?.version || changelog[0]?.date;
-    const popupDismissed = localStorage.getItem(POPUP_DISMISSED_KEY);
-    
-    if (!lastSeen || lastSeen !== latestDate) {
-      setHasNew(true);
-      // Show popup only if not dismissed for this version
-      if (popupDismissed !== latestDate) {
-        // Small delay so it doesn't appear immediately on load
-        // The update badge announces releases without interrupting a tool.
-      }
-    }
-  }, []);
 
   useEffect(() => {
     // Close dropdown when clicking outside
@@ -265,15 +250,15 @@ export function Changelog() {
     setShowPopup(false);
     if (!isOpen && hasNew) {
       // Mark as seen
-      localStorage.setItem(STORAGE_KEY, changelog[0]?.version || changelog[0]?.date || "");
-      localStorage.setItem(POPUP_DISMISSED_KEY, changelog[0]?.version || changelog[0]?.date || "");
-      setHasNew(false);
+      writePreference(STORAGE_KEY, changelog[0]?.version || changelog[0]?.date || "");
+      writePreference(POPUP_DISMISSED_KEY, changelog[0]?.version || changelog[0]?.date || "");
+      setSeenSession(true);
     }
   };
 
   const dismissPopup = () => {
     setShowPopup(false);
-    localStorage.setItem(POPUP_DISMISSED_KEY, changelog[0]?.version || changelog[0]?.date || "");
+    writePreference(POPUP_DISMISSED_KEY, changelog[0]?.version || changelog[0]?.date || "");
   };
 
   const getTypeStyle = (type: "new" | "improved" | "fixed") => {

@@ -15,6 +15,7 @@ const eslintConfig = defineConfig([
     "BKP/**",
     "public/ocr/**",
     "public/pdf-engine/**",
+    "public/workers/pdf.worker.mjs",
   ]),
 ]);
 

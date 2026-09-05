@@ -2,23 +2,19 @@
 
 "use client";
 
-import { readToolList, writeToolList } from "@/lib/tool-history";
+import { readToolList, writeToolList, usePreference } from "@/lib/tool-history";
 import Link from "next/link";
 import { ToolConfig } from "@/lib/tools-config";
-import { getCategoryIcon, ArrowUpRightIcon, StarIcon } from "@/assets/icons";
-import { useState, useEffect } from "react";
+import { categoryIconMap, CircleIcon, ArrowUpRightIcon } from "@/assets/icons";
+
 
 interface ToolCardProps {
   tool: ToolConfig;
 }
 
 export function ToolCard({ tool }: ToolCardProps) {
-  const [isPinned, setIsPinned] = useState(false);
-
-  useEffect(() => {
-    const pinnedTools = readToolList("pinnedTools");
-    setIsPinned(pinnedTools.includes(tool.slug));
-  }, [tool.slug]);
+  const pinnedValue = usePreference("pinnedTools", "[]");
+  const isPinned = (() => { try { const items: unknown = JSON.parse(pinnedValue); return Array.isArray(items) && items.includes(tool.slug); } catch { return false; } })();
 
   const togglePin = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -28,7 +24,6 @@ export function ToolCard({ tool }: ToolCardProps) {
       ? pinnedTools.filter((s: string) => s !== tool.slug)
       : [...pinnedTools, tool.slug];
     writeToolList("pinnedTools", newPinned);
-    setIsPinned(!isPinned);
     window.dispatchEvent(new Event("pinnedToolsChanged"));
   };
 
@@ -43,10 +38,10 @@ export function ToolCard({ tool }: ToolCardProps) {
   };
 
   const colors = categoryColors[tool.category] || categoryColors.misc;
-  const IconComponent = getCategoryIcon(tool.category);
+  const IconComponent = categoryIconMap[tool.category] || CircleIcon;
 
   return (
-    <Link href={`/tools/${tool.slug}`}>
+    <article className="relative">
       <div className="tool-card group bg-[var(--card)] rounded-xl sm:rounded-2xl p-3.5 sm:p-5 h-full cursor-pointer active:scale-[0.98] transition-transform">
         {/* Header with icon badge */}
         <div className="flex items-start justify-between mb-3 sm:mb-4">
@@ -58,7 +53,7 @@ export function ToolCard({ tool }: ToolCardProps) {
               aria-label={isPinned ? `Unpin ${tool.name}` : `Pin ${tool.name}`}
               aria-pressed={isPinned}
               onClick={togglePin}
-              className="p-1 sm:p-1.5 rounded-lg hover:bg-violet-500/10 transition-all duration-300 active:scale-90"
+              className="relative z-10 p-1 sm:p-1.5 rounded-lg hover:bg-violet-500/10 transition-all duration-300 active:scale-90"
               title={isPinned ? "Unpin tool" : "Pin tool"}
             >
               <svg 
@@ -83,7 +78,7 @@ export function ToolCard({ tool }: ToolCardProps) {
         
         {/* Title */}
         <h3 className="font-semibold text-xs sm:text-sm mb-1.5 sm:mb-2 group-hover:text-violet-400 transition-colors duration-300 line-clamp-1">
-          {tool.name}
+          <Link href={`/tools/${tool.slug}`} className="after:absolute after:inset-0">{tool.name}</Link>
         </h3>
         
         {/* Description with better line height */}
@@ -112,6 +107,6 @@ export function ToolCard({ tool }: ToolCardProps) {
           )}
         </div>
       </div>
-    </Link>
+    </article>
   );
 }

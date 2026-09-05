@@ -3,7 +3,7 @@
 // Strategy: cache-first for static assets, stale-while-revalidate for pages.
 // Bump CACHE_VERSION to invalidate old caches on deploy.
 
-const CACHE_VERSION = "nytm-v2.8.0";
+const CACHE_VERSION = "nytm-v2.9.0";
 const CACHE = `nytm-cache-${CACHE_VERSION}`;
 
 // Never touch analytics, external APIs, or non-GET — let them hit the network raw.
@@ -47,7 +47,18 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => cached || new Response("This tool is not available offline yet. Open it once while connected.", { status: 503, headers: { "Content-Type": "text/plain" } })); // offline: fall back to whatever we have
-      return cached || network;
+      const response = cached || await network;
+      // Turbopack workers share a bootstrap URL and choose their entry point
+      // through its fragment. Cached Response.url can retain another worker's
+      // fragment; a fresh response lets the browser use the requested URL.
+      if (request.destination === "worker") {
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: response.headers,
+        });
+      }
+      return response;
     })
   );
 });

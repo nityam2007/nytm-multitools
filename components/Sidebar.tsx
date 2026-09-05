@@ -1,4 +1,7 @@
 "use client";
+// Tool category sidebar | TypeScript
+import { usePreference, writePreference } from "@/lib/tool-history";
+
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -29,6 +32,7 @@ const categoryMeta: Record<string, { name: string }> = {
   converter: { name: "Converters" },
   generator: { name: "Generators" },
   security: { name: "Security" },
+  network: { name: "Network" },
   misc: { name: "Misc" },
 };
 
@@ -74,28 +78,8 @@ const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    // Check localStorage for sidebar state
-    let saved: string | null = null;
-    try { saved = localStorage.getItem("sidebar-collapsed"); } catch {}
-    if (saved !== null) {
-      setCollapsed(saved === "true");
-    }
-    // Default collapsed on mobile
-    if (window.innerWidth < 1024) {
-      setCollapsed(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      try { localStorage.setItem("sidebar-collapsed", String(collapsed)); } catch {}
-    }
-  }, [collapsed, mounted]);
+  const collapsed = usePreference("sidebar-collapsed", "true") !== "false";
+  const setCollapsed = (value: boolean) => writePreference("sidebar-collapsed", String(value));
 
   const toggle = () => setIsOpen((prev) => !prev);
 
@@ -147,12 +131,6 @@ export function SidebarToggle({ className = "" }: { className?: string }) {
   );
 }
 
-// Navigation items with SVG icons
-const navItems = [
-  { href: "/", label: "Home", exact: true },
-  { href: "/tools", label: "All Tools", exact: true },
-];
-
 // Tooltip component for collapsed sidebar
 function Tooltip({ children, text, show }: { children: React.ReactNode; text: string; show: boolean }) {
   if (!show) return <>{children}</>;
@@ -192,30 +170,12 @@ export function Sidebar() {
       .filter((cat) => cat.tools.length > 0);
   }, [sidebarCategories, searchQuery]);
 
-  // Auto-expand category if search matches
-  useEffect(() => {
-    if (searchQuery) {
-      setOpenCategories(filteredCategories.map(c => c.id));
-    }
-  }, [searchQuery, filteredCategories]);
-
-  // Auto-expand active category
-  useEffect(() => {
-    if (pathname?.startsWith("/tools/")) {
-      const toolSlug = pathname.replace("/tools/", "");
-      const category = sidebarCategories.find(cat => 
-        cat.tools.some(t => t.slug === toolSlug)
-      );
-      if (category && !openCategories.includes(category.id)) {
-        setOpenCategories(prev => [...prev, category.id]);
-      }
-    }
-  }, [pathname, sidebarCategories]);
-
+  const activeCategory = sidebarCategories.find(category => category.tools.some(tool => pathname === `/tools/${tool.slug}`))?.id;
+  const [closedCategories, setClosedCategories] = useState<string[]>([]);
+  const expandedCategories = searchQuery ? filteredCategories.map(c => c.id) : [...openCategories, ...(activeCategory && !closedCategories.includes(activeCategory) ? [activeCategory] : [])];
   const toggleCategory = (id: string) => {
-    setOpenCategories((prev) =>
-      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
-    );
+    if (expandedCategories.includes(id)) { setOpenCategories(openCategories.filter(c => c !== id)); setClosedCategories([...closedCategories, id]); }
+    else { setOpenCategories([...openCategories, id]); setClosedCategories(closedCategories.filter(c => c !== id)); }
   };
 
   const isActive = (href: string, exact?: boolean) => {
@@ -364,23 +324,23 @@ export function Sidebar() {
                       w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
                       hover:bg-[var(--muted)] text-[var(--muted-foreground)] hover:text-[var(--foreground)]
                       ${collapsed ? "justify-center !px-2" : ""}
-                      ${openCategories.includes(category.id) && !collapsed ? "bg-[var(--muted)] text-[var(--foreground)]" : ""}
+                      ${expandedCategories.includes(category.id) && !collapsed ? "bg-[var(--muted)] text-[var(--foreground)]" : ""}
                     `}
                   >
                     <div className={`flex items-center justify-center flex-shrink-0 ${collapsed ? 'min-w-[24px]' : ''}`}>
-                      <IconComponent className={`${collapsed ? 'w-5 h-5' : 'w-4 h-4'} ${openCategories.includes(category.id) ? 'text-violet-500' : ''}`} />
+                      <IconComponent className={`${collapsed ? 'w-5 h-5' : 'w-4 h-4'} ${expandedCategories.includes(category.id) ? 'text-violet-500' : ''}`} />
                     </div>
                     {!collapsed && (
                       <>
                         <span className="flex-1 text-sm text-left font-medium">{category.name}</span>
                         <span className="text-[10px] text-[var(--muted-foreground)] bg-[var(--muted)] px-1.5 py-0.5 rounded-md tabular-nums">{category.tools.length}</span>
-                        <ChevronDownIcon className={`w-3.5 h-3.5 text-[var(--muted-foreground)] transition-transform duration-200 ${openCategories.includes(category.id) ? "rotate-180" : ""}`} />
+                        <ChevronDownIcon className={`w-3.5 h-3.5 text-[var(--muted-foreground)] transition-transform duration-200 ${expandedCategories.includes(category.id) ? "rotate-180" : ""}`} />
                       </>
                     )}
                   </button>
                 </Tooltip>
                 
-                {!collapsed && openCategories.includes(category.id) && (
+                {!collapsed && expandedCategories.includes(category.id) && (
                   <div className="ml-5 pl-3 border-l-2 border-violet-500/20 space-y-0.5 mt-1.5 mb-3">
                     {category.tools.map((tool) => (
                       <Link

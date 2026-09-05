@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/nityam2007/nytm-multitools/main/package.json&query=$.toolCount&label=Tools&color=8b5cf6&style=for-the-badge" alt="Tools" />
-  <img src="https://img.shields.io/badge/Next.js-16.2.10-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Next.js-16.3.4-black?style=for-the-badge&logo=next.js" alt="Next.js" />
   <img src="https://img.shields.io/badge/React-19.2.7-61dafb?style=for-the-badge&logo=react" alt="React" />
   <img src="https://img.shields.io/badge/TypeScript-5.9.3-3178c6?style=for-the-badge&logo=typescript" alt="TypeScript" />
 </p>
@@ -109,7 +109,7 @@ Calculators, timers, color pickers, emoji picker, keyboard tester, screen info..
 </tr>
 <tr>
 <td><strong>Framework</strong></td>
-<td>Next.js 16.2.10 (Turbopack)</td>
+<td>Next.js 16.3.4 (Turbopack)</td>
 </tr>
 <tr>
 <td><strong>UI</strong></td>
@@ -156,6 +156,7 @@ NYTM now includes 18 additional browser tools for business workflows. Start at `
 | 2.6.0 | Five image/document tools; 202 total tools |
 | 2.7.0 | Verified PDF processing, sidebar and embed fixes |
 | 2.8.0 | Four original guides and promotion preparation |
+| 2.9.0 | Dependency patches and cross-browser usability checks |
 
 ### Runtime asset maintenance
 
@@ -238,3 +239,10 @@ Third-party dependencies retain their original open source licenses.
 **Nityam Sheth** — hello@nytm.in / hello@nsheth.in
 
 GitHub: [@nityam2007](https://github.com/nityam2007)
+
+
+### Validation and remaining maintenance
+
+Production builds and TypeScript checks cover all routes. Focused browser checks exercise the new tools, exports, PDF password roundtrips, and offline engine use. Repository-wide lint still contains pre-existing issues in older tools; do not describe it as clean. The current npm audit retains three high advisories in the existing kokoro-js → transformers → sharp dependency chain, for which npm reports no available upstream fix.
+
+Release 2.9.0 validation: production build generated 1,149 routes; changed TypeScript sources have no lint errors. Chrome checks cover 320px layouts, QR and CSV exports, image ZIPs, PDF page order, password roundtrips, and offline OCR. WebKit checks cover CSV cleanup, image ZIPs, PDF export, narrow layouts, and local OCR while connected. WebKit's automated offline mode failed reading image files, so Safari offline OCR remains unverified. Firefox could not launch in this Windows test environment. The sandboxed email preview remains isolated; WebKit automation reported a frame-access diagnostic during that check.

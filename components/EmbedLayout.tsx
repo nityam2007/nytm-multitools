@@ -3,7 +3,7 @@
 
 import { useEffect } from "react";
 import { ToolConfig } from "@/lib/tools-config";
-import { getToolIcon } from "@/assets/icons";
+import { toolIconMap, DocumentIcon } from "@/assets/icons";
 
 interface EmbedLayoutProps {
   tool: ToolConfig;
@@ -11,6 +11,7 @@ interface EmbedLayoutProps {
 }
 
 export function EmbedLayout({ tool, children }: EmbedLayoutProps) {
+  const IconComponent = toolIconMap[tool.icon || "document"] || DocumentIcon;
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
@@ -21,10 +22,7 @@ export function EmbedLayout({ tool, children }: EmbedLayoutProps) {
         <div className="mb-6 p-4 rounded-xl bg-gradient-to-br from-violet-500/10 via-purple-500/5 to-pink-500/10 border border-violet-500/20">
           <div className="flex items-start gap-3 mb-2">
             <div className="p-2 rounded-lg bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-white/20 flex-shrink-0">
-              {(() => {
-                const IconComponent = getToolIcon(tool.icon || "document");
-                return <IconComponent className="w-6 h-6 text-violet-500" />;
-              })()}
+              <IconComponent className="w-6 h-6 text-violet-500" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">

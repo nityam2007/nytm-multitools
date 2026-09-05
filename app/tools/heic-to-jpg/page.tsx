@@ -16,14 +16,14 @@ export default function HeicToJpgPage() {
   const [progress, setProgress] = useState(0);
   const [convertedImages, setConvertedImages] = useState<{ name: string; url: string; blob: Blob }[]>([]);
   const [quality, setQuality] = useState(0.92);
-  const [heic2anyFn, setHeic2anyFn] = useState<any>(null);
+  const [heic2anyFn, setHeic2anyFn] = useState<typeof import("heic2any")["default"] | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const loadLibrary = async () => {
       try {
-        const module = await import("heic2any");
-        setHeic2anyFn(() => module.default);
+        const heicModule = await import("heic2any");
+        setHeic2anyFn(() => heicModule.default);
       } catch (error) {
         console.error("Failed to load heic2any:", error);
       }
@@ -324,7 +324,7 @@ export default function HeicToJpgPage() {
             <ul className="space-y-1">
               <li className="flex items-start gap-2">
                 <span className="text-blue-400 mt-0.5">•</span>
-                <span>HEIC is Apple's default image format (iPhone, iPad)</span>
+                <span>HEIC is Apple’s default image format (iPhone, iPad)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-400 mt-0.5">•</span>

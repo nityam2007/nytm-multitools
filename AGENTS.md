@@ -27,7 +27,7 @@ Run `update-tool-count.js` and `generate-seo-layouts.js` after adding/removing t
 
 ## Architecture
 
-Next.js 16 App Router, React 19 (React Compiler on via `next.config.ts`), TypeScript, Tailwind CSS 4. `@/*` maps to the repo root. This is a collection of ~202 self-contained browser utilities under one site.
+Next.js 16.3 App Router, React 19 (React Compiler on via `next.config.ts`), TypeScript, Tailwind CSS 4. `@/*` maps to the repo root. This is a collection of ~202 self-contained browser utilities under one site.
 
 ### The tool registry is the source of truth
 

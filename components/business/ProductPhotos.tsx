@@ -1,18 +1,300 @@
 // Batch product image workflow | TypeScript
 "use client";
-import {useEffect,useRef,useState} from "react";
-import {Workspace,Field,Choice,Notice} from "./ToolUI";
-import {downloadBlob} from "@/lib/browser-files";
-import {transformImage,type ImageOptions} from "@/lib/image-pipeline";
+import { useEffect, useRef, useState } from "react";
+import { Workspace, Field, Choice, Notice } from "./ToolUI";
+import { downloadBlob } from "@/lib/browser-files";
+import { transformImage, type ImageOptions } from "@/lib/image-pipeline";
 
-interface Output {name:string;blob:Blob;url:string;original:number}
-export default function ProductPhotos(){
-  const [files,setFiles]=useState<File[]>([]);const [width,setWidth]=useState(1200);const [height,setHeight]=useState(1200);const [fit,setFit]=useState<"contain"|"cover">("contain");const [type,setType]=useState<ImageOptions["type"]>("image/webp");const [quality,setQuality]=useState(82);const [background,setBackground]=useState("#ffffff");const [prefix,setPrefix]=useState("product");const [outputs,setOutputs]=useState<Output[]>([]);const [busy,setBusy]=useState(false);const [notice,setNotice]=useState("");const [progress,setProgress]=useState(0);const cancelled=useRef(false);const urls=useRef<string[]>([]);const worker=useRef<Worker|null>(null);const rejectWorker=useRef<((error:Error)=>void)|null>(null);
-  const clear=()=>{urls.current.forEach(URL.revokeObjectURL);urls.current=[];setOutputs([]);};
-  useEffect(()=>()=>{cancelled.current=true;worker.current?.terminate();rejectWorker.current?.(Error("Cancelled"));urls.current.forEach(URL.revokeObjectURL);},[]);
-  async function convert(file:File,options:ImageOptions){if(typeof OffscreenCanvas==="undefined")return transformImage(file,options);return new Promise<Blob>((resolve,reject)=>{rejectWorker.current=reject;const w=new Worker(new URL("../../lib/image-pipeline.worker.ts",import.meta.url));worker.current=w;w.onmessage=e=>{w.terminate();rejectWorker.current=null;if(e.data.error)reject(Error(e.data.error));else resolve(e.data.blob);};w.onerror=()=>{w.terminate();reject(Error("Image worker failed. Try another image or browser."));};w.postMessage({file,options});});}
-  async function run(){cancelled.current=false;clear();setBusy(true);setProgress(0);const errors:string[]=[];const results:Output[]=[];for(let i=0;i<files.length;i++){if(cancelled.current)break;try{const blob=await convert(files[i],{width,height,fit,type,quality:quality/100,background});if(cancelled.current)break;const url=URL.createObjectURL(blob);urls.current.push(url);results.push({name:`${prefix.replace(/[^a-z0-9_-]/gi,"-")||"product"}-${String(i+1).padStart(3,"0")}.${type.split('/')[1]==='jpeg'?'jpg':type.split('/')[1]}`,blob,url,original:files[i].size});setOutputs([...results]);}catch(e){if(!cancelled.current)errors.push(`${files[i].name}: ${(e as Error).message}`);}setProgress(i+1);}setBusy(false);setNotice(`${cancelled.current?"Stopped. ":""}${results.length} images ready.${errors.length?'\n'+errors.join('\n'):''}`);}
-  return <Workspace slug="product-photos" help="Resize, crop or pad, convert, and rename a batch in one pass. Contain keeps the full image with your chosen background; cover crops the edges. JPEG/WebP use lossy quality; PNG is lossless. Maximum 30 images, 20 MB each, 100 MB total, 40 MP per image, and 4096 px output dimensions."><label className="block text-sm font-medium">Choose product images<input className="block mt-2" type="file" multiple accept="image/jpeg,image/png,image/webp" disabled={busy} onChange={e=>{const next=Array.from(e.target.files||[]);clear();if(next.length>30||next.some(f=>f.size>20*1024*1024)||next.reduce((n,f)=>n+f.size,0)>100*1024*1024){setFiles([]);setNotice("Use at most 30 images, 20 MB each, and 100 MB total.");return;}setFiles(next);setNotice(`${next.length} images selected.`);}} /></label><fieldset disabled={busy} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"><Field label="Output width (px)" type="number" min={1} max={4096} value={width} onChange={v=>setWidth(Math.max(1,Math.min(4096,Math.round(Number(v)))))} /><Field label="Output height (px)" type="number" min={1} max={4096} value={height} onChange={v=>setHeight(Math.max(1,Math.min(4096,Math.round(Number(v)))))} /><Choice label="Fit" value={fit} onChange={v=>setFit(v as typeof fit)} options={[["contain","Contain — keep full image"],["cover","Cover — crop to fill"]]} /><Choice label="Format" value={type} onChange={v=>setType(v as typeof type)} options={[["image/webp","WebP"],["image/jpeg","JPEG"],["image/png","PNG"]]} /><Field label="JPEG / WebP quality (%)" type="number" min={1} max={100} value={quality} onChange={v=>setQuality(Math.min(100,Math.max(1,Number(v))))} /><Field label="Background" type="color" value={background} onChange={setBackground} /><Field label="Filename prefix" value={prefix} onChange={setPrefix} /></fieldset><div className="flex flex-wrap gap-3"><button className="btn btn-primary" disabled={!files.length||busy} onClick={run}>{busy?`Processing ${progress}/${files.length}`:"Process images"}</button>{busy&&<button className="btn btn-secondary" onClick={()=>{cancelled.current=true;worker.current?.terminate();rejectWorker.current?.(Error("Cancelled"));}}>Cancel</button>}<button className="btn btn-secondary" disabled={!outputs.length||busy} onClick={async()=>{setBusy(true);try{const {zip}=await import("fflate");const entries:Record<string,Uint8Array>={};for(const output of outputs)entries[output.name]=new Uint8Array(await output.blob.arrayBuffer());const zipped=await new Promise<Uint8Array>((resolve,reject)=>zip(entries,{level:0},(error,data)=>error?reject(error):resolve(data)));downloadBlob(new Blob([new Uint8Array(zipped)],{type:"application/zip"}),"product-images.zip");}catch{setNotice("Could not create ZIP. Download images individually below.");}finally{setBusy(false);}}}>Download all as ZIP</button></div><Notice>{notice}</Notice>{busy&&<progress aria-label="Batch progress" className="w-full" value={progress} max={files.length||1} />}<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{outputs.map(output=><article key={output.name} className="border border-[var(--border)] rounded-lg p-3">
-{/* eslint-disable-next-line @next/next/no-img-element */}
-<img src={output.url} alt={output.name} className="aspect-square object-contain w-full bg-white rounded" /><p className="text-sm break-all mt-3">{output.name}</p><p className="text-xs text-[var(--muted-foreground)] my-2">{(output.original/1024).toFixed(0)} KB → {(output.blob.size/1024).toFixed(0)} KB</p><button className="btn btn-secondary" onClick={()=>downloadBlob(output.blob,output.name)}>Download</button></article>)}</div></Workspace>;
+interface Output {
+  name: string;
+  blob: Blob;
+  url: string;
+  original: number;
+}
+export default function ProductPhotos() {
+  const [files, setFiles] = useState<File[]>([]);
+  const [width, setWidth] = useState(1200);
+  const [height, setHeight] = useState(1200);
+  const [fit, setFit] = useState<"contain" | "cover">("contain");
+  const [type, setType] = useState<ImageOptions["type"]>("image/webp");
+  const [quality, setQuality] = useState(82);
+  const [background, setBackground] = useState("#ffffff");
+  const [prefix, setPrefix] = useState("product");
+  const [outputs, setOutputs] = useState<Output[]>([]);
+  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState("");
+  const [progress, setProgress] = useState(0);
+  const cancelled = useRef(false);
+  const cancelZip = useRef<(() => void) | null>(null);
+  const urls = useRef<string[]>([]);
+  const worker = useRef<Worker | null>(null);
+  const rejectWorker = useRef<((error: Error) => void) | null>(null);
+  const clear = () => {
+    urls.current.forEach(URL.revokeObjectURL);
+    urls.current = [];
+    setOutputs([]);
+  };
+  useEffect(
+    () => () => {
+      cancelled.current = true;
+      cancelZip.current?.();
+      worker.current?.terminate();
+      rejectWorker.current?.(Error("Cancelled"));
+      urls.current.forEach(URL.revokeObjectURL);
+    },
+    [],
+  );
+  async function convert(file: File, options: ImageOptions) {
+    if (typeof OffscreenCanvas === "undefined")
+      return transformImage(file, options);
+    return new Promise<Blob>((resolve, reject) => {
+      rejectWorker.current = reject;
+      const w = new Worker(
+        new URL("../../lib/image-pipeline.worker.ts", import.meta.url),
+      );
+      worker.current = w;
+      w.onmessage = (e) => {
+        w.terminate();
+        rejectWorker.current = null;
+        if (e.data.error) reject(Error(e.data.error));
+        else resolve(e.data.blob);
+      };
+      w.onerror = () => {
+        w.terminate();
+        reject(Error("Image worker failed. Try another image or browser."));
+      };
+      w.postMessage({ file, options });
+    });
+  }
+  async function run() {
+    cancelled.current = false;
+    clear();
+    setBusy(true);
+    setProgress(0);
+    const errors: string[] = [];
+    const results: Output[] = [];
+    for (let i = 0; i < files.length; i++) {
+      if (cancelled.current) break;
+      try {
+        const blob = await convert(files[i], {
+          width,
+          height,
+          fit,
+          type,
+          quality: quality / 100,
+          background,
+        });
+        if (cancelled.current) break;
+        const url = URL.createObjectURL(blob);
+        urls.current.push(url);
+        results.push({
+          name: `${prefix.replace(/[^a-z0-9_-]/gi, "-") || "product"}-${String(i + 1).padStart(3, "0")}.${type.split("/")[1] === "jpeg" ? "jpg" : type.split("/")[1]}`,
+          blob,
+          url,
+          original: files[i].size,
+        });
+        setOutputs([...results]);
+      } catch (e) {
+        if (!cancelled.current)
+          errors.push(`${files[i].name}: ${(e as Error).message}`);
+      }
+      setProgress(i + 1);
+    }
+    setBusy(false);
+    setNotice(
+      `${cancelled.current ? "Stopped. " : ""}${results.length} images ready.${errors.length ? "\n" + errors.join("\n") : ""}`,
+    );
+  }
+  return (
+    <Workspace
+      slug="product-photos"
+      help="Resize, crop or pad, convert, and rename a batch in one pass. Contain keeps the full image with your chosen background; cover crops the edges. JPEG/WebP use lossy quality; PNG is lossless. Maximum 30 images, 20 MB each, 100 MB total, 40 MP per image, and 4096 px output dimensions."
+    >
+      <label className="block text-sm font-medium">
+        Choose product images
+        <input
+          className="block mt-2"
+          type="file"
+          multiple
+          accept="image/jpeg,image/png,image/webp"
+          disabled={busy}
+          onChange={(e) => {
+            const next = Array.from(e.target.files || []);
+            clear();
+            if (
+              next.length > 30 ||
+              next.some((f) => f.size > 20 * 1024 * 1024) ||
+              next.reduce((n, f) => n + f.size, 0) > 100 * 1024 * 1024
+            ) {
+              setFiles([]);
+              setNotice("Use at most 30 images, 20 MB each, and 100 MB total.");
+              return;
+            }
+            setFiles(next);
+            setNotice(`${next.length} images selected.`);
+          }}
+        />
+      </label>
+      <fieldset
+        disabled={busy}
+        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+      >
+        <Field
+          label="Output width (px)"
+          type="number"
+          min={1}
+          max={4096}
+          value={width}
+          onChange={(v) =>
+            setWidth(Math.max(1, Math.min(4096, Math.round(Number(v)))))
+          }
+        />
+        <Field
+          label="Output height (px)"
+          type="number"
+          min={1}
+          max={4096}
+          value={height}
+          onChange={(v) =>
+            setHeight(Math.max(1, Math.min(4096, Math.round(Number(v)))))
+          }
+        />
+        <Choice
+          label="Fit"
+          value={fit}
+          onChange={(v) => setFit(v as typeof fit)}
+          options={[
+            ["contain", "Contain — keep full image"],
+            ["cover", "Cover — crop to fill"],
+          ]}
+        />
+        <Choice
+          label="Format"
+          value={type}
+          onChange={(v) => setType(v as typeof type)}
+          options={[
+            ["image/webp", "WebP"],
+            ["image/jpeg", "JPEG"],
+            ["image/png", "PNG"],
+          ]}
+        />
+        <Field
+          label="JPEG / WebP quality (%)"
+          type="number"
+          min={1}
+          max={100}
+          value={quality}
+          onChange={(v) => setQuality(Math.min(100, Math.max(1, Number(v))))}
+        />
+        <Field
+          label="Background"
+          type="color"
+          value={background}
+          onChange={setBackground}
+        />
+        <Field label="Filename prefix" value={prefix} onChange={setPrefix} />
+      </fieldset>
+      <div className="flex flex-wrap gap-3">
+        <button
+          className="btn btn-primary"
+          disabled={!files.length || busy}
+          onClick={run}
+        >
+          {busy ? `Processing ${progress}/${files.length}` : "Process images"}
+        </button>
+        {busy && (
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              cancelled.current = true;
+              worker.current?.terminate();
+              rejectWorker.current?.(Error("Cancelled"));
+            }}
+          >
+            Cancel
+          </button>
+        )}
+        <button
+          className="btn btn-secondary"
+          disabled={!outputs.length || busy}
+          onClick={async () => {
+            cancelled.current = false;
+            setBusy(true);
+            try {
+              const { zip } = await import("fflate");
+              const entries: Record<string, Uint8Array> = {};
+              for (const output of outputs)
+                entries[output.name] = new Uint8Array(
+                  await output.blob.arrayBuffer(),
+                );
+              const zipped = await new Promise<Uint8Array>(
+                (resolve, reject) => {
+                  rejectWorker.current = reject;
+                  cancelZip.current = zip(
+                    entries,
+                    { level: 0 },
+                    (error, data) => {
+                      cancelZip.current = null;
+                      rejectWorker.current = null;
+                      if (error) reject(error);
+                      else resolve(data);
+                    },
+                  );
+                },
+              );
+              downloadBlob(
+                new Blob([new Uint8Array(zipped)], { type: "application/zip" }),
+                "product-images.zip",
+              );
+            } catch {
+              setNotice(
+                cancelled.current
+                  ? "ZIP cancelled."
+                  : "Could not create ZIP. Download images individually below.",
+              );
+            } finally {
+              setBusy(false);
+            }
+          }}
+        >
+          Download all as ZIP
+        </button>
+      </div>
+      <Notice>{notice}</Notice>
+      {busy && (
+        <progress
+          aria-label="Batch progress"
+          className="w-full"
+          value={progress}
+          max={files.length || 1}
+        />
+      )}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {outputs.map((output) => (
+          <article
+            key={output.name}
+            className="border border-[var(--border)] rounded-lg p-3"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={output.url}
+              alt={output.name}
+              className="aspect-square object-contain w-full bg-white rounded"
+            />
+            <p className="text-sm break-all mt-3">{output.name}</p>
+            <p className="text-xs text-[var(--muted-foreground)] my-2">
+              {(output.original / 1024).toFixed(0)} KB →{" "}
+              {(output.blob.size / 1024).toFixed(0)} KB
+            </p>
+            <button
+              className="btn btn-secondary"
+              onClick={() => downloadBlob(output.blob, output.name)}
+            >
+              Download
+            </button>
+          </article>
+        ))}
+      </div>
+    </Workspace>
+  );
 }

@@ -1,16 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { GitHubIcon } from "@/assets/icons";
 import { SITE_TAGLINE } from "@/lib/site-config";
 
 export function Footer() {
-  const [currentYear, setCurrentYear] = useState(2025);
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   const footerSections = [
     {

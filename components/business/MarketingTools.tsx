@@ -5,31 +5,362 @@ import { Workspace, Field, Choice, Result, Notice } from "./ToolUI";
 import { escapeHtml as h, httpUrl } from "@/lib/browser-files";
 
 export function SEOPreview() {
-  const [title,setTitle]=useState(""); const [description,setDescription]=useState(""); const [url,setUrl]=useState("");
-  const tags=title.trim()&&httpUrl(url)?`<title>${h(title)}</title>\n<meta name="description" content="${h(description)}">\n<link rel="canonical" href="${h(httpUrl(url))}">`:"";
-  return <Workspace slug="seo-preview" help="This is an approximate preview using your text, not a live search result or ranking check. Search engines can rewrite titles and descriptions. Character counts are guidance, not fixed display limits."><Field label="Page URL (https://...)" value={url} onChange={setUrl} type="url" /><Field label="Page title" value={title} onChange={setTitle} /><Field label="Meta description" value={description} onChange={setDescription} multiline /><Notice>{title.length} title characters · {description.length} description characters</Notice><section className="bg-white text-[#333] p-6 rounded-lg border border-[var(--border)] max-w-2xl" aria-label="Search snippet preview"><p className="text-sm truncate">{httpUrl(url)||"https://example.com/your-page"}</p><h2 className="text-xl text-[#1a0dab] truncate my-2">{title||"Your page title"}</h2><p className="text-sm line-clamp-3 break-words">{description||"A useful description of what someone will find on this page."}</p></section><Result text={tags} filename="seo-meta-tags.html" label="HTML tags" /></Workspace>;
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [url, setUrl] = useState("");
+  const tags =
+    title.trim() && httpUrl(url)
+      ? `<title>${h(title)}</title>\n<meta name="description" content="${h(description)}">\n<link rel="canonical" href="${h(httpUrl(url))}">`
+      : "";
+  return (
+    <Workspace
+      slug="seo-preview"
+      help="This is an approximate preview using your text, not a live search result or ranking check. Search engines can rewrite titles and descriptions. Character counts are guidance, not fixed display limits."
+    >
+      <Field
+        label="Page URL (https://...)"
+        value={url}
+        onChange={setUrl}
+        type="url"
+      />
+      <Field label="Page title" value={title} onChange={setTitle} />
+      <Field
+        label="Meta description"
+        value={description}
+        onChange={setDescription}
+        multiline
+      />
+      <Notice>
+        {title.length} title characters · {description.length} description
+        characters
+      </Notice>
+      <section
+        className="bg-white text-[#333] p-6 rounded-lg border border-[var(--border)] max-w-2xl"
+        aria-label="Search snippet preview"
+      >
+        <p className="text-sm truncate">
+          {httpUrl(url) || "https://example.com/your-page"}
+        </p>
+        <h2 className="text-xl text-[#1a0dab] truncate my-2">
+          {title || "Your page title"}
+        </h2>
+        <p className="text-sm line-clamp-3 break-words">
+          {description ||
+            "A useful description of what someone will find on this page."}
+        </p>
+      </section>
+      <Result text={tags} filename="seo-meta-tags.html" label="HTML tags" />
+    </Workspace>
+  );
 }
 export function SocialMeta() {
-  const [title,setTitle]=useState(""); const [description,setDescription]=useState(""); const [url,setUrl]=useState(""); const [imageUrl,setImageUrl]=useState(""); const [site,setSite]=useState("");
-  const tags=title.trim()&&httpUrl(url)&&(!imageUrl||httpUrl(imageUrl))?[
-    ['property','og:type','website'],['property','og:title',title],['property','og:description',description],['property','og:url',httpUrl(url)],['property','og:site_name',site],...(imageUrl?[['property','og:image',httpUrl(imageUrl)]]:[]),['name','twitter:card',imageUrl?'summary_large_image':'summary'],['name','twitter:title',title],['name','twitter:description',description],...(imageUrl?[['name','twitter:image',httpUrl(imageUrl)]]:[]),
-  ].filter(([, ,value])=>value).map(([attr,key,value])=>`<meta ${attr}="${key}" content="${h(value)}">`).join('\n'):"";
-  return <Workspace slug="social-meta" help="This generates Open Graph and social card tags from manually entered details. The image URL is included in the output but is not fetched here. Use a public, absolute image URL and check the final card on your target platform after publishing."><div className="grid sm:grid-cols-2 gap-5"><Field label="Page title" value={title} onChange={setTitle} /><Field label="Site name" value={site} onChange={setSite} /><Field label="Page URL (https://...)" value={url} onChange={setUrl} type="url" /><Field label="Public image URL (optional)" value={imageUrl} onChange={setImageUrl} type="url" /></div><Field label="Description" value={description} onChange={setDescription} multiline /><section className="max-w-xl border border-[var(--border)] rounded-lg overflow-hidden" aria-label="Social card preview"><div className="aspect-[1.91/1] bg-[var(--muted)] grid place-content-center text-sm text-[var(--muted-foreground)] px-6 text-center">{imageUrl?"Your published image will appear here":"No image specified"}</div><div className="p-5"><p className="text-xs uppercase">{site||"Your website"}</p><h2 className="text-xl font-semibold mt-2 break-words">{title||"Your shared page title"}</h2><p className="text-sm text-[var(--muted-foreground)] mt-2 line-clamp-2 break-words">{description||"Your page description"}</p></div></section><Result text={tags} filename="social-meta-tags.html" label="Social sharing tags" /></Workspace>;
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [url, setUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [site, setSite] = useState("");
+  const [preview, setPreview] = useState("");
+  const [imageNotice, setImageNotice] = useState("");
+  const tags =
+    title.trim() && httpUrl(url) && (!imageUrl || httpUrl(imageUrl))
+      ? [
+          ["property", "og:type", "website"],
+          ["property", "og:title", title],
+          ["property", "og:description", description],
+          ["property", "og:url", httpUrl(url)],
+          ["property", "og:site_name", site],
+          ...(imageUrl ? [["property", "og:image", httpUrl(imageUrl)]] : []),
+          [
+            "name",
+            "twitter:card",
+            imageUrl ? "summary_large_image" : "summary",
+          ],
+          ["name", "twitter:title", title],
+          ["name", "twitter:description", description],
+          ...(imageUrl ? [["name", "twitter:image", httpUrl(imageUrl)]] : []),
+        ]
+          .filter(([, , value]) => value)
+          .map(
+            ([attr, key, value]) =>
+              `<meta ${attr}="${key}" content="${h(value)}">`,
+          )
+          .join("\n")
+      : "";
+  return (
+    <Workspace
+      slug="social-meta"
+      help="This generates Open Graph and social card tags from manually entered details. The image URL is included in the output but is not fetched here. Use a public, absolute image URL and check the final card on your target platform after publishing."
+    >
+      <div className="grid sm:grid-cols-2 gap-5">
+        <Field label="Page title" value={title} onChange={setTitle} />
+        <Field label="Site name" value={site} onChange={setSite} />
+        <Field
+          label="Page URL (https://...)"
+          value={url}
+          onChange={setUrl}
+          type="url"
+        />
+        <Field
+          label="Public image URL (optional)"
+          value={imageUrl}
+          onChange={setImageUrl}
+          type="url"
+        />
+      </div>
+      <Field
+        label="Description"
+        value={description}
+        onChange={setDescription}
+        multiline
+      />
+      <label className="block text-sm font-medium">
+        Local image for preview (optional, up to 5 MB)
+        <input
+          type="file"
+          className="block mt-2"
+          accept="image/png,image/jpeg,image/webp"
+          onChange={async (e) => {
+            const file = e.target.files?.[0];
+            setPreview("");
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) {
+              setImageNotice("Use a preview image smaller than 5 MB.");
+              return;
+            }
+            try {
+              const bitmap = await createImageBitmap(file);
+              bitmap.close();
+              const reader = new FileReader();
+              reader.onload = () => {
+                setPreview(String(reader.result));
+                setImageNotice(
+                  "Preview only. Publish this image at the public URL entered above.",
+                );
+              };
+              reader.onerror = () =>
+                setImageNotice("Could not read this image.");
+              reader.readAsDataURL(file);
+            } catch {
+              setImageNotice("Choose a valid JPEG, PNG, or WebP image.");
+            }
+          }}
+        />
+      </label>
+      <Notice>{imageNotice}</Notice>
+      <section
+        className="max-w-xl border border-[var(--border)] rounded-lg overflow-hidden"
+        aria-label="Social card preview"
+      >
+        {preview ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={preview}
+            alt="Local social card preview"
+            className="w-full aspect-[1.91/1] object-cover"
+          />
+        ) : (
+          <div className="aspect-[1.91/1] bg-[var(--muted)] grid place-content-center text-sm text-[var(--muted-foreground)] px-6 text-center">
+            {imageUrl
+              ? "Upload the matching image to preview it"
+              : "No image specified"}
+          </div>
+        )}
+        <div className="p-5">
+          <p className="text-xs uppercase">{site || "Your website"}</p>
+          <h2 className="text-xl font-semibold mt-2 break-words">
+            {title || "Your shared page title"}
+          </h2>
+          <p className="text-sm text-[var(--muted-foreground)] mt-2 line-clamp-2 break-words">
+            {description || "Your page description"}
+          </p>
+        </div>
+      </section>
+      <Result
+        text={tags}
+        filename="social-meta-tags.html"
+        label="Social sharing tags"
+      />
+    </Workspace>
+  );
 }
 export function SchemaGenerator() {
-  const [type,setType]=useState("Organization"); const [name,setName]=useState(""); const [url,setUrl]=useState(""); const [description,setDescription]=useState(""); const [phone,setPhone]=useState(""); const [address,setAddress]=useState(""); const [price,setPrice]=useState(""); const [currency,setCurrency]=useState("INR"); const [image,setImage]=useState("");
-  const data:Record<string,unknown>={"@context":"https://schema.org","@type":type,name,url:httpUrl(url),description};
-  if(type==='LocalBusiness'){if(phone)data.telephone=phone;if(address)data.address={"@type":"PostalAddress",streetAddress:address};}
-  if(type==='Product'){if(httpUrl(image))data.image=httpUrl(image);if(price!==''&&Number(price)>=0)data.offers={"@type":"Offer",price:Number(price).toFixed(2),priceCurrency:currency,url:httpUrl(url)};}
-  const valid=name.trim()&&httpUrl(url)&&(!image||httpUrl(image))&&(type!=='Product'||price===''||(Number.isFinite(Number(price))&&Number(price)>=0));
-  const output=valid?`<script type="application/ld+json">\n${JSON.stringify(data,null,2).replace(/</g,"\\u003c")}\n</script>`:"";
-  return <Workspace slug="schema-generator" help="Generate a starting point for structured data using facts visible on your page. This tool does not certify rich-result eligibility. Validate the published page with the Schema.org validator and Google's Rich Results Test. Do not invent ratings or reviews."><Choice label="Schema type" value={type} onChange={setType} options={[["Organization","Organization"],["LocalBusiness","Local business"],["Product","Product"]]} /><div className="grid sm:grid-cols-2 gap-5"><Field label="Name (required)" value={name} onChange={setName} /><Field label="Page URL (required)" value={url} onChange={setUrl} type="url" /></div><Field label="Description" value={description} onChange={setDescription} multiline />{type==='LocalBusiness'&&<div className="grid sm:grid-cols-2 gap-5"><Field label="Business phone" value={phone} onChange={setPhone} /><Field label="Street address" value={address} onChange={setAddress} /></div>}{type==='Product'&&<div className="grid sm:grid-cols-2 gap-5"><Field label="Price (optional)" value={price} onChange={setPrice} type="number" min={0} step={0.01} /><Choice label="Currency" value={currency} onChange={setCurrency} options={[["INR","INR"],["USD","USD"],["EUR","EUR"],["GBP","GBP"]]} /><Field label="Product image URL (optional)" value={image} onChange={setImage} type="url" /></div>}<Result text={output} filename="structured-data.html" label="JSON-LD script" /></Workspace>;
+  const [type, setType] = useState("Organization");
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [price, setPrice] = useState("");
+  const [currency, setCurrency] = useState("INR");
+  const [image, setImage] = useState("");
+  const data: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": type,
+    name,
+    url: httpUrl(url),
+    description,
+  };
+  if (type === "LocalBusiness") {
+    if (phone) data.telephone = phone;
+    if (address)
+      data.address = { "@type": "PostalAddress", streetAddress: address };
+  }
+  if (type === "Product") {
+    if (httpUrl(image)) data.image = httpUrl(image);
+    if (price !== "" && Number(price) >= 0)
+      data.offers = {
+        "@type": "Offer",
+        price: Number(price).toFixed(2),
+        priceCurrency: currency,
+        url: httpUrl(url),
+      };
+  }
+  const valid =
+    name.trim() &&
+    httpUrl(url) &&
+    (!image || httpUrl(image)) &&
+    (type !== "Product" ||
+      price === "" ||
+      (Number.isFinite(Number(price)) && Number(price) >= 0));
+  const output = valid
+    ? `<script type="application/ld+json">\n${JSON.stringify(data, null, 2).replace(/</g, "\\u003c")}\n</script>`
+    : "";
+  return (
+    <Workspace
+      slug="schema-generator"
+      help="Generate a starting point for structured data using facts visible on your page. This tool does not certify rich-result eligibility. Validate the published page with the Schema.org validator and Google's Rich Results Test. Do not invent ratings or reviews."
+    >
+      <Choice
+        label="Schema type"
+        value={type}
+        onChange={setType}
+        options={[
+          ["Organization", "Organization"],
+          ["LocalBusiness", "Local business"],
+          ["Product", "Product"],
+        ]}
+      />
+      <div className="grid sm:grid-cols-2 gap-5">
+        <Field label="Name (required)" value={name} onChange={setName} />
+        <Field
+          label="Page URL (required)"
+          value={url}
+          onChange={setUrl}
+          type="url"
+        />
+      </div>
+      <Field
+        label="Description"
+        value={description}
+        onChange={setDescription}
+        multiline
+      />
+      {type === "LocalBusiness" && (
+        <div className="grid sm:grid-cols-2 gap-5">
+          <Field label="Business phone" value={phone} onChange={setPhone} />
+          <Field label="Street address" value={address} onChange={setAddress} />
+        </div>
+      )}
+      {type === "Product" && (
+        <div className="grid sm:grid-cols-2 gap-5">
+          <Field
+            label="Price (optional)"
+            value={price}
+            onChange={setPrice}
+            type="number"
+            min={0}
+            step={0.01}
+          />
+          <Choice
+            label="Currency"
+            value={currency}
+            onChange={setCurrency}
+            options={[
+              ["INR", "INR"],
+              ["USD", "USD"],
+              ["EUR", "EUR"],
+              ["GBP", "GBP"],
+            ]}
+          />
+          <Field
+            label="Product image URL (optional)"
+            value={image}
+            onChange={setImage}
+            type="url"
+          />
+        </div>
+      )}
+      <Result
+        text={output}
+        filename="structured-data.html"
+        label="JSON-LD script"
+      />
+    </Workspace>
+  );
 }
 
 export function ContrastChecker() {
-  const [foreground,setForeground]=useState("#333333"); const [background,setBackground]=useState("#ffffff");
-  const valid=/^#[0-9a-f]{6}$/i.test(foreground)&&/^#[0-9a-f]{6}$/i.test(background);
-  function luminance(hex:string){const rgb=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(v=>v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4);return rgb[0]*0.2126+rgb[1]*0.7152+rgb[2]*0.0722;}
-  const a=valid?luminance(foreground):0,b=valid?luminance(background):0,ratio=(Math.max(a,b)+0.05)/(Math.min(a,b)+0.05);
-  return <Workspace slug="contrast-checker" help="Uses the WCAG 2.x contrast formula for opaque sRGB colours. Large text means at least 18 pt, or 14 pt bold. This checks a colour pair; it is not a complete accessibility audit."><div className="grid sm:grid-cols-2 gap-5"><Field label="Text colour (#RRGGBB)" value={foreground} onChange={setForeground} /><Field label="Background colour (#RRGGBB)" value={background} onChange={setBackground} /></div><button className="btn btn-secondary" onClick={()=>{setForeground(background);setBackground(foreground);}}>Swap colours</button>{valid?<><section className="p-8 rounded-lg border" style={{color:foreground,backgroundColor:background}}><p className="text-3xl font-semibold">Make every word readable.</p><p className="text-base mt-3">Preview regular text against your chosen background.</p></section><Result label={`Contrast ratio: ${ratio.toFixed(2)}:1`} text={`Contrast ratio: ${ratio.toFixed(2)}:1\nAA normal text (4.5:1): ${ratio>=4.5?'Pass':'Fail'}\nAA large text / UI (3:1): ${ratio>=3?'Pass':'Fail'}\nAAA normal text (7:1): ${ratio>=7?'Pass':'Fail'}\nAAA large text (4.5:1): ${ratio>=4.5?'Pass':'Fail'}`} filename="contrast-report.txt" /></>:<Notice>Enter two six-digit hex colours, for example #333333 and #ffffff.</Notice>}</Workspace>;
+  const [foreground, setForeground] = useState("#333333");
+  const [background, setBackground] = useState("#ffffff");
+  const valid =
+    /^#[0-9a-f]{6}$/i.test(foreground) && /^#[0-9a-f]{6}$/i.test(background);
+  function luminance(hex: string) {
+    const rgb = [1, 3, 5]
+      .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+    return rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722;
+  }
+  const a = valid ? luminance(foreground) : 0,
+    b = valid ? luminance(background) : 0,
+    ratio = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  return (
+    <Workspace
+      slug="contrast-checker"
+      help="Uses the WCAG 2.x contrast formula for opaque sRGB colours. Large text means at least 18 pt, or 14 pt bold. This checks a colour pair; it is not a complete accessibility audit."
+    >
+      <div className="grid sm:grid-cols-2 gap-5">
+        <Field
+          label="Text colour (#RRGGBB)"
+          value={foreground}
+          onChange={setForeground}
+        />
+        <Field
+          label="Background colour (#RRGGBB)"
+          value={background}
+          onChange={setBackground}
+        />
+      </div>
+      <button
+        className="btn btn-secondary"
+        onClick={() => {
+          setForeground(background);
+          setBackground(foreground);
+        }}
+      >
+        Swap colours
+      </button>
+      {valid ? (
+        <>
+          <section
+            className="p-8 rounded-lg border"
+            style={{ color: foreground, backgroundColor: background }}
+          >
+            <p className="text-3xl font-semibold">Make every word readable.</p>
+            <p className="text-base mt-3">
+              Preview regular text against your chosen background.
+            </p>
+          </section>
+          <Result
+            label={`Contrast ratio: ${ratio.toFixed(2)}:1`}
+            text={`Contrast ratio: ${ratio.toFixed(2)}:1\nAA normal text (4.5:1): ${ratio >= 4.5 ? "Pass" : "Fail"}\nAA large text / UI (3:1): ${ratio >= 3 ? "Pass" : "Fail"}\nAAA normal text (7:1): ${ratio >= 7 ? "Pass" : "Fail"}\nAAA large text (4.5:1): ${ratio >= 4.5 ? "Pass" : "Fail"}`}
+            filename="contrast-report.txt"
+          />
+        </>
+      ) : (
+        <Notice>
+          Enter two six-digit hex colours, for example #333333 and #ffffff.
+        </Notice>
+      )}
+    </Workspace>
+  );
 }

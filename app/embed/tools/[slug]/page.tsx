@@ -42,7 +42,7 @@ export default function EmbedToolPage() {
             The tool <code className="px-2 py-1 bg-[var(--muted)] rounded">{slug}</code> could not be loaded.
           </p>
           <a
-            href="https://nytm.tools/tools"
+            href="https://nytm.in/tools"
             className="text-violet-400 hover:text-violet-300 transition-colors"
           >
             Browse all tools →

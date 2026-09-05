@@ -44,7 +44,7 @@ function generateSidebarCategories(): SidebarCategory[] {
   });
 
   const categories: SidebarCategory[] = [];
-  const categoryOrder = ["text", "dev", "image", "converter", "generator", "security", "misc"];
+  const categoryOrder = ["text", "dev", "image", "converter", "generator", "security", "network", "misc"];
 
   categoryOrder.forEach((catId) => {
     const tools = categoryMap.get(catId);
@@ -80,7 +80,8 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     // Check localStorage for sidebar state
-    const saved = localStorage.getItem("sidebar-collapsed");
+    let saved: string | null = null;
+    try { saved = localStorage.getItem("sidebar-collapsed"); } catch {}
     if (saved !== null) {
       setCollapsed(saved === "true");
     }
@@ -92,7 +93,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (mounted) {
-      localStorage.setItem("sidebar-collapsed", String(collapsed));
+      try { localStorage.setItem("sidebar-collapsed", String(collapsed)); } catch {}
     }
   }, [collapsed, mounted]);
 

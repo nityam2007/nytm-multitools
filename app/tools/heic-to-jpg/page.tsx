@@ -1,7 +1,7 @@
 // HEIC to JPG Converter | TypeScript
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { FileUpload } from "@/components/FileUpload";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
@@ -19,7 +19,7 @@ export default function HeicToJpgPage() {
   const [heic2anyFn, setHeic2anyFn] = useState<any>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useState(() => {
+  useEffect(() => {
     const loadLibrary = async () => {
       try {
         const module = await import("heic2any");
@@ -29,7 +29,7 @@ export default function HeicToJpgPage() {
       }
     };
     loadLibrary();
-  });
+  }, []);
 
   const handleFileSelect = useCallback((file: File) => {
     setFiles(prev => [...prev, file]);

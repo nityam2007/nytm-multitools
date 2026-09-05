@@ -46,7 +46,7 @@ export function EmbedLayout({ tool, children }: EmbedLayoutProps) {
               {tool.category}
             </span>
             <a
-              href={`https://nytm.tools/tools/${tool.slug}`}
+              href={`https://nytm.in/tools/${tool.slug}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs px-2 py-1 rounded-lg bg-white/60 dark:bg-black/30 backdrop-blur-sm border border-violet-500/20 text-violet-400 hover:text-violet-300 transition-colors"
@@ -64,13 +64,14 @@ export function EmbedLayout({ tool, children }: EmbedLayoutProps) {
           <p className="text-xs text-[var(--muted-foreground)]">
             Powered by{" "}
             <a
-              href="https://nytm.tools"
+              href="https://nytm.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-violet-400 hover:text-violet-300 transition-colors font-medium"
             >
               NYTM Tools
             </a>
+            {" · "}<a href="https://nsheth.in/?utm_source=nytm.in&utm_medium=embed&utm_campaign=websites" target="_blank" rel="noopener noreferrer" className="underline">Built by NSheth</a>
           </p>
         </div>
       </div>

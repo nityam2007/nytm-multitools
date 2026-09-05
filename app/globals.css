@@ -1267,3 +1267,8 @@ body.embed-mode main {
   margin: 0 !important;
   max-width: 100% !important;
 }
+
+/* Embedded tools do not reserve space for the main sidebar. */
+body.embed-mode .app-shell { padding-left: 0 !important; }
+.business-workspace input, .business-workspace textarea, .business-workspace select { min-width: 0; }
+.business-workspace button:disabled { cursor: not-allowed; opacity: 0.5; }

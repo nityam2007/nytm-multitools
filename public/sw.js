@@ -3,7 +3,7 @@
 // Strategy: cache-first for static assets, stale-while-revalidate for pages.
 // Bump CACHE_VERSION to invalidate old caches on deploy.
 
-const CACHE_VERSION = "nytm-v2.6.0";
+const CACHE_VERSION = "nytm-v2.7.0";
 const CACHE = `nytm-cache-${CACHE_VERSION}`;
 
 // Never touch analytics, external APIs, or non-GET — let them hit the network raw.
@@ -27,7 +27,7 @@ self.addEventListener("activate", (event) => {
   // Drop caches from older versions.
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => k.startsWith("nytm-cache-") && k !== CACHE).map((k) => caches.delete(k)))
     ).then(() => self.clients.claim())
   );
 });
@@ -46,7 +46,7 @@ self.addEventListener("fetch", (event) => {
           if (response.ok) cache.put(request, response.clone());
           return response;
         })
-        .catch(() => cached); // offline: fall back to whatever we have
+        .catch(() => cached || new Response("This tool is not available offline yet. Open it once while connected.", { status: 503, headers: { "Content-Type": "text/plain" } })); // offline: fall back to whatever we have
       return cached || network;
     })
   );

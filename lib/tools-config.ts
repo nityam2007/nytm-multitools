@@ -888,7 +888,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "pdf-compress",
     name: "PDF Compress",
-    description: "Reduce PDF file size with quality control. Fast client-side compression.",
+    description: "Recompress PDF streams losslessly in your browser. Already compact files may not shrink.",
     category: "converter",
     icon: "document",
     inputType: "file",
@@ -921,7 +921,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "pdf-unlock",
     name: "PDF Unlock",
-    description: "Remove password protection from PDF files. Requires original password.",
+    description: "Remove PDF password protection with the existing password using local qpdf processing.",
     category: "converter",
     icon: "document",
     inputType: "file",
@@ -932,7 +932,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "pdf-lock",
     name: "PDF Lock",
-    description: "Add password protection to PDF files (Coming Soon).",
+    description: "Protect PDFs with verified AES-256 password encryption in your browser.",
     category: "converter",
     icon: "document",
     inputType: "file",

@@ -1,6 +1,6 @@
 {
   "name": "nytm-tools",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "private": true,
   "toolCount": 202,
   "engines": {
@@ -28,6 +28,7 @@
     "next": "16.2.10",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^6.1.200",
+    "pdfstudio": "^0.4.0",
     "posthog-js": "^1.399.1",
     "posthog-node": "^5.40.0",
     "qrcode": "^1.5.4",

@@ -15,6 +15,12 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.7.0", changes: [
+    { type: "fixed", text: "PDF lock and unlock now use verified AES-256 encryption and password-aware decryption" },
+    { type: "improved", text: "PDF compression uses real lossless stream recompression and reports when files cannot shrink" },
+    { type: "fixed", text: "Desktop sidebar spacing, missing Network navigation, HEIC loading, and stale embed destinations" },
+    { type: "improved", text: "Version-aware update badges without interrupting tool use" },
+  ] },
   { date: "Sep 5, 2026", version: "2.6.0", changes: [
     { type: "new", text: "Product photo batches with ZIP export, printable product catalogues, and PDF page organising" },
     { type: "new", text: "Verified JPEG/PNG metadata removal and self-hosted English image-to-text OCR" },
@@ -225,7 +231,7 @@ export function Changelog() {
     if (isEmbedMode) return;
     
     const lastSeen = localStorage.getItem(STORAGE_KEY);
-    const latestDate = changelog[0]?.date;
+    const latestDate = changelog[0]?.version || changelog[0]?.date;
     const popupDismissed = localStorage.getItem(POPUP_DISMISSED_KEY);
     
     if (!lastSeen || lastSeen !== latestDate) {
@@ -233,7 +239,7 @@ export function Changelog() {
       // Show popup only if not dismissed for this version
       if (popupDismissed !== latestDate) {
         // Small delay so it doesn't appear immediately on load
-        setTimeout(() => setShowPopup(true), 1500);
+        // The update badge announces releases without interrupting a tool.
       }
     }
   }, []);
@@ -254,15 +260,15 @@ export function Changelog() {
     setShowPopup(false);
     if (!isOpen && hasNew) {
       // Mark as seen
-      localStorage.setItem(STORAGE_KEY, changelog[0]?.date || "");
-      localStorage.setItem(POPUP_DISMISSED_KEY, changelog[0]?.date || "");
+      localStorage.setItem(STORAGE_KEY, changelog[0]?.version || changelog[0]?.date || "");
+      localStorage.setItem(POPUP_DISMISSED_KEY, changelog[0]?.version || changelog[0]?.date || "");
       setHasNew(false);
     }
   };
 
   const dismissPopup = () => {
     setShowPopup(false);
-    localStorage.setItem(POPUP_DISMISSED_KEY, changelog[0]?.date || "");
+    localStorage.setItem(POPUP_DISMISSED_KEY, changelog[0]?.version || changelog[0]?.date || "");
   };
 
   const getTypeStyle = (type: "new" | "improved" | "fixed") => {

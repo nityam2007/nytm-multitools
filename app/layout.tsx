@@ -1,3 +1,5 @@
+// Root page layout | TypeScript
+import { AppShell } from "@/components/AppShell";
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -153,14 +155,14 @@ export default function RootLayout({
             <SubscriptionProvider>
               <ToastProvider>
                 <SidebarProvider>
-                  <div className="flex flex-col min-h-screen">
+                  <AppShell>
                     <Header />
                     <Sidebar />
                     <main className="flex-1 px-3 py-4 sm:px-4 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-8 overflow-auto scroll-smooth">
                       {children}
                     </main>
                     <Footer />
-                  </div>
+                  </AppShell>
                 </SidebarProvider>
               </ToastProvider>
             </SubscriptionProvider>

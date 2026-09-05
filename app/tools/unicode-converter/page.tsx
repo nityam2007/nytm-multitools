@@ -52,8 +52,8 @@ export default function UnicodeConverterPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Input Text</label>
-          <textarea
+          <label htmlFor="unicode-converter-field-1" className="block text-sm font-medium mb-2">Input Text</label>
+          <textarea id="unicode-converter-field-1"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text or paste emojis..."
@@ -88,7 +88,7 @@ export default function UnicodeConverterPage() {
               Copy
             </button>
           </div>
-          <textarea
+          <textarea aria-label="Converted output"
             value={output}
             readOnly
             placeholder="Output will appear here..."

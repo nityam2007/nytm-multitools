@@ -29,8 +29,8 @@ export default function TextToHexPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Input Text</label>
-          <textarea
+          <label htmlFor="text-to-hex-field-1" className="block text-sm font-medium mb-2">Input Text</label>
+          <textarea id="text-to-hex-field-1"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text to convert..."
@@ -40,8 +40,8 @@ export default function TextToHexPage() {
 
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex gap-2 items-center">
-            <label className="text-sm font-medium">Separator:</label>
-            <select
+            <label htmlFor="text-to-hex-field-2" className="text-sm font-medium">Separator:</label>
+            <select id="text-to-hex-field-2"
               value={separator}
               onChange={(e) => setSeparator(e.target.value)}
               className="px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -74,7 +74,7 @@ export default function TextToHexPage() {
               Copy
             </button>
           </div>
-          <textarea
+          <textarea aria-label="Hexadecimal output"
             value={hex}
             readOnly
             placeholder="Hex output will appear here..."

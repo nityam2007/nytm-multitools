@@ -37,20 +37,20 @@ export default function HashIdentifierPage() {
   const identify = () => {
     const cleanHash = hash.trim();
     const identified: HashType[] = [];
-    
+
     for (const type of hashTypes) {
       if (type.pattern.test(cleanHash)) {
         identified.push(type);
       }
     }
-    
+
     // Sort by likelihood (exact length match first)
     identified.sort((a, b) => {
       const aExact = a.length === cleanHash.length ? 1 : 0;
       const bExact = b.length === cleanHash.length ? 1 : 0;
       return bExact - aExact;
     });
-    
+
     setMatches(identified);
   };
 
@@ -58,8 +58,8 @@ export default function HashIdentifierPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Hash to Identify</label>
-          <textarea
+          <label htmlFor="hash-identifier-field-1" className="block text-sm font-medium mb-2">Hash to Identify</label>
+          <textarea id="hash-identifier-field-1"
             value={hash}
             onChange={(e) => setHash(e.target.value)}
             placeholder="Paste a hash to identify its type..."

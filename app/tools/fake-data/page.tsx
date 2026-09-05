@@ -64,8 +64,8 @@ export default function FakeDataPage() {
   };
 
   const toggleType = (type: GeneratorType) => {
-    setSelectedTypes(prev => 
-      prev.includes(type) 
+    setSelectedTypes(prev =>
+      prev.includes(type)
         ? prev.filter(t => t !== type)
         : [...prev, type]
     );
@@ -104,8 +104,8 @@ export default function FakeDataPage() {
 
         <div className="flex gap-4 items-end">
           <div className="flex-1">
-            <label className="block text-sm font-medium mb-2">Number of Records</label>
-            <input
+            <label htmlFor="fake-data-field-1" className="block text-sm font-medium mb-2">Number of Records</label>
+            <input id="fake-data-field-1"
               type="number"
               min="1"
               max="100"

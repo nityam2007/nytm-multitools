@@ -89,8 +89,8 @@ export default function ColorPickerPage() {
           />
           <div className="flex-1 space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Pick a Color</label>
-              <input
+              <label htmlFor="color-picker-field-1" className="block text-sm font-medium mb-2">Pick a Color</label>
+              <input id="color-picker-field-1"
                 type="color"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
@@ -98,8 +98,8 @@ export default function ColorPickerPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Or Enter HEX</label>
-              <input
+              <label htmlFor="color-picker-field-2" className="block text-sm font-medium mb-2">Or Enter HEX</label>
+              <input id="color-picker-field-2"
                 type="text"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}

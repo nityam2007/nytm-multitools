@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/License-NSAL_v1.1-8b5cf6?style=flat-square" alt="License" />
   <img src="https://img.shields.io/badge/Ads-None-22c55e?style=flat-square" alt="No Ads" />
   <img src="https://img.shields.io/badge/Price-Free-22c55e?style=flat-square" alt="Free" />
-  <img src="https://img.shields.io/badge/Privacy-Client--Side-8b5cf6?style=flat-square" alt="Privacy" />
+  <img src="https://img.shields.io/badge/Processing-Browser--First-8b5cf6?style=flat-square" alt="Browser-first processing" />
 </p>
 
 ---
@@ -20,7 +20,7 @@
 
 Free online tools for everyone. No ads. No bullshit.
 
-202+ tools across text, images, converters, generators, security, coding utilities, and more. Everything runs in your browser — your data stays with you.
+202 tools across text, images, converters, generators, security, coding utilities, and more. Most processing runs in your browser. Analytics and network-tool exceptions are explained in the [Privacy Notice](https://nytm.in/privacy).
 
 > **Note:** The exact tool count is managed dynamically. See [Updating Tool Count](#updating-tool-count) below.
 
@@ -185,7 +185,7 @@ When adding or removing tools, update the count in these locations:
 
 **Automatic Updates:** Most of the site uses `lib/site-config.ts` which dynamically calculates the tool count from `toolsConfig.length`. These locations update automatically:
 - Homepage stats
-- Footer tagline  
+- Footer tagline
 - Pricing page
 - About page
 - Privacy/Terms pages

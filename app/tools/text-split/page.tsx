@@ -31,7 +31,7 @@ export default function TextSplitPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Split by</label>
+          <label htmlFor="text-split-field-1" className="block text-sm font-medium mb-2">Split by</label>
           <div className="flex gap-2 mb-2 flex-wrap">
             {presets.map((preset) => (
               <button
@@ -47,7 +47,7 @@ export default function TextSplitPage() {
               </button>
             ))}
           </div>
-          <input
+          <input id="text-split-field-1"
             type="text"
             value={delimiter}
             onChange={(e) => setDelimiter(e.target.value)}

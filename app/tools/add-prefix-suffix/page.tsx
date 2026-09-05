@@ -31,8 +31,8 @@ export default function AddPrefixSuffixPage() {
       <div className="space-y-6">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Prefix</label>
-            <input
+            <label htmlFor="add-prefix-suffix-field-1" className="block text-sm font-medium mb-2">Prefix</label>
+            <input id="add-prefix-suffix-field-1"
               type="text"
               value={prefix}
               onChange={(e) => setPrefix(e.target.value)}
@@ -41,8 +41,8 @@ export default function AddPrefixSuffixPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Suffix</label>
-            <input
+            <label htmlFor="add-prefix-suffix-field-2" className="block text-sm font-medium mb-2">Suffix</label>
+            <input id="add-prefix-suffix-field-2"
               type="text"
               value={suffix}
               onChange={(e) => setSuffix(e.target.value)}

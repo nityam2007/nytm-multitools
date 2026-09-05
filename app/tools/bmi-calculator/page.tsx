@@ -36,10 +36,10 @@ export default function BmiCalculatorPage() {
     }
 
     const bmi = weightInKg / (heightInMeters * heightInMeters);
-    
+
     let category: string;
     let color: string;
-    
+
     if (bmi < 16) {
       category = "Severe Thinness";
       color = "text-red-600";
@@ -74,7 +74,7 @@ export default function BmiCalculatorPage() {
       bmi: bmi.toFixed(1),
       category,
       color,
-      minHealthyWeight: unit === "metric" 
+      minHealthyWeight: unit === "metric"
         ? minHealthyWeight.toFixed(1) + " kg"
         : (minHealthyWeight * 2.205).toFixed(1) + " lbs",
       maxHealthyWeight: unit === "metric"
@@ -129,10 +129,10 @@ export default function BmiCalculatorPage() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label htmlFor="bmi-calculator-field-1" className="block text-sm font-medium mb-2">
               Weight ({unit === "metric" ? "kg" : "lbs"})
             </label>
-            <input
+            <input id="bmi-calculator-field-1"
               type="number"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
@@ -144,8 +144,8 @@ export default function BmiCalculatorPage() {
 
           {unit === "metric" ? (
             <div>
-              <label className="block text-sm font-medium mb-2">Height (cm)</label>
-              <input
+              <label htmlFor="bmi-calculator-field-2" className="block text-sm font-medium mb-2">Height (cm)</label>
+              <input id="bmi-calculator-field-2"
                 type="number"
                 value={heightCm}
                 onChange={(e) => setHeightCm(e.target.value)}
@@ -157,8 +157,8 @@ export default function BmiCalculatorPage() {
           ) : (
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-medium mb-2">Height (ft)</label>
-                <input
+                <label htmlFor="bmi-calculator-field-3" className="block text-sm font-medium mb-2">Height (ft)</label>
+                <input id="bmi-calculator-field-3"
                   type="number"
                   value={heightFt}
                   onChange={(e) => setHeightFt(e.target.value)}
@@ -168,8 +168,8 @@ export default function BmiCalculatorPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Height (in)</label>
-                <input
+                <label htmlFor="bmi-calculator-field-4" className="block text-sm font-medium mb-2">Height (in)</label>
+                <input id="bmi-calculator-field-4"
                   type="number"
                   value={heightIn}
                   onChange={(e) => setHeightIn(e.target.value)}
@@ -185,8 +185,8 @@ export default function BmiCalculatorPage() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Age (optional)</label>
-            <input
+            <label htmlFor="bmi-calculator-field-5" className="block text-sm font-medium mb-2">Age (optional)</label>
+            <input id="bmi-calculator-field-5"
               type="number"
               value={age}
               onChange={(e) => setAge(e.target.value)}
@@ -197,8 +197,8 @@ export default function BmiCalculatorPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Gender (optional)</label>
-            <select
+            <label htmlFor="bmi-calculator-field-6" className="block text-sm font-medium mb-2">Gender (optional)</label>
+            <select id="bmi-calculator-field-6"
               value={gender}
               onChange={(e) => setGender(e.target.value as "male" | "female")}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"

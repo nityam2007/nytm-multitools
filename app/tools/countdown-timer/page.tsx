@@ -108,8 +108,8 @@ export default function CountdownTimerPage() {
           <>
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2 text-center">Hours</label>
-                <input
+                <label htmlFor="countdown-timer-field-1" className="block text-sm font-medium mb-2 text-center">Hours</label>
+                <input id="countdown-timer-field-1"
                   type="number"
                   min="0"
                   max="23"
@@ -119,8 +119,8 @@ export default function CountdownTimerPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-center">Minutes</label>
-                <input
+                <label htmlFor="countdown-timer-field-2" className="block text-sm font-medium mb-2 text-center">Minutes</label>
+                <input id="countdown-timer-field-2"
                   type="number"
                   min="0"
                   max="59"
@@ -130,8 +130,8 @@ export default function CountdownTimerPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-center">Seconds</label>
-                <input
+                <label htmlFor="countdown-timer-field-3" className="block text-sm font-medium mb-2 text-center">Seconds</label>
+                <input id="countdown-timer-field-3"
                   type="number"
                   min="0"
                   max="59"
@@ -170,7 +170,7 @@ export default function CountdownTimerPage() {
           <>
             <div className="relative">
               <div className="w-full h-2 bg-[var(--muted)] rounded-full overflow-hidden">
-                <div 
+                <div
                   className="h-full bg-blue-500 transition-all duration-1000"
                   style={{ width: `${progress}%` }}
                 />
@@ -195,8 +195,8 @@ export default function CountdownTimerPage() {
               <button
                 onClick={pauseTimer}
                 className={`flex-1 py-4 rounded-lg font-medium ${
-                  isPaused 
-                    ? "bg-green-600 text-white hover:bg-green-700" 
+                  isPaused
+                    ? "bg-green-600 text-white hover:bg-green-700"
                     : "bg-yellow-600 text-white hover:bg-yellow-700"
                 }`}
               >

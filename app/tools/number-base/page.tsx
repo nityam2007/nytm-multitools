@@ -22,16 +22,16 @@ export default function NumberBasePage() {
 
   const convert = (toBase: Base): string => {
     if (!input.trim()) return "";
-    
+
     try {
       // Remove any prefix
       let cleanInput = input.trim().toLowerCase();
       cleanInput = cleanInput.replace(/^(0b|0o|0x)/, "");
-      
+
       // Parse the number
       const num = parseInt(cleanInput, bases[inputBase].radix);
       if (isNaN(num)) return "Invalid";
-      
+
       // Convert to target base
       return bases[toBase].prefix + num.toString(bases[toBase].radix).toUpperCase();
     } catch {
@@ -62,8 +62,8 @@ export default function NumberBasePage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Input Number</label>
-          <input
+          <label htmlFor="number-base-field-1" className="block text-sm font-medium mb-2">Input Number</label>
+          <input id="number-base-field-1"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}

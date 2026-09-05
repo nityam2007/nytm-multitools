@@ -32,7 +32,7 @@ export default function RegexTesterPage() {
     try {
       const regex = new RegExp(pattern, flags);
       const foundMatches: Match[] = [];
-      
+
       if (flags.includes("g")) {
         let match;
         while ((match = regex.exec(testString)) !== null) {
@@ -60,7 +60,7 @@ export default function RegexTesterPage() {
       let highlighted = testString;
       const sortedMatches = [...foundMatches].sort((a, b) => b.index - a.index);
       for (const m of sortedMatches) {
-        highlighted = 
+        highlighted =
           highlighted.substring(0, m.index) +
           `<mark class="bg-yellow-300 dark:bg-yellow-600">${m.match}</mark>` +
           highlighted.substring(m.index + m.match.length);
@@ -105,7 +105,7 @@ export default function RegexTesterPage() {
           <label className="block text-sm font-medium mb-2">Regular Expression</label>
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground">/</span>
-            <input
+            <input aria-label="Regular expression pattern"
               type="text"
               value={pattern}
               onChange={(e) => { setPattern(e.target.value); setError(""); }}
@@ -113,7 +113,7 @@ export default function RegexTesterPage() {
               className="input flex-1"
             />
             <span className="text-muted-foreground">/</span>
-            <input
+            <input aria-label="Regular expression flags"
               type="text"
               value={flags}
               onChange={(e) => setFlags(e.target.value)}

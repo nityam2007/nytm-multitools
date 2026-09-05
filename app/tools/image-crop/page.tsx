@@ -45,10 +45,10 @@ export default function ImageCropPage() {
 
     const [w, h] = ratio.split(":").map(Number);
     const targetRatio = w / h;
-    
+
     let newWidth = crop.width;
     let newHeight = crop.width / targetRatio;
-    
+
     if (newHeight > imgSize.height) {
       newHeight = imgSize.height;
       newWidth = newHeight * targetRatio;
@@ -130,8 +130,8 @@ export default function ImageCropPage() {
                 <h3 className="font-medium">Crop Settings</h3>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Aspect Ratio</label>
-                  <select
+                  <label htmlFor="image-crop-field-1" className="block text-sm font-medium mb-1">Aspect Ratio</label>
+                  <select id="image-crop-field-1"
                     value={aspectRatio}
                     onChange={(e) => handleAspectChange(e.target.value)}
                     className="input w-full"
@@ -149,8 +149,8 @@ export default function ImageCropPage() {
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-sm font-medium mb-1">X</label>
-                    <input
+                    <label htmlFor="image-crop-field-2" className="block text-sm font-medium mb-1">X</label>
+                    <input id="image-crop-field-2"
                       type="number"
                       value={crop.x}
                       onChange={(e) => setCrop((c) => ({ ...c, x: Math.max(0, parseInt(e.target.value) || 0) }))}
@@ -158,8 +158,8 @@ export default function ImageCropPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Y</label>
-                    <input
+                    <label htmlFor="image-crop-field-3" className="block text-sm font-medium mb-1">Y</label>
+                    <input id="image-crop-field-3"
                       type="number"
                       value={crop.y}
                       onChange={(e) => setCrop((c) => ({ ...c, y: Math.max(0, parseInt(e.target.value) || 0) }))}
@@ -167,8 +167,8 @@ export default function ImageCropPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Width</label>
-                    <input
+                    <label htmlFor="image-crop-field-4" className="block text-sm font-medium mb-1">Width</label>
+                    <input id="image-crop-field-4"
                       type="number"
                       value={crop.width}
                       onChange={(e) => setCrop((c) => ({ ...c, width: Math.max(1, parseInt(e.target.value) || 1) }))}
@@ -176,8 +176,8 @@ export default function ImageCropPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Height</label>
-                    <input
+                    <label htmlFor="image-crop-field-5" className="block text-sm font-medium mb-1">Height</label>
+                    <input id="image-crop-field-5"
                       type="number"
                       value={crop.height}
                       onChange={(e) => setCrop((c) => ({ ...c, height: Math.max(1, parseInt(e.target.value) || 1) }))}

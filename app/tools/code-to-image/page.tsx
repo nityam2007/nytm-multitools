@@ -48,16 +48,16 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
     const lineHeight = fontSize * 1.6;
     const lineNumberWidth = showLineNumbers ? 50 : 0;
     const headerHeight = showWindowControls ? 40 : 0;
-    
+
     // Calculate dimensions
     ctx.font = `${fontSize}px "Fira Code", "SF Mono", Monaco, monospace`;
     const maxLineWidth = Math.max(...lines.map(line => ctx.measureText(line).width));
     const contentWidth = maxLineWidth + lineNumberWidth + 40;
     const contentHeight = lines.length * lineHeight + 20;
-    
+
     const width = contentWidth + padding * 2;
     const height = contentHeight + padding * 2 + headerHeight;
-    
+
     canvas.width = width * 2; // 2x for retina
     canvas.height = height * 2;
     ctx.scale(2, 2);
@@ -107,7 +107,7 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
       // Syntax highlighting (basic)
       const x = padding + lineNumberWidth + 10;
       let currentX = x;
-      
+
       // Simple tokenization
       const tokens = tokenize(line, language);
       tokens.forEach(token => {
@@ -136,11 +136,11 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
           {/* Editor Section */}
           <div className="space-y-4">
             <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Code Editor</h3>
-            
+
             {/* Code Input */}
             <div>
-              <label className="block text-xs sm:text-sm font-medium mb-2">Code</label>
-              <textarea
+              <label htmlFor="code-to-image-field-1" className="block text-xs sm:text-sm font-medium mb-2">Code</label>
+              <textarea id="code-to-image-field-1"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 className="w-full h-48 sm:h-64 p-3 sm:p-4 rounded-xl bg-[var(--muted)] border border-[var(--border)] font-mono text-xs sm:text-sm resize-none focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
@@ -152,8 +152,8 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
             {/* Theme & Language */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-xs sm:text-sm font-medium mb-2">Theme</label>
-                <select
+                <label htmlFor="code-to-image-field-2" className="block text-xs sm:text-sm font-medium mb-2">Theme</label>
+                <select id="code-to-image-field-2"
                   value={theme}
                   onChange={(e) => setTheme(e.target.value as keyof typeof themes)}
                   className="w-full p-2.5 sm:p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
@@ -165,8 +165,8 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-medium mb-2">Language</label>
-                <select
+                <label htmlFor="code-to-image-field-3" className="block text-xs sm:text-sm font-medium mb-2">Language</label>
+                <select id="code-to-image-field-3"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
                   className="w-full p-2.5 sm:p-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
@@ -187,8 +187,8 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
                     key={p}
                     onClick={() => setPadding(p)}
                     className={`py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
-                      padding === p 
-                        ? "bg-cyan-500 text-white" 
+                      padding === p
+                        ? "bg-cyan-500 text-white"
                         : "bg-[var(--muted)] hover:bg-[var(--muted)]/80"
                     }`}
                   >
@@ -201,8 +201,8 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
             {/* Font Size & Border Radius */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-xs sm:text-sm font-medium mb-2">Font Size: {fontSize}px</label>
-                <input
+                <label htmlFor="code-to-image-field-4" className="block text-xs sm:text-sm font-medium mb-2">Font Size: {fontSize}px</label>
+                <input id="code-to-image-field-4"
                   type="range"
                   min="10"
                   max="20"
@@ -213,8 +213,8 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-medium mb-2">Border Radius: {borderRadius}px</label>
-                <input
+                <label htmlFor="code-to-image-field-5" className="block text-xs sm:text-sm font-medium mb-2">Border Radius: {borderRadius}px</label>
+                <input id="code-to-image-field-5"
                   type="range"
                   min="0"
                   max="24"
@@ -227,8 +227,8 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
 
             {/* File Name */}
             <div>
-              <label className="block text-xs sm:text-sm font-medium mb-2">File Name</label>
-              <input
+              <label htmlFor="code-to-image-field-6" className="block text-xs sm:text-sm font-medium mb-2">File Name</label>
+              <input id="code-to-image-field-6"
                 type="text"
                 value={fileName}
                 onChange={(e) => setFileName(e.target.value)}
@@ -263,10 +263,10 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
           {/* Preview Section */}
           <div className="space-y-4">
             <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Preview</h3>
-            
-            <div 
+
+            <div
               className="rounded-xl overflow-auto border border-[var(--border)]"
-              style={{ 
+              style={{
                 backgroundColor: themes[theme].bg,
                 padding: `${Math.min(padding, 32)}px`,
                 borderRadius: `${borderRadius}px`,
@@ -279,7 +279,7 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
                   <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
                   <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
                   {fileName && (
-                    <span 
+                    <span
                       className="flex-1 text-center text-[10px] sm:text-xs font-mono"
                       style={{ color: themes[theme].comment }}
                     >
@@ -290,16 +290,16 @@ export default function CodeToImagePage({ embedMode = false }: { embedMode?: boo
               )}
               <pre
                 className="font-mono overflow-x-auto"
-                style={{ 
+                style={{
                   fontSize: `${Math.max(fontSize - 2, 10)}px`,
                   lineHeight: 1.6,
-                  color: themes[theme].text 
+                  color: themes[theme].text
                 }}
               >
                 {code.split("\n").map((line, i) => (
                   <div key={i} className="flex">
                     {showLineNumbers && (
-                      <span 
+                      <span
                         className="select-none min-w-[1.5rem] sm:min-w-[2rem] text-right pr-2 sm:pr-3 flex-shrink-0 font-mono"
                         style={{ color: themes[theme].comment }}
                       >
@@ -346,7 +346,7 @@ function tokenize(line: string, lang: string): Token[] {
   };
 
   const langKeywords = keywords[lang] || keywords.default;
-  
+
   // Check for comment
   if (line.trim().startsWith("//") || line.trim().startsWith("#")) {
     return [{ type: "comment", value: line }];

@@ -146,7 +146,7 @@ export default function ImageRotatePage() {
                 <div className="flex-1 min-w-[200px]">
                   <div className="flex items-center gap-3">
                     <span className="text-sm text-[var(--muted-foreground)]">Custom:</span>
-                    <input
+                    <input aria-label="Rotation angle slider in degrees"
                       type="range"
                       min="0"
                       max="359"
@@ -160,7 +160,7 @@ export default function ImageRotatePage() {
 
                 {/* Number Input */}
                 <div className="flex items-center gap-2">
-                  <input
+                  <input aria-label="Rotation angle in degrees"
                     type="number"
                     min="0"
                     max="359"

@@ -258,8 +258,8 @@ export default function ImageWatermarkPage() {
           {settings.type === "text" && (
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-sm text-[var(--muted-foreground)]">Watermark Text</label>
-                <input
+                <label htmlFor="image-watermark-field-1" className="text-sm text-[var(--muted-foreground)]">Watermark Text</label>
+                <input id="image-watermark-field-1"
                   type="text"
                   value={settings.text}
                   onChange={(e) => updateSetting("text", e.target.value)}
@@ -268,8 +268,8 @@ export default function ImageWatermarkPage() {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm text-[var(--muted-foreground)]">Font</label>
-                <select
+                <label htmlFor="image-watermark-field-2" className="text-sm text-[var(--muted-foreground)]">Font</label>
+                <select id="image-watermark-field-2"
                   value={settings.fontFamily}
                   onChange={(e) => updateSetting("fontFamily", e.target.value)}
                   className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] focus:border-violet-500/50 focus:outline-none"
@@ -280,13 +280,13 @@ export default function ImageWatermarkPage() {
               <div className="space-y-2">
                 <label className="text-sm text-[var(--muted-foreground)]">Color</label>
                 <div className="flex gap-2">
-                  <input
+                  <input aria-label="Choose watermark color"
                     type="color"
                     value={settings.color}
                     onChange={(e) => updateSetting("color", e.target.value)}
                     className="w-12 h-10 rounded border-0 cursor-pointer"
                   />
-                  <input
+                  <input aria-label="Watermark HEX color"
                     type="text"
                     value={settings.color}
                     onChange={(e) => updateSetting("color", e.target.value)}
@@ -300,8 +300,8 @@ export default function ImageWatermarkPage() {
           {/* Common Settings */}
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Size: {settings.fontSize}px</label>
-              <input
+              <label htmlFor="image-watermark-field-3" className="text-sm text-[var(--muted-foreground)]">Size: {settings.fontSize}px</label>
+              <input id="image-watermark-field-3"
                 type="range"
                 min="12"
                 max="200"
@@ -311,8 +311,8 @@ export default function ImageWatermarkPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Opacity: {settings.opacity}%</label>
-              <input
+              <label htmlFor="image-watermark-field-4" className="text-sm text-[var(--muted-foreground)]">Opacity: {settings.opacity}%</label>
+              <input id="image-watermark-field-4"
                 type="range"
                 min="5"
                 max="100"
@@ -322,8 +322,8 @@ export default function ImageWatermarkPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Rotation: {settings.rotation}°</label>
-              <input
+              <label htmlFor="image-watermark-field-5" className="text-sm text-[var(--muted-foreground)]">Rotation: {settings.rotation}°</label>
+              <input id="image-watermark-field-5"
                 type="range"
                 min="-180"
                 max="180"
@@ -333,8 +333,8 @@ export default function ImageWatermarkPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Position</label>
-              <select
+              <label htmlFor="image-watermark-field-6" className="text-sm text-[var(--muted-foreground)]">Position</label>
+              <select id="image-watermark-field-6"
                 value={settings.position}
                 onChange={(e) => updateSetting("position", e.target.value as Position)}
                 className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] focus:border-violet-500/50 focus:outline-none"

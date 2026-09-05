@@ -45,7 +45,7 @@ export default function PasswordGeneratorPage() {
     let result = "";
     const array = new Uint32Array(length);
     crypto.getRandomValues(array);
-    
+
     for (let i = 0; i < length; i++) {
       result += chars[array[i] % chars.length];
     }
@@ -70,7 +70,7 @@ export default function PasswordGeneratorPage() {
 
   const getPasswordStrength = (): { label: string; color: string; percentage: number } => {
     if (!password) return { label: "N/A", color: "gray", percentage: 0 };
-    
+
     let score = 0;
     if (password.length >= 8) score += 1;
     if (password.length >= 12) score += 1;
@@ -107,7 +107,7 @@ export default function PasswordGeneratorPage() {
               </button>
             )}
           </div>
-          
+
           {/* Strength Indicator */}
           {password && (
             <div className="mt-2">
@@ -131,7 +131,7 @@ export default function PasswordGeneratorPage() {
             <label className="text-sm font-medium">Password Length</label>
             <span className="text-sm font-mono">{length}</span>
           </div>
-          <input
+          <input aria-label="Password length"
             type="range"
             min="4"
             max="64"

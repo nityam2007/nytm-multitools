@@ -89,7 +89,7 @@ const synonyms: SynonymMap = {
   "raise": ["lift", "elevate", "increase", "boost", "heighten"],
   "pass": ["transfer", "hand", "convey", "proceed", "move"],
   "reach": ["attain", "achieve", "arrive at", "access", "contact"],
-  
+
   // Common adjectives
   "good": ["excellent", "great", "fine", "superior", "outstanding"],
   "bad": ["poor", "inferior", "substandard", "inadequate", "unsatisfactory"],
@@ -146,7 +146,7 @@ const synonyms: SynonymMap = {
   "beautiful": ["attractive", "lovely", "gorgeous", "stunning", "elegant"],
   "happy": ["joyful", "pleased", "delighted", "content", "cheerful"],
   "serious": ["grave", "severe", "critical", "significant", "solemn"],
-  
+
   // Common nouns
   "problem": ["issue", "challenge", "difficulty", "obstacle", "concern"],
   "way": ["method", "approach", "manner", "technique", "strategy"],
@@ -207,7 +207,7 @@ const synonyms: SynonymMap = {
   "market": ["marketplace", "industry", "sector", "trade", "commerce"],
   "customer": ["client", "buyer", "consumer", "patron", "purchaser"],
   "product": ["item", "goods", "merchandise", "commodity", "offering"],
-  
+
   // Common adverbs
   "very": ["extremely", "highly", "exceptionally", "remarkably", "particularly"],
   "really": ["truly", "genuinely", "actually", "indeed", "certainly"],
@@ -242,7 +242,7 @@ const synonyms: SynonymMap = {
   "exactly": ["precisely", "accurately", "specifically", "correctly", "perfectly"],
   "suddenly": ["abruptly", "unexpectedly", "instantly", "immediately", "all at once"],
   "clearly": ["obviously", "evidently", "plainly", "distinctly", "apparently"],
-  
+
   // Transitions and connectors
   "but": ["however", "nevertheless", "yet", "although", "though"],
   "so": ["therefore", "thus", "consequently", "hence", "accordingly"],
@@ -478,11 +478,11 @@ export default function ParaphraserPage() {
   const paraphraseStandard = (text: string): string => {
     let result = text;
     const threshold = getReplacementThreshold(strength);
-    
+
     result = replaceAdvancedPhrases(result);
-    
+
     const sentences = result.match(/[^.!?]+[.!?]+/g) || [result];
-    
+
     result = sentences.map(sentence => {
       const words = sentence.split(/(\s+)/);
       const replacedWords = words.map(word => {
@@ -501,21 +501,21 @@ export default function ParaphraserPage() {
       });
       return replacedWords.join("");
     }).join(" ");
-    
+
     return result;
   };
 
   const paraphraseFormal = (text: string): string => {
     let result = text;
     const threshold = getReplacementThreshold(strength);
-    
+
     Object.entries(formalPhrases).forEach(([casual, formal]) => {
       const regex = new RegExp(`\\b${casual}\\b`, 'gi');
       result = result.replace(regex, formal);
     });
-    
+
     result = replaceAdvancedPhrases(result);
-    
+
     const sentences = result.match(/[^.!?]+[.!?]+/g) || [result];
     result = sentences.map(sentence => {
       const words = sentence.split(/(\s+)/);
@@ -531,18 +531,18 @@ export default function ParaphraserPage() {
         return word;
       }).join("");
     }).join(" ");
-    
+
     return result;
   };
 
   const paraphraseCasual = (text: string): string => {
     let result = text;
-    
+
     Object.entries(casualPhrases).forEach(([formal, casual]) => {
       const regex = new RegExp(`\\b${formal}\\b`, 'gi');
       result = result.replace(regex, casual);
     });
-    
+
     const words = result.split(/\s+/);
     const casualWords = words.map(word => {
       if (Math.random() < 0.15 && strength !== "low") {
@@ -551,13 +551,13 @@ export default function ParaphraserPage() {
       }
       return word;
     });
-    
+
     return casualWords.join(" ");
   };
 
   const paraphraseShorter = (text: string): string => {
     let result = text;
-    
+
     const fillerWords = [
       "very", "really", "actually", "basically", "just", "quite",
       "simply", "truly", "certainly", "definitely", "absolutely",
@@ -565,12 +565,12 @@ export default function ParaphraserPage() {
       "clearly", "naturally", "essentially", "particularly", "especially",
       "extremely", "incredibly", "remarkably", "significantly"
     ];
-    
+
     fillerWords.forEach(filler => {
       const regex = new RegExp(`\\b${filler}\\s+`, 'gi');
       result = result.replace(regex, "");
     });
-    
+
     const simplifications: { [key: string]: string } = {
       "in order to": "to",
       "due to the fact that": "because",
@@ -602,20 +602,20 @@ export default function ParaphraserPage() {
       "if and when": "when",
       "unless and until": "until",
     };
-    
+
     Object.entries(simplifications).forEach(([long, short]) => {
       const regex = new RegExp(long, 'gi');
       result = result.replace(regex, short);
     });
-    
+
     result = result.replace(/\s+/g, " ").trim();
-    
+
     return result;
   };
 
   const paraphraseLonger = (text: string): string => {
     const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-    
+
     const expansions: { [key: string]: string } = {
       "because": "due to the fact that",
       "if": "in the event that",
@@ -636,7 +636,7 @@ export default function ParaphraserPage() {
       "often": "on many occasions",
       "sometimes": "from time to time",
     };
-    
+
     return sentences.map(sentence => {
       let result = sentence;
       Object.entries(expansions).forEach(([short, long]) => {
@@ -652,11 +652,11 @@ export default function ParaphraserPage() {
   const paraphraseCreative = (text: string): string => {
     let result = text;
     const threshold = strength === "high" ? 0.7 : strength === "low" ? 0.3 : 0.5;
-    
+
     result = replaceAdvancedPhrases(result);
-    
+
     const sentences = result.match(/[^.!?]+[.!?]+/g) || [result];
-    
+
     result = sentences.map(sentence => {
       const words = sentence.split(/(\s+)/);
       const replacedWords = words.map(word => {
@@ -670,9 +670,9 @@ export default function ParaphraserPage() {
         }
         return word;
       });
-      
+
       let res = replacedWords.join("");
-      
+
       if (Math.random() < 0.25 && strength !== "low") {
         const parts = res.split(/(?:,|;)/);
         if (parts.length >= 2) {
@@ -685,16 +685,16 @@ export default function ParaphraserPage() {
           }
         }
       }
-      
+
       return res;
     }).join(" ");
-    
+
     return result;
   };
 
   const paraphrase = (text: string, selectedMode: ParaphraseMode): string => {
     if (!text.trim()) return "";
-    
+
     switch (selectedMode) {
       case "standard":
         return paraphraseStandard(text);
@@ -773,10 +773,10 @@ export default function ParaphraserPage() {
               {modes.find(m => m.id === mode)?.description}
             </p>
           </div>
-          
+
           <div>
-            <label className="block text-sm font-medium mb-3">Replacement Strength</label>
             <Select
+              label="Replacement Strength"
               options={[
                 { value: "low", label: "🟢 Low (20% replacement)" },
                 { value: "medium", label: "🟡 Medium (40% replacement)" },

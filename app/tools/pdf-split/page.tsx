@@ -52,7 +52,7 @@ export default function PDFSplitPage() {
 
     try {
       const { PDFDocument } = await import("pdf-lib");
-      
+
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(arrayBuffer);
 
@@ -201,7 +201,7 @@ export default function PDFSplitPage() {
                   <div className="text-xs text-[var(--muted-foreground)] mb-2">Extract specific page range</div>
                   {splitMode === "range" && (
                     <div className="flex items-center gap-2 mt-2">
-                      <input
+                      <input aria-label="First page of range"
                         type="number"
                         min={1}
                         max={pageCount}
@@ -211,7 +211,7 @@ export default function PDFSplitPage() {
                         placeholder="From"
                       />
                       <span className="text-xs">to</span>
-                      <input
+                      <input aria-label="Last page of range"
                         type="number"
                         min={1}
                         max={pageCount}
@@ -237,7 +237,7 @@ export default function PDFSplitPage() {
                   <div className="text-sm font-medium">Custom Pages</div>
                   <div className="text-xs text-[var(--muted-foreground)] mb-2">e.g., 1,3,5-7,10</div>
                   {splitMode === "custom" && (
-                    <input
+                    <input aria-label="Custom page numbers"
                       type="text"
                       value={customPages}
                       onChange={(e) => setCustomPages(e.target.value)}

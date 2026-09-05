@@ -127,15 +127,15 @@ export default function BodyFatCalculatorPage() {
         {/* Gender & Unit */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className={labelClass}>Gender</label>
-            <select value={gender} onChange={(e) => setGender(e.target.value as Gender)} className={inputClass}>
+            <label htmlFor="body-fat-calculator-field-1" className={labelClass}>Gender</label>
+            <select id="body-fat-calculator-field-1" value={gender} onChange={(e) => setGender(e.target.value as Gender)} className={inputClass}>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
           </div>
           <div>
-            <label className={labelClass}>Units</label>
-            <select value={unit} onChange={(e) => setUnit(e.target.value as Unit)} className={inputClass}>
+            <label htmlFor="body-fat-calculator-field-2" className={labelClass}>Units</label>
+            <select id="body-fat-calculator-field-2" value={unit} onChange={(e) => setUnit(e.target.value as Unit)} className={inputClass}>
               <option value="metric">Metric (kg, cm)</option>
               <option value="imperial">Imperial (lbs, in)</option>
             </select>
@@ -147,16 +147,16 @@ export default function BodyFatCalculatorPage() {
           <h3 className="font-semibold mb-3">Basic Info (Required)</h3>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className={labelClass}>Weight ({unit === "metric" ? "kg" : "lbs"})</label>
-              <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder={unit === "metric" ? "70" : "154"} className={inputClass} />
+              <label htmlFor="body-fat-calculator-field-3" className={labelClass}>Weight ({unit === "metric" ? "kg" : "lbs"})</label>
+              <input id="body-fat-calculator-field-3" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder={unit === "metric" ? "70" : "154"} className={inputClass} />
             </div>
             <div>
-              <label className={labelClass}>Height ({unit === "metric" ? "cm" : "in"})</label>
-              <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} placeholder={unit === "metric" ? "175" : "69"} className={inputClass} />
+              <label htmlFor="body-fat-calculator-field-4" className={labelClass}>Height ({unit === "metric" ? "cm" : "in"})</label>
+              <input id="body-fat-calculator-field-4" type="number" value={height} onChange={(e) => setHeight(e.target.value)} placeholder={unit === "metric" ? "175" : "69"} className={inputClass} />
             </div>
             <div>
-              <label className={labelClass}>Age (years)</label>
-              <input type="number" value={age} onChange={(e) => setAge(e.target.value)} placeholder="25" className={inputClass} />
+              <label htmlFor="body-fat-calculator-field-5" className={labelClass}>Age (years)</label>
+              <input id="body-fat-calculator-field-5" type="number" value={age} onChange={(e) => setAge(e.target.value)} placeholder="25" className={inputClass} />
             </div>
           </div>
         </div>
@@ -167,17 +167,17 @@ export default function BodyFatCalculatorPage() {
           <p className="text-xs text-[var(--muted-foreground)] mb-3">Add these for more accurate US Navy method calculation</p>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className={labelClass}>Neck ({unit === "metric" ? "cm" : "in"})</label>
-              <input type="number" value={neck} onChange={(e) => setNeck(e.target.value)} placeholder={unit === "metric" ? "38" : "15"} className={inputClass} />
+              <label htmlFor="body-fat-calculator-field-6" className={labelClass}>Neck ({unit === "metric" ? "cm" : "in"})</label>
+              <input id="body-fat-calculator-field-6" type="number" value={neck} onChange={(e) => setNeck(e.target.value)} placeholder={unit === "metric" ? "38" : "15"} className={inputClass} />
             </div>
             <div>
-              <label className={labelClass}>Waist ({unit === "metric" ? "cm" : "in"})</label>
-              <input type="number" value={waist} onChange={(e) => setWaist(e.target.value)} placeholder={unit === "metric" ? "85" : "33"} className={inputClass} />
+              <label htmlFor="body-fat-calculator-field-7" className={labelClass}>Waist ({unit === "metric" ? "cm" : "in"})</label>
+              <input id="body-fat-calculator-field-7" type="number" value={waist} onChange={(e) => setWaist(e.target.value)} placeholder={unit === "metric" ? "85" : "33"} className={inputClass} />
             </div>
             {gender === "female" && (
               <div>
-                <label className={labelClass}>Hip ({unit === "metric" ? "cm" : "in"})</label>
-                <input type="number" value={hip} onChange={(e) => setHip(e.target.value)} placeholder={unit === "metric" ? "95" : "37"} className={inputClass} />
+                <label htmlFor="body-fat-calculator-field-8" className={labelClass}>Hip ({unit === "metric" ? "cm" : "in"})</label>
+                <input id="body-fat-calculator-field-8" type="number" value={hip} onChange={(e) => setHip(e.target.value)} placeholder={unit === "metric" ? "95" : "37"} className={inputClass} />
               </div>
             )}
           </div>

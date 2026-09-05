@@ -16,14 +16,14 @@ export default function BcryptVerifyPage() {
   const verifyHash = async () => {
     if (!password || !hash) return;
     setLoading(true);
-    
+
     // Simulate verification delay
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     // Check if hash looks like bcrypt format
     const bcryptPattern = /^\$2[aby]?\$\d{2}\$.{53}$/;
     const isValidFormat = bcryptPattern.test(hash);
-    
+
     // For demo purposes, we can't actually verify bcrypt client-side
     // This would need to be done server-side with a proper bcrypt library
     setResult(isValidFormat ? null : false);
@@ -41,8 +41,8 @@ export default function BcryptVerifyPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Password</label>
-          <input
+          <label htmlFor="bcrypt-verify-field-1" className="block text-sm font-medium mb-2">Password</label>
+          <input id="bcrypt-verify-field-1"
             type="text"
             value={password}
             onChange={(e) => { setPassword(e.target.value); setResult(null); }}
@@ -52,8 +52,8 @@ export default function BcryptVerifyPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Bcrypt Hash</label>
-          <textarea
+          <label htmlFor="bcrypt-verify-field-2" className="block text-sm font-medium mb-2">Bcrypt Hash</label>
+          <textarea id="bcrypt-verify-field-2"
             value={hash}
             onChange={(e) => { setHash(e.target.value); setResult(null); }}
             placeholder="Paste bcrypt hash (starts with $2a$, $2b$, or $2y$)..."
@@ -71,7 +71,7 @@ export default function BcryptVerifyPage() {
 
         {result !== null && (
           <div className={`p-4 rounded-xl border ${
-            result 
+            result
               ? "bg-green-500/10 border-green-500/50 text-green-500"
               : "bg-red-500/10 border-red-500/50 text-red-500"
           }`}>

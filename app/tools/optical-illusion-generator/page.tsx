@@ -249,10 +249,10 @@ export default function OpticalIllusionGeneratorPage() {
             onChange={(e) => setIllusionType(e.target.value)}
           />
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-[var(--foreground)] mb-1.5 sm:mb-2">
+            <label htmlFor="optical-illusion-generator-field-1" className="block text-xs sm:text-sm font-semibold text-[var(--foreground)] mb-1.5 sm:mb-2">
               Color 1
             </label>
-            <input
+            <input id="optical-illusion-generator-field-1"
               type="color"
               value={color1}
               onChange={(e) => setColor1(e.target.value)}
@@ -260,10 +260,10 @@ export default function OpticalIllusionGeneratorPage() {
             />
           </div>
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-[var(--foreground)] mb-1.5 sm:mb-2">
+            <label htmlFor="optical-illusion-generator-field-2" className="block text-xs sm:text-sm font-semibold text-[var(--foreground)] mb-1.5 sm:mb-2">
               Color 2
             </label>
-            <input
+            <input id="optical-illusion-generator-field-2"
               type="color"
               value={color2}
               onChange={(e) => setColor2(e.target.value)}

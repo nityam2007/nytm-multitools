@@ -95,30 +95,30 @@ export default function UnitConverterPage() {
   const convert = (): string => {
     const num = parseFloat(value);
     if (isNaN(num)) return "";
-    
+
     // Special handling for temperature
     if (category === "temperature") {
       let celsius: number;
-      
+
       // Convert to Celsius first
       if (fromUnit === "f") celsius = (num - 32) * 5/9;
       else if (fromUnit === "k") celsius = num - 273.15;
       else celsius = num;
-      
+
       // Convert from Celsius to target
       if (toUnit === "f") return ((celsius * 9/5) + 32).toFixed(4);
       if (toUnit === "k") return (celsius + 273.15).toFixed(4);
       return celsius.toFixed(4);
     }
-    
+
     const from = units[category].units.find(u => u.id === fromUnit);
     const to = units[category].units.find(u => u.id === toUnit);
-    
+
     if (!from || !to) return "";
-    
+
     const baseValue = num * from.factor;
     const result = baseValue / to.factor;
-    
+
     return result.toFixed(6).replace(/\.?0+$/, "");
   };
 
@@ -149,8 +149,8 @@ export default function UnitConverterPage() {
 
         <div className="grid md:grid-cols-3 gap-4 items-end">
           <div>
-            <label className="block text-sm font-medium mb-2">Value</label>
-            <input
+            <label htmlFor="unit-converter-field-1" className="block text-sm font-medium mb-2">Value</label>
+            <input id="unit-converter-field-1"
               type="number"
               value={value}
               onChange={(e) => setValue(e.target.value)}
@@ -158,8 +158,8 @@ export default function UnitConverterPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">From</label>
-            <select
+            <label htmlFor="unit-converter-field-2" className="block text-sm font-medium mb-2">From</label>
+            <select id="unit-converter-field-2"
               value={fromUnit}
               onChange={(e) => setFromUnit(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -170,8 +170,8 @@ export default function UnitConverterPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">To</label>
-            <select
+            <label htmlFor="unit-converter-field-3" className="block text-sm font-medium mb-2">To</label>
+            <select id="unit-converter-field-3"
               value={toUnit}
               onChange={(e) => setToUnit(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"

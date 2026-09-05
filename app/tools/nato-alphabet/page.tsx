@@ -71,8 +71,8 @@ export default function NatoAlphabetPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Text Input</label>
-          <textarea
+          <label htmlFor="nato-alphabet-field-1" className="block text-sm font-medium mb-2">Text Input</label>
+          <textarea id="nato-alphabet-field-1"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter text to convert to NATO phonetic alphabet..."
@@ -103,14 +103,14 @@ export default function NatoAlphabetPage() {
                 </button>
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-2">
               {convertedText.map((item, idx) => (
                 <div
                   key={idx}
                   className={`rounded-lg p-3 text-center ${
-                    item.original === " " 
-                      ? "bg-transparent w-4" 
+                    item.original === " "
+                      ? "bg-transparent w-4"
                       : "bg-[var(--muted)]"
                   }`}
                 >
@@ -179,8 +179,8 @@ export default function NatoAlphabetPage() {
         <div className="bg-[var(--muted)] rounded-xl p-4 text-sm text-[var(--muted-foreground)]">
           <h4 className="font-medium mb-2">About the NATO Phonetic Alphabet:</h4>
           <p>
-            The NATO phonetic alphabet is a spelling alphabet used by airline pilots, police, 
-            military, and other organizations for clear communication. Each letter is represented 
+            The NATO phonetic alphabet is a spelling alphabet used by airline pilots, police,
+            military, and other organizations for clear communication. Each letter is represented
             by a unique word to prevent misunderstanding, especially over radio or telephone.
           </p>
         </div>

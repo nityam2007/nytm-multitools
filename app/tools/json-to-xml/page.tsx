@@ -12,23 +12,23 @@ const similarTools = getToolsByCategory("converter").filter(t => t.slug !== "jso
 
 function jsonToXml(obj: unknown, rootName = "root", indent = 0): string {
   const spaces = "  ".repeat(indent);
-  
+
   if (obj === null || obj === undefined) {
     return `${spaces}<${rootName}></${rootName}>`;
   }
-  
+
   if (typeof obj !== "object") {
     return `${spaces}<${rootName}>${escapeXml(String(obj))}</${rootName}>`;
   }
-  
+
   if (Array.isArray(obj)) {
     return obj.map(item => jsonToXml(item, rootName, indent)).join("\n");
   }
-  
+
   const record = obj as Record<string, unknown>;
   let attrs = "";
   const children: string[] = [];
-  
+
   for (const [key, value] of Object.entries(record)) {
     if (key === "@attributes" && typeof value === "object" && value !== null) {
       attrs = Object.entries(value as Record<string, string>)
@@ -40,16 +40,16 @@ function jsonToXml(obj: unknown, rootName = "root", indent = 0): string {
       children.push(jsonToXml(value, key, indent + 1));
     }
   }
-  
+
   if (children.length === 0) {
     return `${spaces}<${rootName}${attrs}/>`;
   }
-  
+
   const hasOnlyText = children.length === 1 && !children[0].includes("<");
   if (hasOnlyText) {
     return `${spaces}<${rootName}${attrs}>${children[0]}</${rootName}>`;
   }
-  
+
   return `${spaces}<${rootName}${attrs}>\n${children.join("\n")}\n${spaces}</${rootName}>`;
 }
 
@@ -104,8 +104,8 @@ export default function JsonToXmlPage() {
         />
 
         <div>
-          <label className="block text-sm font-medium mb-1">Root Element Name</label>
-          <input
+          <label htmlFor="json-to-xml-field-1" className="block text-sm font-medium mb-1">Root Element Name</label>
+          <input id="json-to-xml-field-1"
             type="text"
             value={rootElement}
             onChange={(e) => setRootElement(e.target.value || "root")}

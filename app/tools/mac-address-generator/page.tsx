@@ -34,10 +34,10 @@ export default function MACAddressGeneratorPage() {
 
   const generateMAC = (): string => {
     const bytes: string[] = [];
-    
+
     for (let i = 0; i < 6; i++) {
       let byte = Math.floor(Math.random() * 256);
-      
+
       // First byte special handling
       if (i === 0) {
         if (unicast) {
@@ -45,18 +45,18 @@ export default function MACAddressGeneratorPage() {
         } else {
           byte = byte | 0x01; // Set least significant bit (multicast)
         }
-        
+
         if (localAdmin) {
           byte = byte | 0x02; // Set second least significant bit (locally administered)
         } else {
           byte = byte & 0xFD; // Clear second least significant bit (universally administered)
         }
       }
-      
+
       const hex = byte.toString(16).padStart(2, "0");
       bytes.push(uppercase ? hex.toUpperCase() : hex);
     }
-    
+
     return formatMAC(bytes, format);
   };
 
@@ -81,8 +81,8 @@ export default function MACAddressGeneratorPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Format</label>
-            <select
+            <label htmlFor="mac-address-generator-field-1" className="block text-sm font-medium mb-2">Format</label>
+            <select id="mac-address-generator-field-1"
               value={format}
               onChange={(e) => setFormat(e.target.value as MACFormat)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -94,8 +94,8 @@ export default function MACAddressGeneratorPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="mac-address-generator-field-2" className="block text-sm font-medium mb-2">Count</label>
+            <input id="mac-address-generator-field-2"
               type="number"
               min="1"
               max="100"

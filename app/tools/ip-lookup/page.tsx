@@ -28,15 +28,15 @@ export default function IPLookupPage() {
   const lookup = async (ipAddress?: string) => {
     setLoading(true);
     setError("");
-    
+
     try {
       const url = ipAddress ? `https://ipinfo.io/${ipAddress}/json` : "https://ipinfo.io/json";
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error("IP lookup failed");
       }
-      
+
       const data = await response.json();
       setInfo(data);
     } catch {
@@ -72,7 +72,7 @@ export default function IPLookupPage() {
             Lookup My IP
           </button>
           <div className="flex gap-2">
-            <input
+            <input aria-label="IP address"
               type="text"
               value={ip}
               onChange={(e) => setIp(e.target.value)}
@@ -168,8 +168,8 @@ export default function IPLookupPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
           </svg>
           <div>
-            <strong>Third-Party API Notice:</strong> This tool uses the ipinfo.io external API to retrieve IP geolocation data. 
-            Your IP address is sent to ipinfo.io servers. This is the <strong>only tool</strong> on NYTM that makes external API calls. 
+            <strong>Third-Party API Notice:</strong> This tool uses the ipinfo.io external API to retrieve IP geolocation data.
+            Your IP address is sent to ipinfo.io servers. This is the <strong>only tool</strong> on NYTM that makes external API calls.
             All other {getOtherToolsCount(2)} tools process data entirely in your browser.
           </div>
         </div>

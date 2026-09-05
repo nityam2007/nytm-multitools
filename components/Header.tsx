@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
+import { SidebarToggle } from "./Sidebar";
 import { Changelog } from "./Changelog";
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from "@/assets/icons";
 
@@ -35,13 +36,16 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-[var(--background)]/80 backdrop-blur-2xl backdrop-saturate-150 border-b border-[var(--border)]/50 shadow-sm shadow-black/5">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          {/* Logo */}
+          {/* Logo and mobile tool navigation */}
+          <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center group">
             <span className="font-bold text-lg sm:text-xl tracking-tight">
               <span className="gradient-text">NYTM</span>
               <span className="text-[var(--muted-foreground)] font-normal ml-1 hidden sm:inline">Tools</span>
             </span>
           </Link>
+          <SidebarToggle className="lg:hidden" onToggle={() => setMobileMenuOpen(false)} />
+          </div>
 
           {/* Desktop Navigation - Center */}
           <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-1">

@@ -71,8 +71,8 @@ export default function AgeCalculatorPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Date of Birth</label>
-            <input
+            <label htmlFor="age-calculator-field-1" className="block text-sm font-medium mb-2">Date of Birth</label>
+            <input id="age-calculator-field-1"
               type="date"
               value={birthDate}
               onChange={(e) => setBirthDate(e.target.value)}
@@ -81,8 +81,8 @@ export default function AgeCalculatorPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Calculate Age On</label>
-            <input
+            <label htmlFor="age-calculator-field-2" className="block text-sm font-medium mb-2">Calculate Age On</label>
+            <input id="age-calculator-field-2"
               type="date"
               value={targetDate}
               onChange={(e) => setTargetDate(e.target.value)}

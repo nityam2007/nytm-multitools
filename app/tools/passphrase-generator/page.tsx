@@ -144,12 +144,12 @@ export default function PassphraseGeneratorPage() {
 
   const getStrength = (): { label: string; color: string; percentage: number; entropy: number } => {
     if (!passphrase) return { label: "N/A", color: "gray", percentage: 0, entropy: 0 };
-    
+
     const words = getWords();
     let entropy = wordCount * Math.log2(words.length);
     if (includeNumber) entropy += Math.log2(1000);
     if (includeSymbol) entropy += Math.log2(8);
-    
+
     if (entropy < 40) return { label: "Weak", color: "#ef4444", percentage: 25, entropy };
     if (entropy < 60) return { label: "Fair", color: "#f59e0b", percentage: 50, entropy };
     if (entropy < 80) return { label: "Strong", color: "#22c55e", percentage: 75, entropy };
@@ -190,10 +190,10 @@ export default function PassphraseGeneratorPage() {
         {/* Configuration */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs sm:text-sm font-semibold text-[var(--foreground)] mb-1.5 sm:mb-2">
+            <label htmlFor="passphrase-generator-field-1" className="block text-xs sm:text-sm font-semibold text-[var(--foreground)] mb-1.5 sm:mb-2">
               Word Count: {wordCount}
             </label>
-            <input
+            <input id="passphrase-generator-field-1"
               type="range"
               min="3"
               max="8"

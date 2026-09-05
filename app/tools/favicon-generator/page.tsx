@@ -154,13 +154,13 @@ export default function FaviconGeneratorPage() {
               <div className="bg-[var(--card)] rounded-xl p-4 border border-[var(--border)]">
                 <h3 className="font-semibold mb-3">Background Color</h3>
                 <div className="flex items-center gap-3">
-                  <input
+                  <input aria-label="Choose background color"
                     type="color"
                     value={bgColor}
                     onChange={(e) => setBgColor(e.target.value)}
                     className="w-12 h-12 rounded cursor-pointer"
                   />
-                  <input
+                  <input aria-label="Background HEX color"
                     type="text"
                     value={bgColor}
                     onChange={(e) => setBgColor(e.target.value)}
@@ -171,7 +171,7 @@ export default function FaviconGeneratorPage() {
 
               <div className="bg-[var(--card)] rounded-xl p-4 border border-[var(--border)]">
                 <h3 className="font-semibold mb-3">Border Radius: {borderRadius}%</h3>
-                <input
+                <input aria-label="Border radius percentage"
                   type="range"
                   value={borderRadius}
                   onChange={(e) => setBorderRadius(parseInt(e.target.value))}

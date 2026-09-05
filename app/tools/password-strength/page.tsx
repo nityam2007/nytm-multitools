@@ -19,7 +19,7 @@ function analyzePassword(password: string): StrengthResult {
   if (!password) {
     return { score: 0, label: "Empty", color: "gray", feedback: [], crackTime: "Instant" };
   }
-  
+
   const checks = {
     length: password.length,
     lowercase: /[a-z]/.test(password),
@@ -29,10 +29,10 @@ function analyzePassword(password: string): StrengthResult {
     noRepeating: !/(.)\1{2,}/.test(password),
     noSequential: !/(?:abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz|012|123|234|345|456|567|678|789)/i.test(password),
   };
-  
+
   const feedback: string[] = [];
   let score = 0;
-  
+
   // Length scoring
   if (checks.length < 8) {
     feedback.push("Password should be at least 8 characters");
@@ -44,41 +44,41 @@ function analyzePassword(password: string): StrengthResult {
   } else {
     score += 3;
   }
-  
+
   // Character variety
   if (!checks.lowercase) feedback.push("Add lowercase letters");
   else score += 1;
-  
+
   if (!checks.uppercase) feedback.push("Add uppercase letters");
   else score += 1;
-  
+
   if (!checks.numbers) feedback.push("Add numbers");
   else score += 1;
-  
+
   if (!checks.symbols) feedback.push("Add special characters (!@#$%...)");
   else score += 2;
-  
+
   // Pattern checks
   if (!checks.noRepeating) {
     feedback.push("Avoid repeating characters (aaa, 111)");
     score -= 1;
   }
-  
+
   if (!checks.noSequential) {
     feedback.push("Avoid sequential patterns (abc, 123)");
     score -= 1;
   }
-  
+
   // Common password check (simplified)
   const common = ["password", "123456", "qwerty", "admin", "letmein", "welcome", "monkey"];
   if (common.some(c => password.toLowerCase().includes(c))) {
     feedback.push("Avoid common words");
     score -= 2;
   }
-  
+
   // Normalize score
   score = Math.max(0, Math.min(10, score));
-  
+
   // Determine label and color
   let label: string, color: string;
   if (score <= 2) { label = "Very Weak"; color = "#ef4444"; }
@@ -86,14 +86,14 @@ function analyzePassword(password: string): StrengthResult {
   else if (score <= 6) { label = "Fair"; color = "#eab308"; }
   else if (score <= 8) { label = "Strong"; color = "#22c55e"; }
   else { label = "Very Strong"; color = "#10b981"; }
-  
+
   // Estimate crack time (simplified)
-  const charsetSize = (checks.lowercase ? 26 : 0) + (checks.uppercase ? 26 : 0) + 
+  const charsetSize = (checks.lowercase ? 26 : 0) + (checks.uppercase ? 26 : 0) +
                       (checks.numbers ? 10 : 0) + (checks.symbols ? 32 : 0);
   const combinations = Math.pow(charsetSize || 1, password.length);
   const guessesPerSecond = 10_000_000_000; // 10 billion (modern GPU)
   const seconds = combinations / guessesPerSecond;
-  
+
   let crackTime: string;
   if (seconds < 1) crackTime = "Instant";
   else if (seconds < 60) crackTime = `${Math.round(seconds)} seconds`;
@@ -102,7 +102,7 @@ function analyzePassword(password: string): StrengthResult {
   else if (seconds < 31536000) crackTime = `${Math.round(seconds / 86400)} days`;
   else if (seconds < 31536000 * 1000) crackTime = `${Math.round(seconds / 31536000)} years`;
   else crackTime = "Millions of years";
-  
+
   return { score, label, color, feedback, crackTime };
 }
 
@@ -121,7 +121,7 @@ export default function PasswordStrengthPage() {
         <div>
           <label className="block text-sm font-medium mb-2">Password</label>
           <div className="relative">
-            <input
+            <input aria-label="Password to check"
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}

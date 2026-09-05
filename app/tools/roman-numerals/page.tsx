@@ -39,12 +39,12 @@ export default function RomanNumeralsPage() {
       "I": 1, "V": 5, "X": 10, "L": 50,
       "C": 100, "D": 500, "M": 1000,
     };
-    
+
     const upper = roman.toUpperCase().trim();
     if (!/^[IVXLCDM]+$/.test(upper)) {
       return null;
     }
-    
+
     let result = 0;
     for (let i = 0; i < upper.length; i++) {
       const current = romanMap[upper[i]];
@@ -138,8 +138,8 @@ export default function RomanNumeralsPage() {
 
         <div className="grid sm:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium mb-2">Arabic Number</label>
-            <input
+            <label htmlFor="roman-numerals-field-1" className="block text-sm font-medium mb-2">Arabic Number</label>
+            <input id="roman-numerals-field-1"
               type="number"
               value={arabicInput}
               onChange={(e) => handleArabicChange(e.target.value)}
@@ -151,8 +151,8 @@ export default function RomanNumeralsPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Roman Numeral</label>
-            <input
+            <label htmlFor="roman-numerals-field-2" className="block text-sm font-medium mb-2">Roman Numeral</label>
+            <input id="roman-numerals-field-2"
               type="text"
               value={romanInput}
               onChange={(e) => handleRomanChange(e.target.value)}

@@ -104,7 +104,7 @@ export default function PNGToJPGPage() {
                 <span className="font-medium">Quality</span>
                 <span className="font-bold text-amber-500">{quality}%</span>
               </div>
-              <input
+              <input aria-label="JPEG quality percentage"
                 type="range"
                 value={quality}
                 onChange={(e) => setQuality(parseInt(e.target.value))}
@@ -122,7 +122,7 @@ export default function PNGToJPGPage() {
                   <p className="text-xs text-[var(--muted-foreground)]">Replaces transparency</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <input
+                  <input aria-label="Choose background color"
                     type="color"
                     value={bgColor}
                     onChange={(e) => setBgColor(e.target.value)}

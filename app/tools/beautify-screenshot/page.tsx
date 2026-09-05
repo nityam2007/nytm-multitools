@@ -35,7 +35,7 @@ export default function BeautifyScreenshotPage() {
   const [pasteStatus, setPasteStatus] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
-  
+
   const [options, setOptions] = useState<BeautifyOptions>({
     background: gradients[0].value,
     padding: 64,
@@ -48,7 +48,7 @@ export default function BeautifyScreenshotPage() {
   const handlePaste = useCallback(async (e?: ClipboardEvent) => {
     try {
       let items: DataTransferItemList | undefined;
-      
+
       if (e) {
         // From paste event
         items = e.clipboardData?.items;
@@ -283,10 +283,10 @@ export default function BeautifyScreenshotPage() {
               {/* Sliders */}
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label htmlFor="beautify-screenshot-field-1" className="block text-sm font-medium mb-2">
                     Padding: {options.padding}px
                   </label>
-                  <input
+                  <input id="beautify-screenshot-field-1"
                     type="range"
                     min="0"
                     max="128"
@@ -297,10 +297,10 @@ export default function BeautifyScreenshotPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label htmlFor="beautify-screenshot-field-2" className="block text-sm font-medium mb-2">
                     Border Radius: {options.borderRadius}px
                   </label>
-                  <input
+                  <input id="beautify-screenshot-field-2"
                     type="range"
                     min="0"
                     max="32"
@@ -323,7 +323,7 @@ export default function BeautifyScreenshotPage() {
 
                   {options.shadow && (
                     <div className="flex-1">
-                      <input
+                      <input aria-label="Shadow intensity"
                         type="range"
                         min="10"
                         max="60"

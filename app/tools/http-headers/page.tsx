@@ -114,7 +114,7 @@ export default function HttpHeadersPage() {
         <div>
           <label className="text-sm font-medium mb-2 block">Enter URL</label>
           <div className="flex gap-2">
-            <input
+            <input aria-label="Website URL"
               type="text"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
@@ -237,7 +237,7 @@ export default function HttpHeadersPage() {
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
           <h3 className="font-semibold mb-3">About HTTP Headers</h3>
           <p className="text-sm text-[var(--muted-foreground)] mb-4">
-            HTTP headers allow the client and server to pass additional information with an HTTP request or response. 
+            HTTP headers allow the client and server to pass additional information with an HTTP request or response.
             They define the operating parameters of an HTTP transaction.
           </p>
           <div className="grid sm:grid-cols-2 gap-4 text-sm">

@@ -11,26 +11,26 @@ const similarTools = getToolsByCategory("security").filter(t => t.slug !== "md5-
 async function md5(message: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(message);
-  
+
   // Using SubtleCrypto for modern browsers - fallback to simple implementation
   // Note: MD5 is not available in SubtleCrypto, so we'll use a simple implementation
-  
+
   const md5Hash = (str: string): string => {
     function rotateLeft(value: number, shift: number): number {
       return (value << shift) | (value >>> (32 - shift));
     }
-    
+
     function addUnsigned(x: number, y: number): number {
       return (x + y) >>> 0;
     }
-    
+
     const s = [
       7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
       5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
       4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
       6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21
     ];
-    
+
     const K = [
       0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee, 0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
       0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be, 0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
@@ -41,53 +41,53 @@ async function md5(message: string): Promise<string> {
       0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039, 0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,
       0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1, 0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
     ];
-    
+
     const bytes: number[] = [];
     for (let i = 0; i < str.length; i++) {
       bytes.push(str.charCodeAt(i) & 0xff);
     }
-    
+
     bytes.push(0x80);
     while ((bytes.length % 64) !== 56) bytes.push(0);
-    
+
     const bitLen = str.length * 8;
     bytes.push(bitLen & 0xff, (bitLen >>> 8) & 0xff, (bitLen >>> 16) & 0xff, (bitLen >>> 24) & 0xff, 0, 0, 0, 0);
-    
+
     let a0 = 0x67452301, b0 = 0xefcdab89, c0 = 0x98badcfe, d0 = 0x10325476;
-    
+
     for (let i = 0; i < bytes.length; i += 64) {
       const M: number[] = [];
       for (let j = 0; j < 16; j++) {
         M[j] = bytes[i + j * 4] | (bytes[i + j * 4 + 1] << 8) | (bytes[i + j * 4 + 2] << 16) | (bytes[i + j * 4 + 3] << 24);
       }
-      
+
       let A = a0, B = b0, C = c0, D = d0;
-      
+
       for (let j = 0; j < 64; j++) {
         let F: number, g: number;
         if (j < 16) { F = (B & C) | ((~B) & D); g = j; }
         else if (j < 32) { F = (D & B) | ((~D) & C); g = (5 * j + 1) % 16; }
         else if (j < 48) { F = B ^ C ^ D; g = (3 * j + 5) % 16; }
         else { F = C ^ (B | (~D)); g = (7 * j) % 16; }
-        
+
         F = addUnsigned(F, addUnsigned(A, addUnsigned(K[j], M[g])));
         A = D; D = C; C = B;
         B = addUnsigned(B, rotateLeft(F, s[j]));
       }
-      
+
       a0 = addUnsigned(a0, A); b0 = addUnsigned(b0, B);
       c0 = addUnsigned(c0, C); d0 = addUnsigned(d0, D);
     }
-    
+
     const toHex = (n: number) => {
       let hex = "";
       for (let i = 0; i < 4; i++) hex += ((n >>> (i * 8)) & 0xff).toString(16).padStart(2, "0");
       return hex;
     };
-    
+
     return toHex(a0) + toHex(b0) + toHex(c0) + toHex(d0);
   };
-  
+
   return md5Hash(message);
 }
 
@@ -116,8 +116,8 @@ export default function MD5HashPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Input Text</label>
-          <textarea
+          <label htmlFor="md5-hash-field-1" className="block text-sm font-medium mb-2">Input Text</label>
+          <textarea id="md5-hash-field-1"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter text to hash..."

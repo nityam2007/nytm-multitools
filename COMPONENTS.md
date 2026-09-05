@@ -2,157 +2,52 @@
 
 Modern, minimal design system for NYTM MULTITOOLS (202 tools). Clean, consistent, and accessible across all tools.
 
-## 🎨 AUTOMATIC STYLING
+## Product UI refinement (v2.14–2.15)
 
-**All existing tools automatically receive the new design!** No need to update each file individually.
+NYTM keeps its violet identity, existing routes and light/dark themes. The direction is a familiar utility workspace: clear actions, readable settings, restrained decoration and predictable keyboard behavior. Design dials: variance 3, motion 2, density 5. Framer informs spacing and hierarchy; native controls serve dense tool forms.
 
-### What's Auto-Styled:
+`app/product-ui.css` holds fluid spacing, input and action tokens. Tool titles, homepage headings, workspace padding and section spacing use `clamp()` so they scale between narrow phones and desktop screens. Controls keep at least 44px action targets and mobile text inputs use 16px text. Primary actions use a solid violet surface; secondary actions use a visible border. Focus rings and reduced-motion preferences remain visible and respected.
 
-✅ **All Buttons** - `.btn`, `.btn-primary`, `.btn-secondary` classes get modern gradients and animations  
-✅ **All Inputs** - `input[type="text"]`, `input[type="number"]`, etc. get rounded corners and focus states  
-✅ **All TextAreas** - Monospace font, proper sizing, smooth focus transitions  
-✅ **All Selects** - Custom dropdown arrow, hover states, border animations  
-✅ **All Checkboxes** - Modern rounded style with gradient checkmarks  
-✅ **All Radio Buttons** - Circular with gradient centers  
-✅ **All Scrollbars** - Custom violet gradient scrollbars (both vertical and horizontal)  
+Use shared `Input`, `Select` and `TextArea` with a `label`. They connect the label, help and validation messages with stable IDs. Native fields need `id`/`htmlFor` or a descriptive accessible name. Never use a placeholder as the only label. Global native form defaults live in `@layer base` so icon padding and component styles can override them; do not restore global padding `!important` rules.
 
-**Just use standard HTML elements and they'll look modern automatically!**
+### File selection
 
----
-
-## Design Principles
-
-- **Minimal**: No unnecessary decorations, focus on content
-- **Consistent**: Same visual language throughout all tools
-- **Accessible**: Proper contrast, focus states, keyboard navigation
-- **Responsive**: Works seamlessly on all screen sizes
-- **Fast**: No external dependencies for icons or fonts
-
----
-
-## 🚀 Quick Start - No Changes Needed!
-
-**Your existing tools already look modern!** The global CSS automatically styles:
+Use `FilePicker` for native `onChange` handlers, and `FileUpload` for the older `onFileSelect(file)` API. Both provide a real Browse files button, dashed drop zone, supported formats, selection status and error feedback. The hidden native input is opened by a keyboard-operable button. Drag/drop dispatches the same native change event as the picker.
 
 ```tsx
-// OLD CODE - Still works and looks modern!
-<button className="btn btn-primary">Click Me</button>
-<input type="text" placeholder="Enter text..." />
-<textarea placeholder="Enter JSON..." />
-<select>
-  <option>Option 1</option>
-</select>
+<FilePicker
+  label="Choose product images"
+  accept="image/jpeg,image/png,image/webp"
+  multiple
+  maxFiles={30}
+  maxSize={20 * 1024 * 1024}
+  maxTotalSize={100 * 1024 * 1024}
+  onChange={event => setFiles(Array.from(event.target.files || []))}
+/>
 ```
 
-**All of the above now have:**
-- ✨ Gradient backgrounds (buttons)
-- 🎨 Smooth hover/focus animations
-- 📐 Rounded corners
-- 🎯 Consistent spacing
-- 🌈 Modern violet accent colors
-- 📜 Custom scrollbars
+Keep tool-specific decoding, limits and processing errors in each tool; picker validation is an initial check, not a file safety guarantee. Local preview object URLs are revoked on replacement/unmount. The file itself is not sent by the picker.
 
----
+### Navigation and discovery
 
-## 📦 Optional: Use New Components for Extra Features
+Guide, download and service actions use `.btn` or `Button`; navigation still uses real links. Sidebar search reserves space for its icon and clear action, reports empty results, and supports `/` while expanded (the homepage shortcut targets the main search). On mobile, the drawer always shows labels, traps keyboard focus, closes on Escape and restores focus. Desktop collapse remains a saved preference.
 
-For advanced features like icons, loading states, character counts, etc., use the new components:
+The homepage keeps task search, category shortcuts and useful tools near the top. Related guides and the contextual NSheth service links remain after the workspace. Internal UI demo routes carry `noindex`; public tools retain canonical URLs and their search-intent metadata.
 
-```tsx
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
-import { TextArea } from "@/components/TextArea";
-import { Select } from "@/components/Select";
+## Utility components
 
-// NEW COMPONENTS - More features
-<Button variant="primary" loading={isLoading} icon={<Icon />}>
-  Process
-</Button>
-
-<Input label="Name" icon={<SearchIcon />} charCount />
-<TextArea label="Input" charCount maxLength={500} />
-<Select label="Format" options={[...]} />
-```
-
----
-
-### Toast Notifications
-
-Global toast notifications for success/error/info messages. Updates automatically across all tools.
-
-```tsx
-import { useToast } from "@/components/Toast";
-
-function MyTool() {
-  const toast = useToast();
-
-  const handleSuccess = () => {
-    toast.success("File uploaded successfully!");
-  };
-
-  const handleError = () => {
-    toast.error("Invalid file format");
-  };
-
-  const handleInfo = () => {
-    toast.info("Processing your request...");
-  };
-
-  const handleWarning = () => {
-    toast.warning("File size is large, may take time");
-  };
-
-  return <Button onClick={handleSuccess}>Upload</Button>;
-}
-```
-
-**Setup:** Already added to `app/layout.tsx` - works everywhere automatically!
-
----
-
-### Skeleton Loading
-
-Loading skeletons for async data. Prevents layout shift.
-
-```tsx
-import { Skeleton, SkeletonCard, SkeletonToolLayout } from "@/components/Skeleton";
-
-// Basic skeleton
-<Skeleton variant="rectangular" height={200} />
-<Skeleton variant="text" lines={3} />
-<Skeleton variant="circular" width={40} height={40} />
-
-// Pre-built card skeleton
-<SkeletonCard />
-
-// Full tool layout skeleton
-{loading ? <SkeletonToolLayout /> : <YourTool />}
-
-// Custom loading state
-{loading ? (
-  <div className="space-y-4">
-    <Skeleton variant="text" width={200} />
-    <Skeleton variant="rectangular" height={240} />
-  </div>
-) : (
-  <YourContent />
-)}
-```
-
-**Variants:** `text`, `rectangular`, `circular`
-
----
+Toast, skeleton, output, alert and layout APIs remain available. Use loading states for actual work and preserve the action label while busy. `Button` defaults to `type="button"`; form submission must explicitly use `type="submit"`.
 
 ## Core Components
 
 ### Button
 
-Modern gradient button with multiple variants and loading states.
+Solid action button with multiple variants and stable loading states.
 
 ```tsx
 import { Button } from "@/components/Button";
 
-// Primary gradient button
+// Primary action button
 <Button variant="primary" size="lg">
   Beautify JSON
 </Button>
@@ -163,8 +58,8 @@ import { Button } from "@/components/Button";
 </Button>
 
 // With icon
-<Button 
-  variant="secondary" 
+<Button
+  variant="secondary"
   icon={<DownloadIcon />}
   iconPosition="right"
 >
@@ -182,7 +77,7 @@ import { Button } from "@/components/Button";
 - `secondary` - Muted background with border
 - `outline` - Transparent with border
 - `ghost` - No background, subtle hover
-- `destructive` - Red gradient for dangerous actions
+- `destructive` - Red surface for destructive actions
 
 **Sizes:** `sm`, `md`, `lg`
 
@@ -196,7 +91,7 @@ Text input with label, icon support, and error states.
 import { Input } from "@/components/Input";
 
 // Basic input
-<Input 
+<Input
   label="API Key"
   placeholder="Enter your API key..."
   value={apiKey}
@@ -486,8 +381,8 @@ For selecting between options (indent size, file format, etc.)
 
 ```tsx
 <label className="flex items-center gap-2">
-  <input 
-    type="checkbox" 
+  <input
+    type="checkbox"
     className="checkbox-modern"
     checked={removeWhitespace}
     onChange={(e) => setRemoveWhitespace(e.target.checked)}
@@ -502,10 +397,10 @@ For selecting between options (indent size, file format, etc.)
 
 ```tsx
 <label className="flex items-center gap-2">
-  <input 
-    type="radio" 
-    name="format" 
-    value="json" 
+  <input
+    type="radio"
+    name="format"
+    value="json"
     className="radio-modern"
     checked={format === 'json'}
     onChange={(e) => setFormat(e.target.value)}

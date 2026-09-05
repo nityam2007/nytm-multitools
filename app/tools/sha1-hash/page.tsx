@@ -40,8 +40,8 @@ export default function SHA1HashPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Input Text</label>
-          <textarea
+          <label htmlFor="sha1-hash-field-1" className="block text-sm font-medium mb-2">Input Text</label>
+          <textarea id="sha1-hash-field-1"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter text to hash..."

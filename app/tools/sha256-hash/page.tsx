@@ -33,8 +33,8 @@ export default function SHA256HashPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Input Text</label>
-          <textarea
+          <label htmlFor="sha256-hash-field-1" className="block text-sm font-medium mb-2">Input Text</label>
+          <textarea id="sha256-hash-field-1"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter text to hash..."

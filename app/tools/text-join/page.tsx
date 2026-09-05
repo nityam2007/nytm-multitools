@@ -33,7 +33,7 @@ export default function TextJoinPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Delimiter</label>
+          <label htmlFor="text-join-field-1" className="block text-sm font-medium mb-2">Delimiter</label>
           <div className="flex gap-2 mb-2 flex-wrap">
             {presets.map((preset) => (
               <button
@@ -49,7 +49,7 @@ export default function TextJoinPage() {
               </button>
             ))}
           </div>
-          <input
+          <input id="text-join-field-1"
             type="text"
             value={delimiter}
             onChange={(e) => setDelimiter(e.target.value)}

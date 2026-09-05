@@ -32,7 +32,7 @@ export default function PDFToImagesPage() {
 
     try {
       const { getDocument, GlobalWorkerOptions } = await import("pdfjs-dist");
-      
+
       // Use local worker (browser-only, no CDN)
       GlobalWorkerOptions.workerSrc = "/workers/pdf.worker.mjs";
 
@@ -56,7 +56,7 @@ export default function PDFToImagesPage() {
 
     try {
       const { getDocument, GlobalWorkerOptions } = await import("pdfjs-dist");
-      
+
       // Use local worker (browser-only, no CDN)
       GlobalWorkerOptions.workerSrc = "/workers/pdf.worker.mjs";
 
@@ -169,7 +169,7 @@ export default function PDFToImagesPage() {
             {(format === "jpg" || format === "webp") && (
               <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
                 <h3 className="text-sm font-semibold mb-4">Quality: {Math.round(quality * 100)}%</h3>
-                <input
+                <input aria-label="Image output quality percentage"
                   type="range"
                   min="0.5"
                   max="1"
@@ -218,7 +218,7 @@ export default function PDFToImagesPage() {
 
         <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
           <p className="text-sm text-blue-400">
-            <strong>Note:</strong> Each PDF page will be converted to a separate image file. 
+            <strong>Note:</strong> Each PDF page will be converted to a separate image file.
             All processing happens in your browser using PDF.js.
           </p>
         </div>

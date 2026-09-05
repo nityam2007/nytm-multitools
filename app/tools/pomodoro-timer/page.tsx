@@ -14,13 +14,13 @@ export default function PomodoroTimerPage() {
   const [shortBreak, setShortBreak] = useState(5);
   const [longBreak, setLongBreak] = useState(15);
   const [sessionsUntilLong, setSessionsUntilLong] = useState(4);
-  
+
   const [timeLeft, setTimeLeft] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [currentSession, setCurrentSession] = useState<SessionType>("work");
   const [completedSessions, setCompletedSessions] = useState(0);
   const [totalWorkTime, setTotalWorkTime] = useState(0);
-  
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function PomodoroTimerPage() {
 
   const handleSessionComplete = () => {
     setIsRunning(false);
-    
+
     // Play notification sound
     try {
       const audio = new Audio("data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAAA=");
@@ -56,8 +56,8 @@ export default function PomodoroTimerPage() {
 
     // Browser notification
     if ("Notification" in window && Notification.permission === "granted") {
-      const message = currentSession === "work" 
-        ? "Work session complete! Take a break." 
+      const message = currentSession === "work"
+        ? "Work session complete! Take a break."
         : "Break over! Time to focus.";
       new Notification("Pomodoro Timer", { body: message });
     }
@@ -65,7 +65,7 @@ export default function PomodoroTimerPage() {
     if (currentSession === "work") {
       const newCount = completedSessions + 1;
       setCompletedSessions(newCount);
-      
+
       if (newCount % sessionsUntilLong === 0) {
         setCurrentSession("longBreak");
         setTimeLeft(longBreak * 60);
@@ -158,7 +158,7 @@ export default function PomodoroTimerPage() {
 
         <div className="relative pt-4">
           <div className={`w-full h-2 bg-[var(--muted)] rounded-full overflow-hidden`}>
-            <div 
+            <div
               className={`h-full ${sessionColors[currentSession]} transition-all duration-1000`}
               style={{ width: `${progress}%` }}
             />
@@ -224,8 +224,8 @@ export default function PomodoroTimerPage() {
           </summary>
           <div className="p-4 pt-0 grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Work Duration (min)</label>
-              <input
+              <label htmlFor="pomodoro-timer-field-1" className="block text-sm font-medium mb-2">Work Duration (min)</label>
+              <input id="pomodoro-timer-field-1"
                 type="number"
                 min="1"
                 max="60"
@@ -239,8 +239,8 @@ export default function PomodoroTimerPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Short Break (min)</label>
-              <input
+              <label htmlFor="pomodoro-timer-field-2" className="block text-sm font-medium mb-2">Short Break (min)</label>
+              <input id="pomodoro-timer-field-2"
                 type="number"
                 min="1"
                 max="30"
@@ -254,8 +254,8 @@ export default function PomodoroTimerPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Long Break (min)</label>
-              <input
+              <label htmlFor="pomodoro-timer-field-3" className="block text-sm font-medium mb-2">Long Break (min)</label>
+              <input id="pomodoro-timer-field-3"
                 type="number"
                 min="1"
                 max="60"
@@ -269,8 +269,8 @@ export default function PomodoroTimerPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Sessions Until Long Break</label>
-              <input
+              <label htmlFor="pomodoro-timer-field-4" className="block text-sm font-medium mb-2">Sessions Until Long Break</label>
+              <input id="pomodoro-timer-field-4"
                 type="number"
                 min="2"
                 max="10"

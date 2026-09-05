@@ -143,7 +143,7 @@ export default function ImageConvertPage() {
             {(outputFormat === "jpeg" || outputFormat === "webp") && (
               <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
                 <h3 className="font-semibold mb-4">Quality: {quality}%</h3>
-                <input
+                <input aria-label="Output quality percentage"
                   type="range"
                   value={quality}
                   onChange={(e) => setQuality(parseInt(e.target.value))}

@@ -103,7 +103,7 @@ export default function WebPToJPGPage() {
                 <span className="text-sm font-medium">Quality</span>
                 <span className="text-sm text-cyan-500 font-bold">{quality}%</span>
               </div>
-              <input
+              <input aria-label="JPEG quality percentage"
                 type="range"
                 min="10"
                 max="100"

@@ -32,16 +32,16 @@ export default function RandomStringPage() {
     if (includeUpper) charset += charsets.uppercase;
     if (includeNumbers) charset += charsets.numbers;
     if (includeSymbols) charset += charsets.symbols;
-    
+
     if (excludeSimilar) {
       charset = charset.split("").filter(c => !charsets.similar.includes(c)).join("");
     }
-    
+
     if (!charset) {
       alert("Please select at least one character set");
       return;
     }
-    
+
     const strings: string[] = [];
     for (let i = 0; i < count; i++) {
       let str = "";
@@ -50,7 +50,7 @@ export default function RandomStringPage() {
       }
       strings.push(str);
     }
-    
+
     setResults(strings);
   };
 
@@ -67,8 +67,8 @@ export default function RandomStringPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Length</label>
-            <input
+            <label htmlFor="random-string-field-1" className="block text-sm font-medium mb-2">Length</label>
+            <input id="random-string-field-1"
               type="number"
               min="1"
               max="256"
@@ -78,8 +78,8 @@ export default function RandomStringPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="random-string-field-2" className="block text-sm font-medium mb-2">Count</label>
+            <input id="random-string-field-2"
               type="number"
               min="1"
               max="100"
@@ -167,8 +167,8 @@ export default function RandomStringPage() {
             ].map((preset) => (
               <button
                 key={preset.label}
-                onClick={() => { 
-                  setLength(preset.length); 
+                onClick={() => {
+                  setLength(preset.length);
                   setIncludeSymbols(preset.symbols);
                 }}
                 className="px-3 py-1 text-sm rounded-lg bg-[var(--background)] hover:bg-[var(--accent)] transition-colors"

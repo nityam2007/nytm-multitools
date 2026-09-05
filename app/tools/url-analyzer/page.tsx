@@ -58,7 +58,7 @@ export default function UrlAnalyzerPage() {
     }
 
     let urlToAnalyze = url.trim();
-    
+
     // Add protocol if missing for parsing
     if (!urlToAnalyze.match(/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//)) {
       urlToAnalyze = 'https://' + urlToAnalyze;
@@ -66,7 +66,7 @@ export default function UrlAnalyzerPage() {
 
     try {
       const parsed = new URL(urlToAnalyze);
-      
+
       // Parse query parameters
       const queryParams: QueryParam[] = [];
       parsed.searchParams.forEach((value, key) => {
@@ -81,12 +81,12 @@ export default function UrlAnalyzerPage() {
       let tld = '';
       let domain = '';
       let subdomain = '';
-      
+
       if (hostParts.length >= 2) {
         // Handle common compound TLDs
         const compoundTlds = ['co.uk', 'com.au', 'co.nz', 'co.jp', 'com.br', 'co.in', 'org.uk', 'net.au'];
         const lastTwo = hostParts.slice(-2).join('.');
-        
+
         if (compoundTlds.includes(lastTwo) && hostParts.length >= 3) {
           tld = lastTwo;
           domain = hostParts[hostParts.length - 3];
@@ -169,9 +169,9 @@ export default function UrlAnalyzerPage() {
               Load Example
             </button>
           </div>
-          
+
           <div className="flex gap-3">
-            <input
+            <input aria-label="URL to analyze"
               type="text"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
@@ -198,8 +198,8 @@ export default function UrlAnalyzerPage() {
             {/* Status Badges */}
             <div className="flex flex-wrap gap-2">
               <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                analysis.isSecure 
-                  ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400' 
+                analysis.isSecure
+                  ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400'
                   : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-400'
               }`}>
                 <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -211,7 +211,7 @@ export default function UrlAnalyzerPage() {
                 </svg>
                 {analysis.isSecure ? 'Secure (HTTPS)' : 'Not Secure (HTTP)'}
               </span>
-              
+
               {analysis.hasAuth && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400">
                   <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -220,19 +220,19 @@ export default function UrlAnalyzerPage() {
                   Contains Credentials
                 </span>
               )}
-              
+
               {analysis.hasPort && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400">
                   Custom Port: {analysis.parts?.port}
                 </span>
               )}
-              
+
               {analysis.hasQuery && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-400">
                   {analysis.queryParams.length} Query Param{analysis.queryParams.length !== 1 ? 's' : ''}
                 </span>
               )}
-              
+
               {analysis.hasFragment && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-400">
                   Has Fragment
@@ -243,7 +243,7 @@ export default function UrlAnalyzerPage() {
             {/* URL Parts */}
             <div className="bg-white dark:bg-[#1E1E1E] rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">URL Components</h3>
-              
+
               <div className="space-y-3">
                 {analysis.parts && Object.entries(analysis.parts).map(([key, value]) => (
                   value && (
@@ -278,7 +278,7 @@ export default function UrlAnalyzerPage() {
             {/* Domain Analysis */}
             <div className="bg-white dark:bg-[#1E1E1E] rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Domain Analysis</h3>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {analysis.subdomain && (
                   <div className="p-4 bg-gray-50 dark:bg-[#2A2A2A] rounded-lg">
@@ -303,7 +303,7 @@ export default function UrlAnalyzerPage() {
             {analysis.pathSegments.length > 0 && (
               <div className="bg-white dark:bg-[#1E1E1E] rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Path Segments</h3>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {analysis.pathSegments.map((segment, index) => (
                     <div key={index} className="flex items-center">
@@ -321,7 +321,7 @@ export default function UrlAnalyzerPage() {
             {analysis.queryParams.length > 0 && (
               <div className="bg-white dark:bg-[#1E1E1E] rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Query Parameters</h3>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>

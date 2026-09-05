@@ -24,7 +24,7 @@ export default function TimestampConverterPage() {
 
     try {
       let date: Date;
-      
+
       if (inputType === "timestamp") {
         const timestamp = parseInt(input, 10);
         if (isNaN(timestamp)) throw new Error("Invalid timestamp");
@@ -82,8 +82,8 @@ export default function TimestampConverterPage() {
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Input Type</label>
-            <select
+            <label htmlFor="timestamp-converter-field-1" className="block text-sm font-medium mb-2">Input Type</label>
+            <select id="timestamp-converter-field-1"
               value={inputType}
               onChange={(e) => setInputType(e.target.value as typeof inputType)}
               className="input w-full"
@@ -92,11 +92,11 @@ export default function TimestampConverterPage() {
               <option value="date">Date String</option>
             </select>
           </div>
-          
+
           {inputType === "timestamp" && (
             <div>
-              <label className="block text-sm font-medium mb-2">Unit</label>
-              <select
+              <label htmlFor="timestamp-converter-field-2" className="block text-sm font-medium mb-2">Unit</label>
+              <select id="timestamp-converter-field-2"
                 value={unit}
                 onChange={(e) => setUnit(e.target.value as typeof unit)}
                 className="input w-full"
@@ -117,7 +117,7 @@ export default function TimestampConverterPage() {
               Use current time
             </button>
           </div>
-          <input
+          <input aria-label={inputType === "timestamp" ? "Timestamp" : "Date String"}
             type="text"
             value={input}
             onChange={(e) => { setInput(e.target.value); setError(""); }}

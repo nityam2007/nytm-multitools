@@ -38,7 +38,7 @@ export default function PlaceholderImagePage() {
         <rect width="100%" height="100%" fill="${bgColor}"/>
         <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="${fontSize}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${displayText}</text>
       </svg>`;
-      
+
       const blob = new Blob([svgContent], { type: "image/svg+xml" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -51,7 +51,7 @@ export default function PlaceholderImagePage() {
 
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
-    
+
     canvas.width = width;
     canvas.height = height;
 
@@ -85,9 +85,9 @@ export default function PlaceholderImagePage() {
       <div className="space-y-6">
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
           <h3 className="font-semibold mb-4">Preview</h3>
-          <div 
+          <div
             className="mx-auto flex items-center justify-center overflow-hidden"
-            style={{ 
+            style={{
               maxWidth: "100%",
               aspectRatio: `${width}/${height}`,
               maxHeight: 300,
@@ -128,8 +128,8 @@ export default function PlaceholderImagePage() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Width (px)</label>
-            <input
+            <label htmlFor="placeholder-image-field-1" className="block text-sm font-medium mb-2">Width (px)</label>
+            <input id="placeholder-image-field-1"
               type="number"
               value={width}
               onChange={(e) => setWidth(Math.max(1, parseInt(e.target.value) || 1))}
@@ -139,8 +139,8 @@ export default function PlaceholderImagePage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Height (px)</label>
-            <input
+            <label htmlFor="placeholder-image-field-2" className="block text-sm font-medium mb-2">Height (px)</label>
+            <input id="placeholder-image-field-2"
               type="number"
               value={height}
               onChange={(e) => setHeight(Math.max(1, parseInt(e.target.value) || 1))}
@@ -155,13 +155,13 @@ export default function PlaceholderImagePage() {
           <div>
             <label className="block text-sm font-medium mb-2">Background Color</label>
             <div className="flex gap-2">
-              <input
+              <input aria-label="Choose background color"
                 type="color"
                 value={bgColor}
                 onChange={(e) => setBgColor(e.target.value)}
                 className="w-12 h-12 rounded cursor-pointer"
               />
-              <input
+              <input aria-label="Background HEX color"
                 type="text"
                 value={bgColor}
                 onChange={(e) => setBgColor(e.target.value)}
@@ -172,13 +172,13 @@ export default function PlaceholderImagePage() {
           <div>
             <label className="block text-sm font-medium mb-2">Text Color</label>
             <div className="flex gap-2">
-              <input
+              <input aria-label="Choose text color"
                 type="color"
                 value={textColor}
                 onChange={(e) => setTextColor(e.target.value)}
                 className="w-12 h-12 rounded cursor-pointer"
               />
-              <input
+              <input aria-label="Text HEX color"
                 type="text"
                 value={textColor}
                 onChange={(e) => setTextColor(e.target.value)}
@@ -189,8 +189,8 @@ export default function PlaceholderImagePage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Custom Text (optional)</label>
-          <input
+          <label htmlFor="placeholder-image-field-3" className="block text-sm font-medium mb-2">Custom Text (optional)</label>
+          <input id="placeholder-image-field-3"
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -200,8 +200,8 @@ export default function PlaceholderImagePage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Font Size: {fontSize}px</label>
-          <input
+          <label htmlFor="placeholder-image-field-4" className="block text-sm font-medium mb-2">Font Size: {fontSize}px</label>
+          <input id="placeholder-image-field-4"
             type="range"
             value={fontSize}
             onChange={(e) => setFontSize(parseInt(e.target.value))}

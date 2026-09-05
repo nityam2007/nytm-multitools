@@ -15,25 +15,25 @@ export default function JsonPathPage() {
 
   const { output, error } = useMemo(() => {
     if (!input.trim() || !path.trim()) return { output: "", error: "" };
-    
+
     try {
       const data = JSON.parse(input);
-      
+
       // Simple path parser (supports dot notation and array indices)
       const parts = path.replace(/\[(\d+)\]/g, ".$1").split(".").filter(Boolean);
       let result: unknown = data;
-      
+
       for (const part of parts) {
         if (result === null || result === undefined) {
           return { output: "", error: `Path not found: ${path}` };
         }
         result = (result as Record<string, unknown>)[part];
       }
-      
+
       if (result === undefined) {
         return { output: "", error: `Path not found: ${path}` };
       }
-      
+
       const outputStr = typeof result === "object" ? JSON.stringify(result, null, 2) : String(result);
       return { output: outputStr, error: "" };
     } catch (e) {
@@ -47,7 +47,7 @@ export default function JsonPathPage() {
     try {
       const data = JSON.parse(input);
       const paths: string[] = [];
-      
+
       const traverse = (obj: unknown, currentPath: string) => {
         if (typeof obj === "object" && obj !== null) {
           Object.keys(obj).forEach((key) => {
@@ -59,7 +59,7 @@ export default function JsonPathPage() {
           });
         }
       };
-      
+
       traverse(data, "");
       return paths.slice(0, 20);
     } catch {
@@ -78,8 +78,8 @@ export default function JsonPathPage() {
         />
 
         <div>
-          <label className="block text-sm font-medium mb-2">Path (e.g., user.name or items[0].id)</label>
-          <input
+          <label htmlFor="json-path-field-1" className="block text-sm font-medium mb-2">Path (e.g., user.name or items[0].id)</label>
+          <input id="json-path-field-1"
             type="text"
             value={path}
             onChange={(e) => setPath(e.target.value)}

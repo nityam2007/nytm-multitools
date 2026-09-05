@@ -16,6 +16,11 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.15.0", changes: [
+    { type: "improved", text: "Connected labels and descriptive field names across the tool library, with fluid homepage and workspace spacing" },
+    { type: "fixed", text: "Mobile sidebar labels, keyboard focus, search clearing and empty-result feedback" },
+    { type: "improved", text: "Internal design demos excluded from indexing while public tool URLs and search metadata stay consistent" },
+  ] },
   { date: "Sep 5, 2026", version: "2.14.0", changes: [
     { type: "improved", text: "Clear file drop zones and Browse files buttons across image, PDF and business tools, with selection feedback and validation" },
     { type: "improved", text: "Consistent form controls, connected shared labels, visible keyboard focus and fluid workspace spacing" },

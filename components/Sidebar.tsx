@@ -5,7 +5,7 @@ import { usePreference, writePreference } from "@/lib/tool-history";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, createContext, useContext, useMemo } from "react";
+import { useState, useEffect, createContext, useContext, useMemo, useRef, useSyncExternalStore } from "react";
 import { toolsConfig, searchTools } from "@/lib/tools-config";
 import {
   HomeIcon,
@@ -14,7 +14,6 @@ import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  MenuIcon,
   getCategoryIcon,
 } from "@/assets/icons";
 
@@ -108,10 +107,11 @@ export function useSidebar() {
 }
 
 // Sidebar Toggle Button Component
-export function SidebarToggle({ className = "" }: { className?: string }) {
+export function SidebarToggle({ className = "", onToggle }: { className?: string; onToggle?: () => void }) {
   const { toggle, isOpen, collapsed, setCollapsed } = useSidebar();
 
   const handleClick = () => {
+    onToggle?.();
     if (window.innerWidth < 1024) {
       toggle();
     } else {
@@ -121,12 +121,14 @@ export function SidebarToggle({ className = "" }: { className?: string }) {
 
   return (
     <button
-      onClick={handleClick}
-      className={`p-2 rounded-lg hover:bg-[var(--muted)] transition-all duration-200 ${className}`}
-      aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
-      title={isOpen ? "Close sidebar (Esc)" : "Open sidebar"}
+      onClick={event => { event.currentTarget.focus(); handleClick(); }}
+      className={`inline-flex items-center gap-1.5 px-2 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--muted)] transition-colors ${className}`}
+      aria-label={isOpen ? "Close tool categories" : "Open tool categories"}
+      aria-controls="tools-sidebar"
+      aria-expanded={isOpen}
+      title={isOpen ? "Close tool categories (Esc)" : "Browse tool categories"}
     >
-      <MenuIcon className="w-5 h-5" />
+      <GridIcon aria-hidden="true" className="w-4 h-4" /><span className="text-sm font-medium">Tools</span>
     </button>
   );
 }
@@ -145,9 +147,65 @@ function Tooltip({ children, text, show }: { children: React.ReactNode; text: st
   );
 }
 
+const subscribeMobile = (notify: () => void) => {
+  const media = window.matchMedia("(max-width: 1023px)");
+  media.addEventListener("change", notify);
+  return () => media.removeEventListener("change", notify);
+};
+const getMobileSnapshot = () => window.matchMedia("(max-width: 1023px)").matches;
+const getServerMobileSnapshot = () => false;
+
 export function Sidebar() {
   const pathname = usePathname();
-  const { isOpen, setIsOpen, collapsed, setCollapsed } = useSidebar();
+  const { isOpen, setIsOpen, collapsed: desktopCollapsed, setCollapsed } = useSidebar();
+  const mobile = useSyncExternalStore(subscribeMobile, getMobileSnapshot, getServerMobileSnapshot);
+  const collapsed = !mobile && desktopCollapsed;
+  const searchInput = useRef<HTMLInputElement>(null);
+  const drawer = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const searchShortcut = (event: KeyboardEvent) => {
+      if (pathname === "/" || collapsed || (mobile && !isOpen)) return;
+      if (event.key === "/" && !event.ctrlKey && !event.metaKey && !event.altKey &&
+          !(event.target as HTMLElement).closest("input,textarea,select,[contenteditable=true]")) {
+        event.preventDefault(); searchInput.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", searchShortcut);
+    return () => document.removeEventListener("keydown", searchShortcut);
+  }, [pathname, collapsed, mobile, isOpen]);
+
+  useEffect(() => {
+    if (!mobile || !isOpen) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    const background = [document.querySelector("header"), document.querySelector("main"), document.querySelector("footer")].filter((el): el is HTMLElement => el instanceof HTMLElement).map(el => ({ el, inert: el.inert }));
+    background.forEach(({ el }) => { el.inert = true; });
+    document.body.style.overflow = "hidden";
+    const focusable = () => Array.from(drawer.current?.querySelectorAll<HTMLElement>("a[href],button:not(:disabled),input:not(:disabled)") || []).filter(el => el.getClientRects().length > 0);
+    let focusFrame = 0;
+    const focusDrawer = () => {
+      const close = drawer.current?.querySelector<HTMLButtonElement>("button");
+      if (!close) return;
+      if (getComputedStyle(close).visibility === "visible") close.focus({ preventScroll: true });
+      if (document.activeElement !== close) focusFrame = requestAnimationFrame(focusDrawer);
+    };
+    focusFrame = requestAnimationFrame(focusDrawer);
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      const controls = focusable(), first = controls[0], last = controls.at(-1);
+      if (event.shiftKey && (document.activeElement === first || !drawer.current?.contains(document.activeElement))) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && (document.activeElement === last || !drawer.current?.contains(document.activeElement))) { event.preventDefault(); first?.focus(); }
+    };
+    document.addEventListener("keydown", trapFocus);
+    return () => {
+      cancelAnimationFrame(focusFrame);
+      document.body.style.overflow = previousOverflow;
+      background.forEach(({ el, inert }) => { el.inert = inert; });
+      document.removeEventListener("keydown", trapFocus);
+      if (previousFocus?.isConnected) previousFocus.focus();
+    };
+  }, [mobile, isOpen]);
   const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -192,16 +250,16 @@ export function Sidebar() {
       {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`
-        fixed top-0 left-0 h-full z-50
+      <aside ref={drawer} id="tools-sidebar" aria-label="Tool navigation" role={mobile ? "dialog" : undefined} aria-modal={mobile && isOpen ? true : undefined} className={`
+        fixed top-0 left-0 h-full z-50 flex flex-col
         bg-[var(--background)] border-r border-[var(--border)]
-        transition-all duration-300 ease-out overflow-hidden
+        transition-transform duration-300 ease-out overflow-hidden
         ${isOpen ? "translate-x-0 visible" : "-translate-x-full invisible"}
         lg:translate-x-0 lg:visible
         w-[280px] sm:w-72 lg:w-auto
@@ -218,7 +276,7 @@ export function Sidebar() {
             </Link>
           )}
           <button
-            aria-label={collapsed ? "Expand tool sidebar" : "Collapse tool sidebar"}
+            aria-label={mobile ? "Close tool categories" : collapsed ? "Expand tool sidebar" : "Collapse tool sidebar"}
             onClick={() => {
               if (window.innerWidth < 1024) {
                 setIsOpen(false);
@@ -245,7 +303,8 @@ export function Sidebar() {
           <div className="p-4 border-b border-[var(--border)]">
             <div className="relative">
               <input
-                type="text"
+                ref={searchInput}
+                type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search tools..."
@@ -253,7 +312,9 @@ export function Sidebar() {
                 className="sidebar-search-control field-control"
               />
               <SearchIcon aria-hidden="true" className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)]" />
-              <span aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 kbd text-[10px]">/</span>
+              {searchQuery ? <button type="button" aria-label="Clear sidebar search" className="sidebar-search-clear" onClick={() => { setSearchQuery(""); searchInput.current?.focus(); }}>
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="m6 6 12 12M6 18 18 6" /></svg>
+              </button> : <span aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 kbd text-[10px]">/</span>}
             </div>
           </div>
         )}
@@ -311,7 +372,8 @@ export function Sidebar() {
         <div className={`my-3 border-t border-[var(--border)] ${collapsed ? 'mx-2' : 'mx-4'}`} />
 
         {/* Categories */}
-        <div className={`flex-1 overflow-y-auto overflow-x-hidden pb-20 ${collapsed ? 'px-2' : 'px-3'}`} style={{ maxHeight: "calc(100vh - 260px)" }}>
+        <div className={`flex-1 min-h-0 overflow-y-auto overflow-x-hidden pb-6 ${collapsed ? 'px-2' : 'px-3'}`}>
+          {!collapsed && searchQuery && <p role="status" className="px-3 pb-3 text-sm text-[var(--muted-foreground)]">{filteredCategories.reduce((total, category) => total + category.tools.length, 0)} matching tools{!filteredCategories.length ? ". Try a shorter search or a file type." : ""}</p>}
           {filteredCategories.map((category) => {
             const IconComponent = getCategoryIcon(category.id);
             return (
@@ -320,6 +382,7 @@ export function Sidebar() {
                   <button
                     aria-label={`${category.name} tools`}
                     aria-expanded={!collapsed && expandedCategories.includes(category.id)}
+                    aria-controls={!collapsed && expandedCategories.includes(category.id) ? `sidebar-category-${category.id}` : undefined}
                     onClick={() => {
                       // Auto-expand sidebar when clicking category in collapsed mode
                       if (collapsed) {
@@ -348,11 +411,13 @@ export function Sidebar() {
                 </Tooltip>
 
                 {!collapsed && expandedCategories.includes(category.id) && (
-                  <div className="ml-5 pl-3 border-l-2 border-violet-500/20 space-y-0.5 mt-1.5 mb-3">
+                  <div id={`sidebar-category-${category.id}`} className="ml-5 pl-3 border-l-2 border-violet-500/20 space-y-0.5 mt-1.5 mb-3">
                     {category.tools.map((tool) => (
                       <Link
                         key={tool.slug}
                         href={`/tools/${tool.slug}`}
+                        aria-current={pathname === `/tools/${tool.slug}` ? "page" : undefined}
+                        title={tool.name}
                         onClick={() => window.innerWidth < 1024 && setIsOpen(false)}
                         className={`
                           relative flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-200

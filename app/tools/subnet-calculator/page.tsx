@@ -67,24 +67,24 @@ export default function SubnetCalculatorPage() {
 
   const getIPType = (ip: string): string => {
     const parts = ip.split(".").map(Number);
-    
+
     // Loopback
     if (parts[0] === 127) return "Loopback";
-    
+
     // Private ranges
     if (parts[0] === 10) return "Private (Class A)";
     if (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31) return "Private (Class B)";
     if (parts[0] === 192 && parts[1] === 168) return "Private (Class C)";
-    
+
     // Link-local
     if (parts[0] === 169 && parts[1] === 254) return "Link-Local (APIPA)";
-    
+
     // Multicast
     if (parts[0] >= 224 && parts[0] <= 239) return "Multicast";
-    
+
     // Reserved
     if (parts[0] >= 240) return "Reserved";
-    
+
     return "Public";
   };
 
@@ -99,11 +99,11 @@ export default function SubnetCalculatorPage() {
 
   const calculate = () => {
     const cleanIP = ipAddress.trim();
-    
+
     // Handle CIDR notation in IP field
     let ip = cleanIP;
     let cidrValue = cidr;
-    
+
     if (cleanIP.includes("/")) {
       const parts = cleanIP.split("/");
       ip = parts[0];
@@ -125,13 +125,13 @@ export default function SubnetCalculatorPage() {
     const ipNum = ipToNumber(ip);
     const maskNum = cidrToMask(cidrValue);
     const wildcardNum = ~maskNum >>> 0;
-    
+
     const networkNum = (ipNum & maskNum) >>> 0;
     const broadcastNum = (networkNum | wildcardNum) >>> 0;
-    
+
     const totalHosts = Math.pow(2, 32 - cidrValue);
     const usableHosts = cidrValue >= 31 ? (cidrValue === 32 ? 1 : 2) : totalHosts - 2;
-    
+
     const firstHostNum = cidrValue >= 31 ? networkNum : networkNum + 1;
     const lastHostNum = cidrValue >= 31 ? broadcastNum : broadcastNum - 1;
 
@@ -178,8 +178,8 @@ export default function SubnetCalculatorPage() {
         {/* Input Section */}
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">IP Address</label>
-            <input
+            <label htmlFor="subnet-calculator-field-1" className="block text-sm font-medium mb-2">IP Address</label>
+            <input id="subnet-calculator-field-1"
               type="text"
               value={ipAddress}
               onChange={(e) => setIpAddress(e.target.value)}
@@ -192,7 +192,7 @@ export default function SubnetCalculatorPage() {
             <label className="block text-sm font-medium mb-2">CIDR / Prefix Length</label>
             <div className="flex gap-2">
               <span className="flex items-center text-[var(--muted-foreground)] text-xl">/</span>
-              <input
+              <input aria-label="CIDR prefix length"
                 type="number"
                 value={cidr}
                 onChange={(e) => setCidr(Math.min(32, Math.max(0, parseInt(e.target.value) || 0)))}
@@ -216,7 +216,7 @@ export default function SubnetCalculatorPage() {
             <span>More hosts</span>
             <span>Fewer hosts</span>
           </div>
-          <input
+          <input aria-label="CIDR prefix length slider"
             type="range"
             value={cidr}
             onChange={(e) => setCidr(parseInt(e.target.value))}
@@ -330,8 +330,8 @@ export default function SubnetCalculatorPage() {
               </thead>
               <tbody className="divide-y divide-[var(--border)]">
                 {commonSubnets.map((subnet, idx) => (
-                  <tr 
-                    key={idx} 
+                  <tr
+                    key={idx}
                     className={`hover:bg-[var(--muted)]/50 transition-colors cursor-pointer ${result?.cidr === subnet.cidr ? "bg-violet-500/10" : ""}`}
                     onClick={() => setCidr(subnet.cidr)}
                   >

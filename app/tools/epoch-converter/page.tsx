@@ -77,8 +77,8 @@ export default function EpochConverterPage() {
             <h3 className="text-lg font-semibold mb-4">Epoch → Date</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Unix Timestamp (seconds)</label>
-                <input
+                <label htmlFor="epoch-converter-field-1" className="block text-sm font-medium mb-2">Unix Timestamp (seconds)</label>
+                <input id="epoch-converter-field-1"
                   type="text"
                   value={epoch}
                   onChange={(e) => handleEpochChange(e.target.value)}
@@ -114,8 +114,8 @@ export default function EpochConverterPage() {
             <h3 className="text-lg font-semibold mb-4">Date → Epoch</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Date</label>
-                <input
+                <label htmlFor="epoch-converter-field-2" className="block text-sm font-medium mb-2">Date</label>
+                <input id="epoch-converter-field-2"
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
@@ -123,8 +123,8 @@ export default function EpochConverterPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Time</label>
-                <input
+                <label htmlFor="epoch-converter-field-3" className="block text-sm font-medium mb-2">Time</label>
+                <input id="epoch-converter-field-3"
                   type="time"
                   step="1"
                   value={time}

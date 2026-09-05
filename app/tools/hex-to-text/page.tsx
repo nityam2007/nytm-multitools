@@ -14,21 +14,21 @@ export default function HexToTextPage() {
     // Remove common prefixes and separators
     const cleaned = hex.replace(/0x/gi, "").replace(/[^0-9a-fA-F]/g, "");
     if (!cleaned) return { text: "", error: "" };
-    
+
     if (cleaned.length % 2 !== 0) {
       return { text: "", error: "Hex string must have even number of characters" };
     }
-    
+
     try {
       const chunks = cleaned.match(/.{2}/g);
       if (!chunks) return { text: "", error: "" };
-      
+
       const result = chunks.map(chunk => {
         const charCode = parseInt(chunk, 16);
         if (isNaN(charCode)) throw new Error("Invalid hex");
         return String.fromCharCode(charCode);
       }).join("");
-      
+
       return { text: result, error: "" };
     } catch {
       return { text: "", error: "Invalid hex input" };
@@ -43,8 +43,8 @@ export default function HexToTextPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Hex Input</label>
-          <textarea
+          <label htmlFor="hex-to-text-field-1" className="block text-sm font-medium mb-2">Hex Input</label>
+          <textarea id="hex-to-text-field-1"
             value={hex}
             onChange={(e) => setHex(e.target.value)}
             placeholder="Enter hex (e.g., 48 65 6C 6C 6F or 48656C6C6F)..."
@@ -64,7 +64,7 @@ export default function HexToTextPage() {
               Copy
             </button>
           </div>
-          <textarea
+          <textarea aria-label="Text output"
             value={text}
             readOnly
             placeholder="Text output will appear here..."

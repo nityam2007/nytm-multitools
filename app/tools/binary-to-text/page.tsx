@@ -14,11 +14,11 @@ export default function BinaryToTextPage() {
     // Remove all non-binary characters and split by common separators
     const cleaned = binary.replace(/[^01\s]/g, "").trim();
     if (!cleaned) return { text: "", error: "" };
-    
+
     // Split into 8-bit chunks
     const chunks = cleaned.split(/\s+/).join("").match(/.{1,8}/g);
     if (!chunks) return { text: "", error: "" };
-    
+
     try {
       const result = chunks.map(chunk => {
         if (chunk.length < 8) {
@@ -42,8 +42,8 @@ export default function BinaryToTextPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Binary Input</label>
-          <textarea
+          <label htmlFor="binary-to-text-field-1" className="block text-sm font-medium mb-2">Binary Input</label>
+          <textarea id="binary-to-text-field-1"
             value={binary}
             onChange={(e) => setBinary(e.target.value)}
             placeholder="Enter binary (e.g., 01001000 01100101 01101100 01101100 01101111)..."
@@ -63,7 +63,7 @@ export default function BinaryToTextPage() {
               Copy
             </button>
           </div>
-          <textarea
+          <textarea aria-label="Text output"
             value={text}
             readOnly
             placeholder="Text output will appear here..."

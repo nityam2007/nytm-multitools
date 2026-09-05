@@ -375,8 +375,8 @@ export default function PDFWatermarkPage() {
 
               {/* Custom Text */}
               <div className="space-y-2">
-                <label className="text-sm text-[var(--muted-foreground)]">Custom Text</label>
-                <input
+                <label htmlFor="pdf-watermark-field-1" className="text-sm text-[var(--muted-foreground)]">Custom Text</label>
+                <input id="pdf-watermark-field-1"
                   type="text"
                   value={settings.text}
                   onChange={(e) => updateSetting("text", e.target.value)}
@@ -387,8 +387,8 @@ export default function PDFWatermarkPage() {
 
               {/* Font Selection */}
               <div className="space-y-2">
-                <label className="text-sm text-[var(--muted-foreground)]">Font Family</label>
-                <select
+                <label htmlFor="pdf-watermark-field-2" className="text-sm text-[var(--muted-foreground)]">Font Family</label>
+                <select id="pdf-watermark-field-2"
                   value={settings.fontFamily}
                   onChange={(e) => updateSetting("fontFamily", e.target.value as FontFamily)}
                   className="w-full px-4 py-3 rounded-xl bg-[var(--muted)] border border-[var(--border)] focus:border-violet-500/50 focus:outline-none"
@@ -424,10 +424,10 @@ export default function PDFWatermarkPage() {
           <div className="grid sm:grid-cols-2 gap-4">
             {/* Size */}
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">
+              <label htmlFor="pdf-watermark-field-3" className="text-sm text-[var(--muted-foreground)]">
                 {settings.type === "text" ? "Font Size" : "Size"}: {settings.fontSize}px
               </label>
-              <input
+              <input id="pdf-watermark-field-3"
                 type="range"
                 min="20"
                 max="200"
@@ -439,8 +439,8 @@ export default function PDFWatermarkPage() {
 
             {/* Opacity */}
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Opacity: {Math.round(settings.opacity * 100)}%</label>
-              <input
+              <label htmlFor="pdf-watermark-field-4" className="text-sm text-[var(--muted-foreground)]">Opacity: {Math.round(settings.opacity * 100)}%</label>
+              <input id="pdf-watermark-field-4"
                 type="range"
                 min="5"
                 max="100"
@@ -452,8 +452,8 @@ export default function PDFWatermarkPage() {
 
             {/* Rotation */}
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Rotation: {settings.rotation}°</label>
-              <input
+              <label htmlFor="pdf-watermark-field-5" className="text-sm text-[var(--muted-foreground)]">Rotation: {settings.rotation}°</label>
+              <input id="pdf-watermark-field-5"
                 type="range"
                 min="-90"
                 max="90"
@@ -465,8 +465,8 @@ export default function PDFWatermarkPage() {
 
             {/* Padding */}
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Edge Padding: {settings.padding}px</label>
-              <input
+              <label htmlFor="pdf-watermark-field-6" className="text-sm text-[var(--muted-foreground)]">Edge Padding: {settings.padding}px</label>
+              <input id="pdf-watermark-field-6"
                 type="range"
                 min="10"
                 max="200"
@@ -481,13 +481,13 @@ export default function PDFWatermarkPage() {
               <div className="space-y-2 sm:col-span-2">
                 <label className="text-sm text-[var(--muted-foreground)]">Color</label>
                 <div className="flex gap-2">
-                  <input
+                  <input aria-label="Choose watermark color"
                     type="color"
                     value={rgbToHex(settings.color.r, settings.color.g, settings.color.b)}
                     onChange={(e) => updateSetting("color", hexToRgb(e.target.value))}
                     className="w-12 h-10 rounded border-0 cursor-pointer"
                   />
-                  <input
+                  <input aria-label="Watermark HEX color"
                     type="text"
                     value={rgbToHex(settings.color.r, settings.color.g, settings.color.b)}
                     onChange={(e) => updateSetting("color", hexToRgb(e.target.value))}

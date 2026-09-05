@@ -43,7 +43,7 @@ export default function TimezoneConverterPage() {
 
     try {
       const date = new Date(sourceTime);
-      
+
       // Convert to target timezone
       const targetTime = new Intl.DateTimeFormat("en-US", {
         timeZone: targetZone,
@@ -54,7 +54,7 @@ export default function TimezoneConverterPage() {
         minute: "2-digit",
         hour12: true,
       }).format(date);
-      
+
       setConvertedTime(targetTime);
 
       // Calculate world times
@@ -67,7 +67,7 @@ export default function TimezoneConverterPage() {
           hour12: true,
         }).format(date),
       }));
-      
+
       setWorldTimes(times);
     } catch {
       setConvertedTime("Invalid date");
@@ -90,8 +90,8 @@ export default function TimezoneConverterPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Date & Time</label>
-            <input
+            <label htmlFor="timezone-converter-field-1" className="block text-sm font-medium mb-2">Date & Time</label>
+            <input id="timezone-converter-field-1"
               type="datetime-local"
               value={sourceTime}
               onChange={(e) => setSourceTime(e.target.value)}
@@ -110,8 +110,8 @@ export default function TimezoneConverterPage() {
 
         <div className="grid sm:grid-cols-5 gap-4 items-end">
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium mb-2">From Timezone</label>
-            <select
+            <label htmlFor="timezone-converter-field-2" className="block text-sm font-medium mb-2">From Timezone</label>
+            <select id="timezone-converter-field-2"
               value={sourceZone}
               onChange={(e) => setSourceZone(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -130,8 +130,8 @@ export default function TimezoneConverterPage() {
             </button>
           </div>
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium mb-2">To Timezone</label>
-            <select
+            <label htmlFor="timezone-converter-field-3" className="block text-sm font-medium mb-2">To Timezone</label>
+            <select id="timezone-converter-field-3"
               value={targetZone}
               onChange={(e) => setTargetZone(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"

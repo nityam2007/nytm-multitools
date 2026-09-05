@@ -10,7 +10,7 @@ const similarTools = getToolsByCategory("converter").filter(t => t.slug !== "asc
 const asciiData = Array.from({ length: 128 }, (_, i) => {
   let char = "";
   let description = "";
-  
+
   if (i < 32) {
     const controlChars: Record<number, string> = {
       0: "NUL", 1: "SOH", 2: "STX", 3: "ETX", 4: "EOT", 5: "ENQ", 6: "ACK", 7: "BEL",
@@ -33,7 +33,7 @@ const asciiData = Array.from({ length: 128 }, (_, i) => {
     else if (i >= 97 && i <= 122) description = "Lower";
     else description = "Symbol";
   }
-  
+
   return {
     dec: i,
     hex: i.toString(16).toUpperCase().padStart(2, "0"),
@@ -53,7 +53,7 @@ export default function AsciiTablePage() {
     if (filter === "control" && item.dec >= 32 && item.dec !== 127) return false;
     if (filter === "letters" && item.description !== "Upper" && item.description !== "Lower") return false;
     if (filter === "digits" && item.description !== "Digit") return false;
-    
+
     if (search) {
       const s = search.toLowerCase();
       return (
@@ -62,7 +62,7 @@ export default function AsciiTablePage() {
         item.char.toLowerCase().includes(s)
       );
     }
-    
+
     return true;
   });
 
@@ -70,14 +70,14 @@ export default function AsciiTablePage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div className="flex flex-wrap gap-4">
-          <input
+          <input aria-label="Search ASCII characters"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by decimal, hex, or character..."
             className="flex-1 min-w-48 px-4 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
           />
-          <select
+          <select aria-label="ASCII character group"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className="px-4 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"

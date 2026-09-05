@@ -103,7 +103,7 @@ export default function JPGToWebPPage() {
                 <span className="font-medium">Quality</span>
                 <span className="font-bold text-purple-500">{quality}%</span>
               </div>
-              <input
+              <input aria-label="WebP quality percentage"
                 type="range"
                 value={quality}
                 onChange={(e) => setQuality(parseInt(e.target.value))}

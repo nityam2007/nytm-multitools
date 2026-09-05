@@ -68,8 +68,8 @@ export default function AspectRatioPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Width (px)</label>
-            <input
+            <label htmlFor="aspect-ratio-field-1" className="block text-sm font-medium mb-2">Width (px)</label>
+            <input id="aspect-ratio-field-1"
               type="number"
               value={width}
               onChange={(e) => handleWidthChange(parseInt(e.target.value) || 0)}
@@ -77,8 +77,8 @@ export default function AspectRatioPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Height (px)</label>
-            <input
+            <label htmlFor="aspect-ratio-field-2" className="block text-sm font-medium mb-2">Height (px)</label>
+            <input id="aspect-ratio-field-2"
               type="number"
               value={height}
               onChange={(e) => handleHeightChange(parseInt(e.target.value) || 0)}

@@ -77,8 +77,8 @@ export default function UuidGeneratorPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="uuid-generator-field-1" className="block text-sm font-medium mb-2">Count</label>
+            <input id="uuid-generator-field-1"
               type="number"
               min="1"
               max="100"

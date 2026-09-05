@@ -169,7 +169,7 @@ export default function PaletteGeneratorPage() {
                   ↻ Re-extract
                 </button>
               </div>
-              <input
+              <input aria-label="Number of colors"
                 type="range"
                 value={numColors}
                 onChange={(e) => { const count = parseInt(e.target.value); setNumColors(count); extractColors(image, count); }}

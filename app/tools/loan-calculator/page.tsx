@@ -32,7 +32,7 @@ export default function LoanCalculatorPage() {
     if (monthlyRate === 0) {
       monthlyPayment = P / totalMonths;
     } else {
-      monthlyPayment = P * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / 
+      monthlyPayment = P * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
                        (Math.pow(1 + monthlyRate, totalMonths) - 1);
     }
 
@@ -48,11 +48,11 @@ export default function LoanCalculatorPage() {
     while (remainingBalance > 0 && monthsWithExtra < 1000) {
       const interestPayment = remainingBalance * monthlyRate;
       let principalPayment = monthlyPayment - interestPayment + extra;
-      
+
       if (principalPayment > remainingBalance) {
         principalPayment = remainingBalance;
       }
-      
+
       totalPaidWithExtra += interestPayment + principalPayment;
       totalInterestWithExtra += interestPayment;
       remainingBalance -= principalPayment;
@@ -74,7 +74,7 @@ export default function LoanCalculatorPage() {
       let principalPmt = monthlyPayment - interestPmt;
       if (principalPmt > balance) principalPmt = balance;
       balance -= principalPmt;
-      
+
       schedule.push({
         month: i,
         payment: monthlyPayment,
@@ -103,8 +103,8 @@ export default function LoanCalculatorPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Loan Amount ($)</label>
-            <input
+            <label htmlFor="loan-calculator-field-1" className="block text-sm font-medium mb-2">Loan Amount ($)</label>
+            <input id="loan-calculator-field-1"
               type="number"
               value={principal}
               onChange={(e) => setPrincipal(e.target.value)}
@@ -114,8 +114,8 @@ export default function LoanCalculatorPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Annual Interest Rate (%)</label>
-            <input
+            <label htmlFor="loan-calculator-field-2" className="block text-sm font-medium mb-2">Annual Interest Rate (%)</label>
+            <input id="loan-calculator-field-2"
               type="number"
               value={interestRate}
               onChange={(e) => setInterestRate(e.target.value)}
@@ -131,7 +131,7 @@ export default function LoanCalculatorPage() {
           <div>
             <label className="block text-sm font-medium mb-2">Loan Term</label>
             <div className="flex gap-2">
-              <input
+              <input aria-label="Loan term"
                 type="number"
                 value={loanTerm}
                 onChange={(e) => setLoanTerm(e.target.value)}
@@ -139,7 +139,7 @@ export default function LoanCalculatorPage() {
                 min="0"
                 className="flex-1 px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
               />
-              <select
+              <select aria-label="Loan term unit"
                 value={termUnit}
                 onChange={(e) => setTermUnit(e.target.value as "years" | "months")}
                 className="px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -150,8 +150,8 @@ export default function LoanCalculatorPage() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Extra Monthly Payment ($)</label>
-            <input
+            <label htmlFor="loan-calculator-field-3" className="block text-sm font-medium mb-2">Extra Monthly Payment ($)</label>
+            <input id="loan-calculator-field-3"
               type="number"
               value={extraPayment}
               onChange={(e) => setExtraPayment(e.target.value)}
@@ -224,7 +224,7 @@ export default function LoanCalculatorPage() {
                 Payment Breakdown
               </h3>
               <div className="relative h-8 rounded-full overflow-hidden bg-[var(--muted)]">
-                <div 
+                <div
                   className="absolute h-full bg-blue-500"
                   style={{ width: `${(parseFloat(principal) / parseFloat(calculation.totalPayment)) * 100}%` }}
                 />

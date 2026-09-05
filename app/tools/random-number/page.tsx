@@ -18,12 +18,12 @@ export default function RandomNumberPage() {
   const generate = () => {
     const numbers: number[] = [];
     const range = max - min + 1;
-    
+
     if (unique && count > range) {
       alert(`Cannot generate ${count} unique numbers in range ${min}-${max}`);
       return;
     }
-    
+
     if (unique) {
       const available = Array.from({ length: range }, (_, i) => min + i);
       for (let i = 0; i < count; i++) {
@@ -36,11 +36,11 @@ export default function RandomNumberPage() {
         numbers.push(Math.floor(Math.random() * range) + min);
       }
     }
-    
+
     if (sorted) {
       numbers.sort((a, b) => a - b);
     }
-    
+
     setResults(numbers);
   };
 
@@ -53,8 +53,8 @@ export default function RandomNumberPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Minimum</label>
-            <input
+            <label htmlFor="random-number-field-1" className="block text-sm font-medium mb-2">Minimum</label>
+            <input id="random-number-field-1"
               type="number"
               value={min}
               onChange={(e) => setMin(parseInt(e.target.value) || 0)}
@@ -62,8 +62,8 @@ export default function RandomNumberPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Maximum</label>
-            <input
+            <label htmlFor="random-number-field-2" className="block text-sm font-medium mb-2">Maximum</label>
+            <input id="random-number-field-2"
               type="number"
               value={max}
               onChange={(e) => setMax(parseInt(e.target.value) || 0)}
@@ -71,8 +71,8 @@ export default function RandomNumberPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="random-number-field-3" className="block text-sm font-medium mb-2">Count</label>
+            <input id="random-number-field-3"
               type="number"
               min="1"
               max="1000"

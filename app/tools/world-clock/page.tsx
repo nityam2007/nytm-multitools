@@ -76,7 +76,7 @@ export default function WorldClockPage() {
           ...(showSeconds && { second: "2-digit" }),
           hour12: !is24Hour,
         };
-        
+
         const dateOptions: Intl.DateTimeFormatOptions = {
           timeZone: city.id,
           weekday: "short",
@@ -86,7 +86,7 @@ export default function WorldClockPage() {
 
         const time = new Intl.DateTimeFormat("en-US", timeOptions).format(now);
         const date = new Intl.DateTimeFormat("en-US", dateOptions).format(now);
-        
+
         // Calculate offset
         const utcDate = new Date(now.toLocaleString("en-US", { timeZone: "UTC" }));
         const cityDate = new Date(now.toLocaleString("en-US", { timeZone: city.id }));
@@ -94,10 +94,10 @@ export default function WorldClockPage() {
         const offsetStr = diffHours >= 0 ? `UTC+${diffHours}` : `UTC${diffHours}`;
 
         // Check if day or night (6am-6pm is day)
-        const hour = parseInt(new Intl.DateTimeFormat("en-US", { 
-          timeZone: city.id, 
-          hour: "numeric", 
-          hour12: false 
+        const hour = parseInt(new Intl.DateTimeFormat("en-US", {
+          timeZone: city.id,
+          hour: "numeric",
+          hour12: false
         }).format(now));
         const isDay = hour >= 6 && hour < 18;
 
@@ -158,9 +158,9 @@ export default function WorldClockPage() {
               <span className="text-sm">Show seconds</span>
             </label>
           </div>
-          
+
           {availableCities.length > 0 && (
-            <select
+            <select aria-label="Time zone to add"
               value=""
               onChange={(e) => addCity(e.target.value)}
               className="px-4 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -180,8 +180,8 @@ export default function WorldClockPage() {
             <div
               key={clock.id}
               className={`relative p-6 rounded-xl border border-[var(--border)] ${
-                clock.isDay 
-                  ? "bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-blue-950 dark:to-yellow-950" 
+                clock.isDay
+                  ? "bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-blue-950 dark:to-yellow-950"
                   : "bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-950 dark:to-purple-950"
               }`}
             >
@@ -191,7 +191,7 @@ export default function WorldClockPage() {
               >
                 ×
               </button>
-              
+
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-6 h-6 text-[var(--foreground)]">
                   {clock.isDay ? (
@@ -209,11 +209,11 @@ export default function WorldClockPage() {
                   <div className="text-xs text-[var(--muted-foreground)]">{clock.country}</div>
                 </div>
               </div>
-              
+
               <div className="font-mono text-3xl font-bold mb-1">
                 {clock.time}
               </div>
-              
+
               <div className="flex justify-between text-sm text-[var(--muted-foreground)]">
                 <span>{clock.date}</span>
                 <span>{clock.offset}</span>

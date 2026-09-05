@@ -41,7 +41,7 @@ export default function TextToSpeechPage() {
   const [genTimeLeft, setGenTimeLeft] = useState(0);
   const [genElapsed, setGenElapsed] = useState(0);
   const [deviceInfo, setDeviceInfo] = useState<{ device: string; note: string } | null>(null);
-  
+
   const workerRef = useRef<Worker | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const genTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -138,7 +138,7 @@ export default function TextToSpeechPage() {
 
   const initModel = () => {
     if (status === "loading" || status === "ready") return;
-    
+
     setStatus("loading");
     setError("");
     setProgress(0);
@@ -176,10 +176,10 @@ export default function TextToSpeechPage() {
     genTimerRef.current = setInterval(() => {
       const elapsed = (Date.now() - genStartRef.current) / 1000;
       setGenElapsed(Math.floor(elapsed));
-      
+
       const progressPct = Math.min(95, (elapsed / estimatedSecs) * 100);
       setGenProgress(progressPct);
-      
+
       const remaining = Math.max(0, estimatedSecs - elapsed);
       setGenTimeLeft(Math.ceil(remaining));
     }, 100);
@@ -206,7 +206,7 @@ export default function TextToSpeechPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="max-w-2xl mx-auto space-y-6">
-        
+
         {/* Mobile Experimental Warning */}
         <div className="block md:hidden p-3 bg-red-500/15 border border-red-500/30 rounded-lg">
           <div className="flex items-start gap-2">
@@ -217,7 +217,7 @@ export default function TextToSpeechPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Step 1: Load Model (only show if not ready) */}
         {status !== "ready" && status !== "generating" && (
           <div className="text-center py-12">
@@ -254,7 +254,7 @@ export default function TextToSpeechPage() {
                 </div>
                 <h2 className="text-xl font-semibold mb-2">Loading Voice Model...</h2>
                 <div className="w-64 mx-auto bg-[var(--muted)] rounded-full h-2 mb-2">
-                  <div 
+                  <div
                     className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full transition-all"
                     style={{ width: `${progress}%` }}
                   />
@@ -297,7 +297,7 @@ export default function TextToSpeechPage() {
 
             {/* Text Input */}
             <div>
-              <textarea
+              <textarea aria-label="Text to speak"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Type or paste your text here..."
@@ -366,24 +366,24 @@ export default function TextToSpeechPage() {
                     {genTimeLeft > 0 ? `~${genTimeLeft}s remaining` : "Finishing..."}
                   </span>
                 </div>
-                
+
                 {/* Progress bar */}
                 <div className="relative h-3 bg-[var(--muted)] rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="absolute inset-y-0 left-0 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full transition-all duration-200"
                     style={{ width: `${genProgress}%` }}
                   />
                   {/* Shimmer effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_infinite] -translate-x-full" 
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_infinite] -translate-x-full"
                     style={{ animation: "shimmer 2s infinite" }}
                   />
                 </div>
-                
+
                 <div className="flex items-center justify-between text-xs text-[var(--muted-foreground)]">
                   <span>Elapsed: {genElapsed}s</span>
                   <span>{Math.round(genProgress)}%</span>
                 </div>
-                
+
                 <p className="text-xs text-center text-[var(--muted-foreground)] pt-1 border-t border-[var(--border)]">
                   Feel free to scroll around - audio will be ready when done
                 </p>
@@ -400,15 +400,15 @@ export default function TextToSpeechPage() {
             {/* Audio Player - Clean & Simple */}
             {audioUrl && (
               <div className="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-                <audio 
-                  ref={audioRef} 
+                <audio
+                  ref={audioRef}
                   src={audioUrl}
                   onPlay={() => setIsPlaying(true)}
                   onPause={() => setIsPlaying(false)}
                   onEnded={() => setIsPlaying(false)}
                   className="hidden"
                 />
-                
+
                 <div className="flex items-center gap-4">
                   {/* Play/Pause */}
                   <button
@@ -478,7 +478,7 @@ export default function TextToSpeechPage() {
                 <div>
                   <h4 className="font-semibold mb-1">How it works</h4>
                   <p className="text-[var(--muted-foreground)]">
-                    Uses the Kokoro-82M AI model running entirely in your browser via WebAssembly. 
+                    Uses the Kokoro-82M AI model running entirely in your browser via WebAssembly.
                     Your text never leaves your device.
                   </p>
                 </div>

@@ -21,7 +21,7 @@ function parseUserAgent(ua: string): ParsedUA {
     device: { type: "Desktop" },
     engine: { name: "Unknown", version: "" },
   };
-  
+
   // Browser detection
   if (ua.includes("Firefox/")) {
     result.browser.name = "Firefox";
@@ -39,7 +39,7 @@ function parseUserAgent(ua: string): ParsedUA {
     result.browser.name = "Opera";
     result.browser.version = ua.match(/(?:Opera|OPR)\/([\d.]+)/)?.[1] || "";
   }
-  
+
   // OS detection
   if (ua.includes("Windows NT 10")) {
     result.os.name = "Windows";
@@ -62,14 +62,14 @@ function parseUserAgent(ua: string): ParsedUA {
   } else if (ua.includes("Linux")) {
     result.os.name = "Linux";
   }
-  
+
   // Device type detection
   if (ua.includes("Mobile") || ua.includes("Android") && !ua.includes("Tablet")) {
     result.device.type = "Mobile";
   } else if (ua.includes("Tablet") || ua.includes("iPad")) {
     result.device.type = "Tablet";
   }
-  
+
   // Engine detection
   if (ua.includes("Gecko/")) {
     result.engine.name = "Gecko";
@@ -81,7 +81,7 @@ function parseUserAgent(ua: string): ParsedUA {
     result.engine.name = "Trident";
     result.engine.version = ua.match(/Trident\/([\d.]+)/)?.[1] || "";
   }
-  
+
   return result;
 }
 
@@ -120,7 +120,7 @@ export default function UserAgentParserPage() {
               Use My Browser
             </button>
           </div>
-          <textarea
+          <textarea aria-label="User agent string"
             value={ua}
             onChange={(e) => setUa(e.target.value)}
             placeholder="Paste a user agent string..."

@@ -19,11 +19,11 @@ export default function FindReplacePage() {
 
   const doReplace = (): { output: string; count: number } => {
     if (!input || !find) return { output: input, count: 0 };
-    
+
     try {
       let count = 0;
       let result = input;
-      
+
       if (useRegex) {
         const flags = replaceAll ? (caseSensitive ? "g" : "gi") : (caseSensitive ? "" : "i");
         const regex = new RegExp(find, flags);
@@ -48,7 +48,7 @@ export default function FindReplacePage() {
           }
         }
       }
-      
+
       return { output: result, count };
     } catch (e) {
       return { output: "Invalid regex pattern", count: 0 };
@@ -62,8 +62,8 @@ export default function FindReplacePage() {
       <div className="space-y-6">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Find</label>
-            <input
+            <label htmlFor="find-replace-field-1" className="block text-sm font-medium mb-2">Find</label>
+            <input id="find-replace-field-1"
               type="text"
               value={find}
               onChange={(e) => setFind(e.target.value)}
@@ -72,8 +72,8 @@ export default function FindReplacePage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Replace with</label>
-            <input
+            <label htmlFor="find-replace-field-2" className="block text-sm font-medium mb-2">Replace with</label>
+            <input id="find-replace-field-2"
               type="text"
               value={replace}
               onChange={(e) => setReplace(e.target.value)}

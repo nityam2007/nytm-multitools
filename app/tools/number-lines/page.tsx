@@ -19,7 +19,7 @@ export default function NumberLinesPage() {
     if (!input) return "";
     const lines = input.split("\n");
     const maxDigits = String(startNumber + lines.length - 1).length;
-    
+
     return lines
       .map((line, i) => {
         const num = startNumber + i;
@@ -34,8 +34,8 @@ export default function NumberLinesPage() {
       <div className="space-y-6">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Start Number</label>
-            <input
+            <label htmlFor="number-lines-field-1" className="block text-sm font-medium mb-2">Start Number</label>
+            <input id="number-lines-field-1"
               type="number"
               value={startNumber}
               onChange={(e) => setStartNumber(parseInt(e.target.value) || 1)}
@@ -43,8 +43,8 @@ export default function NumberLinesPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Separator</label>
-            <input
+            <label htmlFor="number-lines-field-2" className="block text-sm font-medium mb-2">Separator</label>
+            <input id="number-lines-field-2"
               type="text"
               value={separator}
               onChange={(e) => setSeparator(e.target.value)}

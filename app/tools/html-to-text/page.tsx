@@ -19,59 +19,59 @@ export default function HtmlToTextPage() {
 
   const htmlToText = (html: string): string => {
     if (!html) return "";
-    
+
     let result = html;
-    
+
     // Remove script and style elements
     result = result.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "");
     result = result.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
     result = result.replace(/<noscript[^>]*>[\s\S]*?<\/noscript>/gi, "");
-    
+
     // Remove common non-content elements
     result = result.replace(/<header[^>]*>[\s\S]*?<\/header>/gi, "");
     result = result.replace(/<footer[^>]*>[\s\S]*?<\/footer>/gi, "");
     result = result.replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, "");
     result = result.replace(/<aside[^>]*>[\s\S]*?<\/aside>/gi, "");
-    
+
     // Convert headings to text with markers
     result = result.replace(/<h1[^>]*>(.*?)<\/h1>/gi, "\n\n## $1 ##\n\n");
     result = result.replace(/<h2[^>]*>(.*?)<\/h2>/gi, "\n\n# $1 #\n\n");
     result = result.replace(/<h[3-6][^>]*>(.*?)<\/h[3-6]>/gi, "\n\n$1\n\n");
-    
+
     // Convert paragraphs and divs
     result = result.replace(/<\/p>\s*<p[^>]*>/gi, "\n\n");
     result = result.replace(/<\/(div|p|article|section)>/gi, "\n");
-    
+
     // Convert line breaks
     result = result.replace(/<br\s*\/?>/gi, "\n");
-    
+
     // Convert lists
     result = result.replace(/<li[^>]*>(.*?)<\/li>/gi, "• $1\n");
     result = result.replace(/<\/(ul|ol)>/gi, "\n");
-    
+
     // Convert links to text with URL
     result = result.replace(/<a[^>]*href=["']([^"']*)["'][^>]*>(.*?)<\/a>/gi, "$2 [$1]");
-    
+
     // Remove all remaining HTML tags
     result = result.replace(/<[^>]*>/g, "");
-    
+
     // Decode HTML entities
     const textarea = document.createElement("textarea");
     textarea.innerHTML = result;
     result = textarea.value;
-    
+
     // Clean up whitespace
     result = result.replace(/&nbsp;/g, " ");
     result = result.replace(/\n\s*\n\s*\n/g, "\n\n");
     result = result.replace(/[ \t]+/g, " ");
     result = result.trim();
-    
+
     return result;
   };
 
   const fetchUrl = async () => {
     if (!url) return;
-    
+
     setLoading(true);
     try {
       // Use CORS proxy for client-side fetching
@@ -146,7 +146,7 @@ export default function HtmlToTextPage() {
 
         {mode === "url" && (
           <div className="flex gap-2">
-            <input
+            <input aria-label="Webpage URL"
               type="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}

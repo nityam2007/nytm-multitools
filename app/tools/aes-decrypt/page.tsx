@@ -10,15 +10,15 @@ const similarTools = getToolsByCategory("security").filter(t => t.slug !== "aes-
 async function aesDecrypt(encryptedBase64: string, password: string): Promise<string> {
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
-  
+
   // Decode base64
   const combined = new Uint8Array(atob(encryptedBase64).split("").map(c => c.charCodeAt(0)));
-  
+
   // Extract salt, iv, and encrypted data
   const salt = combined.slice(0, 16);
   const iv = combined.slice(16, 28);
   const encryptedData = combined.slice(28);
-  
+
   // Derive key from password using PBKDF2
   const keyMaterial = await crypto.subtle.importKey(
     "raw",
@@ -27,7 +27,7 @@ async function aesDecrypt(encryptedBase64: string, password: string): Promise<st
     false,
     ["deriveBits", "deriveKey"]
   );
-  
+
   // Derive AES key
   const key = await crypto.subtle.deriveKey(
     {
@@ -41,14 +41,14 @@ async function aesDecrypt(encryptedBase64: string, password: string): Promise<st
     false,
     ["decrypt"]
   );
-  
+
   // Decrypt
   const decrypted = await crypto.subtle.decrypt(
     { name: "AES-GCM", iv: iv },
     key,
     encryptedData
   );
-  
+
   return decoder.decode(decrypted);
 }
 
@@ -63,7 +63,7 @@ export default function AESDecryptPage() {
     if (!encrypted || !password) return;
     setLoading(true);
     setError("");
-    
+
     try {
       const result = await aesDecrypt(encrypted, password);
       setDecrypted(result);
@@ -82,8 +82,8 @@ export default function AESDecryptPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <form onSubmit={(e) => { e.preventDefault(); decrypt(); }} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Encrypted Data (Base64)</label>
-          <textarea
+          <label htmlFor="aes-decrypt-field-1" className="block text-sm font-medium mb-2">Encrypted Data (Base64)</label>
+          <textarea id="aes-decrypt-field-1"
             value={encrypted}
             onChange={(e) => { setEncrypted(e.target.value); setError(""); }}
             placeholder="Paste encrypted data from AES Encrypt tool..."
@@ -92,8 +92,8 @@ export default function AESDecryptPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Password / Key</label>
-          <input
+          <label htmlFor="aes-decrypt-field-2" className="block text-sm font-medium mb-2">Password / Key</label>
+          <input id="aes-decrypt-field-2"
             type="password"
             value={password}
             onChange={(e) => { setPassword(e.target.value); setError(""); }}
@@ -129,7 +129,7 @@ export default function AESDecryptPage() {
               Copy
             </button>
           </div>
-          <textarea
+          <textarea aria-label="Decrypted output"
             value={decrypted}
             readOnly
             placeholder="Decrypted text will appear here..."

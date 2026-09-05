@@ -36,7 +36,7 @@ const calculateCheckDigits = (countryCode: string, bban: string): string => {
     if (code >= 65 && code <= 90) return (code - 55).toString();
     return char;
   }).join("");
-  
+
   const checkDigits = 98 - mod97(numericStr);
   return checkDigits.toString().padStart(2, "0");
 };
@@ -52,30 +52,30 @@ export default function IBANGeneratorPage() {
   const generateBBAN = (countryCode: string): string => {
     const countryConfig = countries.find(c => c.code === countryCode);
     if (!countryConfig) return "";
-    
+
     const bbanLength = countryConfig.length - 4; // Minus country code and check digits
     let bban = "";
-    
+
     // Generate random BBAN (simplified - in reality, structure varies by country)
     for (let i = 0; i < bbanLength; i++) {
       bban += randomDigit();
     }
-    
+
     return bban;
   };
 
   const generate = () => {
     const ibans: {iban: string; formatted: string}[] = [];
-    
+
     for (let i = 0; i < count; i++) {
       const bban = generateBBAN(country);
       const checkDigits = calculateCheckDigits(country, bban);
       const iban = country + checkDigits + bban;
       const formatted = iban.match(/.{1,4}/g)?.join(" ") || iban;
-      
+
       ibans.push({ iban, formatted });
     }
-    
+
     setResults(ibans);
   };
 
@@ -99,8 +99,8 @@ export default function IBANGeneratorPage() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Country</label>
-            <select
+            <label htmlFor="iban-generator-field-1" className="block text-sm font-medium mb-2">Country</label>
+            <select id="iban-generator-field-1"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -111,8 +111,8 @@ export default function IBANGeneratorPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="iban-generator-field-2" className="block text-sm font-medium mb-2">Count</label>
+            <input id="iban-generator-field-2"
               type="number"
               min="1"
               max="20"

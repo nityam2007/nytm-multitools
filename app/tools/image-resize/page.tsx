@@ -118,11 +118,11 @@ export default function ImageResizePage() {
 
               <div className="card p-4 space-y-4">
                 <h3 className="font-medium">Resize Options</h3>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Width (px)</label>
-                    <input
+                    <label htmlFor="image-resize-field-1" className="block text-sm font-medium mb-1">Width (px)</label>
+                    <input id="image-resize-field-1"
                       type="number"
                       value={width}
                       onChange={(e) => handleWidthChange(parseInt(e.target.value) || 0)}
@@ -130,8 +130,8 @@ export default function ImageResizePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Height (px)</label>
-                    <input
+                    <label htmlFor="image-resize-field-2" className="block text-sm font-medium mb-1">Height (px)</label>
+                    <input id="image-resize-field-2"
                       type="number"
                       value={height}
                       onChange={(e) => handleHeightChange(parseInt(e.target.value) || 0)}
@@ -151,8 +151,8 @@ export default function ImageResizePage() {
                 </label>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Format</label>
-                  <select
+                  <label htmlFor="image-resize-field-3" className="block text-sm font-medium mb-1">Format</label>
+                  <select id="image-resize-field-3"
                     value={format}
                     onChange={(e) => setFormat(e.target.value as typeof format)}
                     className="input w-full"
@@ -164,8 +164,8 @@ export default function ImageResizePage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Quality: {quality}%</label>
-                  <input
+                  <label htmlFor="image-resize-field-4" className="block text-sm font-medium mb-1">Quality: {quality}%</label>
+                  <input id="image-resize-field-4"
                     type="range"
                     min={10}
                     max={100}

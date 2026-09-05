@@ -92,14 +92,14 @@ export default function GraphPlotterPage() {
         .replace(/exp/g, "Math.exp")
         .replace(/pi/gi, "Math.PI")
         .replace(/e(?![xp])/g, "Math.E");
-      
+
       // Avoid double Math.Math
       sanitized = sanitized.replace(/Math\.Math\./g, "Math.");
-      
+
       // eslint-disable-next-line no-new-func
       const fn = new Function("x", `return ${sanitized}`);
       const result = fn(x);
-      
+
       if (typeof result === "number" && isFinite(result)) {
         return result;
       }
@@ -150,7 +150,7 @@ export default function GraphPlotterPage() {
   const gridStep = parseFloat(gridSize) || 1;
   const xGridLines = [];
   const yGridLines = [];
-  
+
   for (let x = Math.ceil(xMinNum / gridStep) * gridStep; x <= xMaxNum; x += gridStep) {
     xGridLines.push(x);
   }
@@ -192,7 +192,7 @@ export default function GraphPlotterPage() {
               key={fn.id}
               className="flex items-center gap-3 p-3 bg-[var(--muted)] rounded-lg border border-[var(--border)]"
             >
-              <input
+              <input aria-label={`Show function ${index + 1}`}
                 type="checkbox"
                 checked={fn.visible}
                 onChange={(e) => updateFunction(fn.id, "visible", e.target.checked)}
@@ -202,13 +202,13 @@ export default function GraphPlotterPage() {
                 className="w-4 h-4 rounded-full flex-shrink-0"
                 style={{ backgroundColor: fn.color }}
               />
-              <input
+              <input aria-label={`Function ${index + 1} expression`}
                 type="text"
                 value={fn.expression}
                 onChange={(e) => updateFunction(fn.id, "expression", e.target.value)}
                 className="flex-1 bg-transparent text-sm font-mono focus:outline-none"
               />
-              <input
+              <input aria-label={`Function ${index + 1} color`}
                 type="color"
                 value={fn.color}
                 onChange={(e) => updateFunction(fn.id, "color", e.target.value)}

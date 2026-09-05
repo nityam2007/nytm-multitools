@@ -9,7 +9,7 @@ const similarTools = getToolsByCategory("security").filter(t => t.slug !== "aes-
 
 async function aesEncrypt(plaintext: string, password: string): Promise<string> {
   const encoder = new TextEncoder();
-  
+
   // Derive key from password using PBKDF2
   const keyMaterial = await crypto.subtle.importKey(
     "raw",
@@ -18,11 +18,11 @@ async function aesEncrypt(plaintext: string, password: string): Promise<string> 
     false,
     ["deriveBits", "deriveKey"]
   );
-  
+
   // Generate random salt and IV
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const iv = crypto.getRandomValues(new Uint8Array(12));
-  
+
   // Derive AES key
   const key = await crypto.subtle.deriveKey(
     {
@@ -36,20 +36,20 @@ async function aesEncrypt(plaintext: string, password: string): Promise<string> 
     false,
     ["encrypt"]
   );
-  
+
   // Encrypt
   const encrypted = await crypto.subtle.encrypt(
     { name: "AES-GCM", iv: iv },
     key,
     encoder.encode(plaintext)
   );
-  
+
   // Combine salt + iv + encrypted data
   const combined = new Uint8Array(salt.length + iv.length + encrypted.byteLength);
   combined.set(salt, 0);
   combined.set(iv, salt.length);
   combined.set(new Uint8Array(encrypted), salt.length + iv.length);
-  
+
   // Return as base64
   let binary = '';
   for (let i = 0; i < combined.length; i++) {
@@ -69,10 +69,10 @@ export default function AESEncryptPage() {
     if (!plaintext || !password) {
       return;
     }
-    
+
     setLoading(true);
     setError("");
-    
+
     try {
       const result = await aesEncrypt(plaintext, password);
       setEncrypted(result);
@@ -91,8 +91,8 @@ export default function AESEncryptPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <form onSubmit={(e) => { e.preventDefault(); encrypt(); }} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Plaintext</label>
-          <textarea
+          <label htmlFor="aes-encrypt-field-1" className="block text-sm font-medium mb-2">Plaintext</label>
+          <textarea id="aes-encrypt-field-1"
             value={plaintext}
             onChange={(e) => setPlaintext(e.target.value)}
             placeholder="Enter text to encrypt..."
@@ -101,8 +101,8 @@ export default function AESEncryptPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Password / Key</label>
-          <input
+          <label htmlFor="aes-encrypt-field-2" className="block text-sm font-medium mb-2">Password / Key</label>
+          <input id="aes-encrypt-field-2"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -138,7 +138,7 @@ export default function AESEncryptPage() {
               Copy
             </button>
           </div>
-          <textarea
+          <textarea aria-label="Encrypted output"
             value={encrypted}
             readOnly
             placeholder="Encrypted data will appear here..."

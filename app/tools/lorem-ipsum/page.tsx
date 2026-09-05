@@ -89,8 +89,8 @@ export default function LoremIpsumPage() {
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Type</label>
-            <select
+            <label htmlFor="lorem-ipsum-field-1" className="block text-sm font-medium mb-2">Type</label>
+            <select id="lorem-ipsum-field-1"
               value={type}
               onChange={(e) => setType(e.target.value as typeof type)}
               className="input w-full"
@@ -101,8 +101,8 @@ export default function LoremIpsumPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="lorem-ipsum-field-2" className="block text-sm font-medium mb-2">Count</label>
+            <input id="lorem-ipsum-field-2"
               type="number"
               min={1}
               max={100}

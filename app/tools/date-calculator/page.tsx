@@ -9,12 +9,12 @@ const similarTools = getToolsByCategory("misc").filter(t => t.slug !== "date-cal
 
 export default function DateCalculatorPage() {
   const [mode, setMode] = useState<"difference" | "add">("difference");
-  
+
   // Difference mode
   const [date1, setDate1] = useState(new Date().toISOString().split("T")[0]);
   const [date2, setDate2] = useState("");
   const [diff, setDiff] = useState<{ days: number; weeks: number; months: number; years: number } | null>(null);
-  
+
   // Add/subtract mode
   const [startDate, setStartDate] = useState(new Date().toISOString().split("T")[0]);
   const [amount, setAmount] = useState(7);
@@ -28,11 +28,11 @@ export default function DateCalculatorPage() {
       const d2 = new Date(date2);
       const diffTime = Math.abs(d2.getTime() - d1.getTime());
       const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      
+
       const weeks = Math.floor(days / 7);
       const months = Math.floor(days / 30.44);
       const years = Math.floor(days / 365.25);
-      
+
       setDiff({ days, weeks, months, years });
     } else {
       setDiff(null);
@@ -43,7 +43,7 @@ export default function DateCalculatorPage() {
     if (startDate && amount) {
       const date = new Date(startDate);
       const multiplier = operation === "add" ? 1 : -1;
-      
+
       switch (unit) {
         case "days":
           date.setDate(date.getDate() + amount * multiplier);
@@ -58,7 +58,7 @@ export default function DateCalculatorPage() {
           date.setFullYear(date.getFullYear() + amount * multiplier);
           break;
       }
-      
+
       setResultDate(date.toISOString().split("T")[0]);
     }
   }, [startDate, amount, unit, operation]);
@@ -93,8 +93,8 @@ export default function DateCalculatorPage() {
           <>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Start Date</label>
-                <input
+                <label htmlFor="date-calculator-field-1" className="block text-sm font-medium mb-2">Start Date</label>
+                <input id="date-calculator-field-1"
                   type="date"
                   value={date1}
                   onChange={(e) => setDate1(e.target.value)}
@@ -102,8 +102,8 @@ export default function DateCalculatorPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">End Date</label>
-                <input
+                <label htmlFor="date-calculator-field-2" className="block text-sm font-medium mb-2">End Date</label>
+                <input id="date-calculator-field-2"
                   type="date"
                   value={date2}
                   onChange={(e) => setDate2(e.target.value)}
@@ -136,8 +136,8 @@ export default function DateCalculatorPage() {
         ) : (
           <>
             <div>
-              <label className="block text-sm font-medium mb-2">Start Date</label>
-              <input
+              <label htmlFor="date-calculator-field-3" className="block text-sm font-medium mb-2">Start Date</label>
+              <input id="date-calculator-field-3"
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
@@ -147,8 +147,8 @@ export default function DateCalculatorPage() {
 
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Operation</label>
-                <select
+                <label htmlFor="date-calculator-field-4" className="block text-sm font-medium mb-2">Operation</label>
+                <select id="date-calculator-field-4"
                   value={operation}
                   onChange={(e) => setOperation(e.target.value as "add" | "subtract")}
                   className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -158,8 +158,8 @@ export default function DateCalculatorPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Amount</label>
-                <input
+                <label htmlFor="date-calculator-field-5" className="block text-sm font-medium mb-2">Amount</label>
+                <input id="date-calculator-field-5"
                   type="number"
                   min="1"
                   value={amount}
@@ -168,8 +168,8 @@ export default function DateCalculatorPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Unit</label>
-                <select
+                <label htmlFor="date-calculator-field-6" className="block text-sm font-medium mb-2">Unit</label>
+                <select id="date-calculator-field-6"
                   value={unit}
                   onChange={(e) => setUnit(e.target.value as "days" | "weeks" | "months" | "years")}
                   className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"

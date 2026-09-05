@@ -57,7 +57,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "04:52:F3", vendor: "Apple, Inc.", country: "US" },
   { prefix: "04:54:53", vendor: "Apple, Inc.", country: "US" },
   { prefix: "08:66:98", vendor: "Apple, Inc.", country: "US" },
-  
+
   // Samsung
   { prefix: "00:00:F0", vendor: "Samsung Electronics Co.,Ltd", country: "KR" },
   { prefix: "00:02:78", vendor: "Samsung Electronics Co.,Ltd", country: "KR" },
@@ -99,7 +99,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "00:24:91", vendor: "Samsung Electronics Co.,Ltd", country: "KR" },
   { prefix: "00:25:66", vendor: "Samsung Electronics Co.,Ltd", country: "KR" },
   { prefix: "00:25:67", vendor: "Samsung Electronics Co.,Ltd", country: "KR" },
-  
+
   // Intel
   { prefix: "00:02:B3", vendor: "Intel Corporation", country: "US" },
   { prefix: "00:03:47", vendor: "Intel Corporation", country: "US" },
@@ -146,7 +146,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "00:26:C6", vendor: "Intel Corporation", country: "US" },
   { prefix: "00:26:C7", vendor: "Intel Corporation", country: "US" },
   { prefix: "00:27:10", vendor: "Intel Corporation", country: "US" },
-  
+
   // Cisco
   { prefix: "00:00:0C", vendor: "Cisco Systems, Inc", country: "US" },
   { prefix: "00:01:42", vendor: "Cisco Systems, Inc", country: "US" },
@@ -168,7 +168,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "00:02:BA", vendor: "Cisco Systems, Inc", country: "US" },
   { prefix: "00:02:FC", vendor: "Cisco Systems, Inc", country: "US" },
   { prefix: "00:02:FD", vendor: "Cisco Systems, Inc", country: "US" },
-  
+
   // Dell
   { prefix: "00:06:5B", vendor: "Dell Inc.", country: "US" },
   { prefix: "00:08:74", vendor: "Dell Inc.", country: "US" },
@@ -195,7 +195,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "00:24:E8", vendor: "Dell Inc.", country: "US" },
   { prefix: "00:25:64", vendor: "Dell Inc.", country: "US" },
   { prefix: "00:26:B9", vendor: "Dell Inc.", country: "US" },
-  
+
   // HP
   { prefix: "00:01:E6", vendor: "Hewlett Packard", country: "US" },
   { prefix: "00:01:E7", vendor: "Hewlett Packard", country: "US" },
@@ -235,7 +235,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "00:24:81", vendor: "Hewlett Packard", country: "US" },
   { prefix: "00:25:B3", vendor: "Hewlett Packard", country: "US" },
   { prefix: "00:26:55", vendor: "Hewlett Packard", country: "US" },
-  
+
   // Huawei
   { prefix: "00:18:82", vendor: "Huawei Technologies Co.,Ltd", country: "CN" },
   { prefix: "00:1E:10", vendor: "Huawei Technologies Co.,Ltd", country: "CN" },
@@ -257,7 +257,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "04:C0:6F", vendor: "Huawei Technologies Co.,Ltd", country: "CN" },
   { prefix: "04:F9:38", vendor: "Huawei Technologies Co.,Ltd", country: "CN" },
   { prefix: "04:FE:8D", vendor: "Huawei Technologies Co.,Ltd", country: "CN" },
-  
+
   // Xiaomi
   { prefix: "0C:1D:AF", vendor: "Xiaomi Communications Co Ltd", country: "CN" },
   { prefix: "14:F6:5A", vendor: "Xiaomi Communications Co Ltd", country: "CN" },
@@ -282,7 +282,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "F0:B4:29", vendor: "Xiaomi Communications Co Ltd", country: "CN" },
   { prefix: "F4:F5:E8", vendor: "Xiaomi Communications Co Ltd", country: "CN" },
   { prefix: "FC:64:BA", vendor: "Xiaomi Communications Co Ltd", country: "CN" },
-  
+
   // Google
   { prefix: "00:1A:11", vendor: "Google, Inc.", country: "US" },
   { prefix: "3C:5A:B4", vendor: "Google, Inc.", country: "US" },
@@ -290,7 +290,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "94:EB:2C", vendor: "Google, Inc.", country: "US" },
   { prefix: "F4:F5:D8", vendor: "Google, Inc.", country: "US" },
   { prefix: "F8:8F:CA", vendor: "Google, Inc.", country: "US" },
-  
+
   // Microsoft
   { prefix: "00:03:FF", vendor: "Microsoft Corporation", country: "US" },
   { prefix: "00:0D:3A", vendor: "Microsoft Corporation", country: "US" },
@@ -313,7 +313,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "B4:0E:DE", vendor: "Microsoft Corporation", country: "US" },
   { prefix: "C8:3F:26", vendor: "Microsoft Corporation", country: "US" },
   { prefix: "DC:B4:C4", vendor: "Microsoft Corporation", country: "US" },
-  
+
   // TP-Link
   { prefix: "00:1D:0F", vendor: "TP-LINK TECHNOLOGIES CO.,LTD.", country: "CN" },
   { prefix: "00:23:CD", vendor: "TP-LINK TECHNOLOGIES CO.,LTD.", country: "CN" },
@@ -352,7 +352,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "EC:17:2F", vendor: "TP-LINK TECHNOLOGIES CO.,LTD.", country: "CN" },
   { prefix: "F4:F2:6D", vendor: "TP-LINK TECHNOLOGIES CO.,LTD.", country: "CN" },
   { prefix: "F8:1A:67", vendor: "TP-LINK TECHNOLOGIES CO.,LTD.", country: "CN" },
-  
+
   // Netgear
   { prefix: "00:09:5B", vendor: "NETGEAR", country: "US" },
   { prefix: "00:0F:B5", vendor: "NETGEAR", country: "US" },
@@ -384,7 +384,7 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "E0:46:9A", vendor: "NETGEAR", country: "US" },
   { prefix: "E0:91:F5", vendor: "NETGEAR", country: "US" },
   { prefix: "E4:F4:C6", vendor: "NETGEAR", country: "US" },
-  
+
   // Broadcom
   { prefix: "00:10:18", vendor: "Broadcom Limited", country: "US" },
   { prefix: "00:0A:F7", vendor: "Broadcom Limited", country: "US" },
@@ -392,12 +392,12 @@ const ouiDatabase: VendorInfo[] = [
   { prefix: "00:16:E6", vendor: "Broadcom Limited", country: "US" },
   { prefix: "00:19:86", vendor: "Broadcom Limited", country: "US" },
   { prefix: "00:1D:FE", vendor: "Broadcom Limited", country: "US" },
-  
+
   // Raspberry Pi
   { prefix: "B8:27:EB", vendor: "Raspberry Pi Foundation", country: "GB" },
   { prefix: "DC:A6:32", vendor: "Raspberry Pi Trading Ltd", country: "GB" },
   { prefix: "E4:5F:01", vendor: "Raspberry Pi Trading Ltd", country: "GB" },
-  
+
   // Amazon
   { prefix: "00:BB:3A", vendor: "Amazon Technologies Inc.", country: "US" },
   { prefix: "00:FC:8B", vendor: "Amazon Technologies Inc.", country: "US" },
@@ -430,7 +430,7 @@ export default function MACLookupPage() {
     if (!searchVendor.trim()) return [];
     const search = searchVendor.toLowerCase();
     const uniqueVendors = new Map<string, VendorInfo>();
-    ouiDatabase.filter(v => 
+    ouiDatabase.filter(v =>
       v.vendor.toLowerCase().includes(search)
     ).forEach(v => {
       if (!uniqueVendors.has(v.vendor)) {
@@ -465,7 +465,7 @@ export default function MACLookupPage() {
 
   const lookupMac = () => {
     const cleanMac = normalizeMac(macInput);
-    
+
     if (cleanMac.length < 6) {
       setError("Please enter at least the first 6 characters of a MAC address");
       setResult(null);
@@ -481,10 +481,10 @@ export default function MACLookupPage() {
     }
 
     setError("");
-    
+
     const prefix = getOUIPrefix(macInput);
     const found = ouiDatabase.find(v => v.prefix.toUpperCase() === prefix.toUpperCase());
-    
+
     if (found) {
       setResult(found);
       setNotFound(false);
@@ -515,7 +515,7 @@ export default function MACLookupPage() {
         <div className="bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/30 rounded-2xl p-6">
           <h3 className="text-lg font-semibold mb-4">MAC Address Lookup</h3>
           <div className="flex gap-2">
-            <input
+            <input aria-label="MAC address"
               type="text"
               value={macInput}
               onChange={(e) => setMacInput(e.target.value)}
@@ -589,15 +589,15 @@ export default function MACLookupPage() {
 
         {/* Vendor Search */}
         <div>
-          <label className="block text-sm font-medium mb-2">Search Vendors</label>
-          <input
+          <label htmlFor="mac-lookup-field-1" className="block text-sm font-medium mb-2">Search Vendors</label>
+          <input id="mac-lookup-field-1"
             type="text"
             value={searchVendor}
             onChange={(e) => setSearchVendor(e.target.value)}
             placeholder="Search by vendor name (e.g., Apple, Samsung)..."
             className="w-full px-4 py-3 rounded-xl bg-[var(--muted)] border border-transparent focus:border-violet-500/50 focus:bg-violet-500/5 transition-all"
           />
-          
+
           {filteredVendors.length > 0 && (
             <div className="mt-3 bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
               <table className="w-full text-sm">

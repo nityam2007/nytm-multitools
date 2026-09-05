@@ -50,7 +50,7 @@ export default function PDFRotatePage() {
 
     try {
       const { PDFDocument, degrees } = await import("pdf-lib");
-      
+
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(arrayBuffer);
 
@@ -226,7 +226,7 @@ export default function PDFRotatePage() {
                     <div className="text-sm font-medium">Custom Pages</div>
                     <div className="text-xs text-[var(--muted-foreground)] mb-2">e.g., 1,3,5-7,10</div>
                     {applyTo === "custom" && (
-                      <input
+                      <input aria-label="Custom page numbers"
                         type="text"
                         value={customPages}
                         onChange={(e) => setCustomPages(e.target.value)}

@@ -45,7 +45,7 @@ export default function BarcodeGeneratorPage() {
   const generateCode128 = (data: string): string => {
     let pattern = code128Patterns[CODE128_START_B];
     let checksum = CODE128_START_B;
-    
+
     for (let i = 0; i < data.length; i++) {
       const charCode = data.charCodeAt(i) - 32;
       if (charCode >= 0 && charCode < 96) {
@@ -53,43 +53,43 @@ export default function BarcodeGeneratorPage() {
         checksum += charCode * (i + 1);
       }
     }
-    
+
     checksum = checksum % 103;
     pattern += code128Patterns[checksum];
     pattern += code128Patterns[CODE128_STOP];
-    
+
     return pattern;
   };
 
   const drawBarcode = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    
+
     const pattern = generateCode128(text);
     const barWidth = 2;
     const padding = 20;
-    
+
     canvas.width = pattern.length * barWidth + padding * 2;
     canvas.height = height + (showText ? 30 : 0) + padding * 2;
-    
+
     // White background
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+
     // Draw bars
     ctx.fillStyle = "#000000";
     let x = padding;
-    
+
     for (const bit of pattern) {
       if (bit === "1") {
         ctx.fillRect(x, padding, barWidth, height);
       }
       x += barWidth;
     }
-    
+
     // Draw text
     if (showText) {
       ctx.font = "14px monospace";
@@ -101,7 +101,7 @@ export default function BarcodeGeneratorPage() {
   const downloadBarcode = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const link = document.createElement("a");
     link.download = `barcode-${text}.png`;
     link.href = canvas.toDataURL("image/png");
@@ -116,8 +116,8 @@ export default function BarcodeGeneratorPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Text / Data</label>
-          <input
+          <label htmlFor="barcode-generator-field-1" className="block text-sm font-medium mb-2">Text / Data</label>
+          <input id="barcode-generator-field-1"
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -128,8 +128,8 @@ export default function BarcodeGeneratorPage() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Height (px)</label>
-            <input
+            <label htmlFor="barcode-generator-field-2" className="block text-sm font-medium mb-2">Height (px)</label>
+            <input id="barcode-generator-field-2"
               type="number"
               min="50"
               max="300"

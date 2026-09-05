@@ -877,13 +877,6 @@ header nav a[aria-current="page"] {
   }
 }
 /* Consistent action contrast and collection guidance | CSS */
-.btn.btn-primary {
-  background: #6d28d9 !important;
-  box-shadow: none;
-}
-.btn.btn-primary::before {
-  background: #5b21b6;
-}
 .home-facts a.btn {
   text-decoration: none;
   min-height: 40px;

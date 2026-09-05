@@ -84,8 +84,8 @@
   --ring: #7C3AED;
 }
 
-* {
-  border-color: var(--border);
+@layer base {
+  * { border-color: var(--border); }
 }
 
 html {
@@ -135,6 +135,7 @@ body {
 
 /* GLOBAL STYLES FOR ALL TOOLS - Auto-applied */
 
+@layer base {
 /* All legacy buttons get modern styling automatically */
 button:not(.option-card):not(.toggle-slider),
 input[type="button"],
@@ -145,6 +146,7 @@ input[type="submit"] {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+}
 }
 
 button:not(.option-card):not(.toggle-slider):disabled,

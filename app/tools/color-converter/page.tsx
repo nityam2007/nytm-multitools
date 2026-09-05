@@ -153,13 +153,13 @@ export default function ColorConverterPage() {
           <div className="bg-[var(--card)] rounded-xl p-4 border border-[var(--border)]">
             <h3 className="font-semibold mb-3">HEX</h3>
             <div className="flex gap-2">
-              <input
+              <input aria-label="Choose HEX color"
                 type="color"
                 value={color.hex}
                 onChange={(e) => updateFromHex(e.target.value)}
                 className="w-12 h-10 rounded cursor-pointer"
               />
-              <input
+              <input aria-label="HEX color value"
                 type="text"
                 value={color.hex}
                 onChange={(e) => updateFromHex(e.target.value)}
@@ -174,7 +174,7 @@ export default function ColorConverterPage() {
               {(["r", "g", "b"] as const).map((c) => (
                 <div key={c}>
                   <label className="text-xs text-[var(--muted-foreground)] uppercase">{c}</label>
-                  <input
+                  <input aria-label={(String(c)).trim()}
                     type="number"
                     min="0"
                     max="255"
@@ -200,7 +200,7 @@ export default function ColorConverterPage() {
               {(["h", "s", "l"] as const).map((c) => (
                 <div key={c}>
                   <label className="text-xs text-[var(--muted-foreground)] uppercase">{c}{c === "h" ? "°" : "%"}</label>
-                  <input
+                  <input aria-label={(String(c)+String(c === "h" ? "°" : "%")).trim()}
                     type="number"
                     min="0"
                     max={c === "h" ? 360 : 100}

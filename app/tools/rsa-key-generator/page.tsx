@@ -40,10 +40,10 @@ export default function RSAKeyGeneratorPage() {
         true,
         ["encrypt", "decrypt"]
       );
-      
+
       const publicKeyBuffer = await crypto.subtle.exportKey("spki", keyPair.publicKey);
       const privateKeyBuffer = await crypto.subtle.exportKey("pkcs8", keyPair.privateKey);
-      
+
       setPublicKey(formatPEM(arrayBufferToBase64(publicKeyBuffer), "PUBLIC"));
       setPrivateKey(formatPEM(arrayBufferToBase64(privateKeyBuffer), "PRIVATE"));
     } catch (error) {
@@ -124,7 +124,7 @@ export default function RSAKeyGeneratorPage() {
                   </button>
                 </div>
               </div>
-              <textarea
+              <textarea aria-label="Public key output"
                 value={publicKey}
                 readOnly
                 className="w-full h-48 px-4 py-3 rounded-lg bg-[var(--muted)] border border-[var(--border)] resize-none font-mono text-xs"
@@ -154,7 +154,7 @@ export default function RSAKeyGeneratorPage() {
                   </button>
                 </div>
               </div>
-              <textarea
+              <textarea aria-label="Private key output"
                 value={privateKey}
                 readOnly
                 className="w-full h-64 px-4 py-3 rounded-lg bg-[var(--muted)] border border-[var(--border)] resize-none font-mono text-xs"

@@ -29,13 +29,13 @@ export default function JwtGeneratorPage() {
     try {
       const headerObj = JSON.parse(header);
       const payloadObj = JSON.parse(payload);
-      
+
       const encodedHeader = base64UrlEncode(JSON.stringify(headerObj));
       const encodedPayload = base64UrlEncode(JSON.stringify(payloadObj));
-      
+
       // Note: This is a simplified signature - real JWT would use HMAC
       const signature = base64UrlEncode(secret + "." + encodedHeader + "." + encodedPayload);
-      
+
       return { token: `${encodedHeader}.${encodedPayload}.${signature}`, error: "" };
     } catch (e) {
       return { token: "", error: "Invalid JSON in header or payload" };
@@ -70,25 +70,25 @@ export default function JwtGeneratorPage() {
       <div className="space-y-6">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Header</label>
-            <textarea
+            <label htmlFor="jwt-generator-field-1" className="block text-sm font-medium mb-2">Header</label>
+            <textarea id="jwt-generator-field-1"
               value={header}
               onChange={(e) => setHeader(e.target.value)}
               className="w-full h-32 px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)] font-mono text-sm"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">
-              Payload
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <label htmlFor="jwt-generator-field-2" className="text-sm font-medium">Payload</label>
               <span className="ml-2 text-xs text-[var(--muted-foreground)]">
-                <button onClick={() => addClaim("iat")} className="hover:underline">+iat</button>
+                <button onClick={() => addClaim("iat")} type="button" className="btn btn-secondary">+iat</button>
                 {" | "}
-                <button onClick={() => addClaim("exp")} className="hover:underline">+exp</button>
+                <button onClick={() => addClaim("exp")} type="button" className="btn btn-secondary">+exp</button>
                 {" | "}
-                <button onClick={() => addClaim("jti")} className="hover:underline">+jti</button>
+                <button onClick={() => addClaim("jti")} type="button" className="btn btn-secondary">+jti</button>
               </span>
-            </label>
-            <textarea
+            </div>
+            <textarea id="jwt-generator-field-2"
               value={payload}
               onChange={(e) => setPayload(e.target.value)}
               className="w-full h-32 px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)] font-mono text-sm"
@@ -97,8 +97,8 @@ export default function JwtGeneratorPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Secret Key</label>
-          <input
+          <label htmlFor="jwt-generator-field-3" className="block text-sm font-medium mb-2">Secret Key</label>
+          <input id="jwt-generator-field-3"
             type="text"
             value={secret}
             onChange={(e) => setSecret(e.target.value)}

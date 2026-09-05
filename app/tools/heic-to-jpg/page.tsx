@@ -62,7 +62,7 @@ export default function HeicToJpgPage() {
           });
 
           const blob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
-          
+
           const canvas = canvasRef.current;
           const ctx = canvas.getContext("2d");
           if (!ctx) continue;
@@ -183,10 +183,10 @@ export default function HeicToJpgPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-              <label className="block text-sm font-medium mb-3">
+              <label htmlFor="heic-to-jpg-field-1" className="block text-sm font-medium mb-3">
                 Quality: {Math.round(quality * 100)}%
               </label>
-              <input
+              <input id="heic-to-jpg-field-1"
                 type="range"
                 min="0.1"
                 max="1"

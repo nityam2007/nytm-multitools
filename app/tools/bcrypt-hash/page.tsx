@@ -14,11 +14,11 @@ async function simulateBcrypt(password: string, rounds: number): Promise<string>
   const saltArray = new Uint8Array(16);
   crypto.getRandomValues(saltArray);
   const salt = Array.from(saltArray).map(b => b.toString(16).padStart(2, "0")).join("");
-  
+
   // Simulate multiple rounds of hashing with SHA-256
   let hash = password + salt;
   const iterations = Math.pow(2, rounds);
-  
+
   for (let i = 0; i < Math.min(iterations, 1000); i++) {
     const encoder = new TextEncoder();
     const data = encoder.encode(hash);
@@ -26,12 +26,12 @@ async function simulateBcrypt(password: string, rounds: number): Promise<string>
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     hash = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
   }
-  
+
   // Format like bcrypt
   const costStr = rounds.toString().padStart(2, "0");
   const encodedSalt = btoa(salt).slice(0, 22).replace(/\+/g, ".").replace(/\//g, "/");
   const encodedHash = btoa(hash).slice(0, 31).replace(/\+/g, ".").replace(/\//g, "/");
-  
+
   return `$2a$${costStr}$${encodedSalt}${encodedHash}`;
 }
 
@@ -64,8 +64,8 @@ export default function BcryptHashPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Password</label>
-          <input
+          <label htmlFor="bcrypt-hash-field-1" className="block text-sm font-medium mb-2">Password</label>
+          <input id="bcrypt-hash-field-1"
             type="text"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -75,8 +75,8 @@ export default function BcryptHashPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Cost Factor (rounds): {rounds}</label>
-          <input
+          <label htmlFor="bcrypt-hash-field-2" className="block text-sm font-medium mb-2">Cost Factor (rounds): {rounds}</label>
+          <input id="bcrypt-hash-field-2"
             type="range"
             min="4"
             max="14"

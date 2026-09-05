@@ -21,14 +21,14 @@ export default function PercentageCalculatorPage() {
           <h3 className="font-semibold mb-4">What is X% of Y?</h3>
           <div className="flex flex-wrap items-center gap-2">
             <span>What is</span>
-            <input
+            <input aria-label="Percentage of a number"
               type="number"
               value={calc1.percentage}
               onChange={(e) => setCalc1({ ...calc1, percentage: parseFloat(e.target.value) || 0 })}
               className="w-20 px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)] text-center"
             />
             <span>% of</span>
-            <input
+            <input aria-label="Number to calculate a percentage of"
               type="number"
               value={calc1.of}
               onChange={(e) => setCalc1({ ...calc1, of: parseFloat(e.target.value) || 0 })}
@@ -45,14 +45,14 @@ export default function PercentageCalculatorPage() {
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
           <h3 className="font-semibold mb-4">X is what % of Y?</h3>
           <div className="flex flex-wrap items-center gap-2">
-            <input
+            <input aria-label="Part value"
               type="number"
               value={calc2.is}
               onChange={(e) => setCalc2({ ...calc2, is: parseFloat(e.target.value) || 0 })}
               className="w-24 px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)] text-center"
             />
             <span>is what % of</span>
-            <input
+            <input aria-label="Whole value"
               type="number"
               value={calc2.of}
               onChange={(e) => setCalc2({ ...calc2, of: parseFloat(e.target.value) || 0 })}
@@ -70,14 +70,14 @@ export default function PercentageCalculatorPage() {
           <h3 className="font-semibold mb-4">Percentage Change</h3>
           <div className="flex flex-wrap items-center gap-2">
             <span>From</span>
-            <input
+            <input aria-label="Original value"
               type="number"
               value={calc3.from}
               onChange={(e) => setCalc3({ ...calc3, from: parseFloat(e.target.value) || 0 })}
               className="w-24 px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)] text-center"
             />
             <span>to</span>
-            <input
+            <input aria-label="New value"
               type="number"
               value={calc3.to}
               onChange={(e) => setCalc3({ ...calc3, to: parseFloat(e.target.value) || 0 })}
@@ -101,13 +101,13 @@ export default function PercentageCalculatorPage() {
         <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
           <h3 className="font-semibold mb-4">Increase/Decrease by Percentage</h3>
           <div className="flex flex-wrap items-center gap-2">
-            <input
+            <input aria-label="Starting value"
               type="number"
               value={calc4.value}
               onChange={(e) => setCalc4({ ...calc4, value: parseFloat(e.target.value) || 0 })}
               className="w-24 px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)] text-center"
             />
-            <select
+            <select aria-label="Increase or decrease"
               value={calc4.operation}
               onChange={(e) => setCalc4({ ...calc4, operation: e.target.value as "increase" | "decrease" })}
               className="px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -115,7 +115,7 @@ export default function PercentageCalculatorPage() {
               <option value="increase">increased by</option>
               <option value="decrease">decreased by</option>
             </select>
-            <input
+            <input aria-label="Percentage change"
               type="number"
               value={calc4.percentage}
               onChange={(e) => setCalc4({ ...calc4, percentage: parseFloat(e.target.value) || 0 })}

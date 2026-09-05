@@ -169,7 +169,7 @@ export default function ImageFiltersPage() {
                         {filters[key]}{unit}
                       </span>
                     </div>
-                    <input
+                    <input aria-label={label}
                       type="range"
                       value={filters[key]}
                       onChange={(e) => updateFilter(key, parseInt(e.target.value))}

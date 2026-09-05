@@ -102,8 +102,8 @@ export default function IPGeneratorPage() {
       <div className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">IP Type</label>
-            <select
+            <label htmlFor="ip-generator-field-1" className="block text-sm font-medium mb-2">IP Type</label>
+            <select id="ip-generator-field-1"
               value={ipType}
               onChange={(e) => setIPType(e.target.value as IPType)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -115,8 +115,8 @@ export default function IPGeneratorPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="ip-generator-field-2" className="block text-sm font-medium mb-2">Count</label>
+            <input id="ip-generator-field-2"
               type="number"
               min="1"
               max="100"

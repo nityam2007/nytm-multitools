@@ -18,40 +18,40 @@ export default function SlugGeneratorPage() {
 
   const generateSlug = (): string => {
     let result = text.trim();
-    
+
     // Remove accents
     result = result.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    
+
     // Convert to lowercase if option is set
     if (lowercase) {
       result = result.toLowerCase();
     }
-    
+
     // Remove stop words if option is set
     if (removeStopWords) {
       const words = result.split(/\s+/);
       result = words.filter(word => !stopWords.includes(word.toLowerCase())).join(" ");
     }
-    
+
     // Replace special characters with separator
     result = result.replace(/[^a-zA-Z0-9\s]/g, "");
-    
+
     // Replace spaces with separator
     result = result.replace(/\s+/g, separator);
-    
+
     // Remove consecutive separators
     result = result.replace(new RegExp(`${separator}+`, "g"), separator);
-    
+
     // Remove leading/trailing separators
     result = result.replace(new RegExp(`^${separator}|${separator}$`, "g"), "");
-    
+
     // Apply max length if set
     if (maxLength > 0 && result.length > maxLength) {
       result = result.substring(0, maxLength);
       // Remove trailing separator
       result = result.replace(new RegExp(`${separator}$`, "g"), "");
     }
-    
+
     return result;
   };
 
@@ -65,8 +65,8 @@ export default function SlugGeneratorPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Input Text</label>
-          <textarea
+          <label htmlFor="slug-generator-field-1" className="block text-sm font-medium mb-2">Input Text</label>
+          <textarea id="slug-generator-field-1"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter a title or phrase to convert to a slug..."
@@ -76,8 +76,8 @@ export default function SlugGeneratorPage() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Separator</label>
-            <select
+            <label htmlFor="slug-generator-field-2" className="block text-sm font-medium mb-2">Separator</label>
+            <select id="slug-generator-field-2"
               value={separator}
               onChange={(e) => setSeparator(e.target.value)}
               className="w-full px-4 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -88,8 +88,8 @@ export default function SlugGeneratorPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Max Length (0 = no limit)</label>
-            <input
+            <label htmlFor="slug-generator-field-3" className="block text-sm font-medium mb-2">Max Length (0 = no limit)</label>
+            <input id="slug-generator-field-3"
               type="number"
               min="0"
               value={maxLength}

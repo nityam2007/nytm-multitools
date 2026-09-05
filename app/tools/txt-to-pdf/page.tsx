@@ -139,7 +139,7 @@ export default function TxtToPdfPage() {
               </button>
             )}
           </div>
-          <textarea
+          <textarea aria-label="Document text"
             value={textContent}
             onChange={(e) => setTextContent(e.target.value)}
             placeholder="Paste or type your text here..."
@@ -166,8 +166,8 @@ export default function TxtToPdfPage() {
           <div className="grid sm:grid-cols-2 gap-4">
             {/* Font Size */}
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Font Size: {settings.fontSize}pt</label>
-              <input
+              <label htmlFor="txt-to-pdf-field-1" className="text-sm text-[var(--muted-foreground)]">Font Size: {settings.fontSize}pt</label>
+              <input id="txt-to-pdf-field-1"
                 type="range"
                 min="8"
                 max="24"
@@ -179,8 +179,8 @@ export default function TxtToPdfPage() {
 
             {/* Line Height */}
             <div className="space-y-2">
-              <label className="text-sm text-[var(--muted-foreground)]">Line Height: {settings.lineHeight}x</label>
-              <input
+              <label htmlFor="txt-to-pdf-field-2" className="text-sm text-[var(--muted-foreground)]">Line Height: {settings.lineHeight}x</label>
+              <input id="txt-to-pdf-field-2"
                 type="range"
                 min="1"
                 max="2.5"
@@ -242,8 +242,8 @@ export default function TxtToPdfPage() {
 
           {/* Margin */}
           <div className="space-y-2">
-            <label className="text-sm text-[var(--muted-foreground)]">Margin: {settings.margin}mm</label>
-            <input
+            <label htmlFor="txt-to-pdf-field-3" className="text-sm text-[var(--muted-foreground)]">Margin: {settings.margin}mm</label>
+            <input id="txt-to-pdf-field-3"
               type="range"
               min="10"
               max="40"

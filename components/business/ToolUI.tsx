@@ -67,7 +67,7 @@ export function Field({
           onChange={(e) => onChange(e.target.value)}
           rows={5}
           placeholder={placeholder}
-          className="w-full"
+          className="field-control w-full"
         />
       ) : (
         <input
@@ -79,7 +79,7 @@ export function Field({
           max={max}
           step={step}
           placeholder={placeholder}
-          className="w-full"
+          className="field-control w-full"
         />
       )}
     </div>
@@ -104,7 +104,7 @@ export function Choice({
       </label>
       <select
         id={id}
-        className="w-full"
+        className="field-control w-full"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >

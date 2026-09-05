@@ -41,7 +41,7 @@ export default function RemoveBgPage() {
   const handlePaste = useCallback(async (e?: ClipboardEvent) => {
     try {
       let items: DataTransferItemList | undefined;
-      
+
       if (e) {
         items = e.clipboardData?.items;
       } else {
@@ -130,7 +130,7 @@ export default function RemoveBgPage() {
       const blob = await removeBackgroundFn(imageUrl, {
         progress: (key: string, current: number, total: number) => {
           const percent = Math.round((current / total) * 100);
-          
+
           if (key === "fetch:model") {
             setProgressMessage(`Downloading AI model... ${percent}%`);
             setProgress(5 + (percent * 0.4));
@@ -201,7 +201,7 @@ export default function RemoveBgPage() {
       }
 
       ctx.drawImage(img, 0, 0);
-      
+
       const newUrl = canvas.toDataURL("image/png");
       if (processedUrl) {
         URL.revokeObjectURL(processedUrl);
@@ -295,7 +295,7 @@ export default function RemoveBgPage() {
                       {color.name}
                     </button>
                   ))}
-                  <input
+                  <input aria-label="Custom background color"
                     type="color"
                     value={bgColor || "#ffffff"}
                     onChange={(e) => setBgColor(e.target.value)}
@@ -350,7 +350,7 @@ export default function RemoveBgPage() {
                     </button>
                   )}
                 </div>
-                
+
                 <div
                   className="relative rounded-xl overflow-hidden border border-[var(--border)]"
                   style={{

@@ -18,7 +18,7 @@ const WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "
 
 function parseCronField(field: string, min: number, max: number, names?: string[]): number[] {
   const results: Set<number> = new Set();
-  
+
   for (const part of field.split(",")) {
     if (part === "*") {
       for (let i = min; i <= max; i++) results.add(i);
@@ -26,7 +26,7 @@ function parseCronField(field: string, min: number, max: number, names?: string[
       const [range, step] = part.split("/");
       const stepNum = parseInt(step, 10);
       let start = min, end = max;
-      
+
       if (range !== "*") {
         if (range.includes("-")) {
           [start, end] = range.split("-").map(n => parseInt(n, 10));
@@ -34,7 +34,7 @@ function parseCronField(field: string, min: number, max: number, names?: string[
           start = parseInt(range, 10);
         }
       }
-      
+
       for (let i = start; i <= end; i += stepNum) {
         results.add(i);
       }
@@ -45,17 +45,17 @@ function parseCronField(field: string, min: number, max: number, names?: string[
       results.add(parseInt(part, 10));
     }
   }
-  
+
   return Array.from(results).sort((a, b) => a - b);
 }
 
 function describeCron(cron: string): string {
   const parts = cron.trim().split(/\s+/);
   if (parts.length !== 5) return "Invalid cron expression (expected 5 fields)";
-  
+
   const [minute, hour, dayOfMonth, month, dayOfWeek] = parts;
   const descriptions: string[] = [];
-  
+
   // Minute
   if (minute === "*") {
     descriptions.push("every minute");
@@ -65,65 +65,65 @@ function describeCron(cron: string): string {
     const minutes = parseCronField(minute, 0, 59);
     descriptions.push(`at minute ${minutes.join(", ")}`);
   }
-  
+
   // Hour
   if (hour !== "*") {
     const hours = parseCronField(hour, 0, 23);
     descriptions.push(`past hour ${hours.join(", ")}`);
   }
-  
+
   // Day of month
   if (dayOfMonth !== "*") {
     const days = parseCronField(dayOfMonth, 1, 31);
     descriptions.push(`on day ${days.join(", ")} of the month`);
   }
-  
+
   // Month
   if (month !== "*") {
     const months = parseCronField(month, 1, 12);
     descriptions.push(`in ${months.map(m => MONTH_NAMES[m - 1]).join(", ")}`);
   }
-  
+
   // Day of week
   if (dayOfWeek !== "*") {
     const days = parseCronField(dayOfWeek, 0, 6);
     descriptions.push(`on ${days.map(d => WEEKDAY_NAMES[d]).join(", ")}`);
   }
-  
+
   return descriptions.join(" ") || "every minute";
 }
 
 function getNextRuns(cron: string, count: number = 5): Date[] {
   const parts = cron.trim().split(/\s+/);
   if (parts.length !== 5) return [];
-  
+
   const [minute, hour, dayOfMonth, month, dayOfWeek] = parts;
   const minutes = parseCronField(minute, 0, 59);
   const hours = parseCronField(hour, 0, 23);
   const daysOfMonth = parseCronField(dayOfMonth, 1, 31);
   const months = parseCronField(month, 1, 12);
   const daysOfWeek = parseCronField(dayOfWeek, 0, 6);
-  
+
   const results: Date[] = [];
   const now = new Date();
   const current = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + 1, 0, 0);
-  
+
   while (results.length < count) {
     if (current.getFullYear() > now.getFullYear() + 2) break;
-    
+
     const monthMatch = month === "*" || months.includes(current.getMonth() + 1);
     const dayMatch = dayOfMonth === "*" || daysOfMonth.includes(current.getDate());
     const weekdayMatch = dayOfWeek === "*" || daysOfWeek.includes(current.getDay());
     const hourMatch = hour === "*" || hours.includes(current.getHours());
     const minuteMatch = minute === "*" || minutes.includes(current.getMinutes());
-    
+
     if (monthMatch && dayMatch && weekdayMatch && hourMatch && minuteMatch) {
       results.push(new Date(current));
     }
-    
+
     current.setMinutes(current.getMinutes() + 1);
   }
-  
+
   return results;
 }
 
@@ -157,7 +157,7 @@ export default function CronParserPage() {
 
       const desc = describeCron(input);
       const runs = getNextRuns(input, 10);
-      
+
       setDescription(desc);
       setNextRuns(runs);
 
@@ -195,8 +195,8 @@ export default function CronParserPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Cron Expression</label>
-          <input
+          <label htmlFor="cron-parser-field-1" className="block text-sm font-medium mb-2">Cron Expression</label>
+          <input id="cron-parser-field-1"
             type="text"
             value={input}
             onChange={(e) => { setInput(e.target.value); setError(""); }}

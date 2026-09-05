@@ -52,7 +52,7 @@ const portDatabase: PortInfo[] = [
   { port: 636, protocol: "TCP", service: "LDAPS", description: "LDAP over SSL", category: "Infrastructure" },
   { port: 993, protocol: "TCP", service: "IMAPS", description: "IMAP over SSL - secure email retrieval", category: "Email" },
   { port: 995, protocol: "TCP", service: "POP3S", description: "POP3 over SSL - secure email retrieval", category: "Email" },
-  
+
   // Registered Ports (1024-49151)
   { port: 1080, protocol: "TCP", service: "SOCKS", description: "SOCKS proxy protocol", category: "Proxy" },
   { port: 1433, protocol: "TCP", service: "MS SQL", description: "Microsoft SQL Server", category: "Database" },
@@ -169,7 +169,7 @@ export default function PortInfoPage() {
         <div className="bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/30 rounded-2xl p-6">
           <h3 className="text-lg font-semibold mb-4">Quick Port Lookup</h3>
           <div className="flex gap-2">
-            <input
+            <input aria-label="Port number"
               type="number"
               value={portInput}
               onChange={(e) => setPortInput(e.target.value)}
@@ -217,7 +217,7 @@ export default function PortInfoPage() {
         {/* Search and Filter */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <input
+            <input aria-label="Search ports and services"
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -228,7 +228,7 @@ export default function PortInfoPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <select
+          <select aria-label="Protocol filter"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-4 py-3 rounded-xl bg-[var(--muted)] border border-transparent focus:border-violet-500/50 transition-all cursor-pointer"

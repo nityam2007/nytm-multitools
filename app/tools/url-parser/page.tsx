@@ -24,14 +24,14 @@ export default function UrlParserPage() {
 
   const parseUrl = (): ParsedUrl | null => {
     if (!input.trim()) return null;
-    
+
     try {
       const url = new URL(input);
       const params: Record<string, string> = {};
       url.searchParams.forEach((value, key) => {
         params[key] = value;
       });
-      
+
       return {
         protocol: url.protocol,
         host: url.host,
@@ -54,8 +54,8 @@ export default function UrlParserPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">URL</label>
-          <input
+          <label htmlFor="url-parser-field-1" className="block text-sm font-medium mb-2">URL</label>
+          <input id="url-parser-field-1"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}

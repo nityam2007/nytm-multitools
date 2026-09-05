@@ -118,8 +118,8 @@ export default function SvgToPngPage() {
       />
 
         <div>
-          <label className="block text-sm font-medium mb-2">SVG Code</label>
-          <textarea
+          <label htmlFor="svg-to-png-field-1" className="block text-sm font-medium mb-2">SVG Code</label>
+          <textarea id="svg-to-png-field-1"
             value={svgContent}
             onChange={(e) => handleSvgInput(e.target.value)}
             placeholder='Paste SVG code here (e.g., <svg xmlns="http://www.w3.org/2000/svg" ...>)'
@@ -168,7 +168,7 @@ export default function SvgToPngPage() {
                     </button>
                   ))}
                 </div>
-                <input
+                <input aria-label="Output scale multiplier"
                   type="range"
                   value={scale}
                   onChange={(e) => setScale(parseFloat(e.target.value))}
@@ -214,7 +214,7 @@ export default function SvgToPngPage() {
                   >
                     Black
                   </button>
-                  <input
+                  <input aria-label="Custom background color"
                     type="color"
                     value={bgColor === "transparent" ? "#ffffff" : bgColor}
                     onChange={(e) => setBgColor(e.target.value)}

@@ -34,7 +34,7 @@ export default function LoanEMICalculatorPage() {
 
   const calculateEMI = useCallback(async () => {
     const startTime = Date.now();
-    
+
     const P = parseFloat(principal);
     const annualRate = parseFloat(rate);
     const tenureValue = parseFloat(tenure);
@@ -126,14 +126,14 @@ export default function LoanEMICalculatorPage() {
               Loan Tenure
             </label>
             <div className="flex gap-2">
-              <input
+              <input aria-label="Loan tenure"
                 type="number"
                 value={tenure}
                 onChange={(e) => setTenure(e.target.value)}
                 className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base bg-[var(--card)] border-2 border-[var(--border)] focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-300"
                 min="1"
               />
-              <select
+              <select aria-label="Loan tenure unit"
                 value={tenureType}
                 onChange={(e) => setTenureType(e.target.value as "months" | "years")}
                 className="px-3 py-2 rounded-xl bg-[var(--card)] border-2 border-[var(--border)] text-sm focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all duration-300"
@@ -159,12 +159,12 @@ export default function LoanEMICalculatorPage() {
                 <div className="text-xs sm:text-sm text-[var(--muted-foreground)] mb-1">Monthly EMI</div>
                 <div className="text-xl sm:text-2xl font-bold text-violet-500">{formatCurrency(result.emi)}</div>
               </div>
-              
+
               <div className="p-4 sm:p-6 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl border border-green-500/20">
                 <div className="text-xs sm:text-sm text-[var(--muted-foreground)] mb-1">Total Payment</div>
                 <div className="text-xl sm:text-2xl font-bold text-green-500">{formatCurrency(result.totalPayment)}</div>
               </div>
-              
+
               <div className="p-4 sm:p-6 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-xl border border-amber-500/20">
                 <div className="text-xs sm:text-sm text-[var(--muted-foreground)] mb-1">Total Interest</div>
                 <div className="text-xl sm:text-2xl font-bold text-amber-500">{formatCurrency(result.totalInterest)}</div>
@@ -179,17 +179,17 @@ export default function LoanEMICalculatorPage() {
                   {/* Simple Bar Chart */}
                   <div className="w-full sm:w-1/2">
                     <div className="h-8 rounded-lg overflow-hidden flex">
-                      <div 
+                      <div
                         className="bg-violet-500 transition-all duration-500"
                         style={{ width: `${pieData.principalPercent}%` }}
                       />
-                      <div 
+                      <div
                         className="bg-amber-500 transition-all duration-500"
                         style={{ width: `${pieData.interestPercent}%` }}
                       />
                     </div>
                   </div>
-                  
+
                   {/* Legend */}
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                     <div className="flex items-center gap-2">

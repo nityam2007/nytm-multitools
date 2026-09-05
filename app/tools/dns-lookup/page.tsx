@@ -40,8 +40,8 @@ export default function DNSLookupPage() {
   ];
 
   const toggleRecordType = (type: string) => {
-    setSelectedTypes(prev => 
-      prev.includes(type) 
+    setSelectedTypes(prev =>
+      prev.includes(type)
         ? prev.filter(t => t !== type)
         : [...prev, type]
     );
@@ -67,7 +67,7 @@ export default function DNSLookupPage() {
 
   const lookupDNS = async () => {
     const cleanedDomain = cleanDomain(domain);
-    
+
     if (!cleanedDomain) {
       setError("Please enter a domain name");
       return;
@@ -89,7 +89,7 @@ export default function DNSLookupPage() {
 
     try {
       const records: DNSRecord[] = [];
-      
+
       // Use Google DNS-over-HTTPS API (publicly available)
       for (const type of selectedTypes) {
         try {
@@ -101,22 +101,22 @@ export default function DNSLookupPage() {
               }
             }
           );
-          
+
           if (response.ok) {
             const data = await response.json();
-            
+
             if (data.Answer) {
               for (const answer of data.Answer) {
                 let value = answer.data;
                 let priority: number | undefined;
-                
+
                 // Parse MX records which have priority
                 if (type === "MX" && value.includes(" ")) {
                   const parts = value.split(" ");
                   priority = parseInt(parts[0]);
                   value = parts.slice(1).join(" ");
                 }
-                
+
                 records.push({
                   type: recordTypes.find(rt => rt.id === type)?.name || type,
                   value: value.replace(/\\"/g, '"'), // Unescape quotes in TXT records
@@ -170,7 +170,7 @@ export default function DNSLookupPage() {
         <div>
           <label className="block text-sm font-medium mb-2">Domain Name</label>
           <div className="flex gap-2">
-            <input
+            <input aria-label="Domain name"
               type="text"
               value={domain}
               onChange={(e) => setDomain(e.target.value)}

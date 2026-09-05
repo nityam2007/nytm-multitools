@@ -60,7 +60,7 @@ export default function MorseCodePage() {
 
   const playMorse = () => {
     if (!morseInput) return;
-    
+
     const audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
     const dotDuration = 0.1; // seconds
     const dashDuration = 0.3;
@@ -133,8 +133,8 @@ export default function MorseCodePage() {
         {mode === "textToMorse" ? (
           <>
             <div>
-              <label className="block text-sm font-medium mb-2">Text Input</label>
-              <textarea
+              <label htmlFor="morse-code-field-1" className="block text-sm font-medium mb-2">Text Input</label>
+              <textarea id="morse-code-field-1"
                 value={textInput}
                 onChange={(e) => handleTextChange(e.target.value)}
                 placeholder="Enter text to convert to Morse code..."
@@ -171,8 +171,8 @@ export default function MorseCodePage() {
         ) : (
           <>
             <div>
-              <label className="block text-sm font-medium mb-2">Morse Code Input</label>
-              <textarea
+              <label htmlFor="morse-code-field-2" className="block text-sm font-medium mb-2">Morse Code Input</label>
+              <textarea id="morse-code-field-2"
                 value={morseInput}
                 onChange={(e) => handleMorseChange(e.target.value)}
                 placeholder="Enter Morse code (use dots, dashes, spaces, and / for word breaks)..."

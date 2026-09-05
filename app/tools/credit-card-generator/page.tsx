@@ -45,32 +45,32 @@ export default function CreditCardGeneratorPage() {
 
   const generate = () => {
     const cards: {number: string; type: string; cvv: string; exp: string}[] = [];
-    
+
     for (let i = 0; i < count; i++) {
       const config = cardTypes[cardType];
       const prefix = config.prefix[Math.floor(Math.random() * config.prefix.length)];
-      
+
       // Generate random digits for the middle part
       let number = prefix;
       const remainingLength = config.length - prefix.length - 1; // -1 for check digit
       for (let j = 0; j < remainingLength; j++) {
         number += Math.floor(Math.random() * 10);
       }
-      
+
       // Add Luhn check digit
       number += generateLuhnCheckDigit(number);
-      
+
       // Generate CVV
       const cvvLength = cardType === "amex" ? 4 : 3;
       let cvv = "";
       for (let j = 0; j < cvvLength; j++) {
         cvv += Math.floor(Math.random() * 10);
       }
-      
+
       // Generate expiry date (future date)
       const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, "0");
       const year = String(new Date().getFullYear() + Math.floor(Math.random() * 5) + 1).slice(-2);
-      
+
       cards.push({
         number,
         type: config.name,
@@ -78,7 +78,7 @@ export default function CreditCardGeneratorPage() {
         exp: `${month}/${year}`,
       });
     }
-    
+
     setResults(cards);
   };
 
@@ -105,8 +105,8 @@ export default function CreditCardGeneratorPage() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Card Type</label>
-            <select
+            <label htmlFor="credit-card-generator-field-1" className="block text-sm font-medium mb-2">Card Type</label>
+            <select id="credit-card-generator-field-1"
               value={cardType}
               onChange={(e) => setCardType(e.target.value as CardType)}
               className="w-full px-4 py-3 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -117,8 +117,8 @@ export default function CreditCardGeneratorPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Count</label>
-            <input
+            <label htmlFor="credit-card-generator-field-2" className="block text-sm font-medium mb-2">Count</label>
+            <input id="credit-card-generator-field-2"
               type="number"
               min="1"
               max="20"
@@ -149,7 +149,7 @@ export default function CreditCardGeneratorPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                   </svg>
                 </div>
-                <div 
+                <div
                   className="text-xl sm:text-2xl font-mono tracking-wider mb-6 cursor-pointer hover:text-blue-400 transition-colors"
                   onClick={() => copyToClipboard(card.number)}
                   title="Click to copy"

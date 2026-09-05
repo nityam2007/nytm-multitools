@@ -87,8 +87,8 @@ export default function QrCodeGeneratorPage() {
         {/* Options */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Size: {options.size}px</label>
-            <input
+            <label htmlFor="qr-code-generator-field-1" className="block text-sm font-medium mb-2">Size: {options.size}px</label>
+            <input id="qr-code-generator-field-1"
               type="range"
               min="128"
               max="512"
@@ -100,8 +100,8 @@ export default function QrCodeGeneratorPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Error Correction</label>
-            <select
+            <label htmlFor="qr-code-generator-field-2" className="block text-sm font-medium mb-2">Error Correction</label>
+            <select id="qr-code-generator-field-2"
               value={options.errorCorrectionLevel}
               onChange={(e) => setOptions((prev) => ({ ...prev, errorCorrectionLevel: e.target.value as any }))}
               className="w-full px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
@@ -116,13 +116,13 @@ export default function QrCodeGeneratorPage() {
           <div>
             <label className="block text-sm font-medium mb-2">Dark Color</label>
             <div className="flex gap-2">
-              <input
+              <input aria-label="Choose foreground color"
                 type="color"
                 value={options.darkColor}
                 onChange={(e) => setOptions((prev) => ({ ...prev, darkColor: e.target.value }))}
                 className="w-12 h-10 rounded cursor-pointer"
               />
-              <input
+              <input aria-label="Foreground HEX color"
                 type="text"
                 value={options.darkColor}
                 onChange={(e) => setOptions((prev) => ({ ...prev, darkColor: e.target.value }))}
@@ -134,13 +134,13 @@ export default function QrCodeGeneratorPage() {
           <div>
             <label className="block text-sm font-medium mb-2">Light Color</label>
             <div className="flex gap-2">
-              <input
+              <input aria-label="Choose background color"
                 type="color"
                 value={options.lightColor}
                 onChange={(e) => setOptions((prev) => ({ ...prev, lightColor: e.target.value }))}
                 className="w-12 h-10 rounded cursor-pointer"
               />
-              <input
+              <input aria-label="Background HEX color"
                 type="text"
                 value={options.lightColor}
                 onChange={(e) => setOptions((prev) => ({ ...prev, lightColor: e.target.value }))}

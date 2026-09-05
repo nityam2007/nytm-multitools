@@ -86,7 +86,7 @@ export default function EmojiPickerPage() {
     if (!searchQuery.trim()) {
       return emojiCategories[activeCategory as keyof typeof emojiCategories] || [];
     }
-    
+
     // Search across all categories
     const allEmojis = Object.values(emojiCategories).flat();
     // For now, just return all emojis when searching (emoji search by name would require a mapping)
@@ -98,7 +98,7 @@ export default function EmojiPickerPage() {
       await navigator.clipboard.writeText(emoji);
       setCopiedEmoji(emoji);
       setTimeout(() => setCopiedEmoji(null), 1500);
-      
+
       // Add to recent
       setRecentEmojis(prev => {
         const filtered = prev.filter(e => e !== emoji);
@@ -130,7 +130,7 @@ export default function EmojiPickerPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div className="relative">
-          <input
+          <input aria-label="Search emojis"
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

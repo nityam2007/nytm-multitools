@@ -62,7 +62,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
   return (
     <div className="tool-shell max-w-6xl mx-auto">
       {/* Breadcrumb - Swiss style */}
-      <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-[var(--muted-foreground)] mb-4 sm:mb-6 md:mb-8 py-2 sm:py-4 overflow-x-auto">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-[var(--muted-foreground)] mb-4 sm:mb-6 md:mb-8 py-2 sm:py-4 overflow-x-auto">
         <Link href="/" className="hover:text-violet-400 transition-colors duration-300 whitespace-nowrap">Home</Link>
         <span className="text-[var(--border)]">/</span>
         <Link href="/tools" className="hover:text-violet-400 transition-colors duration-300 whitespace-nowrap">Tools</Link>
@@ -75,7 +75,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">{tool.name}</h1>
           <div className="flex gap-2"><ShareButton slug={tool.slug} toolName={tool.name} /><EmbedButton slug={tool.slug} toolName={tool.name} /></div>
         </div>
-        <p className="mt-3 text-sm text-[var(--muted-foreground)] max-w-3xl leading-relaxed">{tool.description}</p>
+        <p className="mt-3 text-base text-[var(--muted-foreground)] max-w-3xl leading-relaxed">{tool.description}</p>
         <p className="mt-3 text-xs font-mono text-[var(--primary)]">Free · No signup</p>
       </header>
 

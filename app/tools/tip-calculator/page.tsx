@@ -17,7 +17,7 @@ export default function TipCalculatorPage() {
   const calculation = useMemo(() => {
     const bill = parseFloat(billAmount) || 0;
     const tip = customTip ? parseFloat(customTip) : tipPercent;
-    
+
     if (bill <= 0 || tip < 0 || numPeople < 1) {
       return null;
     }
@@ -48,8 +48,8 @@ export default function TipCalculatorPage() {
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">Bill Amount ($)</label>
-          <input
+          <label htmlFor="tip-calculator-field-1" className="block text-sm font-medium mb-2">Bill Amount ($)</label>
+          <input id="tip-calculator-field-1"
             type="number"
             value={billAmount}
             onChange={(e) => setBillAmount(e.target.value)}
@@ -61,7 +61,7 @@ export default function TipCalculatorPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Tip Percentage</label>
+          <label htmlFor="tip-calculator-field-2" className="block text-sm font-medium mb-2">Tip Percentage</label>
           <div className="flex flex-wrap gap-2 mb-3">
             {quickTips.map((tip) => (
               <button
@@ -79,7 +79,7 @@ export default function TipCalculatorPage() {
                 {tip}%
               </button>
             ))}
-            <input
+            <input aria-label="Custom tip percentage"
               type="number"
               value={customTip}
               onChange={(e) => setCustomTip(e.target.value)}
@@ -88,7 +88,7 @@ export default function TipCalculatorPage() {
               className="w-24 px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)]"
             />
           </div>
-          <input
+          <input id="tip-calculator-field-2"
             type="range"
             value={customTip || tipPercent}
             onChange={(e) => {
@@ -115,7 +115,7 @@ export default function TipCalculatorPage() {
             >
               −
             </button>
-            <input
+            <input aria-label="Number of people"
               type="number"
               value={numPeople}
               onChange={(e) => setNumPeople(Math.max(1, parseInt(e.target.value) || 1))}

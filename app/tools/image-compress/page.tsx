@@ -77,12 +77,12 @@ export default function ImageCompressPage() {
 
       const mimeType = `image/${format}`;
       const dataUrl = canvas.toDataURL(mimeType, quality / 100);
-      
+
       // Calculate output size
       const base64 = dataUrl.split(",")[1];
       const bytes = atob(base64).length;
       setOutputSize(bytes);
-      
+
       setOutput(dataUrl);
       setProcessing(false);
 
@@ -133,8 +133,8 @@ export default function ImageCompressPage() {
                 <h3 className="font-medium">Compression Options</h3>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Quality: {quality}%</label>
-                  <input
+                  <label htmlFor="image-compress-field-1" className="block text-sm font-medium mb-1">Quality: {quality}%</label>
+                  <input id="image-compress-field-1"
                     type="range"
                     min={10}
                     max={100}
@@ -149,8 +149,8 @@ export default function ImageCompressPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Format</label>
-                  <select
+                  <label htmlFor="image-compress-field-2" className="block text-sm font-medium mb-1">Format</label>
+                  <select id="image-compress-field-2"
                     value={format}
                     onChange={(e) => setFormat(e.target.value as typeof format)}
                     className="input w-full"
@@ -172,8 +172,8 @@ export default function ImageCompressPage() {
 
                 {resizeEnabled && (
                   <div>
-                    <label className="block text-sm font-medium mb-1">Max Width: {maxWidth}px</label>
-                    <input
+                    <label htmlFor="image-compress-field-3" className="block text-sm font-medium mb-1">Max Width: {maxWidth}px</label>
+                    <input id="image-compress-field-3"
                       type="range"
                       min={100}
                       max={originalDimensions.width}
@@ -207,7 +207,7 @@ export default function ImageCompressPage() {
                     Download
                   </button>
                 </div>
-                
+
                 <div className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 rounded-lg p-3 mb-4">
                   <p className="font-medium flex items-center gap-2">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

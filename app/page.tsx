@@ -1,20 +1,25 @@
-// Search-first homepage for the complete tool library | TypeScript
+// Task-first homepage for everyday browser tools | TypeScript
 import Link from "next/link";
-import { toolsConfig, getToolBySlug } from "@/lib/tools-config";
+import { toolsConfig } from "@/lib/tools-config";
+import { TOTAL_TOOLS } from "@/lib/site-config";
 import { HomeSearch } from "@/components/HomeSearch";
 import { RecentTools } from "@/components/RecentTools";
-import { ToolCard } from "@/components/ToolCard";
-import {
-  discoveryCategories,
-  workflows,
-  featuredSlugs,
-} from "@/lib/tool-discovery";
+import { HomeToolPicker } from "@/components/ToolCard";
+import { discoveryCategories } from "@/lib/tool-discovery";
 import { guides } from "@/lib/guides";
-import { categoryIconMap, CircleIcon } from "@/assets/icons";
+import {
+  categoryIconMap,
+  CircleIcon,
+  CheckIcon,
+  ArrowRightIcon,
+  ArrowUpRightIcon,
+  StarIcon,
+} from "@/assets/icons";
 import { generateCollectionMetadata } from "@/lib/seo";
+
 export const metadata = generateCollectionMetadata({
   title: "Free Online Tools for PDFs, Images, Text & Code | NYTM",
-  description: `Find ${toolsConfig.length} free online tools: merge PDFs, compress images, format JSON, clean CSV files, and create business assets. No signup required.`,
+  description: `Find ${TOTAL_TOOLS} free online tools: merge PDFs, compress images, format JSON, clean CSV files, and create business assets. No signup required.`,
   path: "/",
   keywords: [
     "free online tools",
@@ -26,238 +31,99 @@ export const metadata = generateCollectionMetadata({
     "business tools",
   ],
 });
+
 export default function Home() {
   return (
-    <div className="discovery-page">
-      <section className="home-hero">
-        <div className="home-hero-main">
-          <p className="eyebrow">
-            THE EVERYDAY TOOLBOX <span>{toolsConfig.length} free tools</span>
-          </p>
-          <h1>
-            Free online tools.
-            <br />
-            <span>One useful place.</span>
-          </h1>
-          <p className="home-intro">
-            A smaller PDF. A cleaner spreadsheet. A photo ready to share. Find
-            the right tool and get on with your day.
-          </p>
-          <HomeSearch />
-          <div className="quick-starts" aria-label="Common searches">
-            <span>Jump to</span>
-            {[
-              ["PDF tools", "/categories/pdf"],
-              ["Image tools", "/categories/image"],
-              ["JSON formatter", "/tools/json-pretty"],
-            ].map(([name, href]) => (
-              <Link key={href} href={href}>
-                {name} <span aria-hidden="true">↗</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <aside className="hero-directory" aria-label="Browse the library">
-          <div className="hero-directory-heading">
-            <span className="eyebrow">FIND YOUR STARTING POINT</span>
-            <span className="directory-count">
-              {toolsConfig.length}
-              <small>tools, ready when you are</small>
-            </span>
-          </div>
-          {[
-            [
-              "Documents & PDFs",
-              "Merge, split, organise & convert",
-              "/tools?file=pdf",
-            ],
-            [
-              "Photos & images",
-              "Compress, resize & prepare",
-              "/tools?category=image",
-            ],
-            [
-              "Code & data",
-              "Format, validate & clean up",
-              "/tools?category=dev",
-            ],
-            [
-              "Business essentials",
-              "Plan, promote & present",
-              "/business-tools",
-            ],
-          ].map(([title, text, href], index) => (
-            <Link className="hero-directory-link" href={href} key={href}>
-              <span className="directory-index">0{index + 1}</span>
-              <span>
-                <strong>{title}</strong>
-                <small>{text}</small>
-              </span>
-              <span className="directory-arrow" aria-hidden="true">
-                →
-              </span>
-            </Link>
+    <div className="discovery-page home-page">
+      <section className="homepage-hero" aria-labelledby="homepage-title">
+        <p className="homepage-eyebrow">{TOTAL_TOOLS} free online tools</p>
+        <h1 id="homepage-title">Small tasks. <span>Sorted.</span></h1>
+        <p className="homepage-intro">
+          Merge PDFs, resize images, format code, and get on with your day.
+        </p>
+        <HomeSearch />
+        <ul className="homepage-benefits" aria-label="Using NYTM">
+          {["Free to use", "No signup", "No installation"].map((benefit) => (
+            <li key={benefit}>
+              <span aria-hidden="true"><CheckIcon className="w-4 h-4" /></span>
+              {benefit}
+            </li>
           ))}
-          <Link href="/tools" className="btn btn-secondary">
-            Browse all {toolsConfig.length} tools →
-          </Link>
-        </aside>
+        </ul>
       </section>
-      <div className="home-facts">
-        <span>No account needed</span>
-        <span>Free to use</span>
-        <Link className="btn btn-secondary" href="/tools?scope=pinned">
-          Your pinned tools →
-        </Link>
-        <Link className="btn btn-secondary" href="/work-with-nsheth">
-          Meet NSheth ↗
-        </Link>
-      </div>
       <RecentTools />
-      <section className="home-section" id="workflows">
-        <div className="section-heading">
+      <section className="homepage-section homepage-shortcuts" id="workflows" aria-labelledby="featured">
+        <div className="homepage-section-heading">
           <div>
-            <p className="eyebrow">START WITH YOUR TASK</p>
-            <h2>What’s on your list?</h2>
+            <h2 id="featured">What do you need to do?</h2>
+            <p>Pick a tool. Get straight to work.</p>
           </div>
-          <Link className="btn btn-secondary" href="/business-tools">
-            Business tools →
+          <Link className="homepage-text-link homepage-pinned-link" href="/tools?scope=pinned">
+            <StarIcon className="w-4 h-4" /> Your pinned tools
           </Link>
         </div>
-        <div className="workflow-grid">
-          {workflows.map((flow, index) => (
-            <article className="workflow-card" key={flow.id}>
-              <span className="workflow-number">0{index + 1}</span>
-              <h3>{flow.title}</h3>
-              <p>{flow.description}</p>
-              <ul>
-                {flow.slugs.map((slug) => {
-                  const tool = getToolBySlug(slug)!;
-                  return (
-                    <li key={slug}>
-                      <Link href={`/tools/${slug}`}>
-                        {tool.name}
-                        <span aria-hidden="true">→</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-              <Link className="btn btn-secondary" href={flow.href}>
-                Explore{" "}
-                {flow.id === "pdf"
-                  ? "PDF tools"
-                  : flow.id === "images"
-                    ? "image tools"
-                    : "business tools"}{" "}
-                →
-              </Link>
-            </article>
-          ))}
-        </div>
+        <HomeToolPicker />
       </section>
-      <section className="home-section" id="categories">
-        <div className="section-heading">
+      <section className="homepage-section homepage-categories" id="categories" aria-labelledby="categories-heading">
+        <div className="homepage-section-heading">
           <div>
-            <p className="eyebrow">THE COMPLETE LIBRARY</p>
-            <h2>Browse by category</h2>
+            <h2 id="categories-heading">There’s more in the toolbox.</h2>
+            <p>Explore all {TOTAL_TOOLS} tools by category.</p>
           </div>
-          <Link className="btn btn-secondary" href="/tools">
-            View all tools →
+          <Link className="homepage-text-link" href="/tools">
+            Browse all tools <ArrowRightIcon className="w-4 h-4" />
           </Link>
         </div>
-        <div className="category-grid">
+        <div className="homepage-category-grid">
           {discoveryCategories.map((category) => {
             const Icon = categoryIconMap[category.id] || CircleIcon;
+            const count = toolsConfig.filter((tool) => tool.category === category.id).length;
             return (
-              <Link
-                key={category.id}
-                className="category-tile"
-                href={`/categories/${category.id}`}
-              >
-                <span className="category-tile-icon" aria-hidden="true">
-                  <Icon className="w-5 h-5" />
-                </span>
-                <span>
+              <Link className="homepage-category" key={category.id} href={`/categories/${category.id}`}>
+                <span className="homepage-category-icon" aria-hidden="true"><Icon className="w-5 h-5" /></span>
+                <span className="homepage-category-copy">
                   <strong>{category.name}</strong>
-                  <small>
-                    {
-                      toolsConfig.filter(
-                        (tool) => tool.category === category.id,
-                      ).length
-                    }{" "}
-                    tools
-                  </small>
+                  <small>{count} tools</small>
                 </span>
-                <span aria-hidden="true">→</span>
+                <ArrowRightIcon className="homepage-category-arrow w-4 h-4" />
               </Link>
             );
           })}
         </div>
       </section>
-      <section className="home-section" id="featured">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">GOOD PLACES TO BEGIN</p>
-            <h2>Everyday favourites</h2>
-            <p>A few useful picks from across the collection.</p>
-          </div>
-          <Link href="/tools?scope=new" className="btn btn-secondary">
-            Recently added tools →
+      <section className="homepage-business" aria-labelledby="business-heading">
+        <div className="homepage-business-tools">
+          <p className="homepage-eyebrow">For your business, too</p>
+          <h2 id="business-heading">Less admin.<br />More time for your business.</h2>
+          <p>Create a quotation, prepare product photos, or make it easier for customers to reach you.</p>
+          <Link href="/business-tools" className="homepage-text-link">
+            Explore free business tools <ArrowRightIcon className="w-4 h-4" />
           </Link>
         </div>
-        <div className="tool-grid">
-          {featuredSlugs.map((slug) => (
-            <ToolCard tool={getToolBySlug(slug)!} key={slug} />
-          ))}
+        <div className="homepage-maker">
+          <p className="homepage-maker-label">Built by NSheth</p>
+          <h3>Need something made for you?</h3>
+          <p>Websites, online stores, and custom tools built around the way you work.</p>
+          <Link href="/work-with-nsheth?from=homepage" className="btn btn-primary">
+            Work with NSheth <ArrowUpRightIcon className="w-4 h-4" />
+          </Link>
+          <Link href="/tools/website-brief" className="homepage-text-link">
+            Or start with a free website brief <ArrowRightIcon className="w-4 h-4" />
+          </Link>
         </div>
       </section>
-      <section className="home-section">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">A LITTLE GUIDANCE</p>
-            <h2>From first step to finished task</h2>
-          </div>
-          <Link href="/guides" className="btn btn-secondary">
-            View all guides →
-          </Link>
+      <section className="homepage-guides" aria-labelledby="guides-heading">
+        <div className="homepage-section-heading">
+          <h2 id="guides-heading">A little help along the way.</h2>
+          <Link href="/guides" className="homepage-text-link">All guides <ArrowRightIcon className="w-4 h-4" /></Link>
         </div>
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="homepage-guide-links">
           {guides.slice(0, 2).map((guide) => (
-            <article className="guide-card" key={guide.slug}>
-              <h3 className="text-xl font-semibold">{guide.title}</h3>
-              <p className="text-sm text-[var(--muted-foreground)] leading-relaxed mt-3 mb-5">
-                {guide.description}
-              </p>
-              <Link
-                className="btn btn-secondary"
-                href={`/guides/${guide.slug}`}
-              >
-                Read the guide →
-              </Link>
-            </article>
+            <Link key={guide.slug} href={`/guides/${guide.slug}`}>
+              <span>{guide.title}</span>
+              <ArrowUpRightIcon className="w-5 h-5" />
+            </Link>
           ))}
-        </div>
-      </section>
-      <section className="home-nsheth">
-        <div>
-          <p className="eyebrow">MADE BY NSHETH</p>
-          <h2>Need something built for your business?</h2>
-          <p>
-            Websites, online stores, and custom tools—built around the way you
-            work.
-          </p>
-        </div>
-        <div className="action-row">
-          <Link
-            href="/work-with-nsheth?from=homepage"
-            className="btn btn-primary"
-          >
-            Explore NSheth services →
-          </Link>
-          <Link href="/tools/website-brief" className="btn btn-secondary">
-            Create a website brief
-          </Link>
         </div>
       </section>
     </div>

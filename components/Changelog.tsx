@@ -16,6 +16,11 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.17.0", changes: [
+    { type: "improved", text: "Simpler homepage with direct tool shortcuts, six task filters and the existing light and dark colours" },
+    { type: "improved", text: "Instant search suggestions, arrow-key selection and quick access to pinned tools" },
+    { type: "fixed", text: "Search reset stays on the homepage and the keyboard shortcut keeps search visible below the header" },
+  ] },
   { date: "Sep 5, 2026", version: "2.16.0", changes: [
     { type: "fixed", text: "Barcode canvas initialization, Pomodoro session transitions and stale QR generation callbacks" },
     { type: "improved", text: "Derived calculator results, file-preview cleanup, persistent themes and browser-state initialization" },

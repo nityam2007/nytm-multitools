@@ -164,11 +164,11 @@ NYTM now includes 18 additional browser tools for business workflows. Start at `
 
 ### Discovery and SEO maintenance
 
-`lib/tool-discovery.ts` defines the eight registry categories and homepage workflows. `lib/tool-search.ts` adds task phrases and ranks multi-word queries for the homepage, library, and sidebar. Search state lives in `/tools?q=...&category=...&file=...&scope=...&sort=...&view=...&page=...`; the older `search` parameter is accepted. Pins remain local to the browser.
+`lib/tool-discovery.ts` defines the eight registry categories, shared workflows, and featured tool slugs. `HomeToolPicker` in `components/ToolCard.tsx` groups homepage shortcuts into quick picks, PDFs, images, text, code/data, and business. `lib/tool-search.ts` adds task phrases and ranks multi-word queries for the homepage, library, and sidebar. Search state lives in `/tools?q=...&category=...&file=...&scope=...&sort=...&view=...&page=...`; the older `search` parameter is accepted. Pins remain local to the browser.
 
 `lib/seo-intents.ts` contains editorial tool titles and category guidance. These are capability-based phrases, not measured search-volume claims. `lib/seo.ts` produces unique tool metadata, canonical URLs, and structured data. `/categories/[category]` serves the eight registry categories plus a PDF collection with full server-rendered tool lists. Add a matching category description when extending the registry. Sitemap modification dates must reflect an actual content release, rather than every build.
 
-The homepage and guides use button-styled links for navigation; native buttons handle local actions. Keep Open and Pin separate, label controls, retain visible keyboard focus, and check 320px layouts in both themes when changing shared discovery styles.
+The homepage and guides use links for navigation; native buttons handle local actions. Keep Open and Pin separate, label controls, retain visible keyboard focus, and check 320px layouts in both themes when changing shared discovery styles.
 
 ### Runtime asset maintenance
 
@@ -288,3 +288,9 @@ The v2.14–v2.16 releases add consistent upload controls, connected field label
 Final checks: `npx tsc --noEmit` passed; repository-wide `npx eslint .` reported zero errors and 100 warnings. Remaining warnings include existing image-element guidance, unused variables and effect dependencies. CommonJS maintenance scripts have a language-specific lint override. The SDK readiness effect has a documented local exception so analytics initialization behavior stays unchanged.
 
 After the request to stop testing, verification used TypeScript and ESLint only; no further browser tests or production builds were run locally. These checks do not guarantee every legacy tool's runtime behavior or search rankings.
+
+## Homepage release verification - v2.17.0
+
+The homepage now puts search and direct tool shortcuts first, with six task filters, separate pin controls, compact category navigation, and contextual NSheth services. Existing colours, tool URLs, metadata, and analytics configuration are retained. Search supports initial suggestions, arrow-key selection, Enter, Escape, clear/reset, and the `/` shortcut. The service-worker cache version advances with this release.
+
+Validation: the production build and TypeScript passed with 1,159 generated pages. Changed TypeScript files passed focused ESLint; repository-wide lint reported zero errors and 100 existing warnings. Browser checks covered desktop and phone layouts, both themes, filtering, pin/unpin, search navigation, empty-result recovery, and shortcut focus positioning. A local mobile Lighthouse report scored 88 for performance and 100 for accessibility, best practices, and SEO; these are lab measurements, not evidence of increased conversions. Lighthouse wrote its report but reported a Windows temporary-directory cleanup error afterward.

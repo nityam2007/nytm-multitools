@@ -1,5 +1,6 @@
 // Main tool registry | TypeScript
 import { businessTools } from "./business-tools-config";
+import { rankTools } from "./tool-search";
 export interface ToolConfig {
   slug: string;
   name: string;
@@ -1800,11 +1801,5 @@ export function getToolsByCategory(category: ToolConfig["category"]): ToolConfig
 }
 
 export function searchTools(query: string): ToolConfig[] {
-  const lowerQuery = query.toLowerCase();
-  return toolsConfig.filter(
-    (tool) =>
-      tool.name.toLowerCase().includes(lowerQuery) ||
-      tool.description.toLowerCase().includes(lowerQuery) ||
-      tool.keywords?.some((k) => k.toLowerCase().includes(lowerQuery))
-  );
+  return rankTools(toolsConfig, query);
 }

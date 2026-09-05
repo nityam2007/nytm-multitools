@@ -6,7 +6,7 @@ import { usePreference, writePreference } from "@/lib/tool-history";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, createContext, useContext, useMemo } from "react";
-import { toolsConfig } from "@/lib/tools-config";
+import { toolsConfig, searchTools } from "@/lib/tools-config";
 import {
   HomeIcon,
   GridIcon,
@@ -158,13 +158,12 @@ export function Sidebar() {
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return sidebarCategories;
     
-    const query = searchQuery.toLowerCase();
+    const matchingSlugs = new Set(searchTools(searchQuery).map(tool => tool.slug));
     return sidebarCategories
       .map((cat) => ({
         ...cat,
         tools: cat.tools.filter((tool) =>
-          tool.name.toLowerCase().includes(query) ||
-          tool.slug.toLowerCase().includes(query)
+          matchingSlugs.has(tool.slug)
         ),
       }))
       .filter((cat) => cat.tools.length > 0);
@@ -249,6 +248,7 @@ export function Sidebar() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search tools..."
+                aria-label="Search sidebar tools"
                 className="w-full px-4 py-2.5 pl-10 rounded-xl bg-[var(--muted)] border border-transparent text-sm focus:border-violet-500/40 focus:bg-violet-500/5 placeholder-[var(--muted-foreground)] transition-all duration-200"
               />
               <SearchIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)]" />

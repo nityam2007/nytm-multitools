@@ -6,7 +6,7 @@ import { toolsConfig } from "./tools-config";
 
 // Computed values from tools config
 export const TOTAL_TOOLS = toolsConfig.length;
-export const TOTAL_CATEGORIES = 7; // text, dev, image, converter, generator, security, misc
+export const TOTAL_CATEGORIES = new Set(toolsConfig.map(tool => tool.category)).size;
 
 // Site metadata
 export const SITE_NAME = "NYTM MULTITOOLS";

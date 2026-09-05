@@ -16,6 +16,10 @@ interface ChangelogEntry {
 
 // Static changelog data - update this when adding new features
 const changelog: ChangelogEntry[] = [
+  { date: "Sep 5, 2026", version: "2.11.0", changes: [
+    { type: "new", text: "Search-first homepage with task shortcuts, all eight categories, useful tool picks, and guides" },
+    { type: "improved", text: "Ranked multi-word search, shareable filters, grid/list views, pagination, and a dedicated pinned collection" },
+  ] },
   { date: "Sep 5, 2026", version: "2.10.0", changes: [
     { type: "improved", text: "Visible guide and service buttons, readable tool cards with Open and Pin controls, and larger touch targets" },
     { type: "improved", text: "Keyboard skip navigation, reduced-motion support, and responsive header navigation" },

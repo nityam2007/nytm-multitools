@@ -15,7 +15,7 @@ export const SITE_TITLE = "Free Online Tools for PDFs, Images, Text & Code | NYT
 export const SITE_DESCRIPTION = `${TOTAL_TOOLS} free online tools to merge PDFs, resize images, format JSON, clean CSV files and more. No signup or installation. Pick a tool and get it done.`;
 export const SOCIAL_TITLE = `${SITE_NAME} — ${SITE_TAGLINE}`;
 export const SOCIAL_IMAGE = {
-  url: "https://nytm.in/og",
+  url: "https://nytm.in/og?v=dark-1",
   width: 1200,
   height: 630,
   alt: `${SITE_NAME}. ${SITE_TAGLINE} ${TOTAL_TOOLS} free online tools for PDFs, images, text, code and business.`,

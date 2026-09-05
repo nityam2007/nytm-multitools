@@ -1,3 +1,5 @@
+// Main tool registry | TypeScript
+import { businessTools } from "./business-tools-config";
 export interface ToolConfig {
   slug: string;
   name: string;
@@ -11,6 +13,7 @@ export interface ToolConfig {
 }
 
 export const toolsConfig: ToolConfig[] = [
+  ...businessTools,
   // Text Tools
   {
     slug: "summary",

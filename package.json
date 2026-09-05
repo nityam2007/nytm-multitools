@@ -1,8 +1,8 @@
 {
   "name": "nytm-tools",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "private": true,
-  "toolCount": 184,
+  "toolCount": 192,
   "engines": {
     "node": ">=24.0.0",
     "npm": ">=11.0.0"
@@ -20,6 +20,7 @@
   "dependencies": {
     "@imgly/background-removal": "^1.7.0",
     "@types/qrcode": "^1.5.6",
+    "fflate": "^0.8.3",
     "heic2any": "^0.0.4",
     "jose": "^6.2.3",
     "jspdf": "^4.2.1",
@@ -33,6 +34,7 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-dropzone": "^15.0.0",
+    "tesseract.js": "^7.0.0",
     "uuid": "^14.0.1"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@ const path = require('path');
 
 // Read tools config to get all slugs
 const configPath = path.join(__dirname, '../lib/tools-config.ts');
-const configContent = fs.readFileSync(configPath, 'utf-8');
+const configContent = fs.readFileSync(configPath, 'utf-8') + '\n' + fs.readFileSync(path.join(__dirname, '../lib/business-tools-config.ts'), 'utf-8');
 
 // Extract all slug values
 const slugMatches = configContent.matchAll(/slug:\s*["']([^"']+)["']/g);

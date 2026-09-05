@@ -89,7 +89,7 @@ function generateSlug(title) {
 // Parse tools-config.ts to extract tool data
 function parseToolsConfig() {
   const configPath = path.join(__dirname, '..', 'lib', 'tools-config.ts');
-  const content = fs.readFileSync(configPath, 'utf-8');
+  const content = fs.readFileSync(configPath, 'utf-8') + '\n' + fs.readFileSync(path.join(__dirname, '../lib/business-tools-config.ts'), 'utf-8');
   
   const tools = [];
   const toolRegex = /\{\s*slug:\s*"([^"]+)",\s*name:\s*"([^"]+)",\s*description:\s*"([^"]+)",\s*category:\s*"([^"]+)"[^}]*keywords:\s*\[([^\]]*)\]/g;

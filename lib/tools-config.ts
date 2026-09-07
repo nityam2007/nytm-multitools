@@ -28,7 +28,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "bullet-points",
     name: "Bullet Points",
-    description: "Convert paragraphs into organized bullet point lists.",
+    description: "Convert text to bullet points or numbered lists, or remove list markers. Split by lines or sentences while preserving wording and punctuation.",
     category: "text",
     icon: "pin",
     inputType: "text",
@@ -136,7 +136,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "text-repeat",
     name: "Text Repeater",
-    description: "Repeat text multiple times with customizable separator.",
+    description: "Repeat text up to 1,000 times with newlines, spaces, commas, tabs or a custom separator. Copy the result or download a text file.",
     category: "text",
     icon: "arrow-path",
     inputType: "text",
@@ -256,7 +256,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "markdown-clean",
     name: "Markdown Cleaner",
-    description: "Clean and standardize markdown formatting.",
+    description: "Clean Markdown headings, lists, links and blank lines with optional formatting controls. Preserve fenced code blocks and preview the result.",
     category: "dev",
     icon: "pencil",
     inputType: "text",
@@ -552,7 +552,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "image-compress",
     name: "Image Compressor",
-    description: "Compress images to reduce file size.",
+    description: "Compress JPG, PNG or WebP images to JPEG or WebP. Adjust quality and dimensions, then check the actual output size before downloading.",
     category: "image",
     icon: "archive-box",
     inputType: "file",
@@ -562,7 +562,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "image-upscaler",
     name: "Image Upscaler",
-    description: "Upscale images to higher resolution (2×, 3×, 4×). Browser-based interpolation.",
+    description: "Enlarge an image 2x, 3x or 4x with browser image interpolation and download a PNG. See the new dimensions before exporting.",
     category: "image",
     icon: "arrow-up",
     inputType: "file",
@@ -1253,7 +1253,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "iban-generator",
     name: "IBAN Generator",
-    description: "Generate valid IBAN numbers for testing.",
+    description: "Generate sample IBAN strings for software testing in ten countries. Checksum-valid examples do not confirm bank or account validity.",
     category: "generator",
     icon: "building-library",
     inputType: "none",
@@ -1753,7 +1753,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "optical-illusion-generator",
     name: "Optical Illusion Generator",
-    description: "Create mesmerizing optical illusions. Choose from spirals, grids, motion patterns, and more.",
+    description: "Explore six optical illusion patterns with adjustable colors, including a Hermann grid, Café Wall, concentric circles and animated spirals.",
     category: "generator",
     icon: "eye",
     inputType: "none",
@@ -1773,7 +1773,7 @@ export const toolsConfig: ToolConfig[] = [
   {
     slug: "directory-tree-visualizer",
     name: "Directory Tree Visualizer",
-    description: "Generate ASCII or Unicode tree views from folder structures. Great for documentation.",
+    description: "Generate a folder structure for README files from an indented list. Choose tree connectors, then copy or download your directory tree.",
     category: "dev",
     icon: "folder",
     inputType: "text",

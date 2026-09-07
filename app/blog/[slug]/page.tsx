@@ -2,10 +2,11 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getBlogEntryBySlug, getAllBlogSlugs, blogEntries } from '@/lib/blog-info';
+import { getBlogEntryBySlug, getAllBlogSlugs } from '@/lib/blog-info';
 import { toolsConfig } from '@/lib/tools-config';
 import { searchKeywords } from '@/lib/tool-search';
 import { generateCollectionMetadata } from '@/lib/seo';
+import { toolAdvice } from '@/lib/seo-intents';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -28,10 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const tool = toolsConfig.find(tool => tool.slug === entry.toolSlug);
   return generateCollectionMetadata({
     title: `${entry.title} | NYTM`,
-    description: `${entry.description} Use this free online tool with no sign up required. Works in your browser instantly.`,
-    keywords: [entry.title.toLowerCase(), ...searchKeywords(toolsConfig.find(tool => tool.slug === entry.toolSlug)!)],
+    description: `${tool?.description || entry.description} Free, no signup.`,
+    keywords: [entry.title.toLowerCase(), ...(tool ? searchKeywords(tool) : [])],
     article: true,
     path: `/blog/${slug}`,
   });
@@ -39,8 +41,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // Get related tools by category
 function getRelatedTools(category: string, currentToolSlug: string) {
-  return blogEntries
-    .filter(e => e.category === category && e.toolSlug !== currentToolSlug)
+  const related = toolAdvice[currentToolSlug]?.related;
+  return (related ? related.map(slug => toolsConfig.find(tool => tool.slug === slug)).filter((tool): tool is typeof toolsConfig[number] => !!tool) : toolsConfig.filter(tool => tool.category === category))
+    .filter(tool => tool.slug !== currentToolSlug)
     .slice(0, 6);
 }
 
@@ -78,7 +81,7 @@ export default async function BlogPostPage({ params }: Props) {
         </span>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{entry.title}</h1>
         <p className="text-lg text-[var(--muted-foreground)] leading-relaxed">
-          {entry.description}
+          {toolConfig?.description || entry.description}
         </p>
       </header>
 
@@ -126,8 +129,8 @@ export default async function BlogPostPage({ params }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             <div>
-              <h3 className="font-medium mb-1">Privacy First</h3>
-              <p className="text-sm text-[var(--muted-foreground)]">Data processed in your browser, never uploaded</p>
+              <h3 className="font-medium mb-1">Processing and privacy</h3>
+              <p className="text-sm text-[var(--muted-foreground)]">Many tools process locally. Usage requests, network features and analytics can send data off your device. <Link href="/privacy" className="underline">Read the privacy notice</Link>.</p>
             </div>
           </div>
           <div className="flex gap-3 p-4 bg-[var(--muted)] rounded-xl">
@@ -168,11 +171,11 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {relatedTools.map((related) => (
               <Link
-                key={related.blogSlug}
-                href={`/tools/${related.toolSlug}`}
+                key={related.slug}
+                href={`/tools/${related.slug}`}
                 className="p-4 bg-[var(--muted)] hover:bg-violet-500/10 rounded-xl transition-colors group"
               >
-                <h3 className="font-medium mb-1 group-hover:text-violet-500 transition-colors">{related.title}</h3>
+                <h3 className="font-medium mb-1 group-hover:text-violet-500 transition-colors">{related.name}</h3>
                 <p className="text-sm text-[var(--muted-foreground)] line-clamp-2">{related.description}</p>
               </Link>
             ))}

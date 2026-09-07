@@ -66,7 +66,7 @@ export default function ImageUpscalerPage() {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        // Use bicubic interpolation for better quality
+        // Request high-quality smoothing; the browser chooses the interpolation algorithm.
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = "high";
 
@@ -200,11 +200,11 @@ export default function ImageUpscalerPage() {
         <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
           <p className="text-sm text-blue-400 mb-2">
             <strong>Note:</strong> This tool uses browser-based interpolation for upscaling. 
-            For best results with photos, consider AI-powered upscaling services.
+            It increases dimensions but cannot reconstruct missing detail.
           </p>
           <p className="text-xs text-blue-400/80">
             • Works best for graphics, screenshots, and illustrations
-            <br />• Uses high-quality bicubic interpolation
+            <br />• Requests high-quality browser image smoothing
             <br />• Processing happens entirely in your browser
           </p>
         </div>

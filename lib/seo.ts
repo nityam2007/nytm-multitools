@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 import { toolsConfig, ToolConfig } from "./tools-config";
 import { searchKeywords } from "./tool-search";
-import { toolSearchTitles } from "./seo-intents";
+import { toolAdvice, toolSearchTitles } from "./seo-intents";
 import { SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, SOCIAL_TITLE, SOCIAL_IMAGE, SOCIAL_CREATOR } from "./site-config";
 
 const BASE_URL = "https://nytm.in";
@@ -108,10 +108,10 @@ export function generateToolMetadata(slug: string): Metadata {
   const tool = toolsConfig.find((t) => t.slug === slug);
   if (!tool) return { title: "Tool Not Found", robots: { index: false } };
   const title = (toolSearchTitles[slug] || tool.name) + " – Free Online | NYTM";
-  const description =
+  const description = toolAdvice[slug] ? tool.description : (
     tool.description.length < 138
       ? tool.description + " Free, no signup."
-      : tool.description;
+      : tool.description);
   return generateCollectionMetadata({
     title,
     description,
@@ -209,7 +209,7 @@ export function generatePageMetadata(
 export function generateToolJsonLd(tool: ToolConfig): object {
   const application = {
     "@type": "WebApplication",
-    name: tool.name,
+    name: toolSearchTitles[tool.slug] || tool.name,
     description: tool.description,
     url: `${BASE_URL}/tools/${tool.slug}`,
     applicationCategory: "UtilityApplication",

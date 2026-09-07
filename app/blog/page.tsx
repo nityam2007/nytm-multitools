@@ -58,9 +58,9 @@ export default function BlogPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Free Online Tools</h1>
+        <h1 className="text-3xl font-bold mb-2">Tool articles</h1>
         <p className="text-[var(--muted-foreground)]">
-          Browse our collection of {blogEntries.length.toLocaleString()} free online tools - no sign up required
+          Browse tool articles, or <Link href="/tools" className="underline">open the tool directory</Link> to find a utility by task.
         </p>
       </div>
 

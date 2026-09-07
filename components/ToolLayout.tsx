@@ -6,7 +6,8 @@ import { readToolList, writeToolList } from "@/lib/tool-history";
 import Link from "next/link";
 import { useEffect } from "react";
 import * as React from "react";
-import { ToolConfig } from "@/lib/tools-config";
+import { ToolConfig, getToolBySlug } from "@/lib/tools-config";
+import { toolAdvice, toolSearchTitles } from "@/lib/seo-intents";
 import { ToolCard } from "@/components/ToolCard";
 import { EmbedButton } from "@/components/EmbedButton";
 import { ShareButton } from "@/components/ShareButton";
@@ -20,6 +21,10 @@ interface ToolLayoutProps {
 
 export function ToolLayout({ tool, children, similarTools = [], embedMode = false }: ToolLayoutProps) {
   const [isEmbedMode, setIsEmbedMode] = React.useState(embedMode);
+  const advice = toolAdvice[tool.slug];
+  const relatedTools = advice
+    ? advice.related.map(getToolBySlug).filter((item): item is ToolConfig => !!item && item.slug !== tool.slug)
+    : similarTools;
 
   // Auto-detect embed mode from body class
   React.useEffect(() => {
@@ -72,7 +77,7 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
 
       <header className="mb-6 border-b border-[var(--border)] pb-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">{tool.name}</h1>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">{toolSearchTitles[tool.slug] || tool.name}</h1>
           <div className="flex gap-2"><ShareButton slug={tool.slug} toolName={tool.name} /><EmbedButton slug={tool.slug} toolName={tool.name} /></div>
         </div>
         <p className="mt-3 text-base text-[var(--muted-foreground)] max-w-3xl leading-relaxed">{tool.description}</p>
@@ -84,24 +89,55 @@ export function ToolLayout({ tool, children, similarTools = [], embedMode = fals
         {children}
       </div>
 
+      {advice && <section aria-labelledby="tool-help-heading" className="mb-10 space-y-7 border-t border-[var(--border)] pt-8">
+        <div className="max-w-3xl space-y-3">
+          <h2 id="tool-help-heading" className="text-xl sm:text-2xl font-semibold tracking-tight">{advice.heading}</h2>
+          <p className="text-[var(--muted-foreground)] leading-relaxed">{advice.answer}</p>
+          <ol className="list-decimal pl-6 space-y-2 text-[var(--muted-foreground)]">
+            {advice.steps.map(step => <li key={step}>{step}</li>)}
+          </ol>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Worked example</h3>
+          <div className="grid gap-4 md:grid-cols-2">
+            {[["Input and settings", advice.example.input], ["Output", advice.example.output]].map(([label, value]) =>
+              <figure key={label} className="min-w-0">
+                <figcaption className="text-sm font-medium mb-2">{label}</figcaption>
+                <pre className="rounded-lg border border-[var(--border)] bg-[var(--muted)] p-4 whitespace-pre-wrap break-words text-sm leading-relaxed">{value}</pre>
+              </figure>)}
+          </div>
+        </div>
+        <div className="max-w-3xl space-y-2">
+          <h3 className="text-lg font-semibold">Supported behavior and limitations</h3>
+          <p className="text-[var(--muted-foreground)] leading-relaxed">{advice.limitations}</p>
+        </div>
+        <div className="max-w-3xl space-y-5">
+          {advice.questions.map(item => <div key={item.question} className="space-y-2">
+            <h3 className="text-lg font-semibold">{item.question}</h3>
+            <p className="text-[var(--muted-foreground)] leading-relaxed">{item.answer}</p>
+          </div>)}
+        </div>
+        <p className="text-sm text-[var(--muted-foreground)]">Tool processing and website analytics are separate. See the <Link className="underline underline-offset-4" href="/privacy">privacy notice</Link> for usage requests, network features and analytics data flows.</p>
+      </section>}
+
       {guide && <Link className="btn btn-secondary mb-3" href={`/guides/${guide}`}>Read the step-by-step guide →</Link>}
       <NShethPromotion tool={tool} />
 
       {/* Similar Tools - Enhanced cards */}
-      {similarTools.length > 0 && (
+      {relatedTools.length > 0 && (
         <div className="border-t border-[var(--border)] pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold tracking-[-0.02em]">Similar Tools</h2>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-[-0.02em]">Related tools</h2>
               <p className="text-xs sm:text-sm text-[var(--muted-foreground)] mt-1" style={{ lineHeight: '1.6' }}>
-                You might also be interested in
+                Useful next steps for this task
               </p>
             </div>
             <Link className="btn btn-secondary" href={`/tools?category=${tool.category}`}>Browse this category →</Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {similarTools.slice(0, 6).map((similarTool) => <ToolCard key={similarTool.slug} tool={similarTool} />)}
+            {relatedTools.slice(0, 6).map((similarTool) => <ToolCard key={similarTool.slug} tool={similarTool} />)}
           </div>
         </div>
       )}

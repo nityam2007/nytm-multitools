@@ -1,9 +1,12 @@
+// Format lists while preserving each item's wording | TypeScript
 "use client";
 
 import { useState } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import { TextArea } from "@/components/TextArea";
 import { OutputBox } from "@/components/OutputBox";
+import { Select } from "@/components/Select";
+import { Button } from "@/components/Button";
 import { getToolBySlug, getToolsByCategory } from "@/lib/tools-config";
 import { logToolUsage } from "@/lib/actions";
 
@@ -15,6 +18,8 @@ export default function BulletPointsPage() {
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [bulletStyle, setBulletStyle] = useState<"•" | "-" | "*" | "→">("•");
+  const [mode, setMode] = useState("bullets");
+  const [splitBy, setSplitBy] = useState("auto");
 
   const convertToBulletPoints = (text: string): string => {
     if (!text.trim()) return "";
@@ -25,13 +30,12 @@ export default function BulletPointsPage() {
     // First try splitting by line breaks
     const lines = text.split(/\n+/).filter(l => l.trim());
     
-    if (lines.length > 1) {
+    if (splitBy === "lines" || (splitBy === "auto" && lines.length > 1)) {
       items = lines;
     } else {
       // Split by sentences
       items = text
-        .replace(/([.!?])\s+/g, "$1|||")
-        .split("|||")
+        .split(/(?<=[.!?])\s+/)
         .filter(s => s.trim().length > 0);
     }
 
@@ -39,14 +43,11 @@ export default function BulletPointsPage() {
     const bulletPoints = items
       .map(item => item.trim())
       .filter(item => item.length > 0)
-      .map(item => {
+      .map((item, index) => {
         // Remove leading bullet points if they exist
-        let clean = item.replace(/^[\s•\-\*→]+/, "").trim();
-        // Capitalize first letter
-        clean = clean.charAt(0).toUpperCase() + clean.slice(1);
-        // Remove trailing period if exists
-        clean = clean.replace(/\.+$/, "");
-        return `${bulletStyle} ${clean}`;
+        const clean = item.replace(/^(?:[•\-*+→]|\d+[.)])\s+/, "");
+        if (mode === "remove") return clean;
+        return mode === "numbered" ? `${index + 1}. ${clean}` : `${bulletStyle} ${clean}`;
       });
 
     return bulletPoints.join("\n");
@@ -62,15 +63,15 @@ export default function BulletPointsPage() {
       const result = convertToBulletPoints(input);
       setOutput(result);
 
-      await logToolUsage({
+      void logToolUsage({
         toolName: tool.name,
         toolCategory: tool.category,
         inputType: "text",
         rawInput: input,
         outputResult: result,
         processingDuration: Date.now() - startTime,
-        metadata: { bulletStyle },
-      });
+        metadata: { bulletStyle, mode, splitBy },
+      }).catch(error => console.error("Usage logging failed:", error));
     } catch (error) {
       console.error("Error converting to bullet points:", error);
     } finally {
@@ -81,20 +82,33 @@ export default function BulletPointsPage() {
   return (
     <ToolLayout tool={tool} similarTools={similarTools}>
       <div className="space-y-6">
+        <Button variant="secondary" onClick={() => { setInput("Draft the README. Review the examples. Publish the update."); setOutput(""); }}>Load example</Button>
         <TextArea
           label="Input Text"
           placeholder="Paste your text here to convert into bullet points..."
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => { setInput(e.target.value); setOutput(""); }}
         />
 
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Select label="List format" value={mode} onChange={e => { setMode(e.target.value); setOutput(""); }} options={[
+            { value: "bullets", label: "Bullet points" }, { value: "numbered", label: "Numbered list" }, { value: "remove", label: "Remove list markers" },
+          ]} />
+          <Select label="Split text by" value={splitBy} onChange={e => { setSplitBy(e.target.value); setOutput(""); }} options={[
+            { value: "auto", label: "Automatic: lines, otherwise sentences" }, { value: "lines", label: "Line breaks" }, { value: "sentences", label: "Sentences" },
+          ]} />
+        </div>
+
+        {mode === "bullets" && (
         <div>
           <label className="block text-sm font-medium mb-2">Bullet Style</label>
           <div className="flex gap-2">
             {(["•", "-", "*", "→"] as const).map((style) => (
               <button
                 key={style}
-                onClick={() => setBulletStyle(style)}
+                aria-label={`Use ${style} bullets`}
+                aria-pressed={bulletStyle === style}
+                onClick={() => { setBulletStyle(style); setOutput(""); }}
                 className={`px-4 py-2 rounded-lg border transition-colors ${
                   bulletStyle === style
                     ? "border-[var(--primary)] bg-[var(--primary)]/10 text-[var(--primary)]"
@@ -106,6 +120,7 @@ export default function BulletPointsPage() {
             ))}
           </div>
         </div>
+        )}
 
         <button
           onClick={handleProcess}
@@ -118,12 +133,12 @@ export default function BulletPointsPage() {
               Converting...
             </span>
           ) : (
-            "Convert to Bullet Points"
+            "Format list"
           )}
         </button>
 
         <OutputBox
-          label="Bullet Points"
+          label="Formatted list"
           value={output}
           downloadFileName="bullet-points.txt"
         />

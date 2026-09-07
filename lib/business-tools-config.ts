@@ -6,7 +6,7 @@ export const businessTools: ToolConfig[] = [
     slug: "whatsapp-link",
     name: "WhatsApp Link & QR Builder",
     description:
-      "Create a WhatsApp chat link with a pre-filled message and downloadable QR code.",
+      "Generate a WhatsApp chat link with a pre-filled message and downloadable SVG QR code. Include your country code and test before sharing.",
     category: "generator",
     icon: "document-text",
     inputType: "text",
@@ -199,7 +199,7 @@ export const businessTools: ToolConfig[] = [
     slug: "image-ocr",
     name: "Image to Text OCR",
     description:
-      "Extract printed English text using a self-hosted OCR engine running in your browser.",
+      "Extract printed English text from JPG, PNG or WebP images and screenshots using local OCR. Review, copy or download the recognized text.",
     category: "converter",
     icon: "document-text",
     inputType: "file",

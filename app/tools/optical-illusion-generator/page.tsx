@@ -223,7 +223,7 @@ export default function OpticalIllusionGeneratorPage() {
       case "checkerboard":
         return "The gray dots create a shimmering effect at the intersections.";
       case "spiral":
-        return "Stare at the center - the spiral appears to be moving even when still.";
+        return "The spiral rotates using animation. Change the duration to compare slower and faster rotations.";
       case "grid":
         return "Look at the white intersections - ghost gray dots appear and disappear.";
       case "cafe-wall":

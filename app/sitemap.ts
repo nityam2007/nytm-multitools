@@ -4,6 +4,7 @@ import { toolsConfig } from "@/lib/tools-config";
 import { discoveryCategories } from "@/lib/tool-discovery";
 import { guides } from "@/lib/guides";
 import { blogEntries } from "@/lib/blog-info";
+import { toolAdvice } from "@/lib/seo-intents";
 
 const BASE_URL = "https://nytm.in";
 
@@ -67,15 +68,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Tool pages - dynamically generated from tools config
   const toolPages: MetadataRoute.Sitemap = toolsConfig.map((tool) => ({
     url: `${BASE_URL}/tools/${tool.slug}`,
-    lastModified: currentDate,
+    lastModified: toolAdvice[tool.slug] ? new Date("2026-09-07") : currentDate,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // Blog pages - SEO alternate entry points
+  // Existing articles remain until traffic and backlinks inform consolidation.
   const blogPages: MetadataRoute.Sitemap = blogEntries.map((entry) => ({
     url: `${BASE_URL}/blog/${entry.blogSlug}`,
-    lastModified: currentDate,
+    lastModified: new Date("2026-09-07"),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

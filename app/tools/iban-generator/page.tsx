@@ -1,3 +1,4 @@
+// Generate checksum-valid sample strings for testing | TypeScript
 "use client";
 
 import { useState } from "react";
@@ -47,7 +48,6 @@ export default function IBANGeneratorPage() {
   const [results, setResults] = useState<{iban: string; formatted: string}[]>([]);
 
   const randomDigit = () => Math.floor(Math.random() * 10).toString();
-  const randomLetter = () => String.fromCharCode(65 + Math.floor(Math.random() * 26));
 
   const generateBBAN = (countryCode: string): string => {
     const countryConfig = countries.find(c => c.code === countryCode);
@@ -94,7 +94,7 @@ export default function IBANGeneratorPage() {
           <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
-          <span><strong>Disclaimer:</strong> These are randomly generated IBANs for testing purposes only. They pass checksum validation but are not real bank accounts.</span>
+          <span><strong>For software testing:</strong> These random strings pass the international checksum but may fail national format rules. Account existence is not checked, and values are not guaranteed to be unassigned. Never use them for payments.</span>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
